@@ -123,8 +123,12 @@
     packages = with pkgs; [
       firefox
       kate
+      google-chrome
+      libreoffice
+      neofetch
       libsForQt5.kdeconnect-kde # kdeconnect support
     #  thunderbird
+
     ];
   };
 
@@ -139,8 +143,16 @@
     vim
     wget
     curl
+    openssh
+    gnupg
 
   ];
+
+  # Set environment variable for allowing non-free packages
+  environment.sessionVariables = rec {
+    NIXPKGS_ALLOW_UNFREE = "1";
+
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
