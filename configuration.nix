@@ -27,7 +27,7 @@
   };
 
   # plymouth theme for splash screen
-  boot.kernelParams = [ "quiet" "lockdown=integrity" ];
+  boot.kernelParams = [ "quiet" ];
   boot.plymouth.enable = true;
   boot.plymouth.theme = "breeze";
   boot.initrd.systemd.enable = true;
@@ -94,6 +94,10 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  # Enable flatpak
+  services.flatpak.enable = true;
+  # enable fwupd
+  services.fwupd.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -157,15 +161,21 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    # require public key authentication for better security
+    settings.PasswordAuthentication = false;
+    settings.KbdInteractiveAuthentication = false;
+    #settings.PermitRootLogin = "yes";
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -181,4 +191,6 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
+  # enable zram
+  zramSwap.enable = true;
 }
