@@ -20,10 +20,10 @@
   #     xxx
   # '';
 
-  # set cursor size and dpi for 4k monitor
+  # set cursor size and dpi for 1080p monitor
   xresources.properties = {
-    "Xcursor.size" = 16;
-    "Xft.dpi" = 172;
+    "Xcursor.size" = 24;
+    "Xft.dpi" = 96; # for 4k - 172
   };
 
   # Packages that should be installed to the user profile.
