@@ -128,9 +128,8 @@
       firefox
       kate
       google-chrome
-      libreoffice
-      neofetch
       libsForQt5.kdeconnect-kde # kdeconnect support
+      libsForQt5.qtstyleplugin-kvantum # kvuntum
     #  thunderbird
 
     ];

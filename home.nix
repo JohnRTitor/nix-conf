@@ -31,6 +31,10 @@
     # here is some command line tools I use frequently
     # feel free to add your own or remove some of them
 
+    # editors
+    vscode
+    emacs
+
     neofetch
     nnn # terminal file manager
 
@@ -93,6 +97,10 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
+
+    # graphical apps
+    whatsapp-for-linux
+    # libreoffice
   ];
 
   # basic configuration of git, please change to your own
@@ -100,6 +108,7 @@
     enable = true;
     userName = "Masum Reza";
     userEmail = "50095635+JohnRTitor@users.noreply.github.com";
+    signing.key = "0x1ED2C28423FDC1A9";
   };
 
   # starship - an customizable prompt for any shell
