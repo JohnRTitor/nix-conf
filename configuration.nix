@@ -81,6 +81,23 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  # AMDGPU graphics driver - disabled in favor of modesetting driver
+  # services.xserver.videoDrivers = [ "amdgpu" ];
+
+  # Enable OpenGL
+  hardware.opengl = {
+	  enable = true; # Mesa
+	  driSupport = true; # Vulkan
+    # Extra drivers
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+      amdvlk
+    ];
+    # For 32 bit applications 
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
+  };
 
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
