@@ -99,9 +99,15 @@
     ];
   };
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # Enable Hyperland
+  programs.hyprland.enable = true;
+  # Enable GDM
+  services.xserver = {
+        displayManager.gdm = {
+        enable = true;
+        wayland = true;
+      };
+  };
 
   # Configure keymap in X11
   services.xserver = {
@@ -145,7 +151,6 @@
       firefox
       kate
       google-chrome
-      libsForQt5.kdeconnect-kde # kdeconnect support
       libsForQt5.qtstyleplugin-kvantum # kvuntum
     #  thunderbird
 
