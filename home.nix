@@ -33,7 +33,7 @@
 
     # editors
     vscode
-    emacs
+    # emacs
 
     neofetch
     nnn # terminal file manager
