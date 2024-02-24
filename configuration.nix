@@ -159,6 +159,7 @@
     curl
     openssh
     gnupg
+    sbctl
 
 
     # hyprland specific config
