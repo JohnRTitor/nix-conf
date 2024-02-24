@@ -174,7 +174,6 @@
     swaynotificationcenter
     wlr-randr
     ydotool
-    hyprland-share-picker
     wl-clipboard
     hyprland-protocols
     hyprpicker
