@@ -27,7 +27,7 @@
   };
 
   # plymouth theme for splash screen
-  boot.kernelParams = [ "quiet" ];
+  # boot.kernelParams = [ "quiet" ];
   boot.plymouth.enable = true;
   boot.plymouth.theme = "breeze";
   boot.initrd.systemd.enable = true;
@@ -161,7 +161,6 @@
     gnupg
     sbctl
 
-
     # hyprland specific config
     kitty
     polkit_gnome
@@ -170,7 +169,6 @@
     udiskie
     gnome.adwaita-icon-theme
     gnome.gnome-themes-extra
-    nvidia-vaapi-driver
     gsettings-desktop-schemas
     swaynotificationcenter
     wlr-randr
@@ -183,6 +181,7 @@
     xdg-desktop-portal-hyprland
     hyprpaper
     wofi
+    waybar
     firefox-wayland
     swww
     grim
