@@ -79,41 +79,146 @@
     LC_TIME = "en_IN";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  # AMDGPU graphics driver - disabled in favor of modesetting driver
-  # services.xserver.videoDrivers = [ "amdgpu" ];
+
+  # ----- HYPRLAND SPECIFIC CONFIG START ----- #
 
   # Enable OpenGL
   hardware.opengl = {
 	  enable = true; # Mesa
 	  driSupport = true; # Vulkan
+    driSupport32Bit = true;
     # Extra drivers
     extraPackages = with pkgs; [
       rocmPackages.clr.icd
       amdvlk
+      vaapiVdpau
+      libvdpau-va-gl
     ];
     # For 32 bit applications 
     extraPackages32 = with pkgs; [
       driversi686Linux.amdvlk
+      libva
     ];
   };
 
-  # Enable Hyperland
-  programs.hyprland.enable = true;
-  # Enable GDM
-  services.xserver = {
-        displayManager.gdm = {
+
+  programs = {
+    # Enable Hyperland
+    hyprland.enable = true;
+    waybar = {
+      enable = true;
+      package = pkgs.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      });
+    };
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
+  };
+
+  services = {
+    xserver = {
+      # Enable the X11 windowing system.
+      enable = true;
+      # Configure keymap in X11
+      layout = "us";
+      xkbVariant = "";
+      excludePackages = [ pkgs.xterm ];
+      # AMDGPU graphics driver - disabled in favor of modesetting driver
+      # videoDrivers = ["amdgpu"];
+      libinput.enable = true;
+      # Enable GDM
+      displayManager.gdm = {
         enable = true;
         wayland = true;
       };
+    };
+    dbus.enable = true;
+    gvfs.enable = true;
+    tumbler.enable = true;
+    gnome = {
+      sushi.enable = true;
+      gnome-keyring.enable = true;
+    };
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+    wget
+    curl
+    openssh
+    gnupg
+
+
+    # hyprland specific config
+    kitty
+    polkit_gnome
+    libva-utils
+    fuseiso
+    udiskie
+    gnome.adwaita-icon-theme
+    gnome.gnome-themes-extra
+    nvidia-vaapi-driver
+    gsettings-desktop-schemas
+    swaynotificationcenter
+    wlr-randr
+    ydotool
+    hyprland-share-picker
+    wl-clipboard
+    hyprland-protocols
+    hyprpicker
+    swayidle
+    swaylock
+    xdg-desktop-portal-hyprland
+    hyprpaper
+    wofi
+    firefox-wayland
+    swww
+    grim
+    xdg-utils
+    xdg-desktop-portal
+    xdg-desktop-portal-gtk
+    qt5.qtwayland
+    qt6.qmake
+    qt6.qtwayland
+    adwaita-qt
+    adwaita-qt6
+  ];
+
+  # Environment variables to start the session with
+  environment.sessionVariables = {
+    POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
+    LIBVA_DRIVER_NAME = "amdgpu";
+    XDG_SESSION_TYPE = "wayland";
+    __GLX_VENDOR_LIBRARY_NAME = "amdgpu";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    SDL_VIDEODRIVER = "wayland";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+    CLUTTER_BACKEND = "wayland";
+    WLR_RENDERER = "vulkan";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    GTK_USE_PORTAL = "1";
+    NIXOS_XDG_OPEN_USE_PORTAL = "1";
+  }; 
+
+
+  # ----- HYPERLAND SPECIFIC CONFIG END ----- #
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -157,27 +262,7 @@
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    git
-    vim
-    wget
-    curl
-    openssh
-    gnupg
-
-  ];
-
-  # Set environment variable for allowing non-free packages
-  environment.sessionVariables = rec {
-    NIXPKGS_ALLOW_UNFREE = "1";
-
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
