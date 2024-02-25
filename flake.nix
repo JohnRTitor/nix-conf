@@ -55,7 +55,7 @@
       # configure lib
       lib = nixpkgs.lib;
     in {
-      nixosConfigurations.${systemSettings.hostname} = lib.nixosSystem {
+      nixosConfigurations.Ainz-NIX = lib.nixosSystem {
         system = systemSettings.system;
 
         modules = [
