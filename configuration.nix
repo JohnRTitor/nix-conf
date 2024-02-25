@@ -115,11 +115,24 @@
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
+        exo
+        mousepad
         thunar-archive-plugin
         thunar-volman
+        tumbler
       ];
     };
+
+    dconf.enable = true;
   };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+    xdg-desktop-portal-gtk
+    ];
+  };
+
 
   services = {
     xserver = {
@@ -141,16 +154,22 @@
     dbus.enable = true;
     gvfs.enable = true;
     tumbler.enable = true;
+    udev.enable = true;
     gnome = {
       sushi.enable = true;
       gnome-keyring.enable = true;
     };
   };
 
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
+  # FONTS
+  fonts.packages = with pkgs; [
+    noto-fonts
+    fira-code
+    noto-fonts-cjk
+    jetbrains-mono
+    font-awesome
+    (nerdfonts.override {fonts = ["JetBrainsMono"];})
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -296,7 +315,12 @@
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+  # SECURITY
+  security = {
+    pam.services.swaylock.text = "auth include login";
+    polkit.enable = true;
+    rtkit.enable = true;
+  }; 
   services.pipewire = {
     enable = true;
     alsa.enable = true;
