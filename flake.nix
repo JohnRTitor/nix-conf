@@ -22,17 +22,41 @@
     };
   };
 
-  outputs = { self, nixpkgs, lanzaboote, home-manager, nixpkgs-unstable, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, lanzaboote, home-manager, ... }:
     let
-      system = "x86_64-linux";
+
+      # ---- SYSTEM SETTINGS ---- #
+      systemSettings = {
+        system = "x86_64-linux"; # system arch
+        hostname = "masum"; # hostname
+        timezone = "Asia/Kolkata"; # select timezone
+        locale = "en_IN.UTF-8"; # select locale
+        username = "masum"; # username
+      };
+      
+      # configure stable pkgs
+      pkgs = import nixpkgs {
+        system = systemSettings.system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = (_: true);
+        };
+        # overlays = [ rust-overlay.overlays.default ];
+      };
+      pkgs-unstable = import nixpkgs-unstable {
+        system = systemSettings.system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = (_: true);
+        };
+        # overlays = [ rust-overlay.overlays.default ];
+      };
+
+      # configure lib
       lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in {
-    nixosConfigurations = {
-    # TODO replace Ainz-NIX with actual hostname
-      Ainz-NIX = lib.nixosSystem {
-        inherit system;
+      nixosConfigurations.${systemSettings.hostname} = lib.nixosSystem {
+        system = systemSettings.system;
 
         modules = [
           ./configuration.nix # main nix configuration
@@ -45,8 +69,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            # TODO replace ryan with your own username
-            home-manager.users.masum = import ./home.nix;
+            home-manager.users.${systemSettings.username} = import ./home.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
           }
