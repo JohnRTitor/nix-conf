@@ -3,8 +3,14 @@
   description = "Flake file of John Titor";
 
   inputs = {
+    # Stable nixpkgs (23.11)
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    # Unstable nixpkgs
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    # lanzaboote, used for secureboot
     lanzaboote.url = "github:nix-community/lanzaboote";
+
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -42,6 +48,15 @@
           }
 
         ];
+      };
+      overlays = {
+        unstable-packages = final: _prev: {
+          unstable = import inputs.nixpkgs-unstable {
+            system = final.system;
+            config.allowUnfree = true;
+        };
+      };
+      
       };
     };
   };

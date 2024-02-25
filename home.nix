@@ -32,7 +32,7 @@
     # feel free to add your own or remove some of them
 
     # editors
-    vscode
+    # vscode
     # emacs
 
     neofetch

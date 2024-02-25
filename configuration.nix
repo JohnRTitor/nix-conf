@@ -2,9 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-let
-unstable = import <nixos-unstable> { config.allowUnfree = true; };
-in
+
 { config, pkgs, ... }:
 
 {
@@ -87,8 +85,8 @@ in
 
   # Enable OpenGL
   hardware.opengl = {
-	  enable = true; # Mesa
-	  driSupport = true; # Vulkan
+    enable = true; # Mesa
+    driSupport = true; # Vulkan
     driSupport32Bit = true;
     # Extra drivers
     extraPackages = with pkgs; [
@@ -152,6 +150,11 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # allow unstable packages
+  nixpkgs.overlays = [outputs.unstable-packages];
+  environment.systemPackages = [ unstable.vscode ];
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -278,17 +281,6 @@ in
     #  thunderbird
 
     ];
-  };
-
-
-  nixpkgs.config = {
-    allowUnfreePredicate = pkg: builtins.elem (unstable.lib.getName pkg) [
-      "vscode-1.87"
-    ];
-
-    packageOverrides = pkgs: {
-      vscode = unstable.vscode;
-    };
   };
 
 
