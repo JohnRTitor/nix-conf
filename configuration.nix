@@ -282,7 +282,7 @@ in
 
 
   nixpkgs.config = {
-    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    allowUnfreePredicate = pkg: builtins.elem (unstable.lib.getName pkg) [
       "vscode-1.87"
     ];
 
