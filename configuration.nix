@@ -207,6 +207,7 @@
     rofi
     qt6Packages.qtstyleplugin-kvantum
     yad
+    xdg-user-dirs
 
   ];
 
