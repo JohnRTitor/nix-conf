@@ -22,14 +22,18 @@
     };
   };
 
-  outputs = { self, nixpkgs, lanzaboote, home-manager, ... }:
+  outputs = { self, nixpkgs, lanzaboote, home-manager, nixpkgs-unstable, ... }:
     let
+      system = "x86_64-linux";
       lib = nixpkgs.lib;
+      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in {
     nixosConfigurations = {
     # TODO replace Ainz-NIX with actual hostname
       Ainz-NIX = lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
+
         modules = [
           ./configuration.nix # main nix configuration
           lanzaboote.nixosModules.lanzaboote # lanzaboote for secureboot
@@ -48,15 +52,9 @@
           }
 
         ];
-      };
-      overlays = {
-        unstable-packages = final: _prev: {
-          unstable = import inputs.nixpkgs-unstable {
-            system = final.system;
-            config.allowUnfree = true;
+        specialArgs = {
+          inherit pkgs-unstable;
         };
-      };
-      
       };
     };
   };

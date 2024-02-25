@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports =
@@ -151,71 +151,76 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # allow unstable packages
-  nixpkgs.overlays = [outputs.unstable-packages];
-  environment.systemPackages = [ unstable.vscode ];
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    git
-    vim
-    wget
-    curl
-    openssh
-    gnupg
-    sbctl
+  environment.systemPackages =
+    (with pkgs; [
+      git
+      vim
+      wget
+      curl
+      openssh
+      gnupg
+      sbctl
 
-    # hyprland specific config
-    kitty
-    polkit_gnome
-    libva-utils
-    fuseiso
-    udiskie
-    gnome.adwaita-icon-theme
-    gnome.gnome-themes-extra
-    gsettings-desktop-schemas
-    swaynotificationcenter
-    wlr-randr
-    ydotool
-    wl-clipboard
-    hyprland-protocols
-    hyprpicker
-    swayidle
-    swaylock
-    xdg-desktop-portal-hyprland
-    hyprpaper
-    wofi
-    waybar
-    firefox-wayland
-    swww
-    grim
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    qt5.qtwayland
-    qt6.qmake
-    qt6.qtwayland
-    adwaita-qt
-    adwaita-qt6
+      # hyprland specific config
+      kitty
+      polkit_gnome
+      libva-utils
+      fuseiso
+      udiskie
+      gnome.adwaita-icon-theme
+      gnome.gnome-themes-extra
+      gsettings-desktop-schemas
+      swaynotificationcenter
+      wlr-randr
+      ydotool
+      wl-clipboard
+      hyprland-protocols
+      hyprpicker
+      swayidle
+      swaylock
+      xdg-desktop-portal-hyprland
+      hyprpaper
+      wofi
+      waybar
+      firefox-wayland
+      swww
+      grim
+      xdg-utils
+      xdg-desktop-portal
+      xdg-desktop-portal-gtk
+      qt5.qtwayland
+      qt6.qmake
+      qt6.qtwayland
+      adwaita-qt
+      adwaita-qt6
 
-    # for hyprland dotfiles
-    btop
-    cava
-    libsForQt5.qt5ct
-    qt6Packages.qt6ct
-    swappy
-    swaylock-effects
-    swaynotificationcenter
-    wlogout
-    pywal
-    rofi-wayland
-    qt6Packages.qtstyleplugin-kvantum
-    yad
-    xdg-user-dirs
+      # for hyprland dotfiles
+      btop
+      cava
+      libsForQt5.qt5ct
+      qt6Packages.qt6ct
+      swappy
+      swaylock-effects
+      swaynotificationcenter
+      wlogout
+      pywal
+      rofi-wayland
+      qt6Packages.qtstyleplugin-kvantum
+      yad
+      xdg-user-dirs
 
-  ];
+    ])
+
+    ++
+
+    (with pkgs-unstable; [
+      # list of unstable packages
+      vscode
+    ]);
+
 
   # Environment variables to start the session with
   environment.sessionVariables = {
