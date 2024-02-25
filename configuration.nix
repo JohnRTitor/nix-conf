@@ -2,6 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
+let
+unstable = import <nixos-unstable> { config.allowUnfree = true; };
+in
 { config, pkgs, ... }:
 
 {
@@ -204,7 +207,7 @@
     swaynotificationcenter
     wlogout
     pywal
-    rofi
+    rofi-wayland
     qt6Packages.qtstyleplugin-kvantum
     yad
     xdg-user-dirs
@@ -277,6 +280,16 @@
     ];
   };
 
+
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "vscode-1.87"
+    ];
+
+    packageOverrides = pkgs: {
+      vscode = unstable.vscode;
+    };
+  };
 
 
   # Some programs need SUID wrappers, can be configured further or are
