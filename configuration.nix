@@ -193,6 +193,21 @@
     qt6.qtwayland
     adwaita-qt
     adwaita-qt6
+
+    # for hyprland dotfiles
+    btop
+    cava
+    libsForQt5.qt5ct
+    qt6Packages.qt6ct
+    swappy
+    swaylock-effects
+    swaynotificationcenter
+    wlogout
+    pywal
+    rofi
+    qt6Packages.qtstyleplugin-kvantum
+    yad
+
   ];
 
   # Environment variables to start the session with
