@@ -290,6 +290,8 @@
   services.flatpak.enable = true;
   # enable fwupd
   services.fwupd.enable = true;
+  # Mitigate issue where like /usr/bin/bash, hardcoded links in scripts not found
+  services.envfs.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
