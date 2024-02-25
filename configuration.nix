@@ -156,61 +156,99 @@
   # $ nix search wget
   environment.systemPackages =
     (with pkgs; [
-      git
-      vim
-      wget
+
       curl
       openssh
       gnupg
       sbctl
 
-      # hyprland specific config
+      # System Packages
+      baobab
+      btrfs-progs
+      cpufrequtils
+      # firewalld
+      ffmpeg   
+      git
+      glib #for gsettings to work   
+      libappindicator
+      libnotify
+      openssl # required by Rainbow borders
+    python3
+      pipewire
+      unzip  
+      vim
+      wget
+      wireplumber
+      xdg-user-dirs
+      
+      # I normally have and use
+      audacious
+      firefox-wayland
+      mpv
+      mpvScripts.mpris
+      neofetch
+      shotcut
+          
+      # Hyprland Stuff        
+      blueman
+      btop
+      cava
+      cliphist
+      gnome.file-roller
+      gnome.gnome-system-monitor
+      gnome.eog # eye of gnome
+      grim
+      jq
       kitty
+      networkmanagerapplet
+      nwg-look
+      pamixer
+      pavucontrol
+      playerctl
       polkit_gnome
+      pywal
+      qt6Packages.qtstyleplugin-kvantum #kvantum
+      libsForQt5.qtstyleplugin-kvantum #kvantum
+      # QT Wayland
+      qt5.qtwayland
+      qt6.qmake
+      qt6.qtwayland
+      rofi-wayland
+      slurp
+      swappy
+      swayidle
+      swaylock-effects
+      swaynotificationcenter
+      swww
+      # QT Control Center
+      libsForQt5.qt5ct
+      qt6Packages.qt6ct
+      wl-clipboard
+      wlogout
+      xdg-utils
+      xdg-desktop-portal-hyprland
+      yad 
+
+
+
+      # EXTRA PACKAGES - May not needed but should be tested first
+
       libva-utils
-      fuseiso
+      fuseiso # to mount iso system images
       udiskie
       gnome.adwaita-icon-theme
       gnome.gnome-themes-extra
       gsettings-desktop-schemas
-      swaynotificationcenter
       wlr-randr
       ydotool
-      wl-clipboard
       hyprland-protocols
       hyprpicker
-      swayidle
-      swaylock
-      xdg-desktop-portal-hyprland
       hyprpaper
-      wofi
+      # wofi
       waybar
-      firefox-wayland
-      swww
       grim
-      xdg-utils
-      xdg-desktop-portal
-      xdg-desktop-portal-gtk
-      qt5.qtwayland
-      qt6.qmake
-      qt6.qtwayland
       adwaita-qt
       adwaita-qt6
-
-      # for hyprland dotfiles
-      btop
-      cava
-      libsForQt5.qt5ct
-      qt6Packages.qt6ct
-      swappy
-      swaylock-effects
-      swaynotificationcenter
-      wlogout
-      pywal
-      rofi-wayland
-      qt6Packages.qtstyleplugin-kvantum
-      yad
-      xdg-user-dirs
 
     ])
 
@@ -279,10 +317,9 @@
     description = "Masum R.";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
+      # firefox
       kate
       google-chrome
-      libsForQt5.qtstyleplugin-kvantum # kvuntum
     #  thunderbird
 
     ];
