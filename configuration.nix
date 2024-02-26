@@ -334,7 +334,6 @@
   # SECURITY
   security = {
     pam.services.swaylock.text = "auth include login";
-    };
     polkit.enable = true; # Enable polkit for root prompts
     rtkit.enable = true;
   }; 
