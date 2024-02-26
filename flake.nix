@@ -30,7 +30,7 @@
         system = "x86_64-linux"; # system arch
         hostname = "Ainz-NIX"; # hostname
         timezone = "Asia/Kolkata"; # select timezone
-        locale = "en_IN.UTF-8"; # select locale
+        locale = "en_IN"; # select locale
       };
 
       # ----- USER SETTINGS ----- #

@@ -35,7 +35,7 @@
     # vscode
     # emacs
 
-    neofetch
+    # neofetch
     nnn # terminal file manager
 
     # archives
@@ -99,7 +99,7 @@
     usbutils # lsusb
 
     # graphical apps
-    whatsapp-for-linux
+    # whatsapp-for-linux
     # libreoffice
   ];
 
