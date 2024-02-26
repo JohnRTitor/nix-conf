@@ -305,7 +305,6 @@
 
   # Environment variables to start the session with
   environment.sessionVariables = {
-    POLKIT_AUTH_AGENT = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
     LIBVA_DRIVER_NAME = "amdgpu";
     XDG_SESSION_TYPE = "wayland";
@@ -342,7 +341,16 @@
   # SECURITY
   security = {
     pam.services.swaylock.text = "auth include login";
-    polkit.enable = true;
+    polkit = {
+      enable = true;
+      debug = true;
+      extraConfig = ''
+        /* Log authorization checks. */
+        polkit.addRule(function(action, subject) {
+          polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
+        });       
+      '';
+    };
     rtkit.enable = true;
   }; 
   services.pipewire = {
