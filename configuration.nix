@@ -10,6 +10,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  # Enable zram swap
+  zramSwap.enable = true;
 
   # bootspec needed for secureboot - MR 22-02
   boot.bootspec.enable = true;
@@ -67,7 +69,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Set your time zone.
-  time.timeZone = "Asia/Kolkata";
+  time.timeZone = systemSettings.timezone;
 
   # Select internationalisation properties.
   i18n.defaultLocale = systemSettings.locale;
@@ -84,6 +86,12 @@
     LC_TIME = systemSettings.locale;
   };
 
+  # Console font and keymap
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+    # useXkbConfig = true; # use xkbOptions in tty.
+  };
 
   # ----- HYPRLAND SPECIFIC CONFIG START ----- #
 
@@ -386,6 +394,7 @@
     settings.KbdInteractiveAuthentication = false;
     #settings.PermitRootLogin = "yes";
   };
+  
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -400,7 +409,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
-  # enable zram
-  zramSwap.enable = true;
 }
