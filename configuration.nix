@@ -86,13 +86,6 @@
     LC_TIME = systemSettings.locale;
   };
 
-  # Console font and keymap
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-    # useXkbConfig = true; # use xkbOptions in tty.
-  };
-
   # ----- HYPRLAND SPECIFIC CONFIG START ----- #
 
   # Enable OpenGL
@@ -341,16 +334,8 @@
   # SECURITY
   security = {
     pam.services.swaylock.text = "auth include login";
-    polkit = {
-      enable = true;
-      debug = true;
-      extraConfig = ''
-        /* Log authorization checks. */
-        polkit.addRule(function(action, subject) {
-          polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
-        });       
-      '';
     };
+    polkit.enable = true; # Enable polkit for root prompts
     rtkit.enable = true;
   }; 
   services.pipewire = {
