@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, systemSettings, userSettings, ... }:
 
 {
-  # TODO please change the username & home direcotry to your own
-  home.username = "masum";
-  home.homeDirectory = "/home/masum";
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  home.username = userSettings.username;
+  home.homeDirectory = "/home/"+userSettings.username;
 
   # link the configuration file in current directory to the specified location in home directory
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
@@ -106,9 +107,9 @@
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
-    userName = "Masum Reza";
-    userEmail = "50095635+JohnRTitor@users.noreply.github.com";
-    signing.key = "0x1ED2C28423FDC1A9";
+    userName = userSettings.gitname;
+    userEmail = userSettings.gitemail;
+    signing.key = userSettings.gpgkey;
   };
 
   # starship - an customizable prompt for any shell

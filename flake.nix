@@ -24,7 +24,6 @@
 
   outputs = { self, nixpkgs, nixpkgs-unstable, lanzaboote, home-manager, ... }:
     let
-
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
         system = "x86_64-linux"; # system arch
@@ -37,8 +36,10 @@
       userSettings = {
         username = "masum"; # username
         name = "Masum R."; # name/identifier
-        gitname = "John Titor"; # git name
         email = "masumrezarock100@gmail.com"; # email (used for certain configurations)
+        gitname = "John Titor"; # git name
+        gitemail = "50095635+JohnRTitor@users.noreply.github.com"; # git email
+        gpgkey = "0x1ED2C28423FDC1A9"; # gpg key
       };
 
       # configure stable pkgs
@@ -77,8 +78,12 @@
             home-manager.useUserPackages = true;
 
             home-manager.users.${userSettings.username} = import ./home.nix;
-
-            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+            # extra specialArgs is used to pass arguments to home-manager
+            home-manager.extraSpecialArgs = {
+              inherit pkgs-unstable;
+              inherit systemSettings;
+              inherit userSettings;
+            };
           }
 
         ];

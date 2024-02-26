@@ -35,9 +35,6 @@
   boot.plymouth.theme = "breeze";
   boot.initrd.systemd.enable = true;
 
-  # Update amd-ucode
-  hardware.cpu.amd.updateMicrocode = true;
-
   # enable bluetooth support
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   services.blueman.enable = true; # enables the Bluetooth manager
@@ -360,11 +357,7 @@
     description = userSettings.name;
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "video" "input" "audio" ];
     packages = with pkgs; [
-      # firefox
-      # kate
-      # google-chrome
-      # thunderbird
-
+        # Configure in ./home.nix
     ];
   };
 
