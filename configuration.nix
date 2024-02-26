@@ -130,7 +130,7 @@
     };
 
     dconf.enable = true;
-    partition-manager.enable = true # KDE Partition Manager
+    partition-manager.enable = true; # KDE Partition Manager
   };
 
   xdg.portal = {
