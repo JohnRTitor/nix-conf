@@ -236,6 +236,7 @@
       grim
       jq
       kitty
+      libva-utils # graphics library
       networkmanagerapplet
       nwg-look
       pamixer
@@ -263,8 +264,8 @@
       wlogout
       xdg-utils
       xdg-desktop-portal-hyprland
-      yad 
-      libva-utils # graphics library
+      xorg.xhost # needed for some packages running x11 like gparted
+      yad
 
       # EXTRA PACKAGES - May not needed but should be tested first
 
