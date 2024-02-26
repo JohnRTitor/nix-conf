@@ -33,6 +33,9 @@
   boot.plymouth.theme = "breeze";
   boot.initrd.systemd.enable = true;
 
+  # Update amd-ucode
+  hardware.cpu.amd.updateMicrocode = true;
+
   # enable bluetooth support
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   services.blueman.enable = true; # enables the Bluetooth manager
@@ -260,11 +263,10 @@
       xdg-utils
       xdg-desktop-portal-hyprland
       yad 
-
+      libva-utils # graphics library
 
       # EXTRA PACKAGES - May not needed but should be tested first
 
-      libva-utils
       fuseiso # to mount iso system images
       udiskie
       gnome.adwaita-icon-theme
@@ -355,7 +357,7 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "video" "input" "audio" ];
     packages = with pkgs; [
       # firefox
       # kate

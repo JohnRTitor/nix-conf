@@ -16,7 +16,7 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/0b9eaad4-63f7-419f-9ffd-99fd958c6cb7";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "noatime" "subvol=@" ];
     };
 
   fileSystems."/boot" =
