@@ -130,6 +130,7 @@
     };
 
     dconf.enable = true;
+    partition-manager.enable = true # KDE Partition Manager
   };
 
   xdg.portal = {
@@ -223,7 +224,6 @@
       mpvScripts.mpris
       neofetch
       shotcut
-      gparted
           
       # Hyprland Stuff        
       blueman
