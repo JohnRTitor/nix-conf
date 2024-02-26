@@ -112,6 +112,7 @@
         mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
       });
     };
+    # Xfce file manager
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
@@ -151,13 +152,22 @@
         wayland = true;
       };
     };
-    dbus.enable = true;
+    
+    # For thunar to work better
     gvfs.enable = true;
     tumbler.enable = true;
+
+    dbus.enable = true;
     udev.enable = true;
     gnome = {
       sushi.enable = true;
       gnome-keyring.enable = true;
+    };
+
+    # fstrim for SSD
+    fstrim = {
+      enable = true;
+      interval = "monthly";
     };
   };
 
@@ -194,7 +204,7 @@
       libappindicator
       libnotify
       openssl # required by Rainbow borders
-    python3
+      python3
       pipewire
       unzip  
       vim
@@ -346,7 +356,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       # firefox
-      kate
+      # kate
       google-chrome
     #  thunderbird
 
