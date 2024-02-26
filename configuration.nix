@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, systemSettings, userSettings, ... }:
 
 {
   imports =
@@ -35,10 +35,11 @@
 
   # enable bluetooth support
   hardware.bluetooth.enable = true; # enables support for Bluetooth
+  services.blueman.enable = true; # enables the Bluetooth manager
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   hardware.bluetooth.settings.General.Experimental = true; # enable bluetooth battery percentage features
 
-  networking.hostName = "Ainz-NIX"; # Define your hostname.
+  networking.hostName = systemSettings.hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -66,18 +67,18 @@
   time.timeZone = "Asia/Kolkata";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_IN";
+  i18n.defaultLocale = systemSettings.locale;
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_IN";
-    LC_IDENTIFICATION = "en_IN";
-    LC_MEASUREMENT = "en_IN";
-    LC_MONETARY = "en_IN";
-    LC_NAME = "en_IN";
-    LC_NUMERIC = "en_IN";
-    LC_PAPER = "en_IN";
-    LC_TELEPHONE = "en_IN";
-    LC_TIME = "en_IN";
+    LC_ADDRESS = systemSettings.locale;
+    LC_IDENTIFICATION = systemSettings.locale;
+    LC_MEASUREMENT = systemSettings.locale;
+    LC_MONETARY = systemSettings.locale;
+    LC_NAME = systemSettings.locale;
+    LC_NUMERIC = systemSettings.locale;
+    LC_PAPER = systemSettings.locale;
+    LC_TELEPHONE = systemSettings.locale;
+    LC_TIME = systemSettings.locale;
   };
 
 
@@ -214,11 +215,11 @@
       
       # I normally have and use
       audacious
-      firefox-wayland
       mpv
       mpvScripts.mpris
       neofetch
       shotcut
+      gparted
           
       # Hyprland Stuff        
       blueman
@@ -261,7 +262,6 @@
       yad 
 
 
-
       # EXTRA PACKAGES - May not needed but should be tested first
 
       libva-utils
@@ -275,7 +275,7 @@
       hyprland-protocols
       hyprpicker
       hyprpaper
-      # wofi
+      # wofi # alternative to rofi
       waybar
       grim
       adwaita-qt
@@ -286,8 +286,10 @@
     ++
 
     (with pkgs-unstable; [
-      # list of unstable packages
+      # list of latest packages from unstable repo
       vscode
+      google-chrome
+      firefox-wayland
     ]);
 
 
@@ -350,15 +352,15 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.masum = {
+  users.users.${userSettings.username} = {
     isNormalUser = true;
-    description = "Masum R.";
+    description = userSettings.name;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       # firefox
       # kate
-      google-chrome
-    #  thunderbird
+      # google-chrome
+      # thunderbird
 
     ];
   };

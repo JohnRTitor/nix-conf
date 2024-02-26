@@ -28,12 +28,19 @@
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
         system = "x86_64-linux"; # system arch
-        hostname = "masum"; # hostname
+        hostname = "Ainz-NIX"; # hostname
         timezone = "Asia/Kolkata"; # select timezone
         locale = "en_IN.UTF-8"; # select locale
-        username = "masum"; # username
       };
-      
+
+      # ----- USER SETTINGS ----- #
+      userSettings = {
+        username = "masum"; # username
+        name = "Masum R."; # name/identifier
+        gitname = "John Titor"; # git name
+        email = "masumrezarock100@gmail.com"; # email (used for certain configurations)
+      };
+
       # configure stable pkgs
       pkgs = import nixpkgs {
         system = systemSettings.system;
@@ -55,7 +62,7 @@
       # configure lib
       lib = nixpkgs.lib;
     in {
-      nixosConfigurations.Ainz-NIX = lib.nixosSystem {
+      nixosConfigurations.${systemSettings.hostname} = lib.nixosSystem {
         system = systemSettings.system;
 
         modules = [
@@ -69,7 +76,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 
-            home-manager.users.${systemSettings.username} = import ./home.nix;
+            home-manager.users.${userSettings.username} = import ./home.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
           }
@@ -77,6 +84,8 @@
         ];
         specialArgs = {
           inherit pkgs-unstable;
+          inherit systemSettings;
+          inherit userSettings;
         };
       };
     };
