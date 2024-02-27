@@ -248,6 +248,7 @@
       pavucontrol
       playerctl
       polkit_gnome
+      pyprland # hyprland plugin support
       pywal
       rofi-wayland
       slurp
@@ -286,9 +287,7 @@
       # wofi # alternative to rofi-wayland
       waybar
       grim
-      adwaita-qt
-      adwaita-qt6
-
+      
     ])
 
     ++
