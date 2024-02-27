@@ -71,7 +71,7 @@
     gnutar
     gawk
     zstd
-    gnupg
+    # gnupg # already included
 
     # nix related
     #
@@ -102,6 +102,7 @@
     # graphical apps
     # whatsapp-for-linux
     # libreoffice
+    discord
   ];
 
   # basic configuration of git, please change to your own
