@@ -110,6 +110,7 @@
     userName = userSettings.gitname;
     userEmail = userSettings.gitemail;
     signing.key = userSettings.gpgkey;
+    signing.signByDefault = true;
   };
 
   # starship - an customizable prompt for any shell

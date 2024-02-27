@@ -40,7 +40,7 @@
         email = "masumrezarock100@gmail.com"; # email (used for certain configurations)
         gitname = "John Titor"; # git name
         gitemail = "50095635+JohnRTitor@users.noreply.github.com"; # git email
-        gpgkey = "0x1ED2C28423FDC1A9"; # gpg key
+        gpgkey = "29B0514F4E3C1CC0"; # gpg key
       };
 
       # configure stable pkgs
