@@ -10,13 +10,13 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-amd" "amdgpu" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/0b9eaad4-63f7-419f-9ffd-99fd958c6cb7";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
+      options = [ "noatime" "subvol=@" ];
     };
 
   fileSystems."/boot" =
