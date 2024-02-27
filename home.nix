@@ -142,11 +142,6 @@
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    # Play sound when long running commands end
-    undistractMe.enable = true;
-    undistractMe.playSound = true;
-    # ble.sh editor
-    # blesh.enable = true;
     # TODO add your cusotm bashrc here
     bashrcExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
