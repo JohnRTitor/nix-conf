@@ -135,6 +135,7 @@
     extraPortals = with pkgs; [
     xdg-desktop-portal-gtk
     ];
+    xdgOpenUsePortal = true; # use xdg-open with xdg-desktop-portal
   };
 
 
@@ -309,8 +310,7 @@
     WLR_RENDERER = "vulkan";
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";
-    GTK_USE_PORTAL = "1";
-    NIXOS_XDG_OPEN_USE_PORTAL = "1";
+    GTK_USE_PORTAL = "1"; # makes dialogs (file opening) consistent with rest of the ui
   }; 
 
 
