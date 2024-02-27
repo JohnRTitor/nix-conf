@@ -228,11 +228,9 @@
       btop
       cava
       cliphist
-      flatpak
       gnome.file-roller
       gnome.gnome-system-monitor
       gnome.eog # eye of gnome
-      gnome.gnome-software # software center
       grim
       jq
       kitty
