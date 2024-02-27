@@ -214,7 +214,6 @@
       vim
       wget
       wireplumber
-      xdg-user-dirs
       
       # I normally have and use
       audacious
@@ -224,7 +223,7 @@
       shotcut
           
       # Hyprland Stuff        
-      blueman
+      # blueman # not needed if blueman service is on
       btop
       cava
       cliphist
@@ -242,12 +241,6 @@
       playerctl
       polkit_gnome
       pywal
-      qt6Packages.qtstyleplugin-kvantum #kvantum
-      libsForQt5.qtstyleplugin-kvantum #kvantum
-      # QT Wayland
-      qt5.qtwayland
-      qt6.qmake
-      qt6.qtwayland
       rofi-wayland
       slurp
       swappy
@@ -255,13 +248,22 @@
       swaylock-effects
       swaynotificationcenter
       swww
-      # QT Control Center
+      # Can control theming on QT apps
+      # QT Wayland
+      qt5.qtwayland
+      qt6.qmake
+      qt6.qtwayland
+      # Kvantum
+      qt6Packages.qtstyleplugin-kvantum
+      libsForQt5.qtstyleplugin-kvantum
+      # QT control center
       libsForQt5.qt5ct
       qt6Packages.qt6ct
       wl-clipboard
       wlogout
       xdg-utils
-      xdg-desktop-portal-hyprland
+      # xdg-desktop-portal-hyprland - included by default for hyprland.enable
+      xdg-user-dirs
       xorg.xhost # needed for some packages running x11 like gparted
       yad
 
@@ -299,10 +301,9 @@
   environment.sessionVariables = {
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
     LIBVA_DRIVER_NAME = "amdgpu";
-    XDG_SESSION_TYPE = "wayland";
     __GLX_VENDOR_LIBRARY_NAME = "amdgpu";
-    WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1"; # if your cursor is not visible
+    NIXOS_OZONE_WL = "1"; # for electron apps to run on wayland
     MOZ_ENABLE_WAYLAND = "1";
     SDL_VIDEODRIVER = "wayland";
     _JAVA_AWT_WM_NONREPARENTING = "1";
@@ -310,6 +311,7 @@
     WLR_RENDERER = "vulkan";
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
     GTK_USE_PORTAL = "1"; # makes dialogs (file opening) consistent with rest of the ui
   }; 
 
