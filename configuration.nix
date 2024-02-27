@@ -192,24 +192,26 @@
   environment.systemPackages =
     (with pkgs; [
 
-      curl
-      openssh
-      gnupg
-      sbctl
-
       # System Packages
+      ananicy-cpp # for better system performance
       baobab
-      btrfs-progs
-      cpufrequtils
+      btrfs-progs # for btrfs filesystem
+      # cpufrequtils
+      curl
       # firewalld
-      ffmpeg   
-      git
-      glib #for gsettings to work   
+      ffmpeg # codecs
+      fuseiso # to mount iso system images
+      git # obviously
+      glib # for gsettings to work
+      gnupg # for encryption and auth keys
       libappindicator
       libnotify
+      openssh # for ssh
       openssl # required by Rainbow borders
       python3
       pipewire
+      sbctl # for secureboot
+      udiskie # automount usb drives
       unzip  
       vim
       wget
@@ -217,7 +219,7 @@
       
       # I normally have and use
       audacious
-      mpv
+      mpv # for video playback, needed for some scripts
       mpvScripts.mpris
       neofetch
       shotcut
@@ -232,7 +234,7 @@
       gnome.eog # eye of gnome
       grim
       jq
-      kitty
+      kitty # default terminal on hyprland
       libva-utils # graphics library
       networkmanagerapplet
       nwg-look
@@ -269,17 +271,13 @@
 
       # EXTRA PACKAGES - May not needed but should be tested first
 
-      fuseiso # to mount iso system images
-      udiskie
-      gnome.adwaita-icon-theme
-      gnome.gnome-themes-extra
       gsettings-desktop-schemas
       wlr-randr
       ydotool
       hyprland-protocols
-      hyprpicker
-      hyprpaper
-      # wofi # alternative to rofi
+      # hyprpicker # does not work
+      # hyprpaper # alternative to swww
+      # wofi # alternative to rofi-wayland
       waybar
       grim
       adwaita-qt
@@ -343,7 +341,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
