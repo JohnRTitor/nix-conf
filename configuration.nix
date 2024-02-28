@@ -193,6 +193,9 @@
       # hyprpaper # alternative to swww
       # wofi # alternative to rofi-wayland
       grim
+      # test vs code opening codespace
+      shared-mime-info
+      desktop-file-utils
       
     ])
 
