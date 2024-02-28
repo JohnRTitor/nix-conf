@@ -26,7 +26,7 @@
         system = "x86_64-linux"; # system arch
         hostname = "Ainz-NIX"; # hostname
         timezone = "Asia/Kolkata"; # select timezone
-        locale = ""en_US.UTF-8""; # select locale
+        locale = "en_US.UTF-8"; # select locale
         localeoverride = "en_IN";
         stableversion = "23.11";
       };
