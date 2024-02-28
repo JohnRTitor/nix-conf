@@ -20,11 +20,6 @@
     LC_TIME = systemSettings.locale;
   };
 
-  i18n.supportedLocales = [
-    "en_US.UTF-8/UTF-8"
-    "en_IN.UTF-8/UTF-8"
-  ];
-
   services = {
     xserver = {
       # Configure keymap in X11
