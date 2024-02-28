@@ -1,5 +1,5 @@
 # Configure hardware - graphics, sound, etc.
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   # Enable OpenGL
