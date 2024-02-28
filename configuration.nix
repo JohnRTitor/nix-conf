@@ -9,6 +9,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # include locale settings
+      ./system/locale.nix
     ];
   # Enable zram swap
   zramSwap.enable = true;
@@ -71,23 +73,6 @@
   # Enable experimental flakes packages - MR 22-02
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Set your time zone.
-  time.timeZone = systemSettings.timezone;
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = systemSettings.locale;
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = systemSettings.locale;
-    LC_IDENTIFICATION = systemSettings.locale;
-    LC_MEASUREMENT = systemSettings.locale;
-    LC_MONETARY = systemSettings.locale;
-    LC_NAME = systemSettings.locale;
-    LC_NUMERIC = systemSettings.locale;
-    LC_PAPER = systemSettings.locale;
-    LC_TELEPHONE = systemSettings.locale;
-    LC_TIME = systemSettings.locale;
-  };
 
   # ----- HYPRLAND SPECIFIC CONFIG START ----- #
 
@@ -149,9 +134,6 @@
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
-      # Configure keymap in X11
-      layout = "us";
-      xkbVariant = "";
       excludePackages = [ pkgs.xterm ];
       # AMDGPU graphics driver - disabled in favor of modesetting driver
       # videoDrivers = ["amdgpu"];
@@ -353,8 +335,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {
