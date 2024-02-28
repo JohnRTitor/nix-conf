@@ -27,7 +27,7 @@
         hostname = "Ainz-NIX"; # hostname
         timezone = "Asia/Kolkata"; # select timezone
         locale = "en_US.UTF-8"; # select locale
-        localeoverride = "en_IN.UTF-8"; # select locale
+        localeoverride = "en_IN.UTF-8"; # select locale override for some settings
         stableversion = "23.11";
       };
 
