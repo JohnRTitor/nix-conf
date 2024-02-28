@@ -1,6 +1,6 @@
 {
 
-  description = "Flake file of John Titor";
+  description = "Flake of JohnRTitor";
 
   inputs = {
     # Stable nixpkgs (23.11)
