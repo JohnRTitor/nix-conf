@@ -240,7 +240,7 @@
   security = {
     pam.services.swaylock.text = "auth include login";
     polkit.enable = true; # Enable polkit for root prompts
-    rtkit.enable = true; # Enable rtkit for real-time scheduling, required for pipewire
+    # rtkit is enabled in audio config
   }; 
 
 
