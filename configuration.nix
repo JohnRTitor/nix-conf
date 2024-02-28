@@ -234,6 +234,10 @@
     enable = false;
     unitConfig.DefaultDependencies = "no";
 	};
+  # Fix opening links in apps like vscode
+  systemd.user.extraConfig = ''
+    DefaultEnvironment="PATH=/run/current-system/sw/bin"
+  '';
 
 
   # Enable CUPS to print documents.
