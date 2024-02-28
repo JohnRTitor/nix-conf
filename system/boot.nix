@@ -6,8 +6,6 @@
   boot.bootspec.enable = true;
   # Add Xanmod Kernel - MR - 22-02
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  # Also load amdgpu at boot
-  boot.kernelModules = [ "amdgpu-pro" ];
   # Bootloader - disable systemd in favor of lanzaboote
   boot.loader.systemd-boot.enable = pkgs.lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = true;
