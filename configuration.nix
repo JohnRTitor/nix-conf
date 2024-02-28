@@ -26,7 +26,6 @@
 
   # ----- HYPRLAND SPECIFIC CONFIG START ----- #
 
-
   programs = {
     # Enable Hyperland
     hyprland.enable = true;
@@ -173,6 +172,7 @@
       # QT control center
       libsForQt5.qt5ct
       qt6Packages.qt6ct
+      # waybar # included by default for hyprland.waybar.enable
       wl-clipboard
       wlogout
       xdg-utils
