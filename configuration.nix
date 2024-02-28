@@ -19,6 +19,8 @@
       ./system/locale.nix
     ];
 
+  networking.hostName = systemSettings.hostname; # Define your hostname.
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # enable nix command and flakes
   nix.settings.auto-optimise-store = true; # enable deleting duplicate content in store
 
