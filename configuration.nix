@@ -148,6 +148,7 @@
       jq
       kitty # default terminal on hyprland
       libva-utils # graphics library
+      libsecret # needed for gnome-keyring
       networkmanagerapplet
       nwg-look
       pamixer
