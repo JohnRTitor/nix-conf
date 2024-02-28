@@ -11,7 +11,7 @@
   i18n.extraLocaleSettings = {
     LC_ADDRESS = systemSettings.locale;
     LC_IDENTIFICATION = systemSettings.locale;
-    LC_MEASUREMENT = systemSettings.localeoverride;
+    LC_MEASUREMENT = systemSettings.locale;
     LC_MONETARY = systemSettings.locale;
     LC_NAME = systemSettings.locale;
     LC_NUMERIC = systemSettings.locale;
