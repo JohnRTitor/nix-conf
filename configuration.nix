@@ -15,6 +15,8 @@
       ./system/hardware.nix
       # include network settings
       ./system/network.nix
+      # include audio settings
+      ./system/audio.nix
       # include locale settings
       ./system/locale.nix
     ];
