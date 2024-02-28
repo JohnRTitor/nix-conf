@@ -9,6 +9,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # include boot settings
+      ./system/boot.nix
       # include locale settings
       ./system/locale.nix
     ];
@@ -21,27 +23,6 @@
     "/".options = [ "noatime" ];
   };
 
-  # bootspec needed for secureboot - MR 22-02
-  boot.bootspec.enable = true;
-  # Add Xanmod Kernel - MR - 22-02
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  # Bootloader - disable systemd in favor of lanzaboote
-  boot.loader.systemd-boot.enable = pkgs.lib.mkForce false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # bootloader timeout set, also press t repeatedly in the bootmenu to set there
-  boot.loader.timeout = 15;
-
-  # lanzaboote for secureboot
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/etc/secureboot";
-  };
-
-  # plymouth theme for splash screen
-  # boot.kernelParams = [ "quiet" ];
-  boot.plymouth.enable = true;
-  boot.plymouth.theme = "breeze";
-  boot.initrd.systemd.enable = true;
 
   # enable bluetooth support
   hardware.bluetooth.enable = true; # enables support for Bluetooth
@@ -70,9 +51,8 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Enable experimental flakes packages - MR 22-02
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ]; # enable nix command and flakes
+  nix.settings.auto-optimise-store = true; # enable deleting duplicate content in store
 
   # ----- HYPRLAND SPECIFIC CONFIG START ----- #
 
