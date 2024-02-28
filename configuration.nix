@@ -11,69 +11,18 @@
       ./hardware-configuration.nix
       # include boot settings
       ./system/boot.nix
+      # include hardware settings
+      ./system/hardware.nix
+      # include network settings
+      ./system/network.nix
       # include locale settings
       ./system/locale.nix
     ];
-  # Enable zram swap
-  zramSwap.enable = true;
-  # Enable scrubbing for btrfs - by default once a month
-  services.btrfs.autoScrub.enable = true;
-  # Disable last access time to increase performance
-  fileSystems = {
-    "/".options = [ "noatime" ];
-  };
-
-
-  # enable bluetooth support
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  services.blueman.enable = true; # enables the Bluetooth manager
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  hardware.bluetooth.settings.General.Experimental = true; # enable bluetooth battery percentage features
-
-  networking.hostName = systemSettings.hostname; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # For KDE connect - MR - 22-02
-  networking.firewall = {
-    enable = true;
-    allowedTCPPortRanges = [
-      { from = 1714; to = 1764; } # KDE Connect
-    ];
-    allowedUDPPortRanges = [
-      { from = 1714; to = 1764; } # KDE Connect
-    ];
-  };
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # enable nix command and flakes
   nix.settings.auto-optimise-store = true; # enable deleting duplicate content in store
 
   # ----- HYPRLAND SPECIFIC CONFIG START ----- #
-
-  # Enable OpenGL
-  hardware.opengl = {
-    enable = true; # Mesa
-    driSupport = true; # Vulkan
-    driSupport32Bit = true;
-    # Extra drivers
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      amdvlk
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-    # For 32 bit applications 
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-      libva
-    ];
-  };
 
 
   programs = {
@@ -115,8 +64,6 @@
       # Enable the X11 windowing system.
       enable = true;
       excludePackages = [ pkgs.xterm ];
-      # AMDGPU graphics driver - disabled in favor of modesetting driver
-      # videoDrivers = ["amdgpu"];
       libinput.enable = true;
       # Enable GDM
       displayManager.gdm = {
@@ -134,12 +81,6 @@
     gnome = {
       sushi.enable = true;
       gnome-keyring.enable = true;
-    };
-
-    # fstrim for SSD
-    fstrim = {
-      enable = true;
-      interval = "monthly";
     };
   };
 
@@ -247,7 +188,6 @@
       # hyprpicker # does not work
       # hyprpaper # alternative to swww
       # wofi # alternative to rofi-wayland
-      waybar
       grim
       
     ])
@@ -293,27 +233,13 @@
   # Mitigate issue where like /usr/bin/bash, hardcoded links in scripts not found
   services.envfs.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+
   # SECURITY
   security = {
     pam.services.swaylock.text = "auth include login";
     polkit.enable = true; # Enable polkit for root prompts
-    rtkit.enable = true;
+    rtkit.enable = true; # Enable rtkit for real-time scheduling, required for pipewire
   }; 
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -346,12 +272,6 @@
     #settings.PermitRootLogin = "yes";
   };
   
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
