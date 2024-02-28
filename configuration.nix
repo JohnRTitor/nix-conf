@@ -230,7 +230,7 @@
   # ----- HYPERLAND SPECIFIC CONFIG END ----- #
 
   # disable hibernate since you can't hibernate on zram swap anyway
-  systemd.hibernate = {
+  systemd.targets.hibernate = {
     enable = false;
     unitConfig.DefaultDependencies = "no";
 	};
