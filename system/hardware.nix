@@ -22,7 +22,7 @@
   };
 
   # AMDGPU graphics driver - disabled in favor of modesetting driver
-  services.xserver.videoDrivers = [ "amdgpu-pro" ];
+  # services.xserver.videoDrivers = [ "amdgpu" ];
   
   # Graphics environment variables
   environment.sessionVariables = {
