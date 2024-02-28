@@ -213,8 +213,6 @@
   # Environment variables to start the session with
   environment.sessionVariables = {
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
-    LIBVA_DRIVER_NAME = "amdgpu";
-    __GLX_VENDOR_LIBRARY_NAME = "amdgpu";
     WLR_NO_HARDWARE_CURSORS = "1"; # if your cursor is not visible
     NIXOS_OZONE_WL = "1"; # for electron apps to run on wayland
     MOZ_ENABLE_WAYLAND = "1";

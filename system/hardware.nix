@@ -23,6 +23,12 @@
 
   # AMDGPU graphics driver - disabled in favor of modesetting driver
   # services.xserver.videoDrivers = ["amdgpu"];
+  
+  # Graphics environment variables
+  environment.sessionVariables = {
+      LIBVA_DRIVER_NAME = "radeonsi";
+    __GLX_VENDOR_LIBRARY_NAME = "amdgpu";
+  };
 
   # Enable zram swap
   zramSwap.enable = true;
