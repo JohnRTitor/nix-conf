@@ -227,8 +227,13 @@
     GTK_USE_PORTAL = "1"; # makes dialogs (file opening) consistent with rest of the ui
   }; 
 
-
   # ----- HYPERLAND SPECIFIC CONFIG END ----- #
+
+  # disable hibernate since you can't hibernate on zram swap anyway
+  systemd.hibernate = {
+    enable = false;
+    unitConfig.DefaultDependencies = "no";
+	};
 
 
   # Enable CUPS to print documents.
