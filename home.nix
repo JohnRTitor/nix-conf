@@ -164,7 +164,7 @@
     '';
     sessionVariables = {
       GPG_TTY = "$(tty)";
-    }
+    };
 
     # set some aliases, feel free to add more or remove some
     shellAliases = {
