@@ -1,5 +1,5 @@
 # This conf file is used to configure user accounts in the system
-{ userSettings, ... }:
+{ pkgs, userSettings, ... }:
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {
