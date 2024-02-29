@@ -9,7 +9,7 @@
     packages = with pkgs; [
         # Configure in ../home.nix
     ];
+    # user shell changed to zsh
+    shell = pkgs.zsh;
   };
-  # user shell changed to zsh
-  users.users.${userSettings.username}.shell = pkgs.zsh;
 }
