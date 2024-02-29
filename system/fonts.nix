@@ -8,6 +8,6 @@
     noto-fonts-cjk
     jetbrains-mono
     font-awesome
-    (nerdfonts.override {fonts = ["JetBrainsMono"];})
+    (nerdfonts.override {fonts = [ "JetBrainsMono" "nconsolataLGC" ];})
   ];
 }
