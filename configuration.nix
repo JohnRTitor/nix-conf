@@ -133,7 +133,6 @@
       audacious
       mpv # for video playback, needed for some scripts
       mpvScripts.mpris
-      neofetch
       shotcut
           
       # Hyprland Stuff        

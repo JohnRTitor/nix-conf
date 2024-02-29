@@ -8,7 +8,8 @@
 
   imports = [
     # pyprland config wrapper
-    ./home-manager/pyprland.nix
+    ./home-manager/pyprland/pyprland.nix
+    ./home-manager/neofetch/neofetch.nix
   ];
 
   # link the configuration file in current directory to the specified location in home directory
@@ -41,7 +42,6 @@
     # vscode
     # emacs
 
-    # neofetch
     nnn # terminal file manager
 
     # archives
