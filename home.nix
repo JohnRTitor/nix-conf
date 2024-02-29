@@ -88,7 +88,7 @@
     hugo # static site generator
     glow # markdown previewer in terminal
 
-    btop  # replacement of htop/nmon
+    # btop  # replacement of htop/nmon - already included
     iotop # io monitoring
     iftop # network monitoring
 
@@ -117,6 +117,14 @@
     userEmail = userSettings.gitemail;
     signing.key = userSettings.gpgkey;
     signing.signByDefault = true;
+    # compare diff using syntax
+    difftastic.enable = true;
+    extraConfig = {
+      # verbose messages
+      commit.verbose = true;
+      # always rebase when pulling
+      pull.rebase = true;
+    };
   };
 
   # starship - an customizable prompt for any shell

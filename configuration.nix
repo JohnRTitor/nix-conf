@@ -198,7 +198,7 @@
       shared-mime-info
       desktop-file-utils
       
-      google-chrome
+      google-chrome # installing from unstable disables hardware acceleration
     ])
 
     ++
