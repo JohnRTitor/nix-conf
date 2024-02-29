@@ -30,6 +30,11 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # enable nix command and flakes
   nix.settings.auto-optimise-store = true; # enable deleting duplicate content in store
 
+  # enable zsh
+  programs.zsh.enable = true;
+  # zsh is also enabled for user at ./system/users.nix
+  environment.shells = with pkgs; [ zsh ];
+
   # ----- HYPRLAND SPECIFIC CONFIG START ----- #
 
   programs = {

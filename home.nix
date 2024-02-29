@@ -160,6 +160,28 @@
     };
   };
 
+  programs.zsh = {
+    enable = true;
+    enableAutosuggestions = true;
+    syntaxHighlighting.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ 
+        "git"
+        "history"
+        
+        ];
+      theme = "robbyrussell";
+    };
+    sessionVariables = {
+      GPG_TTY = "$(tty)";
+      PATH = "$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin";
+    };
+    shellAliases = {
+      
+    };
+  };
+
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new home Manager release introduces backwards
