@@ -198,6 +198,7 @@
       shared-mime-info
       desktop-file-utils
       
+      google-chrome
     ])
 
     ++
@@ -205,7 +206,6 @@
     (with pkgs-unstable; [
       # list of latest packages from unstable repo
       vscode
-      google-chrome
       firefox-wayland
     ]);
 
