@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 
 {
   home.file.".config/hypr/pyprland.toml" = {

@@ -121,13 +121,13 @@
       openssh # for ssh
       openssl # required by Rainbow borders
       python3
-      pipewire
+      # pipewire # enabled via service
       sbctl # for secureboot
       udiskie # automount usb drives
       unzip  
       vim
       wget
-      wireplumber
+      # wireplumber # enabled via service
       
       # I normally have and use
       audacious
