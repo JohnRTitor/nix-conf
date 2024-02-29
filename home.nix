@@ -170,7 +170,6 @@
         "git"
         "history"
         "urltools" # provides urlencode, urldecode
-        "history-substring-search" # provides history search
         
         ];
       theme = "duellj";
