@@ -169,9 +169,11 @@
       plugins = [ 
         "git"
         "history"
+        "urltools" # provides urlencode, urldecode
+        "zsh-history-substring-search" # provides history search
         
         ];
-      theme = "robbyrussell";
+      theme = "duellj";
     };
     sessionVariables = {
       GPG_TTY = "$(tty)";
