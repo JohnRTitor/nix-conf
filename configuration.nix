@@ -11,6 +11,8 @@
       ./hardware-configuration.nix
       # include boot settings
       ./system/boot.nix
+      # include user account settings
+      ./system/users.nix
       # include hardware settings
       ./system/hardware.nix
       # include network settings
@@ -19,6 +21,8 @@
       ./system/audio.nix
       # include locale settings
       ./system/locale.nix
+      # include fonts settings
+      ./system/fonts.nix
     ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname.
@@ -87,15 +91,6 @@
     };
   };
 
-  # FONTS
-  fonts.packages = with pkgs; [
-    noto-fonts
-    fira-code
-    noto-fonts-cjk
-    jetbrains-mono
-    font-awesome
-    (nerdfonts.override {fonts = ["JetBrainsMono"];})
-  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -225,6 +220,11 @@
     GTK_USE_PORTAL = "1"; # makes dialogs (file opening) consistent with rest of the ui
   }; 
 
+  # Fix opening links in apps like vscode
+  systemd.user.extraConfig = ''
+    DefaultEnvironment="PATH=/run/current-system/sw/bin"
+  '';
+
   # ----- HYPERLAND SPECIFIC CONFIG END ----- #
 
   # disable hibernate since you can't hibernate on zram swap anyway
@@ -232,10 +232,6 @@
     enable = false;
     unitConfig.DefaultDependencies = "no";
 	};
-  # Fix opening links in apps like vscode
-  systemd.user.extraConfig = ''
-    DefaultEnvironment="PATH=/run/current-system/sw/bin"
-  '';
 
 
   # Enable CUPS to print documents.
@@ -254,17 +250,6 @@
     polkit.enable = true; # Enable polkit for root prompts
     # rtkit is enabled in audio config
   }; 
-
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${userSettings.username} = {
-    isNormalUser = true;
-    description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "video" "input" "audio" ];
-    packages = with pkgs; [
-        # Configure in ./home.nix
-    ];
-  };
 
 
   # Some programs need SUID wrappers, can be configured further or are

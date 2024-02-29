@@ -120,6 +120,7 @@
     # compare diff using syntax
     difftastic.enable = true;
     extraConfig = {
+      color.ui = true;
       # verbose messages
       commit.verbose = true;
       # always rebase when pulling
@@ -160,8 +161,10 @@
     # TODO add your cusotm bashrc here
     bashrcExtra = ''
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
-      export GPG_TTY=$(tty)
     '';
+    sessionVariables = {
+      GPG_TTY = "$(tty)";
+    }
 
     # set some aliases, feel free to add more or remove some
     shellAliases = {
