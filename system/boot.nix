@@ -8,6 +8,7 @@
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   # Also load amdgpu-pro at boot
   boot.kernelModules = [ "amdgpu-pro" ];
+  # boot.kernelParams = [ "quiet" ];
   # Bootloader - disable systemd in favor of lanzaboote
   boot.loader.systemd-boot.enable = pkgs.lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -19,8 +20,6 @@
     enable = true;
     pkiBundle = "/etc/secureboot";
   };
-
-  # boot.kernelParams = [ "quiet" ];
 
   # plymouth theme for splash screen
   boot.plymouth = rec {

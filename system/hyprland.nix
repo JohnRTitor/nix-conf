@@ -19,7 +19,10 @@
         exo
         mousepad
         thunar-archive-plugin
+        thunar-shares-plugin
+        thunar-vcs-plugin
         thunar-volman
+        thunar-uca
         tumbler
       ];
     };
@@ -61,7 +64,7 @@
     # for mounting devices automatically
     devmon.enable = true;
     udisks2.enable = true;
-    gvfs.enable = true; # for virtual file systems
+    gvfs.enable = true; # for virtual file systems, removable media, and remote filesystems 
     tumbler.enable = true; # thumbnailer service
   };
 
