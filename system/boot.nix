@@ -6,7 +6,7 @@
   boot.bootspec.enable = true;
   # Add Xanmod Kernel - MR - 22-02
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  # Also load amdgpu at boot
+  # Also load amdgpu-pro at boot
   boot.kernelModules = [ "amdgpu-pro" ];
   # Bootloader - disable systemd in favor of lanzaboote
   boot.loader.systemd-boot.enable = pkgs.lib.mkForce false;
@@ -20,10 +20,21 @@
     pkiBundle = "/etc/secureboot";
   };
 
-  # plymouth theme for splash screen
   # boot.kernelParams = [ "quiet" ];
-  boot.plymouth.enable = true;
-  boot.plymouth.theme = "breeze";
-  boot.initrd.systemd.enable = true;
 
+  # plymouth theme for splash screen
+  boot.plymouth = rec {
+    enable = true;
+    # black_hud circle_hud cross_hud square_hud
+    # circuit connect cuts_alt seal_2 seal_3
+    theme = "connect";
+    themePackages = with pkgs; [(
+      adi1090x-plymouth-themes.override {
+        selected_themes = [ theme ];
+      }
+    )];
+  };
+
+  # start systemd early
+  boot.initrd.systemd.enable = true;
 }

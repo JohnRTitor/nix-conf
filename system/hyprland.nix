@@ -1,6 +1,8 @@
+# Configure hyprland window manager
+# this config file contains package, portal and services declaration
+# made specifically for hyprland
 { pkgs, pkgs-unstable, ... }:
 {
-
   programs = {
     # Enable Hyperland
     hyprland.enable = true;
@@ -33,7 +35,6 @@
     ];
     xdgOpenUsePortal = true; # use xdg-open with xdg-desktop-portal
   };
-
 
   services = {
     xserver = {
