@@ -1,3 +1,5 @@
+# This conf file is used to configure audio and sound related settings
+{ ... }:
 {
   # Enable sound with pipewire.
   sound.enable = true;

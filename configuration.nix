@@ -23,6 +23,7 @@
       ./system/locale.nix
       # include fonts settings
       ./system/fonts.nix
+      # include hyprland settings
     ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname.
@@ -84,16 +85,21 @@
       };
     };
     
-    # For thunar to work better
-    gvfs.enable = true;
-    tumbler.enable = true;
 
+    accounts-daemon.enable = true;
     dbus.enable = true;
-    udev.enable = true;
+    udev.enable = true; 
     gnome = {
-      sushi.enable = true;
-      gnome-keyring.enable = true;
+      sushi.enable = true; # quick previewer
+      gnome-keyring.enable = true; # apps like vscode stores encrypted data using it
+      glib-networking.enable = true; # network extensions libs
     };
+
+    # for mounting devices automatically
+    devmon.enable = true;
+    udisks2.enable = true;
+    gvfs.enable = true; # for virtual file systems
+    tumbler.enable = true; # thumbnailer service
   };
 
 
@@ -223,12 +229,28 @@
     XDG_SESSION_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     GTK_USE_PORTAL = "1"; # makes dialogs (file opening) consistent with rest of the ui
-  }; 
+  };
 
-  # Fix opening links in apps like vscode
-  systemd.user.extraConfig = ''
-    DefaultEnvironment="PATH=/run/current-system/sw/bin"
-  '';
+  systemd = {
+    # Fix opening links in apps like vscode
+    user.extraConfig = ''
+      DefaultEnvironment="PATH=/run/current-system/sw/bin"
+    '';
+      # Polkit starting systemd service - needed for apps requesting root access
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
 
   # ----- HYPERLAND SPECIFIC CONFIG END ----- #
 

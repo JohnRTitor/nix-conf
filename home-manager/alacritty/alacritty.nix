@@ -1,3 +1,4 @@
+# this config file is a wrapper to configure alacritty
 { pkgs, ... }:
 {
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
