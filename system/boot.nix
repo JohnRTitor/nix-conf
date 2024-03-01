@@ -1,14 +1,26 @@
 # This conf file is used to configure boot 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # bootspec needed for secureboot - MR 22-02
   boot.bootspec.enable = true;
   # Add Xanmod Kernel - MR - 22-02
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelParams = [ "lockdown=integrity" ];
+
+  boot.kernelPatches = [
+    # Kernel lockdown patch
+    {
+      name = "kernel-lockdown";
+      patch = null;
+      extraStructuredConfig = with lib.kernel; {
+        SECURITY_LOCKDOWN_LSM = lib.mkForce yes;
+        MODULE_SIG = lib.mkForce yes;
+      };
+    }
+  ];
   # Also load amdgpu-pro at boot
   boot.kernelModules = [ "amdgpu-pro" ];
-  # boot.kernelParams = [ "quiet" ];
   # Bootloader - disable systemd in favor of lanzaboote
   boot.loader.systemd-boot.enable = pkgs.lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = true;
