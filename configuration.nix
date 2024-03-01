@@ -25,6 +25,8 @@
       ./system/fonts.nix
       # include hyprland settings
       ./system/hyprland.nix
+      # include adb settings
+      ./dev-environment/adb.nix
     ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname.
