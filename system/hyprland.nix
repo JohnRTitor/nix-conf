@@ -19,10 +19,7 @@
         exo
         mousepad
         thunar-archive-plugin
-        thunar-shares-plugin
-        thunar-vcs-plugin
         thunar-volman
-        thunar-uca
         tumbler
       ];
     };
