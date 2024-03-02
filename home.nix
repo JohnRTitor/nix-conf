@@ -7,10 +7,10 @@
   home.homeDirectory = "/home/"+userSettings.username;
 
   imports = [
-    # pyprland config wrapper
     ./home-manager/alacritty/alacritty.nix
-    ./home-manager/pyprland/pyprland.nix
+    ./home-manager/pyprland/pyprland.nix # pyprland config wrapper
     ./home-manager/neofetch/neofetch.nix
+    ./home-manager/virt-manager/virt-manager.nix
   ];
 
   # link the configuration file in current directory to the specified location in home directory
