@@ -5,7 +5,7 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "video" "input" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" "audio" ];
     packages = with pkgs; [
         # Configure in ../home.nix
     ];
