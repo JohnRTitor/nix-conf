@@ -1,11 +1,16 @@
 # This conf file is used to configure boot 
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  # bootspec needed for secureboot - MR 22-02
+  # Bootspec needed for secureboot
   boot.bootspec.enable = true;
-  # Add Xanmod Kernel - MR - 22-02
+  # Use Xanmod Kernel
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  # zenpower is used for reading temperature, voltage, current and power
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    zenpower
+  ];
+
   boot.kernelParams = [ "lockdown=integrity" ];
 
   boot.kernelPatches = [

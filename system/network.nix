@@ -1,11 +1,9 @@
-# Configure networking, bluetooth, firewall, proxy, etc.
-{ config, ... }:
+# Configure networking, firewall, proxy, etc.
+{ ... }:
+
 {
-  # enable bluetooth support
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  services.blueman.enable = true; # enables the Bluetooth manager
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  hardware.bluetooth.settings.General.Experimental = true; # enable bluetooth battery percentage features
+  # Enable networking
+  networking.networkmanager.enable = true;
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -30,6 +28,4 @@
     ];
   };
 
-  # Enable networking
-  networking.networkmanager.enable = true;
 }

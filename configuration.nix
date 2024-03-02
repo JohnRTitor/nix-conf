@@ -14,17 +14,26 @@
       # include user account settings
       ./system/users.nix
       # include hardware settings
-      ./system/hardware.nix
+      ./system/hardware/audio.nix
+      ./system/hardware/bluetooth.nix
+      ./system/hardware/disk.nix
+      ./system/hardware/graphics.nix
       # include network settings
       ./system/network.nix
-      # include audio settings
-      ./system/audio.nix
       # include locale settings
       ./system/locale.nix
       # include fonts settings
       ./system/fonts.nix
       # include hyprland settings
       ./system/hyprland.nix
+      # include virtualization settings
+      ./system/virtualization.nix
+      # include printing settings
+      ./system/printing.nix
+      # include power plan settings
+      ./system/power.nix
+      # include openrgb settings
+      ./apps/openrgb.nix
       # include adb settings
       ./dev-environment/adb.nix
     ];
@@ -60,6 +69,7 @@
       gnupg # for encryption and auth keys
       libappindicator
       libnotify
+      libva-utils # libva graphics library tools
       openssh # for ssh
       openssl # required by Rainbow borders
       python3
@@ -68,6 +78,7 @@
       udiskie # automount usb drives
       unzip  
       vim
+      vdpauinfo # vdpau graphics library tools
       wget
       # wireplumber # enabled via service
 
@@ -88,17 +99,6 @@
     enable = false;
     unitConfig.DefaultDependencies = "no";
 	};
-
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  # Enable flatpak
-  services.flatpak.enable = true;
-  # enable fwupd
-  services.fwupd.enable = true;
-  # Mitigate issue where like /usr/bin/bash, hardcoded links in scripts not found
-  services.envfs.enable = true;
-
 
   # SECURITY
   security = {
@@ -127,6 +127,16 @@
     #settings.PermitRootLogin = "yes";
   };
   
+  # enable time synchronization
+  services.timesyncd.enable = true;
+
+  # Enable flatpak
+  services.flatpak.enable = true;
+  # enable fwupd
+  services.fwupd.enable = true;
+  # Mitigate issue where like /usr/bin/bash, hardcoded links in scripts not found
+  services.envfs.enable = true;
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

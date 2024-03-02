@@ -2,6 +2,7 @@
 # this config file contains package, portal and services declaration
 # made specifically for hyprland
 { pkgs, pkgs-unstable, ... }:
+
 {
   programs = {
     # Enable Hyperland
@@ -58,10 +59,6 @@
       glib-networking.enable = true; # network extensions libs
     };
 
-    # for mounting devices automatically
-    devmon.enable = true;
-    udisks2.enable = true;
-    gvfs.enable = true; # for virtual file systems, removable media, and remote filesystems 
     tumbler.enable = true; # thumbnailer service
   };
 
@@ -79,7 +76,6 @@
       grim
       jq
       kitty # default terminal on hyprland
-      libva-utils # graphics library
       libsecret # needed for gnome-keyring
       networkmanagerapplet
       nwg-look

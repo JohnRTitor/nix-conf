@@ -1,4 +1,4 @@
-# Configure hardware - graphics, sound, etc.
+# Configure graphics and hardware acceleration settings etc.
 { config, pkgs, ... }:
 
 {
@@ -26,23 +26,8 @@
   
   # Graphics environment variables
   environment.sessionVariables = {
-      LIBVA_DRIVER_NAME = "radeonsi";
+    LIBVA_DRIVER_NAME = "radeonsi";
+    VDPAU_DRIVER = "radeonsi";
     __GLX_VENDOR_LIBRARY_NAME = "amdgpu";
   };
-
-  # Enable zram swap
-  zramSwap.enable = true;
-  # Enable scrubbing for btrfs - by default once a month
-  services.btrfs.autoScrub.enable = true;
-  # Disable last access time to increase performance
-  fileSystems = {
-    "/".options = [ "noatime" ];
-  };
-
-  # fstrim for SSD
-  services.fstrim = {
-    enable = true;
-    interval = "monthly";
-  };
-
 }
