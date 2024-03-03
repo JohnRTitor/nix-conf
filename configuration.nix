@@ -74,7 +74,6 @@
       openssl # required by Rainbow borders
       python3
       # pipewire # enabled via service
-      sbctl # for secureboot
       udiskie # automount usb drives
       unzip  
       vim

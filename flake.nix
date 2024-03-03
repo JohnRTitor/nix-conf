@@ -90,7 +90,7 @@
         ( if (systemSettings.secureboot == true) then
             [ lanzaboote.nixosModules.lanzaboote ]
           else
-            []
+            [] # empty wrapper
         );
         specialArgs = {
           inherit pkgs-unstable;
