@@ -29,6 +29,7 @@
         locale = "en_US.UTF-8"; # select locale
         localeoverride = "en_IN";
         stableversion = "23.11";
+        secureboot = true;
       };
 
       # ----- USER SETTINGS ----- #
@@ -67,7 +68,6 @@
 
         modules = [
           ./configuration.nix # main nix configuration
-          lanzaboote.nixosModules.lanzaboote # lanzaboote for secureboot
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -85,7 +85,13 @@
             };
           }
 
-        ];
+        ]
+        ++
+        ( if (systemSettings.secureboot == true) then
+            [ lanzaboote.nixosModules.lanzaboote ]
+          else
+            []
+        );
         specialArgs = {
           inherit pkgs-unstable;
           inherit systemSettings;

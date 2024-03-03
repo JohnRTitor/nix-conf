@@ -1,9 +1,14 @@
 # This conf file is used to configure boot 
-{ config, pkgs, pkgs-unstable, lib, ... }:
+{ config, pkgs, pkgs-unstable, lib, systemSettings, ... }:
 
 {
+  imports = if (systemSettings.secureboot == true) then [ ./boot/lanzaboote.nix ] else [./boot/systemd-boot.nix ];
   # Bootspec needed for secureboot
   boot.bootspec.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  # bootloader timeout set, also press t repeatedly in the bootmenu to set there
+  boot.loader.timeout = 15;
+
   # Use Xanmod Kernel
   boot.kernelPackages = pkgs-unstable.linuxPackages_zen;
   # zenpower is used for reading temperature, voltage, current and power
@@ -22,17 +27,7 @@
   #     };
   #   }
   # ];
-  # Bootloader - disable systemd in favor of lanzaboote
-  boot.loader.systemd-boot.enable = pkgs.lib.mkForce false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # bootloader timeout set, also press t repeatedly in the bootmenu to set there
-  boot.loader.timeout = 15;
 
-  # lanzaboote for secureboot
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/etc/secureboot";
-  };
 
   # Also load amdgpu at boot
   boot.kernelModules = [ "amdgpu" ];
@@ -43,9 +38,6 @@
     # "udev.log_level=3"
     # "lockdown=integrity"
   ];
-
-  # start systemd early
-  boot.initrd.systemd.enable = true;
 
   # plymouth theme for splash screen
   boot.plymouth = rec {
