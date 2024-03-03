@@ -5,7 +5,7 @@
   # Bootspec needed for secureboot
   boot.bootspec.enable = true;
   # Use Xanmod Kernel
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   # zenpower is used for reading temperature, voltage, current and power
   boot.extraModulePackages = with config.boot.kernelPackages; [
     zenpower
