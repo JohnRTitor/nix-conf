@@ -82,12 +82,12 @@
       wget
       # wireplumber # enabled via service
 
-      # installing from unstable disables hardware acceleration
+      # firefox, chrome from unstable are incompatible with stable
       (google-chrome.override {
         # enable video encoding and vulkan
         commandLineArgs = "--enable-features=VaapiVideoEncoder,Vulkan";
       })
-
+      firefox-wayland
 
     ])
 
@@ -96,7 +96,6 @@
     (with pkgs-unstable; [
       # list of latest packages from unstable repo
       vscode
-      firefox-wayland
     ]);
 
 
