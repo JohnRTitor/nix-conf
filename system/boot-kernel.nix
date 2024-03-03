@@ -2,12 +2,14 @@
 { config, pkgs, pkgs-unstable, lib, systemSettings, ... }:
 
 {
-  imports = if (systemSettings.secureboot == true) then [ ./boot/lanzaboote.nix ] else [./boot/systemd-boot.nix ];
+  imports = if (systemSettings.secureboot == true) then [ ./boot/lanzaboote.nix ] else [ ./boot/systemd-boot.nix ];
   # Bootspec needed for secureboot
   boot.bootspec.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   # bootloader timeout set, also press t repeatedly in the bootmenu to set there
   boot.loader.timeout = 15;
+  # start systemd early
+  boot.initrd.systemd.enable = true;
 
   # Use Xanmod Kernel
   boot.kernelPackages = pkgs-unstable.linuxPackages_zen;
@@ -33,7 +35,7 @@
   boot.kernelModules = [ "amdgpu" ];
   # boot.consoleLogLevel = 0; # configure silent boot
   boot.kernelParams = [
-    "acpi_enforce_resources=lax" # openrgb
+    # "acpi_enforce_resources=lax" # openrgb
     # "quiet"
     # "udev.log_level=3"
     # "lockdown=integrity"
