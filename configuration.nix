@@ -85,7 +85,7 @@
       # firefox, chrome from unstable are incompatible with stable
       (google-chrome.override {
         # enable video encoding and vulkan
-        commandLineArgs = "--enable-features=VaapiVideoEncoder,Vulkan";
+        commandLineArgs = "--enable-features=VaapiVideoEncoder";
       })
       firefox-wayland
 
