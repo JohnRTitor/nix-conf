@@ -18,10 +18,10 @@
       enable = true;
       plugins = with pkgs.xfce; [
         exo
-        mousepad
-        thunar-archive-plugin
+        mousepad # texr editor
+        thunar-archive-plugin # archive manager
         thunar-volman
-        tumbler
+        tumbler # thumbnailer service
       ];
     };
 
@@ -143,12 +143,14 @@
   # Environment variables to start the session with
   environment.sessionVariables = {
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
-    WLR_NO_HARDWARE_CURSORS = "1"; # if your cursor is not visible
+    # WLR_NO_HARDWARE_CURSORS = "1"; # if your cursor is not visible
     NIXOS_OZONE_WL = "1"; # for electron apps to run on wayland
     MOZ_ENABLE_WAYLAND = "1";
     SDL_VIDEODRIVER = "wayland";
     _JAVA_AWT_WM_NONREPARENTING = "1";
     CLUTTER_BACKEND = "wayland";
+    GDK_BACKEND = "wayland,x11"; # GTK: use wayland if possible, else X11
+    QT_QPA_PLATFORM = "wayland;xcb"; # QT: use QT if possible, else X11
     WLR_RENDERER = "vulkan";
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";

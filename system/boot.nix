@@ -11,21 +11,17 @@
     zenpower
   ];
 
-  boot.kernelParams = [ "lockdown=integrity" ];
-
-  boot.kernelPatches = [
-    # Kernel lockdown patch
-    {
-      name = "kernel-lockdown";
-      patch = null;
-      extraStructuredConfig = with lib.kernel; {
-        SECURITY_LOCKDOWN_LSM = lib.mkForce yes;
-        MODULE_SIG = lib.mkForce yes;
-      };
-    }
-  ];
-  # Also load amdgpu-pro at boot
-  boot.kernelModules = [ "amdgpu-pro" ];
+  # boot.kernelPatches = [
+  #   # Kernel lockdown patch
+  #   {
+  #     name = "kernel-lockdown";
+  #     patch = null;
+  #     extraStructuredConfig = with lib.kernel; {
+  #       SECURITY_LOCKDOWN_LSM = lib.mkForce yes;
+  #       MODULE_SIG = lib.mkForce yes;
+  #     };
+  #   }
+  # ];
   # Bootloader - disable systemd in favor of lanzaboote
   boot.loader.systemd-boot.enable = pkgs.lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -37,6 +33,18 @@
     enable = true;
     pkiBundle = "/etc/secureboot";
   };
+
+  # Also load amdgpu at boot
+  boot.kernelModules = [ "amdgpu" ];
+  boot.consoleLogLevel = 0; # configure silent boot
+  boot.kernelParams = [
+    "quiet"
+    "udev.log_level=3"
+    # "lockdown=integrity"
+  ];
+
+  # start systemd early
+  boot.initrd.systemd.enable = true;
 
   # plymouth theme for splash screen
   boot.plymouth = rec {
@@ -50,7 +58,4 @@
       }
     )];
   };
-
-  # start systemd early
-  boot.initrd.systemd.enable = true;
 }
