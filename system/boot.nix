@@ -36,12 +36,12 @@
 
   # Also load amdgpu at boot
   boot.kernelModules = [ "amdgpu" ];
-  boot.consoleLogLevel = 0; # configure silent boot
-  boot.kernelParams = [
-    "quiet"
-    "udev.log_level=3"
-    # "lockdown=integrity"
-  ];
+  # boot.consoleLogLevel = 0; # configure silent boot
+  # boot.kernelParams = [
+  #   "quiet"
+  #   "udev.log_level=3"
+  #   # "lockdown=integrity"
+  # ];
 
   # start systemd early
   boot.initrd.systemd.enable = true;
