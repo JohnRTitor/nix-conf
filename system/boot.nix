@@ -1,11 +1,11 @@
 # This conf file is used to configure boot 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, pkgs-unstable, lib, ... }:
 
 {
   # Bootspec needed for secureboot
   boot.bootspec.enable = true;
   # Use Xanmod Kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs-unstable.linuxPackages_zen;
   # zenpower is used for reading temperature, voltage, current and power
   boot.extraModulePackages = with config.boot.kernelPackages; [
     zenpower
