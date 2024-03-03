@@ -9,8 +9,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      # include boot settings
-      ./system/boot.nix
+      # include boot and kernel settings
+      ./system/boot-kernel.nix
       # include user account settings
       ./system/users.nix
       # include hardware settings
