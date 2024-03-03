@@ -4,6 +4,10 @@
 { pkgs, pkgs-unstable, ... }:
 
 {
+    imports =
+    [ # Include GNOME Keyring settings
+      ./gnome-keyring.nix
+    ];
   programs = {
     # Enable Hyperland
     hyprland.enable = true;
@@ -55,7 +59,6 @@
     udev.enable = true; 
     gnome = {
       sushi.enable = true; # quick previewer
-      gnome-keyring.enable = true; # apps like vscode stores encrypted data using it
       glib-networking.enable = true; # network extensions libs
     };
 
@@ -76,7 +79,6 @@
       grim
       jq
       kitty # default terminal on hyprland
-      libsecret # needed for gnome-keyring
       networkmanagerapplet
       nwg-look
       pamixer
