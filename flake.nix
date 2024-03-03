@@ -1,5 +1,4 @@
 {
-
   description = "Flake of JohnRTitor";
 
   inputs = {
@@ -87,6 +86,7 @@
 
         ]
         ++
+        # Enable Lanzaboote if secureboot is configured
         ( if (systemSettings.secureboot == true) then
             [ lanzaboote.nixosModules.lanzaboote ]
           else

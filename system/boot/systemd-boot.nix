@@ -1,3 +1,4 @@
+# Configure systemd-boot (non-secureboot)
 { ... }:
 {
   # Enable systemd-boot
