@@ -11,7 +11,7 @@
   # start systemd early
   boot.initrd.systemd.enable = true;
 
-  # Use Xanmod Kernel
+  # Use Linux Zen Kernel
   boot.kernelPackages = pkgs-unstable.linuxPackages_zen;
   # zenpower is used for reading temperature, voltage, current and power
   boot.extraModulePackages = with config.boot.kernelPackages; [
