@@ -84,8 +84,8 @@
 
       # installing from unstable disables hardware acceleration
       (google-chrome.override {
-        # pass command line args to enable features
-        commandLineArgs = "--enable-features=VaapiVideoEncoder,Vulkan --enable-unsafe-webgpu";
+        # enable video encoding and vulkan
+        commandLineArgs = "--enable-features=VaapiVideoEncoder,Vulkan";
       })
 
 
