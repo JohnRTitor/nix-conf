@@ -4,7 +4,7 @@
 {
   environment.systemPackages = with pkgs; [
     virt-manager
-    # virtualbox
+    virtualbox
     distrobox
   ];
   virtualisation.libvirtd = {
@@ -16,7 +16,7 @@
       "virbr0"
     ];
   };
-  virtualisation.spiceUSBRedirection.enable = true; # allows VMs to access USB
+  # virtualisation.spiceUSBRedirection.enable = true; # allows VMs to access USB
   users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
-  # boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
 }
