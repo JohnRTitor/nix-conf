@@ -12,6 +12,7 @@
     ./home-manager/pyprland/pyprland.nix # pyprland config wrapper
     ./home-manager/neofetch/neofetch.nix
     ./home-manager/virt-manager/virt-manager.nix
+    ./hyprland-config/hyprland-dots.nix # hyprland dotfiles
   ];
 
   # link the configuration file in current directory to the specified location in home directory
