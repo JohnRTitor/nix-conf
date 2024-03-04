@@ -166,7 +166,7 @@
     user.extraConfig = ''
       DefaultEnvironment="PATH=/run/current-system/sw/bin"
     '';
-      # Polkit starting systemd service - needed for apps requesting root access
+    # Polkit starting systemd service - needed for apps requesting root access
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
       wantedBy = [ "graphical-session.target" ];
