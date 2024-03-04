@@ -27,7 +27,7 @@
       # include hyprland settings
       ./system/hyprland.nix
       # include virtualization settings
-      ./system/virtualization.nix
+      # ./system/virtualization.nix
       # include printing settings
       ./system/printing.nix
       # include power plan settings
