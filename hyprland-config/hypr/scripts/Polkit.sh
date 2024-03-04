@@ -1,6 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ## /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # This is for polkits, it will start from top and will stop if the top is executed
+
+# NixOS detected so load the correct script
+if cat /etc/os-release | grep -iq 'ID=nixos'; then
+  source ./Polkit-NixOS.sh
+  exit 0
+fi
 
 # Polkit possible paths files to check
 polkit=(
