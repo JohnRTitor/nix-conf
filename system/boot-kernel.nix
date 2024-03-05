@@ -18,17 +18,24 @@
     zenpower
   ];
 
-  # boot.kernelPatches = [
-  #   # Kernel lockdown patch
-  #   {
-  #     name = "kernel-lockdown";
-  #     patch = null;
-  #     extraStructuredConfig = with lib.kernel; {
-  #       SECURITY_LOCKDOWN_LSM = lib.mkForce yes;
-  #       MODULE_SIG = lib.mkForce yes;
-  #     };
-  #   }
-  # ];
+  boot.kernelPatches = [
+    # Kernel lockdown patch
+    {
+      name = "kernel-lockdown";
+      patch = null;
+      extraStructuredConfig = with lib.kernel; {
+        SECURITY_LOCKDOWN_LSM = lib.mkForce yes;
+        MODULE_SIG = lib.mkForce yes;
+      };
+    }
+    {
+      name = "NCT6775 driver";
+      patch = null; # no patch needed if zen-kernel is enabled
+      extraStructuredConfig = with lib.kernel; {
+        CONFIG_I2C_NCT6775 = lib.mkForce yes;
+      };
+    }
+  ];
 
 
   # Also load amdgpu at boot
