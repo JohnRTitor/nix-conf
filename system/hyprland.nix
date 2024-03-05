@@ -76,7 +76,7 @@
       gnome.file-roller
       gnome.gnome-system-monitor
       gnome.eog # eye of gnome
-      grim
+      grim # screenshots
       jq
       kitty # default terminal on hyprland
       networkmanagerapplet
@@ -128,7 +128,7 @@
       # hyprpicker # does not work
       # hyprpaper # alternative to swww
       # wofi # alternative to rofi-wayland
-      grim # screenshots
+      
       # for opening files in correct apps
       shared-mime-info
       desktop-file-utils

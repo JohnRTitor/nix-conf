@@ -70,6 +70,7 @@
       libappindicator
       libnotify
       libva-utils # libva graphics library tools
+      linux-wifi-hotspot # for wifi hotspot
       openssh # for ssh
       openssl # required by Rainbow borders
       python3
