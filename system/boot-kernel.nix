@@ -53,15 +53,6 @@
 
         X86_MCE_INTEL = lib.mkForce no; # disable support for intel mce
 
-        # AMD SMEE
-        DYNAMIC_PHYSICAL_MASK = lib.mkForce yes;
-        X86_MEM_ENCRYPT = lib.mkForce yes;
-        AMD_MEM_ENCRYPT = lib.mkForce yes;
-        ARCH_HAS_CC_PLATFORM = lib.mkForce yes;
-        UNACCEPTED_MEMORY = lib.mkForce yes;
-        ARCH_HAS_FORCE_DMA_UNENCRYPTED = lib.mkForce yes;
-        DMA_COHERENT_POOL = lib.mkForce yes;
-
         # Optimized for performance
         CC_OPTIMIZE_FOR_PERFORMANCE_O3 = lib.mkForce yes;
 
@@ -80,7 +71,6 @@
     # "acpi_enforce_resources=lax" # openrgb
     # "quiet"
     # "udev.log_level=3"
-    "mem_encrypt=on"
     "lockdown=integrity"
   ];
 
