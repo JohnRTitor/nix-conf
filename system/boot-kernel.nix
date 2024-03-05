@@ -41,9 +41,11 @@
       name = "AMD Patches";
       patch = null; # no patch is needed, just apply the options
       extraStructuredConfig = with lib.kernel; {
-        MNATIVE_AMD = lib.mkForce yes; # enable compiler optimizations for AMD
-        X86_EXTENDED_PLATFORM = lib.mkForce no; # disable support for other x86 platforms
+        # enable compiler optimizations for AMD
+        MNATIVE_AMD = lib.mkForce yes;
         X86_USE_PPRO_CHECKSUM = lib.mkForce yes;
+
+        X86_EXTENDED_PLATFORM = lib.mkForce no; # disable support for other x86 platforms
 
         X86_MCE_INTEL = lib.mkForce no; # disable support for intel mce
 
