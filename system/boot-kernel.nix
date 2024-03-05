@@ -29,10 +29,11 @@
       };
     }
     {
+      # recompiling the kernel with this kernel is needed for OpenRGB
       name = "NCT6775 driver";
       patch = null; # no patch needed if zen-kernel is enabled
       extraStructuredConfig = with lib.kernel; {
-        CONFIG_I2C_NCT6775 = lib.mkForce yes;
+        I2C_NCT6775 = lib.mkForce yes;
       };
     }
   ];
