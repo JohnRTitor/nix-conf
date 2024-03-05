@@ -86,6 +86,7 @@
         # enable video encoding and vulkan, along with several
         # suitable for my configuration
         # change it if you have any issues
+        # note the spaces, they are required
         commandLineArgs = ""
           + " --enable-accelerated-video-decode"
           + " --enable-accelerated-mjpeg-decode"
@@ -93,7 +94,7 @@
           + " --enable-gpu-rasterization" # dont enable in about:flags
           + " --enable-native-gpu-memory-buffers"
           + " --enable-raw-draw"
-          # + " --use-vulkan"
+          + " --use-vulkan"
           + " --enable-zero-copy" # dont enable in about:flags
           + " --ignore-gpu-blocklist" # dont enable in about:flags
           + " --enable-features=VaapiVideoEncoder,CanvasOopRasterization"
