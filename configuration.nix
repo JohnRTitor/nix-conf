@@ -87,12 +87,12 @@
         # suitable for my configuration
         # change it if you have any issues
         commandLineArgs = "--enable-features=VaapiVideoEncoder,CanvasOopRasterization"
-          # + "--enable-accelerated-video-decode"
-          # + "--enable-accelerated-mjpeg-decode"
-          # + "--enable-gpu-compositing"
+          + "--enable-accelerated-video-decode"
+          + "--enable-accelerated-mjpeg-decode"
+          + "--enable-gpu-compositing"
           + "--enable-gpu-rasterization" # dont enable in about:flags
-          # + "--enable-native-gpu-memory-buffers"
-          # + "--enable-raw-draw"
+          + "--enable-native-gpu-memory-buffers"
+          + "--enable-raw-draw"
           # + "--use-vulkan"
           + "--enable-zero-copy" # dont enable in about:flags
           + "--ignore-gpu-blocklist" # dont enable in about:flags
