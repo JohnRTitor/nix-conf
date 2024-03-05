@@ -29,11 +29,37 @@
       };
     }
     {
-      # recompiling the kernel with this kernel is needed for OpenRGB
+      # recompiling the kernel with this option is needed for OpenRGB
       name = "NCT6775 driver";
       patch = null; # no patch needed if zen-kernel is enabled
       extraStructuredConfig = with lib.kernel; {
         I2C_NCT6775 = lib.mkForce yes;
+      };
+    }
+    {
+      # Recompiling the kernel with optimization
+      name = "AMD Patches";
+      patch = null; # no patch is needed, just apply the options
+      extraStructuredConfig = with lib.kernel; {
+        MNATIVE_AMD = lib.mkForce yes; # enable compiler optimizations for AMD
+        X86_EXTENDED_PLATFORM = lib.mkForce no; # support for other x86 platforms
+        X86_USE_PPRO_CHECKSUM = lib.mkForce yes;
+
+        # AMD SMEE
+        DYNAMIC_PHYSICAL_MASK = lib.mkForce yes;
+        X86_MEM_ENCRYPT = lib.mkForce yes;
+        AMD_MEM_ENCRYPT = lib.mkForce yes;
+        ARCH_HAS_CC_PLATFORM = lib.mkForce yes;
+        UNACCEPTED_MEMORY = lib.mkForce yes;
+        ARCH_HAS_FORCE_DMA_UNENCRYPTED = lib.mkForce yes;
+        DMA_COHERENT_POOL = lib.mkForce yes;
+
+        # Optimized for performance
+        CC_OPTIMIZE_FOR_PERFORMANCE_O3 = lib.mkForce yes;
+
+        # Multigen LRU
+        LRU_GEN = lib.mkForce yes;
+        LRU_GEN_ENABLED = lib.mkForce yes;
       };
     }
   ];
