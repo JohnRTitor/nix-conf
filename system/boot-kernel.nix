@@ -80,6 +80,7 @@
     # "acpi_enforce_resources=lax" # openrgb
     # "quiet"
     # "udev.log_level=3"
+    "mem_encrypt=on"
     "lockdown=integrity"
   ];
 
