@@ -83,8 +83,20 @@
 
       # firefox, chrome from unstable are incompatible with stable
       (google-chrome.override {
-        # enable video encoding and vulkan
-        commandLineArgs = "--enable-features=VaapiVideoEncoder";
+        # enable video encoding and vulkan, along with several
+        # suitable for my configuration
+        # change it if you have any issues
+        commandLineArgs = "--enable-accelerated-video-decode"
+          + "--enable-accelerated-mjpeg-decode"
+          + "--enable-features=CanvasOopRasterization,VaapiVideoEncoder"
+          + "--enable-gpu-compositing"
+          + "--enable-gpu-rasterization"
+          + "--enable-native-gpu-memory-buffers"
+          + "--enable-oop-rasterization"
+          + "--canvas-oop-rasterization"
+          + "--enable-raw-draw"
+          + "--use-vulkan"
+          + "--enable-zero-copy";
       })
       firefox-wayland
 
