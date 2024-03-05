@@ -40,6 +40,10 @@
       # Recompiling the kernel with optimization
       name = "AMD Patches";
       patch = null; # no patch is needed, just apply the options
+      # enable only support for upto 20 CPU threads in the kernel
+      extraConfig = ''
+        NR_CPUS 20
+      '';
       extraStructuredConfig = with lib.kernel; {
         # enable compiler optimizations for AMD
         MNATIVE_AMD = lib.mkForce yes;
