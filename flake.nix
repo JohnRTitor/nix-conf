@@ -39,7 +39,14 @@
 
       # configure stable pkgs
       pkgs = import nixpkgs {
-        system = systemSettings.system;
+        # Add zen4 support
+        localSystem = let
+          featureSupport = arch:
+          lib.mapAttrs (_: f: f arch) lib.systems.architectures.predicates;
+        in {
+          system = "x86_64-linux";
+        } // featureSupport "znver4";
+
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (_: true);
@@ -47,7 +54,14 @@
         # overlays = [ rust-overlay.overlays.default ];
       };
       pkgs-unstable = import nixpkgs-unstable {
-        system = systemSettings.system;
+        # Add zen4 support
+        localSystem = let
+          featureSupport = arch:
+          lib.mapAttrs (_: f: f arch) lib.systems.architectures.predicates;
+        in {
+          system = "x86_64-linux";
+        } // featureSupport "znver4";
+
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (_: true);
