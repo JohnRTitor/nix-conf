@@ -110,6 +110,7 @@
     # whatsapp-for-linux
     # libreoffice
     discord
+    telegram-desktop
   ];
 
   # basic configuration of git, please change to your own
