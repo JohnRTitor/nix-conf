@@ -1,20 +1,7 @@
 {
   description = "Flake of JohnRTitor";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11"; # Stable nixpkgs (23.11)
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # Unstable nixpkgs
-
-    lanzaboote.url = "github:nix-community/lanzaboote"; # lanzaboote, used for secureboot
-
-    # home-manager, used for managing user configuration
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs"; # follow the stable nixpkgs, to ensure compatibility
-    };
-  };
-
-  outputs = { self, nixpkgs, nixpkgs-unstable, lanzaboote, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, browserPreviews, lanzaboote, home-manager, ... }@inputs:
     let
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
@@ -46,9 +33,8 @@
         in {
           system = systemSettings.systemarch;
         } // featureSupport "znver4";
-
         config = { allowUnfree = true;
-                 allowUnfreePredicate = (_: true); };
+                   allowUnfreePredicate = (_: true); };
       };
       pkgs-unstable = import nixpkgs-unstable {
         # Add zen4 support
@@ -58,9 +44,13 @@
         in {
           system = systemSettings.systemarch;
         } // featureSupport "znver4";
-
         config = { allowUnfree = true;
-                 allowUnfreePredicate = (_: true); };
+                   allowUnfreePredicate = (_: true); };
+      };
+      pkgs-browser = import browserPreviews {
+        system = systemSettings.systemarch;
+        config = { allowUnfree = true;
+                   allowUnfreePredicate = (_: true); };
       };
 
     in {
@@ -94,12 +84,31 @@
           else
             [] # empty wrapper
         );
+        # Arguments to configuration.nix
         specialArgs = {
           inherit pkgs-unstable;
+          inherit pkgs-browser;
           inherit systemSettings;
           inherit userSettings;
         };
       };
     };
+  # Inputs of Flake, define sources here
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11"; # Stable nixpkgs (23.11)
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # Unstable nixpkgs
+
+    lanzaboote.url = "github:nix-community/lanzaboote"; # lanzaboote, used for secureboot
+
+    # home-manager, used for managing user configuration
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs"; # follow the stable nixpkgs, to ensure compatibility
+    };
+    browserPreviews = {
+      url = "github:r-k-b/browser-previews";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
 }
