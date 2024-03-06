@@ -18,7 +18,7 @@
     let
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
-        system = "x86_64-linux"; # system arch
+        systemarch = "x86_64-linux"; # system arch
         hostname = "Ainz-NIX"; # hostname
         timezone = "Asia/Kolkata"; # select timezone
         locale = "en_US.UTF-8"; # select locale
@@ -42,9 +42,9 @@
         # Add zen4 support
         localSystem = let
           featureSupport = arch:
-          lib.mapAttrs (_: f: f arch) lib.systems.architectures.predicates;
+          nixpkgs.lib.mapAttrs (_: f: f arch) nixpkgs.lib.systems.architectures.predicates;
         in {
-          system = "x86_64-linux";
+          system = systemSettings.systemarch;
         } // featureSupport "znver4";
 
         config = {
@@ -57,9 +57,9 @@
         # Add zen4 support
         localSystem = let
           featureSupport = arch:
-          lib.mapAttrs (_: f: f arch) lib.systems.architectures.predicates;
+          nixpkgs-unstable.lib.mapAttrs (_: f: f arch) nixpkgs-unstable.lib.systems.architectures.predicates;
         in {
-          system = "x86_64-linux";
+          system = systemSettings.systemarch;
         } // featureSupport "znver4";
 
         config = {
@@ -69,11 +69,9 @@
         # overlays = [ rust-overlay.overlays.default ];
       };
 
-      # configure lib
-      lib = nixpkgs.lib;
     in {
-      nixosConfigurations.${systemSettings.hostname} = lib.nixosSystem {
-        system = systemSettings.system;
+      nixosConfigurations.${systemSettings.hostname} = nixpkgs.lib.nixosSystem {
+        system = systemSettings.systemarch;
 
         modules = [
           ./configuration.nix # main nix configuration
