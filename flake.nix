@@ -47,11 +47,8 @@
           system = systemSettings.systemarch;
         } // featureSupport "znver4";
 
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = (_: true);
-        };
-        # overlays = [ rust-overlay.overlays.default ];
+        config = { allowUnfree = true;
+                 allowUnfreePredicate = (_: true); };
       };
       pkgs-unstable = import nixpkgs-unstable {
         # Add zen4 support
@@ -62,11 +59,8 @@
           system = systemSettings.systemarch;
         } // featureSupport "znver4";
 
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = (_: true);
-        };
-        # overlays = [ rust-overlay.overlays.default ];
+        config = { allowUnfree = true;
+                 allowUnfreePredicate = (_: true); };
       };
 
     in {
