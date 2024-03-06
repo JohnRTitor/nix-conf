@@ -1,0 +1,45 @@
+
+  boot.kernelPatches = [
+    # Kernel lockdown patch
+    {
+      name = "kernel-lockdown";
+      patch = null;
+      extraStructuredConfig = with lib.kernel; {
+        SECURITY_LOCKDOWN_LSM = lib.mkForce yes;
+        MODULE_SIG = lib.mkForce yes;
+      };
+    }
+    {
+      # recompiling the kernel with this option is needed for OpenRGB
+      name = "NCT6775 driver";
+      patch = null; # no patch needed if zen-kernel is enabled
+      extraStructuredConfig = with lib.kernel; {
+        I2C_NCT6775 = lib.mkForce yes;
+      };
+    }
+    {
+      # Recompiling the kernel with optimization
+      name = "AMD Patches";
+      patch = null; # no patch is needed, just apply the options
+      # enable only support for upto 20 CPU threads in the kernel
+      extraConfig = ''
+        NR_CPUS 20
+      '';
+      extraStructuredConfig = with lib.kernel; {
+        # enable compiler optimizations for AMD
+        MNATIVE_AMD = lib.mkForce yes;
+        X86_USE_PPRO_CHECKSUM = lib.mkForce yes;
+
+        X86_EXTENDED_PLATFORM = lib.mkForce no; # disable support for other x86 platforms
+
+        X86_MCE_INTEL = lib.mkForce no; # disable support for intel mce
+
+        # Optimized for performance
+        CC_OPTIMIZE_FOR_PERFORMANCE_O3 = lib.mkForce yes;
+
+        # Multigen LRU
+        LRU_GEN = lib.mkForce yes;
+        LRU_GEN_ENABLED = lib.mkForce yes;
+      };
+    }
+  ];

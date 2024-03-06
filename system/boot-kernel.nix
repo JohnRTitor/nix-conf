@@ -23,7 +23,7 @@
   #  };
   # });
 
-  boot.kernelPackages = pkgs-unstable.linuxPackages_lqx;
+  boot.kernelPackages = pkgs-unstable.linuxPackages_zen;
   # zenpower is used for reading temperature, voltage, current and power
   boot.extraModulePackages = with config.boot.kernelPackages; [
     zenpower
@@ -73,7 +73,6 @@
       };
     }
   ];
-
 
   # Also load amdgpu at boot
   boot.kernelModules = [ "amdgpu" ];
