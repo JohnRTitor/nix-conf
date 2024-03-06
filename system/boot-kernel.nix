@@ -12,7 +12,18 @@
   boot.initrd.systemd.enable = true;
 
   # Use Linux Zen Kernel
-  boot.kernelPackages = pkgs-unstable.linuxPackages_zen;
+  # boot.kernelPackages = pkgs-unstable.linuxPackagesFor (pkgs-unstable.linuxPackages_lqx.override {
+  #   argsOverride = rec {
+	# 		src = pkgs-unstable.fetchurl {
+	# 					url = "https://github.com/zen-kernel/zen-kernel/archive/refs/tags/v${version}-lqx1.tar.gz";
+	# 					sha256 = "sha256-q+N+sOLjMb3HxBEBFWZOGA59Q7czbea0zSvRsSPTAgc=";
+	# 		};
+	# 		version = "6.7.8";
+	# 		modDirVersion = "6.7.8";
+  #  };
+  # });
+
+  boot.kernelPackages = pkgs-unstable.linuxPackages_lqx;
   # zenpower is used for reading temperature, voltage, current and power
   boot.extraModulePackages = with config.boot.kernelPackages; [
     zenpower
@@ -71,7 +82,7 @@
     # "acpi_enforce_resources=lax" # openrgb
     # "quiet"
     # "udev.log_level=3"
-    "lockdown=integrity"
+    # "lockdown=integrity"
   ];
 
   # plymouth theme for splash screen
