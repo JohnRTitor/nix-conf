@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 
-{ config, pkgs, pkgs-unstable, systemSettings, userSettings, ... }:
+{ config, pkgs, pkgs-unstable, pkgs-browser, systemSettings, userSettings, ... }:
 
 {
   imports =
@@ -81,30 +81,6 @@
       vdpauinfo # vdpau graphics library tools
       wget
       # wireplumber # enabled via service
-
-      # firefox, chrome from unstable are incompatible with stable
-      (google-chrome.override {
-        # enable video encoding and hardware acceleration, along with several
-        # suitable for my configuration
-        # change it if you have any issues
-        # note the spaces, they are required
-        # Vulkan is not stable, likely because of drivers
-        commandLineArgs = ""
-          + " --enable-accelerated-video-decode"
-          + " --enable-accelerated-mjpeg-decode"
-          + " --enable-gpu-compositing"
-          + " --enable-gpu-rasterization" # dont enable in about:flags
-          + " --enable-native-gpu-memory-buffers"
-          + " --enable-raw-draw"
-          + " --enable-zero-copy" # dont enable in about:flags
-          + " --ignore-gpu-blocklist" # dont enable in about:flags
-          # + " --use-vulkan"
-          + " --enable-features="
-              + "VaapiVideoEncoder,"
-              + "CanvasOopRasterization,"
-              # + "Vulkan"
-          ;
-      })
       firefox-wayland
 
     ])
@@ -114,8 +90,12 @@
     (with pkgs-unstable; [
       # list of latest packages from unstable repo
       vscode
+    ])
+    ++
+    (with pkgs-browser; [
+      # firefox, chrome from unstable are incompatible with stable
+      google-chrome
     ]);
-
 
   # disable hibernate since you can't hibernate on zram swap anyway
   systemd.targets.hibernate = {
