@@ -30,7 +30,7 @@
         "urltools" # provides urlencode, urldecode
         
         ];
-      theme = "duellj";
+      theme = "agenoster";
     };
     sessionVariables = {
       GPG_TTY = "$(tty)";
