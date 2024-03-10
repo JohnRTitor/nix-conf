@@ -18,15 +18,15 @@
   security.rtkit.enable = true; # Enable rtkit for real-time scheduling, required for pipewire
 
   # Enable low latency
-  environment.etc = {
-    "pipewire/pipewire.conf.d/92-low-latency.conf".text = ''
-      context.properties = {
-        default.clock.rate = 48000
-        default.clock.quantum = 512
-        default.clock.min-quantum = 512
-        default.clock.max-quantum = 512
-      }
-    '';
+  services.pipewire.extraConfig.pipewire = {
+    "92-low-latency" = {
+      "context.properties" = {
+        "default.clock.rate" = 48000;
+        "default.clock.quantum" = 512;
+        "default.clock.min-quantum" = 512;
+        "default.clock.max-quantum" = 512;
+      };
+    };
   };
 
   services.udev.extraRules = ''
