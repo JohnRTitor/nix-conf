@@ -11,12 +11,7 @@
   programs = {
     # Enable Hyperland
     hyprland.enable = true;
-    waybar = {
-      enable = true;
-      package = pkgs.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      });
-    };
+    waybar.enable = true; # enable waybar launcher
     # Xfce file manager
     thunar = {
       enable = true;
