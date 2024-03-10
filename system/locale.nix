@@ -23,7 +23,7 @@
   services = {
     xserver = {
       # Configure keymap in X11
-      layout = "us";
+      xkb.layout = "us";
       xkbVariant = "";
     };
   };
