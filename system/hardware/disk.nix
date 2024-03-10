@@ -7,7 +7,7 @@
   zramSwap.enable = true;
   # Disable last access time to increase performance
   fileSystems = {
-    "/".options = [ "noatime" ];
+  #  "/".options = [ "noatime" ];
   };
 
   # fstrim for SSD
