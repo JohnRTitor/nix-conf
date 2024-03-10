@@ -54,7 +54,7 @@
         # Add zen4 support
         localSystem = let
           featureSupport = arch:
-          nixpkgs-unstable.lib.mapAttrs (_: f: f arch) nixpkgs-unstable.lib.systems.architectures.predicates;
+          nixpkgs-stable.lib.mapAttrs (_: f: f arch) nixpkgs-stable.lib.systems.architectures.predicates;
         in {
           system = systemSettings.systemarch;
         } // featureSupport "znver4";
