@@ -9,7 +9,7 @@
   # bootloader timeout set, also press t repeatedly in the bootmenu to set there
   boot.loader.timeout = 15;
   # start systemd early
-  boot.initrd.systemd.enable = true;
+  # boot.initrd.systemd.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
   # zenpower is used for reading temperature, voltage, current and power
