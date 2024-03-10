@@ -2,19 +2,19 @@
   description = "Flake of JohnRTitor";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11"; # Stable nixpkgs (23.11)
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # Unstable nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # Unstable nixpkgs
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11"; # Stable nixpkgs (23.11)
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # lanzaboote, used for secureboot
 
     # home-manager, used for managing user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs"; # follow the stable nixpkgs, to ensure compatibility
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, lanzaboote, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, lanzaboote, home-manager, ... }:
     let
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
@@ -23,7 +23,7 @@
         timezone = "Asia/Kolkata"; # select timezone
         locale = "en_US.UTF-8"; # select locale
         localeoverride = "en_IN";
-        stableversion = "23.11";
+        stableversion = "24.05";
         secureboot = true;
       };
 
@@ -48,9 +48,9 @@
         } // featureSupport "znver4";
 
         config = { allowUnfree = true;
-                 allowUnfreePredicate = (_: true); };
+                  allowUnfreePredicate = (_: true); };
       };
-      pkgs-unstable = import nixpkgs-unstable {
+      pkgs-unstable = import nixpkgs-stable {
         # Add zen4 support
         localSystem = let
           featureSupport = arch:
@@ -60,7 +60,7 @@
         } // featureSupport "znver4";
 
         config = { allowUnfree = true;
-                 allowUnfreePredicate = (_: true); };
+                  allowUnfreePredicate = (_: true); };
       };
 
     in {

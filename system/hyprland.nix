@@ -1,7 +1,7 @@
 # Configure hyprland window manager
 # this config file contains package, portal and services declaration
 # made specifically for hyprland
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs-stable, ... }:
 
 {
     imports =
@@ -137,8 +137,8 @@
 
     ++
 
-    (with pkgs-unstable; [
-      # list of latest packages from unstable repo
+    (with pkgs-stable; [
+      # list of latest packages from stable repo
       
     ]);
 

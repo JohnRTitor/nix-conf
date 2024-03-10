@@ -1,10 +1,10 @@
 # Configure disks and zram
 { ... }:
 {
+  # Enable support for bcachefs
+  boot.supportedFilesystems = [ "bcachefs" ];
   # Enable zram swap
   zramSwap.enable = true;
-  # Enable scrubbing for btrfs - by default once a month
-  services.btrfs.autoScrub.enable = true;
   # Disable last access time to increase performance
   fileSystems = {
     "/".options = [ "noatime" ];

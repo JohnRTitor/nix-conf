@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, systemSettings, userSettings, ... }:
+{ config, pkgs, pkgs-stable, systemSettings, userSettings, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
