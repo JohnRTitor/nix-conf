@@ -12,6 +12,7 @@
     ./home-manager/pyprland/pyprland.nix # pyprland config wrapper
     ./home-manager/neofetch/neofetch.nix
     ./home-manager/virt-manager/virt-manager.nix
+    ./home-manager/vscode/vscode.nix
   ];
 
   # link the configuration file in current directory to the specified location in home directory

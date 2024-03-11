@@ -19,14 +19,14 @@
 
   boot.kernelPatches = [
     # Kernel lockdown patch
-    {
-      name = "kernel-lockdown";
-      patch = null;
-      extraStructuredConfig = with lib.kernel; {
-        SECURITY_LOCKDOWN_LSM = lib.mkForce yes;
-        MODULE_SIG = lib.mkForce yes;
-      };
-    }
+    # {
+    #   name = "kernel-lockdown";
+    #   patch = null;
+    #   extraStructuredConfig = with lib.kernel; {
+    #     SECURITY_LOCKDOWN_LSM = lib.mkForce yes;
+    #     MODULE_SIG = lib.mkForce yes;
+    #   };
+    # }
     {
       # recompiling the kernel with this option is needed for OpenRGB
       name = "NCT6775 driver";

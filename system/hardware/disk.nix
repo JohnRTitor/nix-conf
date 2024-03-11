@@ -1,14 +1,10 @@
 # Configure disks and zram
-{ ... }:
+{ lib, ... }:
 {
   # Enable support for bcachefs
   boot.supportedFilesystems = [ "bcachefs" ];
   # Enable zram swap
   zramSwap.enable = true;
-  # Disable last access time to increase performance
-  fileSystems = {
-  #  "/".options = [ "noatime" ];
-  };
 
   # fstrim for SSD
   services.fstrim = {
