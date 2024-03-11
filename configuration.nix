@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 
-{ config, pkgs, pkgs-unstable, systemSettings, userSettings, ... }:
+{ config, pkgs, pkgs-stable, systemSettings, userSettings, ... }:
 
 {
   imports =
@@ -107,14 +107,14 @@
           ;
       })
       firefox-wayland
-
+      vscode
     ])
 
     ++
 
-    (with pkgs-unstable; [
-      # list of latest packages from unstable repo
-      vscode
+    (with pkgs-stable; [
+      # list of latest packages from stable repo
+      
     ]);
 
 
