@@ -50,7 +50,7 @@
         config = { allowUnfree = true;
                   allowUnfreePredicate = (_: true); };
       };
-      pkgs-unstable = import nixpkgs-stable {
+      pkgs-stable = import nixpkgs-stable {
         # Add zen4 support
         localSystem = let
           featureSupport = arch:
@@ -80,7 +80,7 @@
             home-manager.users.${userSettings.username} = import ./home.nix;
             # extra specialArgs is used to pass arguments to home-manager
             home-manager.extraSpecialArgs = {
-              inherit pkgs-unstable;
+              inherit pkgs-stable;
               inherit systemSettings;
               inherit userSettings;
             };
@@ -95,7 +95,7 @@
             [] # empty wrapper
         );
         specialArgs = {
-          inherit pkgs-unstable;
+          inherit pkgs-stable;
           inherit systemSettings;
           inherit userSettings;
         };
