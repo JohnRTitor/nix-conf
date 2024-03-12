@@ -2,7 +2,7 @@
 { ... }:
 {
   home.file.".vscode/argv.json" = {
-    source = ./vscode-argv5.json;
+    source = ./vscode-argv.json5;
     executable = false;
   };
 }
