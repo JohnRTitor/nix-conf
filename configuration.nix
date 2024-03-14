@@ -58,10 +58,8 @@
 
       # System Packages
       ananicy-cpp # for better system performance
-      baobab
-      btrfs-progs # for btrfs filesystem
+      baobab # disk usage analyzer
       # cpufrequtils
-      curl
       # firewalld
       ffmpeg # codecs
       fuseiso # to mount iso system images
@@ -70,18 +68,15 @@
       gnupg # for encryption and auth keys
       libappindicator
       libnotify
-      libva-utils # libva graphics library tools
       linux-wifi-hotspot # for wifi hotspot
       openssh # for ssh
       openssl # required by Rainbow borders
       python3
       # pipewire # enabled via service
       udiskie # automount usb drives
-      unzip  
-      vim
-      vdpauinfo # vdpau graphics library tools
-      wget
+      unzip
       # wireplumber # enabled via service
+      ## BROWSERS ##
 
       # firefox, chrome from unstable are incompatible with stable
       (google-chrome.override {
@@ -107,7 +102,18 @@
           ;
       })
       firefox-wayland
+
+      ## URL FETCH TOOLS ##
+      curl
+      wget
+
+      ## EDITOR ##
+      vim
       vscode
+
+      ## GRAPHICS ##
+      libva-utils # libva graphics library tools
+      vdpauinfo # vdpau graphics library tools
     ])
 
     ++
@@ -119,10 +125,27 @@
 
 
   # disable hibernate since you can't hibernate on zram swap anyway
-  systemd.targets.hibernate = {
-    enable = false;
-    unitConfig.DefaultDependencies = "no";
-	};
+  # Masking sleep, hibernate, suspend.. etc
+  systemd = {
+		targets = {
+		  sleep = {
+		    enable = false;
+		    unitConfig.DefaultDependencies = "no";
+  		};
+		  suspend = {
+		    enable = false;
+		    unitConfig.DefaultDependencies = "no";
+		  };
+		  hibernate = {
+		    enable = false;
+		    unitConfig.DefaultDependencies = "no";
+		  };
+		"hybrid-sleep" = {
+		    enable = false;
+		    unitConfig.DefaultDependencies = "no";
+		  };
+	  };
+  };
 
   # SECURITY
   security = {
@@ -153,7 +176,6 @@
   
   # enable time synchronization
   services.timesyncd.enable = true;
-
   # Enable flatpak
   services.flatpak.enable = true;
   # enable fwupd
@@ -161,6 +183,10 @@
   # Mitigate issue where like /usr/bin/bash, hardcoded links in scripts not found
   services.envfs.enable = true;
 
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
