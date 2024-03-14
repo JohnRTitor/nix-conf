@@ -49,7 +49,7 @@
         MNATIVE_AMD = yes;
         X86_USE_PPRO_CHECKSUM = yes;
         
-        NR_CPUS = freeform "20"; # only 20 threads support
+        NR_CPUS = lib.mkForce (freeform "20"); # only 20 threads support
 
         # Disable intel specific services
         X86_MCE_INTEL = unset; # disable Intel MCE
