@@ -14,13 +14,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/0b9eaad4-63f7-419f-9ffd-99fd958c6cb7";
-      fsType = "btrfs";
-      options = [ "subvol=@" ];
+    { device = "UUID=7594aea3-de1f-466c-8420-3c7e4997fb34";
+      fsType = "bcachefs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2EF7-0A33";
+    { device = "/dev/disk/by-uuid/CF37-079C";
       fsType = "vfat";
     };
 
@@ -32,6 +31,8 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp11s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp13s0u11u3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp10s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
