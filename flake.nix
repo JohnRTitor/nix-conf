@@ -89,11 +89,9 @@
         ]
         ++
         # Enable Lanzaboote if secureboot is configured
-        ( if (systemSettings.secureboot == true) then
-            [ lanzaboote.nixosModules.lanzaboote ]
-          else
-            [] # empty wrapper
-        );
+        nixpkgs.lib.optionals (systemSettings.secureboot == true) [
+          lanzaboote.nixosModules.lanzaboote 
+        ];
         specialArgs = {
           inherit pkgs-stable;
           inherit systemSettings;
