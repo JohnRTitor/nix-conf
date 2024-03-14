@@ -1,19 +1,6 @@
 {
   description = "Flake of JohnRTitor";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # Unstable nixpkgs
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11"; # Stable nixpkgs (23.11)
-
-    lanzaboote.url = "github:nix-community/lanzaboote"; # lanzaboote, used for secureboot
-
-    # home-manager, used for managing user configuration
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs"; # follow the stable nixpkgs, to ensure compatibility
-    };
-  };
-
   outputs = { self, nixpkgs, nixpkgs-stable, lanzaboote, home-manager, ... }:
     let
       # ---- SYSTEM SETTINGS ---- #
@@ -36,8 +23,9 @@
         gitemail = "50095635+JohnRTitor@users.noreply.github.com"; # git email
         gpgkey = "29B0514F4E3C1CC0"; # gpg key
       };
-
-      # configure stable pkgs
+      # system is built on nixos unstable 
+      lib = nixpkgs.lib;
+      # configure unstable pkgs (default)
       pkgs = import nixpkgs {
         # Add zen4 support
         localSystem = let
@@ -50,6 +38,7 @@
         config = { allowUnfree = true;
                   allowUnfreePredicate = (_: true); };
       };
+      # configure stable packages
       pkgs-stable = import nixpkgs-stable {
         # Add zen4 support
         localSystem = let
@@ -64,7 +53,7 @@
       };
 
     in {
-      nixosConfigurations.${systemSettings.hostname} = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.${systemSettings.hostname} = lib.nixosSystem {
         system = systemSettings.systemarch;
 
         modules = [
@@ -89,7 +78,7 @@
         ]
         ++
         # Enable Lanzaboote if secureboot is configured
-        nixpkgs.lib.optionals (systemSettings.secureboot == true) [
+        lib.optionals (systemSettings.secureboot) [
           lanzaboote.nixosModules.lanzaboote 
         ];
         specialArgs = {
@@ -99,5 +88,19 @@
         };
       };
     };
+    
+  # Main sources and repositories
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # Unstable nixpkgs (default)
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11"; # Stable nixpkgs (23.11)
 
+    lanzaboote.url = "github:nix-community/lanzaboote"; # lanzaboote, used for secureboot
+
+    # home-manager, used for managing user configuration
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs"; # follow the system parkage library, to ensure compatibility
+    };
+  };
+  
 }
