@@ -103,7 +103,7 @@
         # Disable miscellaneous filesystem
         MISC_FILESYSTEMS = unset;
         # Disable kernel debugging
-        DEBUG_KERNEL = unset;
+        DEBUG_KERNEL = lib.mkForce unset;
       };
     }
   ];
