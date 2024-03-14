@@ -41,6 +41,21 @@
       patch = null; # no patch is needed, just apply the options
       extraStructuredConfig = with lib.kernel; {
 
+        ##### GENERAL OPTIONS #####
+        
+        # Kernel compression mode
+        # Enable ZSTD and Disable GZIP
+        KERNEL_GZIP = unset;
+        KERNEL_ZSTD = yes;
+
+        # POSIX Message Queues disabled - only needed in Solaris
+        POSIX_MQUEUE = lib.mkForce unset;
+        POSIX_MQUEUE_SYSCTL = lib.mkForce unset;
+
+        # Kernel optimized for MORE performance
+        CC_OPTIMIZE_FOR_PERFORMANCE = unset;
+        CC_OPTIMIZE_FOR_PERFORMANCE_O3 = yes;
+
         ##### CPU OPTIONS #####
 
         # AMD native optimization
@@ -72,9 +87,6 @@
         ARCH_HAS_FORCE_DMA_UNENCRYPTED = yes;
         DMA_COHERENT_POOL = yes;
 
-
-        # Optimized for performance
-        CC_OPTIMIZE_FOR_PERFORMANCE_O3 = lib.mkForce yes;
 
         # Multigen LRU
         LRU_GEN = lib.mkForce yes;
