@@ -48,9 +48,9 @@
     nnn # terminal file manager
 
     # archives
-    zip
+    # zip
     xz
-    unzip
+    # unzip
     p7zip
 
     # utils
@@ -92,8 +92,8 @@
     glow # markdown previewer in terminal
 
     # btop  # replacement of htop/nmon - already included
-    iotop # io monitoring
-    iftop # network monitoring
+    # iotop # io monitoring - already included
+    # iftop # network monitoring - already included
 
     # system call monitoring
     strace # system call monitoring

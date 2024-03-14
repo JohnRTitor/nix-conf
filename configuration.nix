@@ -74,8 +74,10 @@
       python3
       # pipewire # enabled via service
       udiskie # automount usb drives
+      zip
       unzip
       # wireplumber # enabled via service
+
       ## BROWSERS ##
 
       # firefox, chrome from unstable are incompatible with stable
@@ -111,9 +113,15 @@
       vim
       vscode
 
-      ## GRAPHICS ##
+      ## GRAPHICS UTILS ##
       libva-utils # libva graphics library tools
       vdpauinfo # vdpau graphics library tools
+
+      ## MONITORING TOOLS ##
+      btop
+      nvtop-amd
+      iotop
+      iftop
     ])
 
     ++
@@ -122,30 +130,7 @@
       # list of latest packages from stable repo
       
     ]);
-
-
-  # disable hibernate since you can't hibernate on zram swap anyway
-  # Masking sleep, hibernate, suspend.. etc
-  systemd = {
-		targets = {
-		  sleep = {
-		    enable = false;
-		    unitConfig.DefaultDependencies = "no";
-  		};
-		  suspend = {
-		    enable = false;
-		    unitConfig.DefaultDependencies = "no";
-		  };
-		  hibernate = {
-		    enable = false;
-		    unitConfig.DefaultDependencies = "no";
-		  };
-		  "hybrid-sleep" = {
-		    enable = false;
-		    unitConfig.DefaultDependencies = "no";
-		  };
-	  };
-  };
+    
 
   # SECURITY
   security = {
