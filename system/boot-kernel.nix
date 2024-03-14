@@ -97,8 +97,13 @@
 
         ##### DEVICE DRIVERS #####
         MACINTOSH_DRIVERS = no;
+
         # TODO: Disable a lot of unneeded drivers
 
+        # Disable miscellaneous filesystem
+        MISC_FILESYSTEMS = unset;
+        # Disable kernel debugging
+        DEBUG_KERNEL = unset;
       };
     }
   ];
