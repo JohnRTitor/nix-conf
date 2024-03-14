@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 
-{ config, pkgs, pkgs-stable, systemSettings, userSettings, ... }:
+{ config, lib, pkgs, pkgs-stable, systemSettings, userSettings, ... }:
 
 {
   imports =
@@ -51,7 +51,7 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # enable nix command and flakes
   nix.settings.auto-optimise-store = true; # enable deleting duplicate content in store
-  
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
