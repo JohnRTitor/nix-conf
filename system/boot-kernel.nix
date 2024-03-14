@@ -88,9 +88,15 @@
         DMA_COHERENT_POOL = yes;
 
 
+        ##### MEMORY MANAGEMENT #####
         # Multigen LRU
-        LRU_GEN = lib.mkForce yes;
-        LRU_GEN_ENABLED = lib.mkForce yes;
+        LRU_GEN = yes;
+        LRU_GEN_ENABLED = yes;
+
+        ##### DEVICE DRIVERS #####
+        MACINTOSH_DRIVERS = no;
+        # TODO: Disable a lot of unneeded drivers
+
       };
     }
   ];
