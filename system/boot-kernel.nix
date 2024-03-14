@@ -39,18 +39,39 @@
       # Recompiling the kernel with optimization
       name = "AMD Patches";
       patch = null; # no patch is needed, just apply the options
-      # enable only support for upto 20 CPU threads in the kernel
-      extraConfig = ''
-        NR_CPUS 20
-      '';
       extraStructuredConfig = with lib.kernel; {
-        # enable compiler optimizations for AMD
-        MNATIVE_AMD = lib.mkForce yes;
-        X86_USE_PPRO_CHECKSUM = lib.mkForce yes;
 
-        X86_EXTENDED_PLATFORM = lib.mkForce no; # disable support for other x86 platforms
+        ##### CPU OPTIONS #####
 
-        X86_MCE_INTEL = lib.mkForce no; # disable support for intel mce
+        # AMD native optimization
+        X86_AMD_PLATFORM_DEVICE = yes;
+        GENERIC_CPU = unset;
+        MNATIVE_AMD = yes;
+        X86_USE_PPRO_CHECKSUM = yes;
+        
+        NR_CPUS = freeform "20"; # only 20 threads support
+
+        # Disable intel specific services
+        X86_MCE_INTEL = unset; # disable Intel MCE
+        PERF_EVENTS_INTEL_UNCORE = unset; # disable intel UNCORE perf monitor
+        PERF_EVENTS_INTEL_CSTATE = unset; # disable CSTATE intel
+
+        X86_EXTENDED_PLATFORM = unset; # disable other X86 platforms
+        
+        # Enable AMD power monitors
+        PERF_EVENTS_AMD_POWER = module; # load as a module
+        PERF_EVENTS_AMD_BRS = yes;
+
+        # Enable AMD SME
+        DYNAMIC_PHYSICAL_MASK = yes; # for SME
+        X86_MEM_ENCRYPT = yes;
+        AMD_MEM_ENCRYPT = yes;
+        AMD_MEM_ENCRYPT_ACTIVE_BY_DEFAULT = unset;
+        ARCH_HAS_CC_PLATFORM = yes;
+        UNACCEPTED_MEMORY = yes;
+        ARCH_HAS_FORCE_DMA_UNENCRYPTED = yes;
+        DMA_COHERENT_POOL = yes;
+
 
         # Optimized for performance
         CC_OPTIMIZE_FOR_PERFORMANCE_O3 = lib.mkForce yes;
