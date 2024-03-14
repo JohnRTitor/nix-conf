@@ -140,7 +140,7 @@
 		    enable = false;
 		    unitConfig.DefaultDependencies = "no";
 		  };
-		"hybrid-sleep" = {
+		  "hybrid-sleep" = {
 		    enable = false;
 		    unitConfig.DefaultDependencies = "no";
 		  };
@@ -182,11 +182,6 @@
   services.fwupd.enable = true;
   # Mitigate issue where like /usr/bin/bash, hardcoded links in scripts not found
   services.envfs.enable = true;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
