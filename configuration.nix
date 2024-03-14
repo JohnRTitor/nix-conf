@@ -32,8 +32,11 @@
       ./system/printing.nix
       # include power plan settings
       ./system/power.nix
-      # include openrgb settings
+
+      # include APPS settings
       ./apps/openrgb.nix
+      ./apps/kde-connect.nix
+      
       # include adb settings
       ./dev-environment/adb.nix
     ];
