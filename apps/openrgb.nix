@@ -8,5 +8,7 @@
     package = pkgs.openrgb-with-all-plugins; # enable all plugins
   };
   environment.systemPackages = [ pkgs.i2c-tools ];
-  users.groups.i2c.members = [ userSettings.username ]; # create i2c group and add default user to it
+  # MAKE SURE TO ADD YOUR USER TO THE I2C GROUP
+  # sudo groupadd --system i2c
+  # sudo usermod -aG i2c $USER
 }
