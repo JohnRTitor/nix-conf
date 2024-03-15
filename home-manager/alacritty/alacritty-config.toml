@@ -152,7 +152,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 program = "/run/current-system/sw/bin/zsh"
 
 [window]
-decorations = "buttonless"
+decorations = "Full"
 dynamic_title = true
 opacity = 0.95
 startup_mode = "Maximized"
