@@ -141,7 +141,7 @@
   # Environment variables to start the session with
   environment.sessionVariables = {
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
-    # WLR_NO_HARDWARE_CURSORS = "1"; # if your cursor is not visible
+    WLR_NO_HARDWARE_CURSORS = "1"; # cursor not visible in some instance
     NIXOS_OZONE_WL = "1"; # for electron apps to run on wayland
     MOZ_ENABLE_WAYLAND = "1";
     SDL_VIDEODRIVER = "wayland";
@@ -159,7 +159,7 @@
   systemd = {
     # Fix opening links in apps like vscode
     user.extraConfig = ''
-      DefaultEnvironment="PATH=/run/current-system/sw/bin"
+      DefaultEnvironment="PATH=/run/current-system/sw/bin:/run/wrappers/bin:/var/lib/flatpak/exports/bin:/nix/profile/bin:/etc/profiles/per-user/masum/bin:/nix/var/nix/profiles/default/bin"
     '';
     # Polkit starting systemd service - needed for apps requesting root access
     user.services.polkit-gnome-authentication-agent-1 = {
