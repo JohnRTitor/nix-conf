@@ -35,7 +35,7 @@
 
       # include APPS settings
       ./apps/openrgb.nix
-      ./apps/kde-connect.nix
+      #./apps/kde-connect.nix
       
       # include adb settings
       ./dev-environment/adb.nix
@@ -105,7 +105,6 @@
               # + "Vulkan"
           ;
       })
-      # firefox-wayland
 
       ## URL FETCH TOOLS ##
       curl
@@ -126,6 +125,7 @@
 
     (with pkgs-stable; [
       # list of latest packages from stable repo
+      # Can be used to downgrade packages
       
     ]);
     

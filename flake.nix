@@ -1,5 +1,5 @@
 {
-  description = "Flake of JohnRTitor";
+  description = "Flake of JohnRTitor (Hyprland, Secure-Boot)";
 
   outputs = { self, nixpkgs, nixpkgs-stable, lanzaboote, home-manager, ... }:
     let
@@ -99,7 +99,7 @@
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs"; # follow the system parkage library, to ensure compatibility
+      inputs.nixpkgs.follows = "nixpkgs"; # follow the system package library, to ensure compatibility
     };
   };
   
