@@ -35,8 +35,7 @@
 
       # include APPS settings
       ./apps/openrgb.nix
-      ./apps/vscode.nix
-      #./apps/kde-connect.nix
+      ./apps/kde-connect.nix
       
       # include adb settings
       ./dev-environment/adb.nix
@@ -115,7 +114,7 @@
 
       ## EDITOR ##
       vim
-      # vscode # handled by ./apps/vscode.nix
+      vscode
 
       ## GRAPHICS UTILS ##
       libva-utils # libva graphics library tools
