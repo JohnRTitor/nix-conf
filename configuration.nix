@@ -106,7 +106,7 @@
               # + "Vulkan"
           ;
       })
-      firefox-wayland
+      # firefox-wayland
 
       ## URL FETCH TOOLS ##
       curl
@@ -130,6 +130,11 @@
       
     ]);
     
+  # Enable Firefox Wayland
+  programs.firefox = {
+  	enable = true;
+  	package = pkgs.firefox-wayland;
+  };
 
   # SECURITY
   security = {
