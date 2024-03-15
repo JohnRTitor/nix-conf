@@ -30,8 +30,16 @@
     vulkan-tools # vulkan graphics library tools
   ];
 
-  # AMDGPU graphics driver - disabled in favor of modesetting driver
+  # Also load amdgpu at boot
+  boot.kernelModules = [ "amdgpu" ];
+  # AMDGPU graphics driver for Xorg
   services.xserver.videoDrivers = [ "amdgpu" ];
+
+  # Disable radeon and enable amdgpu
+  boot.kernelParams = [
+    "radeon.si_support=0"
+    "amdgpu.si_support=1"
+  ];
   
   # Graphics environment variables
   environment.sessionVariables = {

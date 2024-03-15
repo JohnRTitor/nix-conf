@@ -8,14 +8,15 @@
   boot.loader.efi.canTouchEfiVariables = true;
   # bootloader timeout set, also press t repeatedly in the bootmenu to set there
   boot.loader.timeout = 15;
-  # start systemd early
+  # use systemd initrd instead of udev
   # boot.initrd.systemd.enable = true;
 
   # Use linux-zen kernel
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  # zenpower is used for reading temperature, voltage, current and power
+  
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    zenpower
+    # zenpower is used for reading temperature, voltage, current and power
+    # zenpower # disabled because k10temp is enough
   ];
 
   boot.kernelPatches = [
@@ -108,8 +109,6 @@
     }
   ];
 
-  # Also load amdgpu at boot
-  boot.kernelModules = [ "amdgpu" ];
   # boot.consoleLogLevel = 0; # configure silent boot
   boot.kernelParams = [
     # "acpi_enforce_resources=lax" # openrgb
@@ -121,13 +120,14 @@
   # plymouth theme for splash screen
   boot.plymouth = rec {
     enable = true;
+    theme = "breeze";
     # black_hud circle_hud cross_hud square_hud
     # circuit connect cuts_alt seal_2 seal_3
-    theme = "connect";
-    themePackages = with pkgs; [(
-      adi1090x-plymouth-themes.override {
-        selected_themes = [ theme ];
-      }
-    )];
+    # theme = "connect";
+    # themePackages = with pkgs; [(
+    #   adi1090x-plymouth-themes.override {
+    #     selected_themes = [ theme ];
+    #   }
+    # )];
   };
 }
