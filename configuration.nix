@@ -116,15 +116,11 @@
       vim
       vscode
 
-      ## GRAPHICS UTILS ##
-      libva-utils # libva graphics library tools
-      vdpauinfo # vdpau graphics library tools
-
       ## MONITORING TOOLS ##
-      btop
-      nvtop-amd
-      iotop
-      iftop
+      btop # for CPU, RAM, and Disk monitoring
+      nvtop-amd # for AMD GPUs
+      iotop # for disk I/O monitoring
+      iftop # for network I/O monitoring
     ])
 
     ++
