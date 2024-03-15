@@ -73,7 +73,6 @@
       libnotify
       linux-wifi-hotspot # for wifi hotspot
       openssh # for ssh
-      openssl # required by Rainbow borders
       python3
       # pipewire # enabled via service
       udiskie # automount usb drives

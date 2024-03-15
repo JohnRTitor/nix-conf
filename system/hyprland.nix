@@ -65,24 +65,24 @@
           
       # Hyprland Stuff main
       # blueman # not needed if blueman service is on
-      btop
-      cava
-      cliphist
-      gnome.file-roller
-      gnome.gnome-system-monitor
-      gnome.eog # eye of gnome
+      cava # audio visualizer
+      cliphist # clipboard history
+      gnome.file-roller # archive manager
+      gnome.gnome-system-monitor # system monitor
+      gnome.eog # eye of gnome, image viewer
       grim # screenshots
-      jq
+      jq # json parser
       kitty # default terminal on hyprland
       networkmanagerapplet
-      nwg-look
-      pamixer
-      pavucontrol
-      playerctl
-      polkit_gnome
+      nwg-look # theme switcher
+      openssl # required by Rainbow borders
+      pamixer 
+      pavucontrol # audio control
+      playerctl # media player control
+      polkit_gnome # needed for apps requesting root access
       pyprland # hyprland plugin support
       pywal
-      rofi-wayland
+      rofi-wayland 
       slurp # screenshots
       swappy # screenshots
       swayidle
