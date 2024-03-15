@@ -28,7 +28,7 @@
         "git"
         "history"
         "urltools" # provides urlencode, urldecode
-        
+        "history-substring-search"
         ];
       theme = "duellj";
     };
