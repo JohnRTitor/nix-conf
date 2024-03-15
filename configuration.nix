@@ -39,6 +39,9 @@
       
       # include adb settings
       ./dev-environment/adb.nix
+
+      # include custom cache server settings
+      ./misc/custom-cache-server.nix
     ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname.
