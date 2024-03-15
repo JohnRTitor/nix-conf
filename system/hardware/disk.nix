@@ -3,6 +3,10 @@
 {
   # Enable support for bcachefs
   boot.supportedFilesystems = [ "bcachefs" ];
+  fileSystems = {
+    "/".options = [ "defaults" "noatime" ];
+  };
+
   # Enable zram swap
   zramSwap.enable = true;
 
