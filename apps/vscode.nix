@@ -11,7 +11,7 @@
         dracula-theme.theme-dracula # Dracula theme
 
         github.copilot # GitHub Copilot
-        github.copilot-chat # GitHub Copilot Chat
+        # github.copilot-chat # GitHub Copilot Chat # disabled because of version conflict
         github.codespaces # GitHub Codespaces
         github.vscode-pull-request-github # GitHub Pull Requests
 
