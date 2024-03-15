@@ -79,21 +79,10 @@
     gnutar
     gawk
     zstd
-    # gnupg # already included
-
-    # nix related
-    #
-    # it provides the command `nom` works just like `nix`
-    # with more details log output
-    # nix-output-monitor
 
     # productivity
     hugo # static site generator
     glow # markdown previewer in terminal
-
-    # btop  # replacement of htop/nmon - already included
-    # iotop # io monitoring - already included
-    # iftop # network monitoring - already included
 
     # system call monitoring
     strace # system call monitoring
@@ -109,9 +98,10 @@
 
     # graphical apps
     # whatsapp-for-linux
-    # libreoffice
+    libreoffice
     discord
     telegram-desktop
+    deluge
   ];
 
   # basic configuration of git, please change to your own
