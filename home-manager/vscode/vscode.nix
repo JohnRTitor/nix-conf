@@ -19,8 +19,6 @@
 
       ms-azuretools.vscode-docker # Docker
       ms-vscode-remote.remote-ssh # Remote SSH
-
-      rolandgreim.sharecode # Paste code to Github, Pastebin
     ];
     userSettings = {
       "git.confirmSync" = false; # Do not ask for confirmation when syncing
