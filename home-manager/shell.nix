@@ -31,7 +31,7 @@
     };
     # Enable autosuggest to use history and completion
     initExtra = ''
-      ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+      ZSH_AUTOSUGGEST_STRATEGY=(completion history match_prev_cmd)
     '';
   };
   # If starship is enabled, don't enable oh-my-zsh
