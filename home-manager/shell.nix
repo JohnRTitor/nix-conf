@@ -21,6 +21,7 @@
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    historySubstringSearch.enable = true;
     sessionVariables = {
       GPG_TTY = "$(tty)";
       PATH = "$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin";
@@ -36,7 +37,6 @@
       "git"
       "history"
       "urltools" # provides urlencode, urldecode
-      "history-substring-search"
       ];
     theme = "duellj";
   };
