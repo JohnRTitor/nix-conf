@@ -13,6 +13,7 @@
     ./home-manager/neofetch/neofetch.nix
     ./home-manager/virt-manager/virt-manager.nix
     ./home-manager/vscode/vscode.nix
+    ./home-manager/thunar/thunar.nix
   ];
 
   # link the configuration file in current directory to the specified location in home directory
