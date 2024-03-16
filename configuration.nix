@@ -39,7 +39,7 @@
     ./dev-environment/adb.nix
 
     # include custom cache server settings
-    ./misc/custom-cache-server.nix
+    #./misc/custom-cache-server.nix # disabled temporarily cause it messes up nix-shell
   ]
   ++
   # Import if Virtualization is enabled
