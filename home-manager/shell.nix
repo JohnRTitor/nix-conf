@@ -29,6 +29,10 @@
     shellAliases = {
       # aliases to set
     };
+    # Enable autosuggest to use history and completion
+    initExtra = ''
+      ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+    '';
   };
   # If starship is enabled, don't enable oh-my-zsh
   programs.zsh.oh-my-zsh = lib.mkIf (config.programs.starship.enable == false) {
