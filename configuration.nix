@@ -50,7 +50,6 @@
   programs.zsh.enable = true;
   environment.pathsToLink = [ "/share/zsh" ]; # add symlink to system/run for zsh autocompletion
   # zsh is also enabled for user at ./system/users.nix
-  environment.shells = [ pkgs.zsh ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # enable nix command and flakes
   nix.settings.auto-optimise-store = true; # enable deleting duplicate content in store
