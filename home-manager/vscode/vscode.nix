@@ -23,8 +23,12 @@
     userSettings = {
       "git.confirmSync" = false; # Do not ask for confirmation when syncing
       "git.autofetch" = true; # Periodically fetch from remotes
+      "editor.fontFamily" = "'Fira Code', 'InconsolataLGC Nerd Font', 'Droid Sans Mono', 'monospace'";
+      "editor.fontLigatures" =  true;
     };
   };
+
+  # Wrapper to configure which arguments vscode should be started with
   home.file.".vscode/argv.json" = {
     source = ./vscode-argv.json5;
     executable = false;
