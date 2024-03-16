@@ -6,43 +6,46 @@
 { config, lib, pkgs, pkgs-stable, systemSettings, userSettings, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      # include boot and kernel settings
-      ./system/boot-kernel.nix
-      # include user account settings
-      ./system/users.nix
-      # include hardware settings
-      ./system/hardware/audio.nix
-      ./system/hardware/bluetooth.nix
-      ./system/hardware/disk.nix
-      ./system/hardware/graphics.nix
-      # include network settings
-      ./system/network.nix
-      # include locale settings
-      ./system/locale.nix
-      # include fonts settings
-      ./system/fonts.nix
-      # include hyprland settings
-      ./system/hyprland.nix
-      # include virtualization settings
-      #./system/virtualization.nix
-      # include printing settings
-      ./system/printing.nix
-      # include power plan settings
-      ./system/power.nix
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    # include boot and kernel settings
+    ./system/boot-kernel.nix
+    # include user account settings
+    ./system/users.nix
+    # include hardware settings
+    ./system/hardware/audio.nix
+    ./system/hardware/bluetooth.nix
+    ./system/hardware/disk.nix
+    ./system/hardware/graphics.nix
+    # include network settings
+    ./system/network.nix
+    # include locale settings
+    ./system/locale.nix
+    # include fonts settings
+    ./system/fonts.nix
+    # include hyprland settings
+    ./system/hyprland.nix
+    # include printing settings
+    ./system/printing.nix
+    # include power plan settings
+    ./system/power.nix
 
-      # include APPS settings
-      ./apps/openrgb.nix
-      #./apps/kde-connect.nix
+    # include APPS settings
+    ./apps/openrgb.nix
+    #./apps/kde-connect.nix
       
-      # include adb settings
-      ./dev-environment/adb.nix
+    # include adb settings
+    ./dev-environment/adb.nix
 
-      # include custom cache server settings
-      ./misc/custom-cache-server.nix
-    ];
+    # include custom cache server settings
+    ./misc/custom-cache-server.nix
+  ]
+  ++
+  # Import if Virtualization is enabled
+  lib.optionals (systemSettings.virtualisation) [
+    ./system/virtualisation.nix
+  ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname.
   

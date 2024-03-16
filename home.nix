@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, systemSettings, userSettings, ... }:
+{ config, lib, pkgs, pkgs-stable, systemSettings, userSettings, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -12,9 +12,13 @@
     ./home-manager/alacritty/alacritty.nix
     ./home-manager/pyprland/pyprland.nix # pyprland config wrapper
     ./home-manager/neofetch/neofetch.nix
-    ./home-manager/virt-manager/virt-manager.nix
     ./home-manager/vscode/vscode.nix
     ./home-manager/thunar/thunar.nix
+  ]
+  ++
+  # Import if Virtualization is enabled
+  lib.optionals (systemSettings.virtualisation) [
+    ./home-manager/virt-manager/virt-manager.nix
   ];
 
   # link the configuration file in current directory to the specified location in home directory
