@@ -23,8 +23,10 @@
     userSettings = {
       "git.confirmSync" = false; # Do not ask for confirmation when syncing
       "git.autofetch" = true; # Periodically fetch from remotes
-      "editor.fontFamily" = "'Fira Code', 'InconsolataLGC Nerd Font', 'Droid Sans Mono', 'monospace'";
+      "editor.fontFamily" = "'Fira Code', 'Hack Nerd Font', 'InconsolataLGC Nerd Font', 'Droid Sans Mono', 'monospace'";
       "editor.fontLigatures" =  true;
+      "terminal.integrated.fontFamily" = "'Fira Code SemiBold', 'Hack Nerd Font', 'InconsolataLGC Nerd Font'";
+
     };
   };
 
