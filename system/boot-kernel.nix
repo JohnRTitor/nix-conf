@@ -47,12 +47,12 @@
         
         # Kernel compression mode
         # Enable ZSTD and Disable GZIP
-        KERNEL_GZIP = unset;
+        KERNEL_GZIP = no;
         KERNEL_ZSTD = yes;
 
         # POSIX Message Queues disabled - only needed in Solaris
-        POSIX_MQUEUE = lib.mkForce unset;
-        POSIX_MQUEUE_SYSCTL = lib.mkForce unset;
+        POSIX_MQUEUE = lib.mkForce no;
+        POSIX_MQUEUE_SYSCTL = lib.mkForce no;
 
         # Kernel optimized for MORE performance
         CC_OPTIMIZE_FOR_PERFORMANCE = unset;
@@ -62,19 +62,19 @@
 
         # AMD native optimization
         X86_AMD_PLATFORM_DEVICE = yes;
-        GENERIC_CPU = unset;
+        GENERIC_CPU = no;
         MNATIVE_AMD = yes;
         X86_USE_PPRO_CHECKSUM = yes;
         
         NR_CPUS = lib.mkForce (freeform "20"); # only 20 threads support
-        X86_MPPARSE = unset; # MPS table is not needed for new systems with ACPI support
+        X86_MPPARSE = no; # MPS table is not needed for new systems with ACPI support
 
         # Disable intel specific services
-        X86_MCE_INTEL = unset; # disable Intel MCE
-        PERF_EVENTS_INTEL_UNCORE = unset; # disable intel UNCORE perf monitor
-        PERF_EVENTS_INTEL_CSTATE = unset; # disable CSTATE intel
+        X86_MCE_INTEL = no; # disable Intel MCE
+        PERF_EVENTS_INTEL_UNCORE = no; # disable intel UNCORE perf monitor
+        PERF_EVENTS_INTEL_CSTATE = no; # disable CSTATE intel
 
-        X86_EXTENDED_PLATFORM = unset; # disable other X86 platforms
+        X86_EXTENDED_PLATFORM = no; # disable other X86 platforms
         
         # Enable AMD power monitors
         PERF_EVENTS_AMD_POWER = module; # load as a module
@@ -102,9 +102,9 @@
         # TODO: Disable a lot of unneeded drivers
 
         # Disable miscellaneous filesystem
-        MISC_FILESYSTEMS = unset;
+        MISC_FILESYSTEMS = no;
         # Disable kernel debugging
-        DEBUG_KERNEL = lib.mkForce unset;
+        DEBUG_KERNEL = lib.mkForce no;
       };
     }
   ];
