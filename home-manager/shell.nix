@@ -1,6 +1,5 @@
-{ ... }:
+{ config, lib, ... }:
 {
-
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -22,33 +21,23 @@
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ 
-        "git"
-        "history"
-        "urltools" # provides urlencode, urldecode
-        "history-substring-search"
-        ];
-      theme = "duellj";
-    };
     sessionVariables = {
       GPG_TTY = "$(tty)";
       PATH = "$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin";
     };
     shellAliases = {
-      
+      # aliases to set
     };
   };
-  # starship - an customizable prompt for any shell
-  # programs.starship = {
-  #   enable = true;
-  #   # custom settings
-  #   settings = {
-  #     add_newline = false;
-  #     aws.disabled = true;
-  #     gcloud.disabled = true;
-  #     line_break.disabled = true;
-  #   };
-  # };
+  # If starship is enabled, don't enable oh-my-zsh
+  programs.zsh.oh-my-zsh = lib.mkIf (config.programs.starship.enable == false) {
+    enable = true;
+    plugins = [ 
+      "git"
+      "history"
+      "urltools" # provides urlencode, urldecode
+      "history-substring-search"
+      ];
+    theme = "duellj";
+  };
 }

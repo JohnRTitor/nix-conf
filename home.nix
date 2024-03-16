@@ -8,6 +8,7 @@
 
   imports = [
     ./home-manager/shell.nix # shell (bash, zsh) config
+    ./home-manager/starship/starship.nix # starship config
     ./home-manager/alacritty/alacritty.nix
     ./home-manager/pyprland/pyprland.nix # pyprland config wrapper
     ./home-manager/neofetch/neofetch.nix
