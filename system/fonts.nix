@@ -8,7 +8,12 @@
     noto-fonts-cjk
     jetbrains-mono
     font-awesome
-    (nerdfonts.override {fonts = [ "JetBrainsMono" "InconsolataLGC" ];})
+    (nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+        "InconsolataLGC"
+      ];
+    })
     lohit-fonts.bengali
   ];
 }
