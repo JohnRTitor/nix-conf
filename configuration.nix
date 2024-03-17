@@ -34,6 +34,7 @@
 
     # include global/system packages list
     ./packages/global-packages.nix
+    # user packages are imported in ./home.nix
 
     # include APPS settings
     ./apps/openrgb.nix

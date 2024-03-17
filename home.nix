@@ -4,9 +4,10 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = userSettings.username;
-  home.homeDirectory = "/home/"+userSettings.username;
+  home.homeDirectory = "/home/" + userSettings.username;
 
   imports = [
+    # system packages are imported in ./configuration.nix
     ./packages/user-packages.nix # user specific packages
     ./home-manager/shell.nix # shell (bash, zsh) config
     ./home-manager/git.nix # git config
@@ -39,10 +40,10 @@
   # '';
 
   # set cursor size and dpi for 1080p monitor
-  xresources.properties = {
-    "Xcursor.size" = 24;
-    "Xft.dpi" = 96; # for 4k - 172
-  };
+  # xresources.properties = {
+  #   "Xcursor.size" = 24;
+  #   "Xft.dpi" = 96; # for 4k - 172
+  # };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
