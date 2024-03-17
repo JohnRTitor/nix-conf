@@ -17,6 +17,14 @@
     ];
   };
   # virtualisation.spiceUSBRedirection.enable = true; # allows VMs to access USB
+
   users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
+
+  # Containers
+  # Enable podman and docker compatibility
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
 }
