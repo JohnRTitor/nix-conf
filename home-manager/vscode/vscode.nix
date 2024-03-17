@@ -22,7 +22,8 @@
       enkia.tokyo-night # Tokyo Night theme
     ];
     userSettings = {
-      "workbench.colorTheme" = "Tokyo Night"; # "Dracula" # "Default Dark Modern" # Set the default theme
+      "workbench.colorTheme" = "SynthWave '84"; # SynthWave needs robbowen.synthwave-vscode extension 
+      # "Tokyo Night"; # "Dracula"; # "Default Dark Modern"; # Set the default theme
       "git.confirmSync" = false; # Do not ask for confirmation when syncing
       "git.autofetch" = true; # Periodically fetch from remotes
       "editor.fontFamily" = "'Fira Code', 'Inconsolata LGC Nerd Font', 'Droid Sans Mono', 'monospace'";
