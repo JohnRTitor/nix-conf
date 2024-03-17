@@ -28,8 +28,9 @@
     };
     shellAliases = {
       # aliases to set
-      rebuild = "sudo nixos-rebuild switch --flake .";
-      garbage-collect = "sudo nix-collect-garbage -d";
+      rebuild = "echo $(sudo nixos-rebuild switch --flake .)";
+      garbage-collect = "echo $(sudo nix-collect-garbage -d)";
+      fixstore = "echo $(sudo nix-store --verify --check-contents --repair)";
     };
     # Enable autosuggest to use history and completion
     initExtra = ''
