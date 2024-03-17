@@ -12,7 +12,7 @@
         localeoverride = "en_IN";
         stableversion = "24.05";
         secureboot = true;
-        virtualisation = false;
+        virtualisation = true;
       };
 
       # ----- USER SETTINGS ----- #
