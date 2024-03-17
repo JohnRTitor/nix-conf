@@ -4,6 +4,8 @@
   programs.vscode = {
     enable = true;
     enableUpdateCheck = false;
+    # Since not all extensions are provided via nixpkgs,
+    # We are using a vscode marketplace flake
     extensions = with pkgs-vscode-extensions.vscode-marketplace; [
       bbenoist.nix # Nix language support
       ms-python.python # Python language support
@@ -17,6 +19,8 @@
 
       ms-azuretools.vscode-docker # Docker
       ms-vscode-remote.remote-ssh # Remote SSH
+
+      rolandgreim.sharecode # Pastebin/Gist support
 
       # dracula-theme.theme-dracula # Dracula theme
       # enkia.tokyo-night # Tokyo Night theme
