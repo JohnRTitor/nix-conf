@@ -1,5 +1,5 @@
 # Configure disks and zram
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   # Enable support for bcachefs
   boot.supportedFilesystems = [ "bcachefs" ];
@@ -21,7 +21,7 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-  environment.systemPackages = with lib; [
+  environment.systemPackages = with pkgs; [
     gnome.gnome-disk-utility
   ];
 }
