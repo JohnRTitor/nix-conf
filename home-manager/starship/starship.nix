@@ -52,7 +52,7 @@ in
       };
       cmd_duration = {
         min_time = 1000;
-        format = "[$duration ](fg:yellow)";
+        format = "[took $duration ](fg:yellow)";
       };
       nix_shell = {
         disabled = false;
