@@ -32,6 +32,9 @@
       unzip
       # wireplumber # enabled via service
 
+      ## FILE MANAGERS ##
+      gnome.nautilus
+
       ## BROWSERS ##
 
       # firefox, chrome from unstable are incompatible with stable
