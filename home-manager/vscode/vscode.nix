@@ -10,8 +10,6 @@
       ms-vscode.cpptools # C/C++ language support
       tamasfe.even-better-toml # TOML language support
 
-      dracula-theme.theme-dracula # Dracula theme
-
       github.copilot # GitHub Copilot
       github.copilot-chat # GitHub Copilot Chat
       github.codespaces # GitHub Codespaces
@@ -19,8 +17,12 @@
 
       ms-azuretools.vscode-docker # Docker
       ms-vscode-remote.remote-ssh # Remote SSH
+
+      dracula-theme.theme-dracula # Dracula theme
+      enkia.tokyo-night # Tokyo Night theme
     ];
     userSettings = {
+      "workbench.colorTheme" = "Dracula"; # "Default Dark Modern" # Set the default theme
       "git.confirmSync" = false; # Do not ask for confirmation when syncing
       "git.autofetch" = true; # Periodically fetch from remotes
       "editor.fontFamily" = "'Fira Code', 'Inconsolata LGC Nerd Font', 'Droid Sans Mono', 'monospace'";
