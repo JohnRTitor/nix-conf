@@ -17,6 +17,7 @@ in
       format = builtins.concatStringsSep "" [
         "$nix_shell"
         "$os"
+        "$env_var"
         "$directory"
         "$container"
         "$git_branch $git_status"
@@ -105,6 +106,13 @@ in
       java = lang "" "red";
       c = lang "" "blue";
       golang = lang "" "blue";
+      # Shown when FHS shell is enabled
+      env_var.FHS = {
+        symbol = "󰏖";
+        variable = "FHS";
+        format = "[ $symbol FHS]($style)";
+        style = "yellow dimmed";
+      };
     };
   };
 }
