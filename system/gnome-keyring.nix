@@ -5,6 +5,9 @@
 {
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true; # enable the graphical frontend
-  environment.systemPackages = [ pkgs.libsecret ]; # libsecret api needed
+  environment.systemPackages = with pkgs; [
+    libsecret # for libsecret api
+    gnome.libgnome-keyring # for gnome-keyring-daemon
+    ];
   security.pam.services.gdm.enableGnomeKeyring = true; # load gnome-keyring at startup
 }
