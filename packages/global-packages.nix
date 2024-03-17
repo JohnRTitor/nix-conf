@@ -74,6 +74,17 @@
       nvtop-amd # for AMD GPUs
       iotop # for disk I/O monitoring
       iftop # for network I/O monitoring
+
+      # Tool to run app images and random app binaries
+      (let base = pkgs.appimageTools.defaultFhsEnvArgs; in 
+        pkgs.buildFHSUserEnv (base // {
+          name = "fhs";
+          targetPkgs = pkgs: (base.targetPkgs pkgs) ++ [pkgs.pkg-config]; 
+          profile = "export FHS=1"; 
+          runScript = "zsh"; 
+          extraOutputsToInstall = ["dev"];
+      }))
+
     ])
 
     ++
