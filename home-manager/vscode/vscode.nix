@@ -32,7 +32,7 @@
       "workbench.colorTheme" = "SynthWave '84";
       # "Tokyo Night"; # "Dracula"; # "Default Dark Modern"; # ^ Set the default theme
       "workbench.productIconTheme" = "material-product-icons"; # Set the product icon theme
-      "workbench.iconTheme" = "material-icon-theme" # Set the file icon theme
+      "workbench.iconTheme" = "material-icon-theme"; # Set the file icon theme
 
       "git.confirmSync" = false; # Do not ask for confirmation when syncing
       "git.autofetch" = true; # Periodically fetch from remotes
