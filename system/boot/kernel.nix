@@ -1,16 +1,6 @@
-# This conf file is used to configure boot 
-{ config, pkgs, lib, systemSettings, ... }:
-
+# This config file is used to configure the kernel
+{ config, lib, pkgs, pkgs-stable, ... }:
 {
-  imports = if (systemSettings.secureboot == true) then [ ./boot/lanzaboote.nix ] else [ ./boot/systemd-boot.nix ];
-  # Bootspec needed for secureboot
-  boot.bootspec.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # bootloader timeout set, also press t repeatedly in the bootmenu to set there
-  boot.loader.timeout = 15;
-  # use systemd initrd instead of udev
-  # boot.initrd.systemd.enable = true;
-
   # Use linux-zen kernel
   boot.kernelPackages = pkgs.linuxPackages_zen;
   
@@ -19,6 +9,7 @@
     # zenpower # disabled because k10temp is enough
   ];
 
+  # List of patches to compile the kernel with
   boot.kernelPatches = [
     # Kernel lockdown patch
     # {
@@ -108,26 +99,4 @@
       };
     }
   ];
-
-  # boot.consoleLogLevel = 0; # configure silent boot
-  boot.kernelParams = [
-    # "acpi_enforce_resources=lax" # openrgb
-    # "quiet"
-    # "udev.log_level=3"
-    # "lockdown=integrity"
-  ];
-
-  # plymouth theme for splash screen
-  boot.plymouth = rec {
-    enable = true;
-    theme = "breeze";
-    # black_hud circle_hud cross_hud square_hud
-    # circuit connect cuts_alt seal_2 seal_3
-    # theme = "connect";
-    # themePackages = with pkgs; [(
-    #   adi1090x-plymouth-themes.override {
-    #     selected_themes = [ theme ];
-    #   }
-    # )];
-  };
 }

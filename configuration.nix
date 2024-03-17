@@ -10,7 +10,8 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     # include boot and kernel settings
-    ./system/boot-kernel.nix
+    ./system/boot/kernel.nix
+    ./system/boot/boot-options.nix
     # include user account settings
     ./system/users.nix
     # include hardware settings
@@ -45,16 +46,20 @@
     #./misc/custom-cache-server.nix # disabled temporarily cause it messes up nix-shell
   ]
   ++
+  # Configure secure boot with lanzaboote, if secureboot is enabled
+  lib.optionals (systemSettings.secureboot) [
+    ./system/boot/lanzaboote.nix
+  ]
+  ++
   # Import if Virtualization is enabled
   lib.optionals (systemSettings.virtualisation) [
     ./system/virtualisation.nix
   ];
 
-  networking.hostName = systemSettings.hostname; # Define your hostname.
+  networking.hostName = systemSettings.hostname; # Define your hostname in flake.nix
   
   # enable zsh
   programs.zsh.enable = true;
-  environment.pathsToLink = [ "/share/zsh" ]; # add symlink to system/run for zsh autocompletion
   # zsh is also enabled for user at ./system/users.nix
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # enable nix command and flakes
