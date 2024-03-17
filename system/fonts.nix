@@ -12,6 +12,7 @@
       fonts = [
         "JetBrainsMono" # used in VS code terminal
         "InconsolataLGC" # used in Alacritty, VS code
+        "FiraCode" # used in VS code
       ];
     })
     lohit-fonts.bengali # Bengali fonts

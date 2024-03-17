@@ -20,16 +20,17 @@
 
       # dracula-theme.theme-dracula # Dracula theme
       # enkia.tokyo-night # Tokyo Night theme
-      # Disabled since I use SynthWave '84 theme, wh
+      robbowen.synthwave-vscode # SynthWave '84 theme
       pkief.material-icon-theme # Material Icon Theme
       pkief.material-product-icons # Material Product Icons
     ];
     userSettings = {
-      "workbench.colorTheme" = "SynthWave '84"; # SynthWave needs robbowen.synthwave-vscode extension 
-      # "Tokyo Night"; # "Dracula"; # "Default Dark Modern"; # Set the default theme
+      "workbench.colorTheme" = "SynthWave '84";
+      # "Tokyo Night"; # "Dracula"; # "Default Dark Modern"; # ^ Set the default theme
       "git.confirmSync" = false; # Do not ask for confirmation when syncing
       "git.autofetch" = true; # Periodically fetch from remotes
-      "editor.fontFamily" = "'Fira Code', 'Inconsolata LGC Nerd Font', 'Droid Sans Mono', 'monospace'";
+      "editor.fontFamily" = "'Fira Code Nerd Font', 'Inconsolata LGC Nerd Font', 'Droid Sans Mono', 'monospace'";
+      # fonts are defined in the ../../fonts.nix file
       "editor.fontLigatures" =  true;
       "terminal.integrated.fontFamily" = "'JetBrains Nerd Font', 'Inconsolata LGC Nerd Font', monospace";
     };
