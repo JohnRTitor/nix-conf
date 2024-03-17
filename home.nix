@@ -70,6 +70,9 @@
     # Images
     "image/png" = "org.gnome.eog.desktop;";
     "image/jpeg" = "org.gnome.eog.desktop;";
+
+    # PDF
+    "application/pdf" = "google-chrome.desktop;";
   };
 
 
