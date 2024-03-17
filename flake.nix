@@ -41,14 +41,7 @@
       };
       # configure stable packages
       pkgs-stable = import nixpkgs-stable {
-        # Add zen4 support
-        localSystem = let
-          featureSupport = arch:
-          nixpkgs-stable.lib.mapAttrs (_: f: f arch) nixpkgs-stable.lib.systems.architectures.predicates;
-        in {
-          system = systemSettings.systemarch;
-        } // featureSupport "znver4";
-
+        system = systemSettings.systemarch;
         config = { allowUnfree = true;
                   allowUnfreePredicate = (_: true); };
       };
