@@ -111,7 +111,7 @@
       yad
 
       # Utilities
-      audacious # audio player
+      gnome.gnome-music # audio player
       mpv # for video playback, needed for some scripts
       mpvScripts.mpris
       shotcut # video editor
