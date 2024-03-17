@@ -1,7 +1,7 @@
 {
   description = "Flake of JohnRTitor (Hyprland, Secure-Boot)";
 
-  outputs = { self, nixpkgs, nixpkgs-stable, lanzaboote, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, nix-vscode-extensions, lanzaboote, home-manager, ... }:
     let
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
@@ -52,6 +52,9 @@
         config = { allowUnfree = true;
                   allowUnfreePredicate = (_: true); };
       };
+      # configure vscode extensions flake
+      # Mainly used in ./home-manager/vscode/vscode.nix
+      pkgs-vscode-extensions = nix-vscode-extensions.extensions.${systemSettings.systemarch};
 
     in {
       nixosConfigurations.${systemSettings.hostname} = lib.nixosSystem {
@@ -71,6 +74,7 @@
             # extra specialArgs is used to pass arguments to home-manager
             home-manager.extraSpecialArgs = {
               inherit pkgs-stable;
+              inherit pkgs-vscode-extensions;
               inherit systemSettings;
               inherit userSettings;
             };
@@ -84,6 +88,7 @@
         ];
         specialArgs = {
           inherit pkgs-stable;
+          inherit pkgs-vscode-extensions;
           inherit systemSettings;
           inherit userSettings;
         };
@@ -102,6 +107,8 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs"; # follow the system package library, to ensure compatibility
     };
+
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions"; # vs code extensions
   };
   
 }

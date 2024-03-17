@@ -1,10 +1,10 @@
 # this config file is a wrapper to automatically configure vscode via a config file
-{ pkgs, ... }:
+{ pkgs, pkgs-vscode-extensions, ... }:
 {
   programs.vscode = {
     enable = true;
     enableUpdateCheck = false;
-    extensions = with pkgs.vscode-extensions; [
+    extensions = with pkgs-vscode-extensions.vscode-marketplace; [
       bbenoist.nix # Nix language support
       ms-python.python # Python language support
       ms-vscode.cpptools # C/C++ language support
@@ -18,8 +18,11 @@
       ms-azuretools.vscode-docker # Docker
       ms-vscode-remote.remote-ssh # Remote SSH
 
-      dracula-theme.theme-dracula # Dracula theme
-      enkia.tokyo-night # Tokyo Night theme
+      # dracula-theme.theme-dracula # Dracula theme
+      # enkia.tokyo-night # Tokyo Night theme
+      # Disabled since I use SynthWave '84 theme, wh
+      pkief.material-icon-theme # Material Icon Theme
+      pkief.material-product-icons # Material Product Icons
     ];
     userSettings = {
       "workbench.colorTheme" = "SynthWave '84"; # SynthWave needs robbowen.synthwave-vscode extension 

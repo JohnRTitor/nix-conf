@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 
-{ config, lib, pkgs, pkgs-stable, systemSettings, userSettings, ... }:
+{ config, lib, pkgs, pkgs-stable, pkgs-vscode-extensions, systemSettings, userSettings, ... }:
 
 {
   imports = [
