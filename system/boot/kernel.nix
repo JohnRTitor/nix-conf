@@ -2,7 +2,8 @@
 { config, lib, pkgs, pkgs-stable, ... }:
 {
   # Use linux-zen kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  environment.systemPackages =  [ pkgs.scx ];
   
   boot.extraModulePackages = with config.boot.kernelPackages; [
     # zenpower is used for reading temperature, voltage, current and power

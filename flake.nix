@@ -1,7 +1,7 @@
 {
   description = "Flake of JohnRTitor (Hyprland, Secure-Boot)";
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nix-vscode-extensions, lanzaboote, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, chaotic, nix-vscode-extensions, lanzaboote, home-manager, ... }:
     let
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
@@ -65,6 +65,7 @@
 
         modules = [
           ./configuration.nix # main nix configuration
+          chaotic.nixosModules.default # chaotic nix bleeding edge packages
 
           # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -94,6 +95,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # Unstable nixpkgs (default)
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11"; # Stable nixpkgs (23.11)
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # Bleeding edge packages from chaotic nix
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # lanzaboote, used for secureboot
 

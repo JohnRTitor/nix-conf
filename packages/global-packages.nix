@@ -13,6 +13,7 @@
 
       # System Packages
       ananicy-cpp # for better system performance
+      ananicy-rules-cachyos
       baobab # disk usage analyzer
       # cpufrequtils
       # firewalld
