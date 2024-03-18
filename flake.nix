@@ -27,7 +27,7 @@
       };
       # system is built on nixos unstable 
       lib = nixpkgs.lib;
-      # configure unstable pkgs (default)
+      # configure pkgs from unstable (default)
       pkgs = import nixpkgs {
         # Add zen4 support
         localSystem = let
@@ -40,7 +40,7 @@
         config = { allowUnfree = true;
                   allowUnfreePredicate = (_: true); };
       };
-      # configure stable packages
+      # configure packages from stable repo, used for downgrading specific packages
       pkgs-stable = import nixpkgs-stable {
         system = systemSettings.systemarch;
         config = { allowUnfree = true;

@@ -1,18 +1,25 @@
 { config, lib, ... }:
-{
+let
+  # Define common aliases which would apply to all shells
+  commonAliases = {
+    rebuild = "sudo nixos-rebuild switch --flake .";
+    garbage-collect = "sudo nix-collect-garbage -d";
+    fix-store = "sudo nix-store --verify --check-contents --repair";
+  };
+in {
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    # add your cusotm bashrc here
     bashrcExtra = ''
-      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+      # Custom bashrc go here, type below this line
     '';
     sessionVariables = {
       GPG_TTY = "$(tty)";
+      PATH = "$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin";
     };
 
-    # set some aliases, feel free to add more or remove some
-    shellAliases = {
+    shellAliases = commonAliases // {
+      # set some aliases specific for bash
       # k = "kubectl";
     };
   };
@@ -26,11 +33,8 @@
       GPG_TTY = "$(tty)";
       PATH = "$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin";
     };
-    shellAliases = {
-      # aliases to set
-      rebuild = "sudo nixos-rebuild switch --flake .";
-      garbage-collect = "sudo nix-collect-garbage -d";
-      fix-store = "sudo nix-store --verify --check-contents --repair";
+    shellAliases = commonAliases // {
+      # additional aliases to set for zsh
     };
     # Enable autosuggest to use history and completion
     initExtra = ''
