@@ -59,9 +59,11 @@
 
   networking.hostName = systemSettings.hostname; # Define your hostname in flake.nix
   
-  # enable zsh
+  # include zsh support, bash is enabled by default
+  # this only includes zsh package
   programs.zsh.enable = true;
-  # zsh is also enabled for user at ./system/users.nix
+  # zsh is also enabled for user, conditionally at ./system/users.nix
+  # set the user shell in ./flake.nix
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # enable nix command and flakes
   nix.settings.auto-optimise-store = true; # enable deleting duplicate content in store

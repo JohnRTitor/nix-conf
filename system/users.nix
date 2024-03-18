@@ -10,6 +10,6 @@
         # Configure in ../home.nix
     ];
     # user shell changed to zsh
-    shell = pkgs.zsh;
+    shell = if (userSettings.shell == "zsh") then pkgs.zsh else pkgs.bash;
   };
 }

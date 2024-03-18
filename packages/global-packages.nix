@@ -78,10 +78,10 @@
       # Tool to run app images and random app binaries
       (let base = pkgs.appimageTools.defaultFhsEnvArgs; in 
         pkgs.buildFHSUserEnv (base // {
-          name = "fhs";
-          targetPkgs = pkgs: (base.targetPkgs pkgs) ++ [pkgs.pkg-config]; 
-          profile = "export FHS=1"; 
-          runScript = "zsh"; 
+          name = "fhs"; # provides fhs command to enter in a FHS environment
+          targetPkgs = pkgs: (base.targetPkgs pkgs) ++ [pkgs.pkg-config];
+          profile = "export FHS=1";
+          runScript = "$SHELL";
           extraOutputsToInstall = ["dev"];
       }))
 

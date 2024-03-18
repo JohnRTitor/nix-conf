@@ -23,6 +23,7 @@
         gitname = "John Titor"; # git name
         gitemail = "50095635+JohnRTitor@users.noreply.github.com"; # git email
         gpgkey = "29B0514F4E3C1CC0"; # gpg key
+        shell = "zsh"; # user default shell # choose either zsh or bash
       };
       # system is built on nixos unstable 
       lib = nixpkgs.lib;
@@ -95,11 +96,9 @@
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # lanzaboote, used for secureboot
 
-    # home-manager, used for managing user configuration
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs"; # follow the system package library, to ensure compatibility
-    };
+    # home-manager, used for managing user configuration, should follow system nixpkgs
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions"; # vs code extensions
   };
