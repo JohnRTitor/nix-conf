@@ -1,5 +1,5 @@
 # This config file is used to configure alacritty
-{ pkgs, ... }:
+{ pkgs, userSettings, ... }:
 {
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
   programs.alacritty.enable = true;
@@ -39,7 +39,7 @@
         yellow = "0xf3f99d";
       };
       primary = {
-        background = "0x282a36";
+        background = "0x030215";
         foreground = "0xeff0eb";
       };
     };
@@ -94,7 +94,9 @@
     };
 
     shell = {
-      program = "/run/current-system/sw/bin/zsh";
+      program = if (userSettings.shell == "zsh") then
+                  "/run/current-system/sw/bin/zsh"
+                else "/run/current-system/sw/bin/bash";
     };
 
     window = {
