@@ -25,8 +25,7 @@
         gpgkey = "29B0514F4E3C1CC0"; # gpg key
         shell = "zsh"; # user default shell # choose either zsh or bash
       };
-      # system is built on nixos unstable 
-      lib = nixpkgs.lib;
+
       # configure pkgs from unstable (default)
       pkgs = import nixpkgs {
         # Add zen4 support
@@ -50,6 +49,16 @@
       # Mainly used in ./home-manager/vscode/vscode.nix
       pkgs-vscode-extensions = nix-vscode-extensions.extensions.${systemSettings.systemarch};
 
+      # system is built on nixos unstable 
+      lib = nixpkgs.lib;
+      # pass the custom settings and flakes to system
+      specialArgs = {
+        inherit pkgs-stable;
+        inherit pkgs-vscode-extensions;
+        inherit systemSettings;
+        inherit userSettings;
+      };
+
     in {
       nixosConfigurations.${systemSettings.hostname} = lib.nixosSystem {
         system = systemSettings.systemarch;
@@ -66,11 +75,8 @@
 
             home-manager.users.${userSettings.username} = import ./home.nix;
             # extra specialArgs is used to pass arguments to home-manager
-            home-manager.extraSpecialArgs = {
-              inherit pkgs-stable;
-              inherit pkgs-vscode-extensions;
-              inherit systemSettings;
-              inherit userSettings;
+            home-manager.extraSpecialArgs = specialArgs // {
+              # Additional arguments for home-manager
             };
           }
 
@@ -80,12 +86,7 @@
         lib.optionals (systemSettings.secureboot) [
           lanzaboote.nixosModules.lanzaboote 
         ];
-        specialArgs = {
-          inherit pkgs-stable;
-          inherit pkgs-vscode-extensions;
-          inherit systemSettings;
-          inherit userSettings;
-        };
+        inherit specialArgs;
       };
     };
     
