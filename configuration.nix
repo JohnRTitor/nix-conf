@@ -57,6 +57,10 @@
     ./system/virtualisation.nix
   ];
 
+  # Add features for building x86_64-v4 binaries
+  nix.settings.system-features = [ "big-parallel" "gccarch-x86-64-v4" ];
+
+
   networking.hostName = systemSettings.hostname; # Define your hostname in flake.nix
   
   # include zsh support, bash is enabled by default
