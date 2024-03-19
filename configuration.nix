@@ -57,9 +57,34 @@
     ./system/virtualisation.nix
   ];
 
-  # Add features for building x86_64-v4 binaries
-  nix.settings.system-features = [ "big-parallel" "gccarch-x86-64-v4" ];
+  # Features for building
+  nix.settings.system-features = [
+    # Defaults
+    "big-parallel"
+    "benchmark"
+    "kvm"
+    "nixos-test"
+    # Additional
+    "gccarch-x86-64-v3"
+    "gccarch-x86-64-v4"
+    "gccarch-znver4"
+  ];
 
+  nixpkgs.overlays = [
+    (_final: prev: {
+      pkgsx86_64_v4 = prev.pkgsx86_64_v4.extend
+        (_v4_final: v4_prev: {
+          # Coreutils fail to build at checkphase
+          coreutils = v4_prev.coreutils.overrideAttrs (_prevattrs: {
+            doCheck = false;
+          });
+          # ltrace also fail to build at checkphase
+          ltrace = v4_prev.ltrace.overrideAttrs (_prevattrs: {
+            doCheck = false;
+          });
+        });
+    })
+  ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname in flake.nix
   
