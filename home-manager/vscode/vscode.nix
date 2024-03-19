@@ -13,11 +13,14 @@
       ms-python.python # Python language support
       ms-vscode.cpptools # C/C++ language support
       tamasfe.even-better-toml # TOML language support
+      davidanson.vscode-markdownlint # Markdown Linting
 
       github.copilot # GitHub Copilot
       github.copilot-chat # GitHub Copilot Chat
       github.codespaces # GitHub Codespaces
       github.vscode-pull-request-github # GitHub Pull Requests
+      github.vscode-github-actions # GitHub Actions
+      donjayamanne.githistory # Git History
 
       ms-azuretools.vscode-docker # Docker
       ms-vscode-remote.remote-ssh # Remote SSH
