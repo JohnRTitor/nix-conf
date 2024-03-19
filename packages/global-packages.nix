@@ -9,6 +9,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages =
+  # pkgsx86_64_v3-core are optimised packages provided by chaotic nyx repo
     (with pkgs; [
 
       # System Packages
@@ -21,7 +22,7 @@
       fuseiso # to mount iso system images
       git # obviously
       glib # for gsettings to work
-      gnupg # for encryption and auth keys
+      gpgme # gnupg # for encryption and auth keys
       libappindicator
       libnotify
       linux-wifi-hotspot # for wifi hotspot
@@ -29,8 +30,6 @@
       python3
       # pipewire # enabled via service
       udiskie # automount usb drives
-      zip
-      unzip
       # wireplumber # enabled via service
 
       ## FILE MANAGERS ##
@@ -62,8 +61,12 @@
           ;
       })
 
+      ## ARCHIVES ##
+      zip
+      unzip
+
       ## URL FETCH TOOLS ##
-      curl
+      pkgsx86_64_v3-core.curl # curl
       wget
 
       ## EDITOR ##

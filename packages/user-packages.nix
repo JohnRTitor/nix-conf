@@ -11,55 +11,43 @@
       # here is some command line tools I use frequently
       # feel free to add your own or remove some of them
 
-      # editors
-      # vscode
-      # emacs
-
       nnn # terminal file manager
 
-      # archives
-      # zip
-      xz
-      # unzip
-      p7zip
+      ## ARCHIVING TOOLS ##
+      # p7zip
 
       # utils
-      ripgrep # recursively searches directories for a regex pattern
-      jq # A lightweight and flexible command-line JSON processor
-      yq-go # yaml processer https://github.com/mikefarah/yq
+      # ripgrep # recursively searches directories for a regex pattern
+      # jq # A lightweight and flexible command-line JSON processor
+      # yq-go # yaml processer https://github.com/mikefarah/yq
       # eza # A modern replacement for ‘ls’
-      fzf # A command-line fuzzy finder
+      # fzf # A command-line fuzzy finder
 
-      # networking tools
-      mtr # A network diagnostic tool
-      iperf3
+      ## NETWORKING TOOLS ##
+      # mtr # A network diagnostic tool
+      # iperf3
       dnsutils  # `dig` + `nslookup`
-      ldns # replacement of `dig`, it provide the command `drill`
-      aria2 # A lightweight multi-protocol & multi-source command-line download utility
-      socat # replacement of openbsd-netcat
-      nmap # A utility for network discovery and security auditing
-      ipcalc  # it is a calculator for the IPv4/v6 addresses
+      # ldns # replacement of `dig`, it provide the command `drill`
+      # aria2 # A lightweight multi-protocol & multi-source command-line download utility
+      # socat # replacement of openbsd-netcat
+      # nmap # A utility for network discovery and security auditing
+      # ipcalc  # it is a calculator for the IPv4/v6 addresses
 
-      # misc
-      cowsay
-      file
-      which
-      tree
-      gnused
-      gnutar
-      gawk
-      zstd
+      ## MISCELLANEOUS ##
+      # cowsay
+      # file
+      # tree
 
-      # productivity
-      hugo # static site generator
-      glow # markdown previewer in terminal
+      ## Productivity ##
+      # hugo # static site generator
+      # glow # markdown previewer in terminal
 
       # system call monitoring
-      strace # system call monitoring
-      ltrace # library call monitoring
-      lsof # list open files
+      # strace # system call monitoring
+      # ltrace # library call monitoring
+      # lsof # list open files
 
-      # system tools
+      ## SYSTEM TOOLS ##
       sysstat
       lm_sensors # for `sensors` command
       ethtool
@@ -67,6 +55,9 @@
       usbutils # lsusb
 
       ## GRAPHICAL APPS ##
+      # Editors #
+      # vscode
+      # emacs
       # whatsapp-for-linux
       libreoffice-fresh
       discord
@@ -74,6 +65,34 @@
       deluge
     ])
   
+    ++
+
+    # These packages are from Chaotic Nyx repo, optimised for x64-v3
+    # If they don't work for you, replace pkgs.pkgsx86_64_v3 with pkgs
+    # Most of the packages do not have binary cache, meaning nix will build them from source
+    # which can potentially take a long time
+    # Please don't try to build large, complex, or graphical packages, they will take a long time
+    (with pkgs.pkgsx86_64_v3-core; [
+
+
+      ## COMPRESSION TOOLS ##
+      # zip, unzip are provided via global packages list
+      gnutar
+      # gzip
+      # xz
+      # bzip2
+      # lz4
+      # lzo
+      # zlib
+      zstd
+
+      ## MISCELLANEOUS ##
+      which
+      gawk
+      gnused
+      
+    ])
+
     ++
 
     (with pkgs-stable; [

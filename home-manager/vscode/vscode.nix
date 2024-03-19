@@ -6,6 +6,8 @@
     enableUpdateCheck = false;
     # Since not all extensions are provided via nixpkgs,
     # We are using a vscode marketplace flake
+    # But we are still allowing extensions to be installed from VS code GUI
+    # disabling mutableExtensionsDir will mess up things
     extensions = with pkgs-vscode-extensions.vscode-marketplace; [
       bbenoist.nix # Nix language support
       ms-python.python # Python language support
