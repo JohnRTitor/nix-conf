@@ -100,6 +100,7 @@
       # QT control center
       libsForQt5.qt5ct
       qt6Packages.qt6ct
+      python311Packages.requests # needed for Weather.sh from dotfiles
       # waybar # included by default for hyprland.waybar.enable
       wlsunset # for night mode
       wl-clipboard

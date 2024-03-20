@@ -41,7 +41,7 @@
     #./apps/kde-connect.nix
       
     # include adb tools
-    ./dev-environment/adb.nix
+    ./dev-environment/adb-toolchain.nix
     ./dev-environment/c-toolchain.nix
 
     # include custom cache server settings
