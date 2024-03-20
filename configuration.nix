@@ -70,22 +70,6 @@
     "gccarch-znver4"
   ];
 
-  nixpkgs.overlays = [
-    (_final: prev: {
-      pkgsx86_64_v4 = prev.pkgsx86_64_v4.extend
-        (_v4_final: v4_prev: {
-          # Coreutils fail to build at checkphase
-          coreutils = v4_prev.coreutils.overrideAttrs (_prevattrs: {
-            doCheck = false;
-          });
-          # ltrace also fail to build at checkphase
-          ltrace = v4_prev.ltrace.overrideAttrs (_prevattrs: {
-            doCheck = false;
-          });
-        });
-    })
-  ];
-
   networking.hostName = systemSettings.hostname; # Define your hostname in flake.nix
   
   # include zsh support, bash is enabled by default
