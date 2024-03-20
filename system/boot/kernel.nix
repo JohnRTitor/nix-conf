@@ -1,9 +1,10 @@
 # This config file is used to configure the kernel
 { config, lib, pkgs, pkgs-stable, ... }:
 {
-  # Use linux-zen kernel
+  # Use linux-zen or CachyOS kernel for improved performance
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
-  environment.systemPackages =  [ pkgs.scx ];
+  # Enable scx extra schedulers, only available for linux-cachyos
+  environment.systemPackages =  lib.optionals (config.boot.kernelPackages == pkgs.linuxPackages_cachyos) [ pkgs.scx ];
   
   boot.extraModulePackages = with config.boot.kernelPackages; [
     # zenpower is used for reading temperature, voltage, current and power
@@ -22,45 +23,69 @@
     #   };
     # }
     {
-      # recompiling the kernel with this option is needed for OpenRGB
-      name = "NCT6775 driver";
-      patch = null; # no patch needed if zen-kernel is enabled
-      extraStructuredConfig = with lib.kernel; {
-        I2C_NCT6775 = lib.mkForce yes;
-      };
-    }
-    {
       # Recompiling the kernel with optimization
       name = "AMD Patches";
       patch = null; # no patch is needed, just apply the options
       extraStructuredConfig = with lib.kernel; {
-
-        ##### GENERAL OPTIONS #####
+        # AMD native optimization
+        X86_AMD_PLATFORM_DEVICE = lib.mkForce yes;
+        GENERIC_CPU = lib.mkForce unset;
+        MNATIVE_AMD = lib.mkForce yes;
+        X86_USE_PPRO_CHECKSUM = lib.mkForce yes;
         
+        NR_CPUS = lib.mkForce (freeform "20"); # only 20 threads support
+      };
+    }
+  ]
+  # Available by default in cachyos
+  ++ lib.optionals (config.boot.kernelPackages != pkgs.linuxPackages_cachyos) [
+    {
+      name = "ZSTD compression";
+      patch = null;
+      extraStructuredConfig = with lib.kernel; {
         # Kernel compression mode
         # Enable ZSTD and Disable GZIP
         KERNEL_GZIP = unset;
         KERNEL_ZSTD = yes;
-
+        HAVE_KERNEL_ZSTD = yes;
+      };
+    }
+    {
+      name = "Performance options";
+      patch = null;
+      extraStructuredConfig = with lib.kernel; {
         # Kernel optimized for MORE performance
-        CC_OPTIMIZE_FOR_PERFORMANCE = unset;
-        CC_OPTIMIZE_FOR_PERFORMANCE_O3 = yes;
+        CC_OPTIMIZE_FOR_PERFORMANCE = lib.mkForce unset;
+        CC_OPTIMIZE_FOR_PERFORMANCE_O3 = lib.mkForce yes;
+        # Enable performance power governor by default
+        DEVFREQ_GOV_PERFORMANCE = lib.mkForce module;
+        CPU_FREQ_DEFAULT_GOV_PERFORMANCE = lib.mkForce yes;
+        CPU_FREQ_GOV_PERFORMANCE = lib.mkForce yes;
+      };
+    }
+    {
+      name = "Multi-Gen LRU";
+      patch = null;
+      extraStructuredConfig = with lib.kernel; {
+        # This option is used to improve the performance of the kernel
+        # by using a multi-generation LRU algorithm to manage the page cache.
 
-        ##### CPU OPTIONS #####
-
-        # AMD native optimization
-        X86_AMD_PLATFORM_DEVICE = yes;
-        GENERIC_CPU = unset;
-        MNATIVE_AMD = yes;
-        X86_USE_PPRO_CHECKSUM = yes;
-        
-        NR_CPUS = lib.mkForce (freeform "20"); # only 20 threads support
-
-        ##### MEMORY MANAGEMENT #####
-        # Multigen LRU
         LRU_GEN = yes;
         LRU_GEN_ENABLED = yes;
       };
     }
-  ];
+  ]
+  # Add the NCT6775 driver, not available in xanmod, but available by default in cachyos
+  # Option needed in linux-zen
+  ++ lib.optionals (config.boot.kernelPackages != pkgs.linuxPackages_zen)  [
+    {
+      # recompiling the kernel with this option is needed for OpenRGB
+      name = "NCT6775 driver";
+      patch = null; # no patch needed if zen-kernel is enabled
+      extraStructuredConfig = with lib.kernel; {
+        I2C_NCT6775 = lib.mkForce module;
+      };
+    }
+  ]
+  ;
 }
