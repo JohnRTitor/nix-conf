@@ -40,8 +40,9 @@
     ./apps/openrgb.nix
     #./apps/kde-connect.nix
       
-    # include adb settings
+    # include adb tools
     ./dev-environment/adb.nix
+    ./dev-environment/c-toolchain.nix
 
     # include custom cache server settings
     #./misc/custom-cache-server.nix # disabled temporarily cause it messes up nix-shell
