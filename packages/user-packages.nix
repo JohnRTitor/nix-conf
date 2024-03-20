@@ -54,6 +54,9 @@
       pciutils # lspci
       usbutils # lsusb
 
+      ## PERSONAL ENJOYMENT ##
+      ani-cli
+
       ## GRAPHICAL APPS ##
       # Editors #
       # vscode
