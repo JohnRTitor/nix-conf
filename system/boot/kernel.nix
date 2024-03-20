@@ -28,10 +28,10 @@
       patch = null; # no patch is needed, just apply the options
       extraStructuredConfig = with lib.kernel; {
         # AMD native optimization
-        X86_AMD_PLATFORM_DEVICE = lib.mkForce yes;
-        GENERIC_CPU = lib.mkForce unset;
-        MNATIVE_AMD = lib.mkForce yes;
-        X86_USE_PPRO_CHECKSUM = lib.mkForce yes;
+        X86_AMD_PLATFORM_DEVICE = yes;
+        GENERIC_CPU = no;
+        MNATIVE_AMD = yes;
+        X86_USE_PPRO_CHECKSUM = yes;
         
         NR_CPUS = lib.mkForce (freeform "20"); # only 20 threads support
       };
