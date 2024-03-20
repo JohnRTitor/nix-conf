@@ -4,7 +4,7 @@
   # Use linux-zen or CachyOS kernel for improved performance
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
   # Enable scx extra schedulers, only available for linux-cachyos
-  environment.systemPackages =  lib.optionals (config.boot.kernelPackages == pkgs.linuxPackages_cachyos) [ pkgs.scx ];
+  chaotic.scx.enable = true; # by default uses rustland
   
   boot.extraModulePackages = with config.boot.kernelPackages; [
     # zenpower is used for reading temperature, voltage, current and power
