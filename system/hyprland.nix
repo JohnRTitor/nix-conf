@@ -142,7 +142,7 @@
   # Environment variables to start the session with
   environment.sessionVariables = {
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
-    WLR_NO_HARDWARE_CURSORS = "1"; # cursor not visible in some instance
+    # WLR_NO_HARDWARE_CURSORS = "1"; # cursor not visible in some instance
     NIXOS_OZONE_WL = "1"; # for electron apps to run on wayland
     MOZ_ENABLE_WAYLAND = "1";
     SDL_VIDEODRIVER = "wayland";
