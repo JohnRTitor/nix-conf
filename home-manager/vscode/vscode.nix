@@ -12,6 +12,7 @@
       bbenoist.nix # Nix language support
       ms-python.python # Python language support
       ms-vscode.cpptools # C/C++ language support
+      ms-vscode.cpptools-extension-pack # C/C++ extension pack
       tamasfe.even-better-toml # TOML language support
       davidanson.vscode-markdownlint # Markdown Linting
 
