@@ -2,11 +2,18 @@
 { config, pkgs, userSettings, ... }:
 
 {
+  # Containers
+  # Enable podman and docker compatibility
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
   environment.systemPackages = with pkgs; [
-    virt-manager
-    virtualbox
     distrobox
   ];
+
+  # Enable Virt Manager
+  programs.virt-manager.enable = true;
   virtualisation.libvirtd = {
     enable = true;
     # onShutdown = "shutdown"; # Shutdown VMs on host shutdown
@@ -16,15 +23,16 @@
       "virbr0"
     ];
   };
-  # virtualisation.spiceUSBRedirection.enable = true; # allows VMs to access USB
-
-  users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
-
-  # Containers
-  # Enable podman and docker compatibility
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
+  environment.sessionVariables = {
+    # Needed for virt-manager to work
+    GSETTINGS_BACKEND = "keyfile";
   };
+  virtualisation.spiceUSBRedirection.enable = true; # allows VMs to access USB
+  users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
+
+  # Enable Virtualbox
+  virtualisation.virtualbox.host = {
+    enable = true;
+  };
+  boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
 }
