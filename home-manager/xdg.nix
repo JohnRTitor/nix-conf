@@ -42,7 +42,7 @@
     "application/x-shellscript" = "org.xfce.mousepad.desktop;";
     "application/json" = "org.xfce.mousepad.desktop;code.desktop;";
     "application/xml" = "org.xfce.mousepad.desktop;";
-    "inode/directory" = "code.desktop;";
+    "inode/directory" = "org.xfce.mousepad.desktop;code.desktop;org.gnome.Nautilus.desktop;org.gnome.baobab.desktop;";
     # Telegram
     "x-scheme-handler/tg" = "org.telegram.desktop.desktop;userapp-Telegram Desktop-TLQ2K2.desktop;";
     "x-xdg-protocol-tg" = "org.telegram.desktop.desktop;userapp-Telegram Desktop-TLQ2K2.desktop;";
