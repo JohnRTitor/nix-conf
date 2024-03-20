@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    gccStdenv # gcc and c tools
+    libgcc # gcc
     gnumake # make
   ];
 }
