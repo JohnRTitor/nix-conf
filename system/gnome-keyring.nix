@@ -9,5 +9,5 @@
     libsecret # for libsecret api
     gnome.libgnome-keyring # for gnome-keyring-daemon
     ];
-  security.pam.services.gdm.enableGnomeKeyring = true; # load gnome-keyring at startup
+  security.pam.services.login.enableGnomeKeyring = true; # load gnome-keyring at startup
 }

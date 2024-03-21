@@ -103,6 +103,8 @@
 
   # List services that you want to enable:
 
+  programs.dconf.enable = true; # enable dconf
+
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
