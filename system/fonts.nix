@@ -15,6 +15,7 @@
         "FiraCode" # used in VS code
       ];
     })
+    roboto
     lohit-fonts.bengali # Bengali fonts
   ];
 }
