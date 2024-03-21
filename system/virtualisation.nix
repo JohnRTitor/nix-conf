@@ -28,7 +28,10 @@
     GSETTINGS_BACKEND = "keyfile";
   };
   virtualisation.spiceUSBRedirection.enable = true; # allows VMs to access USB
-  users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
+  users.users.${userSettings.username}.extraGroups = [
+    "libvirtd" # Needed for Virt Manager
+    "vboxusers" # Needed for Virtualbox
+  ];
 
   # Enable Virtualbox
   virtualisation.virtualbox.host = {
