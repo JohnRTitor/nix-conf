@@ -30,7 +30,7 @@
     # include printing settings
     ./system/printing.nix
     # include power plan settings
-    ./system/power.nix
+    # ./system/power.nix
 
     # include global/system packages list
     ./packages/global-packages.nix

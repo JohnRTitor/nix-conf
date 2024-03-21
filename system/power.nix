@@ -1,4 +1,5 @@
 # Configure power profile and modes
+# Only needed for laptops
 { ... }:
 
 {
