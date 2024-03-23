@@ -5,6 +5,7 @@ let
     rebuild = "sudo nixos-rebuild switch --flake .";
     garbage-collect = "sudo nix-collect-garbage -d";
     fix-store = "sudo nix-store --verify --check-contents --repair";
+    cneofetch = "neofetch --config ~/.config/neofetch/config-compact.conf";
   };
 in {
   programs.bash = {
