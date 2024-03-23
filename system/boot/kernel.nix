@@ -1,8 +1,8 @@
 # This config file is used to configure the kernel
 { config, lib, pkgs, pkgs-stable, ... }:
 {
-  # Use CachyOS LTO kernel for improved performance
-  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
+  # Use linux-zen or CachyOS kernel for improved performance
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
   # Enable scx extra schedulers, only available for linux-cachyos
   chaotic.scx.enable = true; # by default uses rustland
   
