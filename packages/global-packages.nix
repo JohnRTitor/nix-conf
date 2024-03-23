@@ -75,7 +75,7 @@
 
       ## MONITORING TOOLS ##
       btop # for CPU, RAM, and Disk monitoring
-      nvtop-amd # for AMD GPUs
+      nvtopPackages.amd # for AMD GPUs
       iotop # for disk I/O monitoring
       iftop # for network I/O monitoring
 
