@@ -5,7 +5,10 @@ let
     rebuild = "sudo nixos-rebuild switch --flake .";
     garbage-collect = "sudo nix-collect-garbage -d";
     fix-store = "sudo nix-store --verify --check-contents --repair";
-    cneofetch = "neofetch --config ~/.config/neofetch/config-compact.conf";
+    # cneofetch is just an alias to run compact neofetch
+    # run in a subshell to avoid changing the current directory
+    # because of neofetch can not source config files correctly using implicit home paths
+    cneofetch = "(cd && neofetch --config .config/neofetch/config-compact.conf)";
   };
 in {
   programs.bash = {
