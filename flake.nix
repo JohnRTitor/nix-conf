@@ -93,7 +93,7 @@
     
   # Main sources and repositories
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable NixOS packages (default)
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Unstable NixOS packages (default)
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11"; # Stable NixOS packages (23.11)
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # Bleeding edge packages from chaotic nix
 

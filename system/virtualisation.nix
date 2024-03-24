@@ -23,10 +23,10 @@
       "virbr0"
     ];
   };
-  environment.sessionVariables = {
-    # Needed for virt-manager to work
-    GSETTINGS_BACKEND = "keyfile";
-  };
+  
+  # Needed for virt-manager to work    
+  environment.sessionVariables.GSETTINGS_BACKEND = "keyfile";
+
   virtualisation.spiceUSBRedirection.enable = true; # allows VMs to access USB
   users.users.${userSettings.username}.extraGroups = [
     "libvirtd" # Needed for Virt Manager
@@ -34,8 +34,6 @@
   ];
 
   # Enable Virtualbox
-  virtualisation.virtualbox.host = {
-    enable = true;
-  };
+  virtualisation.virtualbox.host.enable = true;
   boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
 }
