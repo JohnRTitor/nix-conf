@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, systemSettings, ... }:
 {
   imports = [
     # include boot and kernel settings
@@ -25,5 +25,20 @@
     ./printing.nix
     # include power plan settings
     # ./system/power.nix
-    ];
+  ]
+  ++
+  # Configure secure boot with lanzaboote, if secureboot is enabled
+  lib.optionals (systemSettings.secureboot) [
+    ./boot/lanzaboote.nix
+  ]
+  ++
+  # Import if Virtualization is enabled
+  lib.optionals (systemSettings.virtualisation) [
+    ./virtualisation.nix
+  ]
+  ++
+  # Import if laptop mode is enabled
+  lib.optionals (systemSettings.laptop) [
+    ./power.nix
+  ];
 }

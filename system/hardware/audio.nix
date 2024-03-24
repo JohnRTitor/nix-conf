@@ -1,21 +1,17 @@
 # This conf file is used to configure audio and sound related settings
 { ... }:
 {
-  # Enable sound with pipewire.
+  # Enable sound with pipewire, don't enable pulseaudio.
   sound.enable = true;
-  # disable pulseaudio, infavor of pipewire
-  hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
+    alsa.enable = true; # alsa support
     alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-    # wireplumber is the recommended session manager, don't use others
-    wireplumber.enable = true;
+    pulse.enable = true; # pulseaudio compat
+    jack.enable = true; # enable jack audio
   };
-  security.rtkit.enable = true; # Enable rtkit for real-time scheduling, required for pipewire
+  # Enable rtkit for real-time scheduling, required for pipewire
+  security.rtkit.enable = true;
 
   # Enable low latency
   services.pipewire.extraConfig.pipewire = {

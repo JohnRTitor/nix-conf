@@ -25,16 +25,6 @@
 
     # include custom cache server settings
     #./misc/custom-cache-server.nix # disabled temporarily cause it messes up nix-shell
-  ]
-  ++
-  # Configure secure boot with lanzaboote, if secureboot is enabled
-  lib.optionals (systemSettings.secureboot) [
-    ./system/boot/lanzaboote.nix
-  ]
-  ++
-  # Import if Virtualization is enabled
-  lib.optionals (systemSettings.virtualisation) [
-    ./system/virtualisation.nix
   ];
 
   # Features for building
@@ -63,7 +53,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -74,8 +64,6 @@
   };
 
   # List services that you want to enable:
-
-  programs.dconf.enable = true; # enable dconf
 
   # Enable the OpenSSH daemon.
   services.openssh = {

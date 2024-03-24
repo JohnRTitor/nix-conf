@@ -10,20 +10,20 @@
     # Extra drivers
     extraPackages = with pkgs; [
       rocmPackages.clr.icd
-      amdvlk # AMD Vulkan driver, replaces mesa-vulkan-radeon
+      amdvlk # AMD Vulkan driver
       vaapiVdpau
       libvdpau-va-gl
       libva
-      libdrm
     ];
     # For 32 bit applications 
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-      driversi686Linux.vaapiVdpau
-      driversi686Linux.libvdpau-va-gl
+    extraPackages32 = with pkgs.driversi686Linux; [
+      amdvlk
+      vaapiVdpau
+      libvdpau-va-gl
     ];
   };
   environment.systemPackages = with pkgs; [
+    libdrm # direct rendering manager
     ## GRAPHICS UTILS ##
     libva-utils # libva graphics library tools
     vdpauinfo # vdpau graphics library tools

@@ -3,6 +3,13 @@
 # made specifically for hyprland
 { pkgs, pkgs-stable, ... }:
 
+let
+  python-packages = pkgs.python3.withPackages (ps: [
+    ps.requests # requests module
+    ps.sh # subprocess module
+    ps.pyquery
+  ]);
+in
 {
   programs = {
     # Enable Hyperland
@@ -21,7 +28,6 @@
     };
 
     dconf.enable = true;
-    partition-manager.enable = true; # KDE Partition Manager
   };
 
   xdg.portal = {
@@ -37,7 +43,6 @@
       # Enable the X11 windowing system.
       enable = true;
       excludePackages = [ pkgs.xterm ];
-      libinput.enable = true;
       # Enable GDM
       displayManager.gdm = {
         enable = true;
@@ -96,7 +101,7 @@
       # QT control center
       libsForQt5.qt5ct
       qt6Packages.qt6ct
-      python311Packages.requests # needed for Weather.sh from dotfiles
+      python-packages # needed for Weather.sh from dotfiles
       # waybar # included by default for hyprland.waybar.enable
       wlsunset # for night mode
       wl-clipboard

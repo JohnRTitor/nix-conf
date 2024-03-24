@@ -13,6 +13,7 @@
         stableversion = "24.05";
         secureboot = true;
         virtualisation = true;
+        laptop = false;
       };
 
       # ----- USER SETTINGS ----- #
