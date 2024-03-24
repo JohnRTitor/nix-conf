@@ -4,10 +4,6 @@
 { pkgs, pkgs-stable, ... }:
 
 {
-    imports =
-    [ # Include GNOME Keyring settings
-      ./gnome-keyring.nix
-    ];
   programs = {
     # Enable Hyperland
     hyprland.enable = true;
