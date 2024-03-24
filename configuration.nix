@@ -9,28 +9,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # include boot and kernel settings
-    ./system/boot/kernel.nix
-    ./system/boot/boot-options.nix
-    # include user account settings
-    ./system/users.nix
-    # include hardware settings
-    ./system/hardware/audio.nix
-    ./system/hardware/bluetooth.nix
-    ./system/hardware/disk.nix
-    ./system/hardware/graphics.nix
-    # include network settings
-    ./system/network.nix
-    # include locale settings
-    ./system/locale.nix
-    # include fonts settings
-    ./system/fonts.nix
-    # include hyprland settings
-    ./system/hyprland.nix
-    # include printing settings
-    ./system/printing.nix
-    # include power plan settings
-    # ./system/power.nix
+    # Include system modules
+    ./system
 
     # include global/system packages list
     ./packages/global-packages.nix
@@ -40,9 +20,8 @@
     ./apps/openrgb.nix
     #./apps/kde-connect.nix
       
-    # include adb tools
-    ./dev-environment/adb-toolchain.nix
-    ./dev-environment/c-toolchain.nix
+    # include development environment
+    ./dev-environment # check ./dev-environment/default.nix for more details
 
     # include custom cache server settings
     #./misc/custom-cache-server.nix # disabled temporarily cause it messes up nix-shell
