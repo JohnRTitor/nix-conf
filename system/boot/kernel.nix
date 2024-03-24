@@ -26,6 +26,7 @@
       # Recompiling the kernel with optimization
       name = "AMD Patches";
       patch = null; # no patch is needed, just apply the options
+      features.rust = true;
       extraStructuredConfig = with lib.kernel; {
         # AMD native optimization
         X86_AMD_PLATFORM_DEVICE = yes;
