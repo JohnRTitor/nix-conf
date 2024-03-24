@@ -1,8 +1,15 @@
 # This config file is used to configure the kernel
 { config, lib, pkgs, pkgs-stable, ... }:
+let
+  kernelPackage = "cachyos"; # cachyos, xanmod, zen # default: latest generic kernel
+in
 {
   # Use linux-zen or CachyOS kernel for improved performance
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = if (kernelPackage == "cachyos") then pkgs.linuxPackages_cachyos
+    else (if (kernelPackage == "xanmod") then pkgs.linuxPackages_xanmod
+    else (if (kernelPackage == "zen") then pkgs.linuxPackages_zen
+    else pkgs.linuxPackages_latest));
+
   # Enable scx extra schedulers, only available for linux-cachyos
   chaotic.scx.enable = true; # by default uses rustland
   
@@ -39,7 +46,7 @@
     }
   ]
   # Available by default in cachyos
-  ++ lib.optionals (config.boot.kernelPackages != pkgs.linuxPackages_cachyos) [
+  ++ lib.optionals (kernelPackage == "cachyos") [
     {
       name = "ZSTD compression";
       patch = null;
@@ -78,7 +85,7 @@
   ]
   # Add the NCT6775 driver, not available in xanmod, but available by default in cachyos
   # Option needed in linux-zen
-  ++ lib.optionals (config.boot.kernelPackages != pkgs.linuxPackages_zen)  [
+  ++ lib.optionals (kernelPackage != "zen")  [
     {
       # recompiling the kernel with this option is needed for OpenRGB
       name = "NCT6775 driver";
