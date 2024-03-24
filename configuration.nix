@@ -64,13 +64,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # SECURITY
-  security = {
-    pam.services.swaylock.text = "auth include login";
-    polkit.enable = true; # Enable polkit for root prompts
-    # rtkit is enabled in audio config
-  }; 
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
