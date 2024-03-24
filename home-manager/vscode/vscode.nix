@@ -27,6 +27,7 @@
       ms-vscode-remote.remote-ssh # Remote SSH
 
       rolandgreim.sharecode # Pastebin/Gist support
+      ritwickdey.liveserver # launch local html web server
 
       # dracula-theme.theme-dracula # Dracula theme
       # enkia.tokyo-night # Tokyo Night theme
