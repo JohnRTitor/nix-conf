@@ -56,6 +56,7 @@ in
     gnome = {
       sushi.enable = true; # quick previewer
       glib-networking.enable = true; # network extensions libs
+      gnome-user-share.enable = true; # file sharing
     };
 
     tumbler.enable = true; # thumbnailer service
@@ -65,15 +66,10 @@ in
     (with pkgs; [
           
       # Hyprland Stuff main
-      # blueman # not needed if blueman service is on
       cava # audio visualizer
       cliphist # clipboard history
-      gnome.file-roller # archive manager
-      gnome.gnome-system-monitor # system monitor
-      gnome.eog # eye of gnome, image viewer
       grim # screenshots
       jq # json parser
-      kitty # default terminal on hyprland
       networkmanagerapplet
       nwg-look # theme switcher
       openssl # required by Rainbow borders
@@ -82,6 +78,7 @@ in
       playerctl # media player control
       polkit_gnome # needed for apps requesting root access
       pyprland # hyprland plugin support
+      python-packages # needed for Weather.py from dotfiles
       pywal
       rofi-wayland 
       slurp # screenshots
@@ -90,8 +87,32 @@ in
       swaylock-effects
       swaynotificationcenter
       swww
-      # Can control theming on QT apps
-      # QT Wayland
+      wlsunset # for night mode
+      wl-clipboard
+      wlogout
+      yad
+
+      gsettings-desktop-schemas
+      wlr-randr
+      ydotool
+      hyprland-protocols
+      # hyprpicker # does not work
+      # hyprpaper # alternative to swww
+
+      ## Graphical apps ##
+      baobab # disk usage analyzer
+      gnome.file-roller # archive manager
+      gnome.gnome-system-monitor # system monitor
+      gnome.eog # eye of gnome, image viewer
+      gnome.gnome-music # audio player
+      kitty # default terminal on hyprland
+      linux-wifi-hotspot # for wifi hotspot
+      mpv-vapoursynth # mpv # for video playback, needed for some scripts
+      mpvScripts.mpris
+      gnome.nautilus # file manager
+      shotcut # video editor
+      
+      ## QT theming and apps support ##
       qt5.qtwayland
       qt6.qmake
       qt6.qtwayland
@@ -101,41 +122,20 @@ in
       # QT control center
       libsForQt5.qt5ct
       qt6Packages.qt6ct
-      python-packages # needed for Weather.sh from dotfiles
-      # waybar # included by default for hyprland.waybar.enable
-      wlsunset # for night mode
-      wl-clipboard
-      wlogout
+
+      ## Utilities ##
+      desktop-file-utils
+      shared-mime-info
       xdg-utils
-      # xdg-desktop-portal-hyprland - included by default for hyprland.enable
       xdg-user-dirs
       xorg.xhost # needed for some packages running x11 like gparted
-      yad
-
-      # Utilities
-      gnome.gnome-music # audio player
-      mpv-vapoursynth # mpv # for video playback, needed for some scripts
-      mpvScripts.mpris
-      shotcut # video editor
-
-      gsettings-desktop-schemas
-      wlr-randr
-      ydotool
-      hyprland-protocols
-      # hyprpicker # does not work
-      # hyprpaper # alternative to swww
-      # wofi # alternative to rofi-wayland
-      
-      # for opening files in correct apps
-      shared-mime-info
-      desktop-file-utils
-      
     ])
 
     ++
 
     (with pkgs-stable; [
       # list of latest packages from stable repo
+      # Can be used to downgrade packages
       
     ]);
 

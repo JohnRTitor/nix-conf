@@ -15,8 +15,6 @@
       # System Packages
       ananicy-cpp # for better system performance
       ananicy-rules-cachyos
-      baobab # disk usage analyzer
-      # cpufrequtils
       # firewalld
       ffmpeg # codecs
       fuseiso # to mount iso system images
@@ -25,15 +23,9 @@
       gpgme # gnupg # for encryption and auth keys
       libappindicator
       libnotify
-      linux-wifi-hotspot # for wifi hotspot
       openssh # for ssh
       python3
-      # pipewire # enabled via service
       udiskie # automount usb drives
-      # wireplumber # enabled via service
-
-      ## FILE MANAGERS ##
-      gnome.nautilus
 
       ## BROWSERS ##
 
