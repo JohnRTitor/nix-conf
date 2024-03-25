@@ -3,27 +3,31 @@
 # Imported in home manager ../home.nix
 
 { config, ... }:
+let
+  homeDir = config.home.homeDirectory;
+in
 {
   xdg.enable = true;
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
-    music = "${config.home.homeDirectory}/Media/Music";
-    videos = "${config.home.homeDirectory}/Media/Videos";
-    pictures = "${config.home.homeDirectory}/Media/Pictures";
-    templates = "${config.home.homeDirectory}/Templates";
-    download = "${config.home.homeDirectory}/Downloads";
-    documents = "${config.home.homeDirectory}/Documents";
-    desktop = "${config.home.homeDirectory}/Desktop"; # null; # hyprland does not use desktop
-    publicShare = "${config.home.homeDirectory}/Public"; # null;
+    music = "${homeDir}/Media/Music";
+    videos = "${homeDir}/Media/Videos";
+    pictures = "${homeDir}/Media/Pictures";
+    templates = "${homeDir}/Templates";
+    download = "${homeDir}/Downloads";
+    documents = "${homeDir}/Documents";
+    # can be null since hyprland does not use Desktop
+    desktop = "${homeDir}/Desktop"; # null;
+    publicShare = "${homeDir}/Public";
     
     extraConfig = {
-      # XDG_DOTFILES_DIR = "${config.home.homeDirectory}/.dotfiles";
-      XDG_ARCHIVE_DIR = "${config.home.homeDirectory}/Archive";
-      # XDG_VM_DIR = "${config.home.homeDirectory}/Machines";
-      # XDG_ORG_DIR = "${config.home.homeDirectory}/Org";
-      XDG_PODCAST_DIR = "${config.home.homeDirectory}/Media/Podcasts";
-      XDG_BOOK_DIR = "${config.home.homeDirectory}/Media/Books";
+      # XDG_DOTFILES_DIR = "${homeDir}/.dotfiles";
+      XDG_ARCHIVE_DIR = "${homeDir}/Archive";
+      # XDG_VM_DIR = "${homeDir}/Machines";
+      # XDG_ORG_DIR = "${homeDir}/Org";
+      XDG_PODCAST_DIR = "${homeDir}/Media/Podcasts";
+      XDG_BOOK_DIR = "${homeDir}/Media/Books";
     };
   };
   xdg.mime.enable = true;
