@@ -11,7 +11,7 @@ in
     else pkgs.linuxPackages_latest));
 
   # Enable scx extra schedulers, only available for linux-cachyos
-  chaotic.scx.enable = true; # by default uses rustland
+  chaotic.scx.enable = if (kernelPackage == "cachyos") then true else false; # by default uses rustland
   
   boot.extraModulePackages = with config.boot.kernelPackages; [
     # zenpower is used for reading temperature, voltage, current and power
