@@ -1,14 +1,14 @@
 # This config file is used to configure the kernel
 { config, lib, pkgs, pkgs-stable, ... }:
 let
+  # Use linux-zen or CachyOS kernel for improved performance
   kernelPackage = "cachyos"; # cachyos, xanmod, zen # default: latest generic kernel
 in
 {
-  # Use linux-zen or CachyOS kernel for improved performance
   boot.kernelPackages = if (kernelPackage == "cachyos") then pkgs.linuxPackages_cachyos
-    else (if (kernelPackage == "xanmod") then pkgs.linuxPackages_xanmod
-    else (if (kernelPackage == "zen") then pkgs.linuxPackages_zen
-    else pkgs.linuxPackages_latest));
+    else if (kernelPackage == "xanmod") then pkgs.linuxPackages_xanmod
+    else if (kernelPackage == "zen") then pkgs.linuxPackages_zen
+    else pkgs.linuxPackages_latest;
 
   # Enable scx extra schedulers, only available for linux-cachyos
   chaotic.scx.enable = if (kernelPackage == "cachyos") then true else false; # by default uses rustland
