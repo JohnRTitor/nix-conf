@@ -1,8 +1,8 @@
 # This config file is used to configure the kernel
-{ config, lib, pkgs, pkgs-stable, ... }:
+{ config, lib, pkgs, pkgs-stable, systemSettings, ... }:
 let
   # Use linux-zen or CachyOS kernel for improved performance
-  kernelPackage = "cachyos"; # cachyos, xanmod, zen # default: latest generic kernel
+  kernelPackage = systemSettings.kernel; # cachyos, xanmod, zen # default: latest generic kernel
 in
 {
   boot.kernelPackages = if (kernelPackage == "cachyos") then pkgs.linuxPackages_cachyos
@@ -94,6 +94,5 @@ in
         I2C_NCT6775 = lib.mkForce module;
       };
     }
-  ]
-  ;
+  ];
 }

@@ -11,6 +11,7 @@
         locale = "en_US.UTF-8"; # select locale
         localeoverride = "en_IN";
         stableversion = "24.05";
+        kernel = "cachyos"; # cachyos, xanmod, zen # default: latest generic kernel
         secureboot = true;
         virtualisation = true;
         laptop = false;
