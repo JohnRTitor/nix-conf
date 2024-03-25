@@ -16,7 +16,7 @@
   programs.virt-manager.enable = true;
   virtualisation.libvirtd = {
     enable = true;
-    # onShutdown = "shutdown"; # Shutdown VMs on host shutdown
+    onShutdown = "shutdown"; # Shutdown VMs on host shutdown
     qemu.runAsRoot = false;
     allowedBridges = [
       "nm-bridge"
