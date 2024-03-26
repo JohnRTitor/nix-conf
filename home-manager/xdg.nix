@@ -32,8 +32,11 @@ in
   };
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
+  # Desktop entries are located in /run/current-system/sw/share/applications/
+  # Chrome PWAs are located in ~/.local/share/applications/
   xdg.mimeApps.defaultApplications = {
     "text/html" = "google-chrome.desktop";
+    "inode/directory" = "thunar.desktop"
     "application/pdf" = "org.gnome.Evince.desktop";
     "x-scheme-handler/http" = "google-chrome.desktop";
     "x-scheme-handler/https" = "google-chrome.desktop";
@@ -47,7 +50,9 @@ in
     "application/x-shellscript" = "org.xfce.mousepad.desktop;";
     "application/json" = "org.xfce.mousepad.desktop;code.desktop;";
     "application/xml" = "org.xfce.mousepad.desktop;";
-    "inode/directory" = "org.xfce.mousepad.desktop;code.desktop;org.gnome.Nautilus.desktop;org.gnome.baobab.desktop;";
+    "application/x-executable" = "Alacritty.desktop";
+    # Open directory with apps
+    "inode/directory" = "thunar.desktop;org.gnome.Nautilus.desktop;code.desktop;org.gnome.baobab.desktop;";
     # Telegram
     "x-scheme-handler/tg" = "org.telegram.desktop.desktop;userapp-Telegram Desktop-TLQ2K2.desktop;";
     "x-xdg-protocol-tg" = "org.telegram.desktop.desktop;userapp-Telegram Desktop-TLQ2K2.desktop;";
