@@ -38,7 +38,7 @@ in
   # Chrome PWAs are located in ~/.local/share/applications/
   xdg.mimeApps.defaultApplications = {
     "text/html" = "google-chrome.desktop";
-    "inode/directory" = "thunar.desktop";
+    "inode/directory" = "org.gnome.Nautilus.desktop";
     "application/pdf" = "org.gnome.Evince.desktop";
     "x-scheme-handler/http" = "google-chrome.desktop";
     "x-scheme-handler/https" = "google-chrome.desktop";
@@ -53,7 +53,7 @@ in
     "application/xml" = "org.xfce.mousepad.desktop;";
     "application/x-executable" = "Alacritty.desktop";
     # Open directory with apps
-    "inode/directory" = "thunar.desktop;org.gnome.Nautilus.desktop;nnn.desktop;code.desktop;org.gnome.baobab.desktop;";
+    "inode/directory" = "org.gnome.Nautilus.desktop;thunar.desktop;nnn.desktop;code.desktop;org.gnome.baobab.desktop;";
     # Telegram
     "x-scheme-handler/tg" = "org.telegram.desktop.desktop;";
     "x-xdg-protocol-tg" = "org.telegram.desktop.desktop;";
