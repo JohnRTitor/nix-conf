@@ -2,6 +2,7 @@
 { pkgs, ... }:
 {
   # FONTS
+  fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     noto-fonts
     fira-code # used in VS code
