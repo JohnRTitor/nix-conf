@@ -32,7 +32,9 @@ in
   };
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
+
   # Desktop entries are located in /run/current-system/sw/share/applications/
+  # For programs installed using home manager /etc/profiles/per-user/{user}/share/applications/
   # Chrome PWAs are located in ~/.local/share/applications/
   xdg.mimeApps.defaultApplications = {
     "text/html" = "google-chrome.desktop";
@@ -42,7 +44,6 @@ in
     "x-scheme-handler/https" = "google-chrome.desktop";
     "x-scheme-handler/about" = "google-chrome.desktop";
     "x-scheme-handler/unknown" = "google-chrome.desktop";
-    "x-scheme-handler/tg" = "userapp-Telegram Desktop-TLQ2K2.desktop";
   };
   xdg.mimeApps.associations.added = {
     # Text files
@@ -52,10 +53,10 @@ in
     "application/xml" = "org.xfce.mousepad.desktop;";
     "application/x-executable" = "Alacritty.desktop";
     # Open directory with apps
-    "inode/directory" = "thunar.desktop;org.gnome.Nautilus.desktop;code.desktop;org.gnome.baobab.desktop;";
+    "inode/directory" = "thunar.desktop;org.gnome.Nautilus.desktop;nnn.desktop;code.desktop;org.gnome.baobab.desktop;";
     # Telegram
-    "x-scheme-handler/tg" = "org.telegram.desktop.desktop;userapp-Telegram Desktop-TLQ2K2.desktop;";
-    "x-xdg-protocol-tg" = "org.telegram.desktop.desktop;userapp-Telegram Desktop-TLQ2K2.desktop;";
+    "x-scheme-handler/tg" = "org.telegram.desktop.desktop;";
+    "x-xdg-protocol-tg" = "org.telegram.desktop.desktop;";
 
     # Images
     "image/png" = "org.gnome.eog.desktop;";
