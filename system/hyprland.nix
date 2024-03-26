@@ -11,26 +11,34 @@ let
   ]);
 in
 {
-  programs = {
-    # Enable Hyperland
-    hyprland.enable = true;
-    waybar.enable = true; # enable waybar launcher
-    # Xfce file manager
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        exo
-        mousepad # texr editor
-        thunar-archive-plugin # archive manager
-        thunar-volman
-        tumbler # thumbnailer service
-      ];
-    };
-    file-roller.enable = true; # archive manager
-    evince.enable = true; # document viewer
-    dconf.enable = true;
+  # Enable Hyprland Window Manager
+  programs.hyprland.enable = true;
+  programs.waybar.enable = true; # enable waybar launcher
+  # Enable GDM with wayland
+  services.xserver.displayManager.gdm = {
+    enable = true;
+    wayland = true;
   };
 
+  ## Essential services ##
+  # Enable xserver with xwayland
+  services.xserver = {
+    enable = true;
+    # don't need xterm
+    excludePackages = [ pkgs.xterm ];
+  };
+  programs.xwayland.enable = true;
+  services.accounts-daemon.enable = true;
+  services.dbus.enable = true;
+  services.udev.enable = true;
+  programs.dconf.enable = true;
+
+  ## QT theming ##
+  qt.enable = true;
+  qt.style = "kvantum";
+  qt.platformTheme = "qt5ct";
+
+  ## Configure XDG portal ##
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
@@ -39,28 +47,30 @@ in
     xdgOpenUsePortal = true; # use xdg-open with xdg-desktop-portal
   };
 
-  services = {
-    xserver = {
-      # Enable the X11 windowing system.
+  ## Configure essential programs ##
+
+  programs = {
+    evince.enable = true; # document viewer
+    file-roller.enable = true; # archive manager
+    # Xfce file manager
+    thunar = {
       enable = true;
-      excludePackages = [ pkgs.xterm ];
-      # Enable GDM
-      displayManager.gdm = {
-        enable = true;
-        wayland = true;
-      };
+      plugins = with pkgs.xfce; [
+        exo
+        mousepad # text editor
+        thunar-archive-plugin # archive manager
+        thunar-volman
+      ];
     };
-
-    accounts-daemon.enable = true;
-    dbus.enable = true;
-    udev.enable = true; 
-    gnome = {
-      sushi.enable = true; # quick previewer
-      glib-networking.enable = true; # network extensions libs
-    };
-
-    tumbler.enable = true; # thumbnailer service
   };
+
+  services.gnome = {
+    sushi.enable = true; # quick previewer for nautilus
+    glib-networking.enable = true; # network extensions libs
+  };
+  services.tumbler.enable = true; # thumbnailer service
+
+  ## Configure essential packages ##
 
   environment.systemPackages =
     (with pkgs; [
@@ -114,12 +124,6 @@ in
       qt5.qtwayland
       qt6.qmake
       qt6.qtwayland
-      # Kvantum
-      qt6Packages.qtstyleplugin-kvantum
-      libsForQt5.qtstyleplugin-kvantum
-      # QT control center
-      libsForQt5.qt5ct
-      qt6Packages.qt6ct
 
       ## Utilities ##
       desktop-file-utils
