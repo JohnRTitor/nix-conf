@@ -2,16 +2,6 @@
 { config, pkgs, userSettings, ... }:
 
 {
-  # Containers
-  # Enable podman and docker compatibility
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-  };
-  environment.systemPackages = with pkgs; [
-    distrobox
-  ];
-
   # Enable Virt Manager
   programs.virt-manager.enable = true;
   virtualisation.libvirtd = {

@@ -13,7 +13,7 @@
         stableversion = "24.05";
         kernel = "cachyos"; # cachyos, xanmod, zen # default: latest generic kernel
         secureboot = true;
-        virtualisation = true;
+        virtualisation = false;
         laptop = false;
       };
 

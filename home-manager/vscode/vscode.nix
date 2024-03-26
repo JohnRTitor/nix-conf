@@ -24,6 +24,7 @@
       donjayamanne.githistory # Git History
 
       ms-azuretools.vscode-docker # Docker
+      ms-vscode-remote.remote-containers # Dev Containers
       ms-vscode-remote.remote-ssh # Remote SSH
 
       rolandgreim.sharecode # Pastebin/Gist support
