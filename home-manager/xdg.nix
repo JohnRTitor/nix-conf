@@ -38,7 +38,7 @@ in
   # Chrome PWAs are located in ~/.local/share/applications/
   xdg.mimeApps.defaultApplications = {
     "text/html" = "google-chrome.desktop";
-    "inode/directory" = "thunar.desktop"
+    "inode/directory" = "thunar.desktop";
     "application/pdf" = "org.gnome.Evince.desktop";
     "x-scheme-handler/http" = "google-chrome.desktop";
     "x-scheme-handler/https" = "google-chrome.desktop";
