@@ -18,4 +18,6 @@
     roboto
     lohit-fonts.bengali # Bengali fonts
   ];
+  fonts.fontDir.enable = true;
+  fonts.fontconfig.subpixel.rgba = "rgb"; # Subpixel rendering
 }
