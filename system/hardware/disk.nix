@@ -21,7 +21,8 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+  programs.gnome-disks.enable = true;
   environment.systemPackages = with pkgs; [
-    gnome.gnome-disk-utility
+    baobab # disk usage analyzer
   ];
 }

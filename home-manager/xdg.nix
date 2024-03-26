@@ -34,6 +34,7 @@ in
   xdg.mimeApps.enable = true;
   xdg.mimeApps.defaultApplications = {
     "text/html" = "google-chrome.desktop";
+    "application/pdf" = "org.gnome.Evince.desktop";
     "x-scheme-handler/http" = "google-chrome.desktop";
     "x-scheme-handler/https" = "google-chrome.desktop";
     "x-scheme-handler/about" = "google-chrome.desktop";
@@ -56,6 +57,6 @@ in
     "image/jpeg" = "org.gnome.eog.desktop;";
 
     # PDF
-    "application/pdf" = "google-chrome.desktop;";
+    "application/pdf" = "org.gnome.Evince.desktop;google-chrome.desktop;";
   };
 }

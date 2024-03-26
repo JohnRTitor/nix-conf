@@ -26,7 +26,8 @@ in
         tumbler # thumbnailer service
       ];
     };
-
+    file-roller.enable = true; # archive manager
+    evince.enable = true; # document viewer
     dconf.enable = true;
   };
 
@@ -56,7 +57,6 @@ in
     gnome = {
       sushi.enable = true; # quick previewer
       glib-networking.enable = true; # network extensions libs
-      gnome-user-share.enable = true; # file sharing
     };
 
     tumbler.enable = true; # thumbnailer service
@@ -100,8 +100,6 @@ in
       # hyprpaper # alternative to swww
 
       ## Graphical apps ##
-      baobab # disk usage analyzer
-      gnome.file-roller # archive manager
       gnome.gnome-system-monitor # system monitor
       gnome.eog # eye of gnome, image viewer
       gnome.gnome-music # audio player
@@ -183,5 +181,5 @@ in
     pam.services.swaylock.text = "auth include login";
     polkit.enable = true; # Enable polkit for root prompts
     # rtkit is enabled in audio config
-  }; 
+  };
 }
