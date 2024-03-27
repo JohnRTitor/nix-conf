@@ -29,6 +29,7 @@
 
       rolandgreim.sharecode # Pastebin/Gist support
       ritwickdey.liveserver # launch local html web server
+      mkhl.direnv # direnv and devenv support
 
       # dracula-theme.theme-dracula # Dracula theme
       # enkia.tokyo-night # Tokyo Night theme
