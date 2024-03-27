@@ -1,7 +1,7 @@
 {
   description = "Flake of JohnRTitor (Hyprland, Secure-Boot)";
 
-  outputs = { self, nixpkgs, nixpkgs-stable, chaotic, nix-vscode-extensions, lanzaboote, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, nixpkgs-edge, chaotic, nix-vscode-extensions, lanzaboote, home-manager, ... }:
     let
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
@@ -47,6 +47,12 @@
         config = { allowUnfree = true;
                   allowUnfreePredicate = (_: true); };
       };
+      # bleeding edge packages from master branch, for packages that need immediate updates
+      pkgs-edge = import nixpkgs-edge {
+        system = systemSettings.systemarch;
+        config = { allowUnfree = true;
+                  allowUnfreePredicate = (_: true); };
+      };
       # configure vscode extensions flake
       # Mainly used in ./home-manager/vscode/vscode.nix
       pkgs-vscode-extensions = nix-vscode-extensions.extensions.${systemSettings.systemarch};
@@ -56,6 +62,7 @@
       # pass the custom settings and flakes to system
       specialArgs = {
         inherit pkgs-stable;
+        inherit pkgs-edge;
         inherit pkgs-vscode-extensions;
         inherit systemSettings;
         inherit userSettings;
@@ -97,6 +104,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Unstable NixOS packages (default)
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11"; # Stable NixOS packages (23.11)
+    nixpkgs-edge.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; # Only used for bleeding edge packages
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # Bleeding edge packages from chaotic nix
 
     lanzaboote.url = "github:nix-community/lanzaboote"; # lanzaboote, used for secureboot

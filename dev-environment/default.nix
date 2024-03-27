@@ -1,5 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-edge, userSettings, ... }:
 let
+  # To be able to use cachix cache from devenv
+  # nix.settings.trusted-users = [ "example-user" ]
+  # has to be set
   useDevenv = true;
 in
 {
@@ -17,5 +20,5 @@ in
     ./deprecated/php.nix
   ];
 
-  environment.systemPackages = lib.optionals (useDevenv) [ pkgs.devenv ];
+  environment.systemPackages = lib.optionals (useDevenv) [ pkgs-edge.devenv ];
 }

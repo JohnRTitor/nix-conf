@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 
-{ config, lib, pkgs, pkgs-stable, pkgs-vscode-extensions, systemSettings, userSettings, ... }:
+{ config, lib, pkgs, pkgs-stable, pkgs-edge, pkgs-vscode-extensions, systemSettings, userSettings, ... }:
 
 {
   imports = [
@@ -39,6 +39,8 @@
     "gccarch-x86-64-v4"
     "gccarch-znver4"
   ];
+  # User should be allowed to use custom cache servers
+  nix.settings.trusted-users = [ userSettings.username ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname in flake.nix
   
