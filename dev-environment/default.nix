@@ -21,4 +21,5 @@ in
   ];
 
   environment.systemPackages = lib.optionals (useDevenv) [ pkgs-edge.devenv ];
+  programs.direnv.enable = true; # also enable direnv
 }
