@@ -9,7 +9,11 @@
     # But we are still allowing extensions to be installed from VS code GUI
     # disabling mutableExtensionsDir will mess up things
     extensions = with pkgs-vscode-extensions.vscode-marketplace; [
-      bbenoist.nix # Nix language support
+      ## Nix language support ##
+      jnoortheen.nix-ide
+      arrterian.nix-env-selector
+      mkhl.direnv # direnv support
+
       ms-python.python # Python language support
       ms-vscode.cpptools # C/C++ language support
       ms-vscode.cpptools-extension-pack # C/C++ extension pack
@@ -29,7 +33,6 @@
 
       rolandgreim.sharecode # Pastebin/Gist support
       ritwickdey.liveserver # launch local html web server
-      mkhl.direnv # direnv and devenv support
 
       # dracula-theme.theme-dracula # Dracula theme
       # enkia.tokyo-night # Tokyo Night theme
@@ -43,12 +46,21 @@
       "workbench.productIconTheme" = "material-product-icons"; # Set the product icon theme
       "workbench.iconTheme" = "material-icon-theme"; # Set the file icon theme
 
+      "editor.cursorBlinking" = "expand";
+      "editor.cursorSmoothCaretAnimation" = "on";
+
       "git.confirmSync" = false; # Do not ask for confirmation when syncing
       "git.autofetch" = true; # Periodically fetch from remotes
       "editor.fontFamily" = "'Fira Code Nerd Font', 'Inconsolata LGC Nerd Font', 'Droid Sans Mono', 'monospace'";
       # fonts are defined in the ../../fonts.nix file
       "editor.fontLigatures" =  true;
       "terminal.integrated.fontFamily" = "'JetBrains Nerd Font', 'Inconsolata LGC Nerd Font', monospace";
+
+      "direnv.restart.automatic" = true; # Automatically restart direnv if .envrc changes
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "nixd";
+
+      "dev.containers.dockerPath" = "podman"; # Use podman as the docker path
     };
   };
 

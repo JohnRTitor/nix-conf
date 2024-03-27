@@ -20,7 +20,11 @@ in
     ./deprecated/php.nix
   ];
 
-  environment.systemPackages = lib.optionals (useDevenv) [ pkgs-edge.devenv ];
+  environment.systemPackages = (with pkgs-edge; [
+    nixd # nix language server
+  ]) ++ lib.optionals (useDevenv) (with pkgs-edge; [
+    devenv
+  ]);
   programs.direnv = {
     enable = true; # also enable direnv
     silent = true; # silent direnv outputs
