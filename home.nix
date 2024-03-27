@@ -8,7 +8,7 @@
 
   imports = [
     # system packages are imported in ./configuration.nix
-    ./packages/user-packages.nix # user specific packages
+    ./pkgs/user-packages.nix # user specific packages
     ./home-manager/shell.nix # shell (bash, zsh) config
     ./home-manager/xdg.nix # xdg config
     ./home-manager/git.nix # git config

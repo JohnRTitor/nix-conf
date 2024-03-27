@@ -13,12 +13,12 @@
     ./system
 
     # include global/system packages list
-    ./packages/global-packages.nix
+    ./pkgs/global-packages.nix
     # user packages are imported in ./home.nix
 
     # include APPS settings
-    ./apps/openrgb.nix
-    #./apps/kde-connect.nix
+    ./programs/openrgb.nix
+    #./programs/kde-connect.nix
       
     # include development environment
     ./dev-environment # check ./dev-environment/default.nix for more details

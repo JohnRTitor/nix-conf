@@ -47,7 +47,7 @@
         config = { allowUnfree = true;
                   allowUnfreePredicate = (_: true); };
       };
-      # bleeding edge packages from master branch, for packages that need immediate updates
+      # bleeding edge packages from nixpkgs branch, for packages that need immediate updates
       pkgs-edge = import nixpkgs-edge {
         system = systemSettings.systemarch;
         config = { allowUnfree = true;
@@ -70,8 +70,6 @@
 
     in {
       nixosConfigurations.${systemSettings.hostname} = lib.nixosSystem {
-        system = systemSettings.systemarch;
-
         modules = [
           ./configuration.nix # main nix configuration
           chaotic.nixosModules.default # chaotic nix bleeding edge packages
@@ -102,7 +100,7 @@
     
   # Main sources and repositories
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Unstable NixOS packages (default)
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11"; # Stable NixOS packages (23.11)
     nixpkgs-edge.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; # Only used for bleeding edge packages
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # Bleeding edge packages from chaotic nix
