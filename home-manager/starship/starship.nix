@@ -107,10 +107,18 @@ in
       c = lang "" "blue";
       golang = lang "" "blue";
       # Shown when FHS shell is enabled
+      # FHS=1 var is set if in a FHS shell
       env_var.FHS = {
         symbol = "󰏖";
         variable = "FHS";
         format = "[ $symbol FHS]($style)";
+        style = "yellow dimmed";
+      };
+      # Shown when devenv is enabled
+      env_var.DEVENV = {
+        symbol = "󰏖";
+        variable = "DEVENV_RUNTIME";
+        format = "[ $symbol devenv]($style)";
         style = "yellow dimmed";
       };
     };
