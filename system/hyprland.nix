@@ -20,32 +20,13 @@ in
     wayland = true;
   };
 
-  ## Essential services ##
-  # Enable xserver with xwayland
-  services.xserver = {
-    enable = true;
-    # don't need xterm
-    excludePackages = [ pkgs.xterm ];
-  };
-  programs.xwayland.enable = true;
-  services.accounts-daemon.enable = true;
-  services.dbus.enable = true;
-  services.udev.enable = true;
-  programs.dconf.enable = true;
+  # hyprland portal is already included, gtk is also needed for compatibility
+  xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
 
   ## QT theming ##
   qt.enable = true;
   qt.style = "kvantum";
   qt.platformTheme = "qt5ct";
-
-  ## Configure XDG portal ##
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-    xdgOpenUsePortal = true; # use xdg-open with xdg-desktop-portal
-  };
 
   ## Configure essential programs ##
 
@@ -141,23 +122,25 @@ in
       
     ]);
 
-
   # Environment variables to start the session with
   environment.sessionVariables = {
     GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
-    # WLR_NO_HARDWARE_CURSORS = "1"; # cursor not visible in some instance
-    NIXOS_OZONE_WL = "1"; # for electron apps to run on wayland
-    MOZ_ENABLE_WAYLAND = "1";
+    # WLR_NO_HARDWARE_CURSORS = "1"; # cursor not visible, needed for nvidia
+
+    NIXOS_OZONE_WL = "1"; # for electron and chromium apps to run on wayland
+    MOZ_ENABLE_WAYLAND = "1"; # firefox should always run on wayland
+    
     SDL_VIDEODRIVER = "wayland";
-    _JAVA_AWT_WM_NONREPARENTING = "1";
+    _JAVA_AWT_WM_NONREPARENTING = "1"; # On tiling window managers like hyprland this is needed for java apps
     CLUTTER_BACKEND = "wayland";
     GDK_BACKEND = "wayland,x11"; # GTK: use wayland if possible, else X11
-    QT_QPA_PLATFORM = "wayland;xcb"; # QT: use QT if possible, else X11
-    WLR_RENDERER = "vulkan";
+    QT_QPA_PLATFORM = "wayland;xcb"; # QT: use wayland if possible, else X11
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     GTK_USE_PORTAL = "1"; # makes dialogs (file opening) consistent with rest of the ui
+
+    # WLR_RENDERER = "vulkan"; # vulkan not supported in hyprland
   };
 
   systemd = {
@@ -180,10 +163,6 @@ in
       };
     };
   };
-  # SECURITY
-  security = {
-    pam.services.swaylock.text = "auth include login";
-    polkit.enable = true; # Enable polkit for root prompts
-    # rtkit is enabled in audio config
-  };
+  # Text for swaylock
+  security.pam.services.swaylock.text = "auth include login";
 }

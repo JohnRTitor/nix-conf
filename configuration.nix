@@ -43,12 +43,6 @@
   nix.settings.trusted-users = [ userSettings.username ];
 
   networking.hostName = systemSettings.hostname; # Define your hostname in flake.nix
-  
-  # include zsh support, bash is enabled by default
-  # this only includes zsh package
-  programs.zsh.enable = true;
-  # zsh is also enabled for user, conditionally at ./system/users.nix
-  # set the user shell in ./flake.nix
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; # enable nix command and flakes
   nix.settings.auto-optimise-store = true; # enable deleting duplicate content in store
@@ -56,34 +50,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    # require public key authentication for better security
-    settings.PasswordAuthentication = false;
-    settings.KbdInteractiveAuthentication = false;
-    #settings.PermitRootLogin = "yes";
-  };
-  
-  # enable time synchronization
-  services.timesyncd.enable = true;
-  # Enable flatpak
-  services.flatpak.enable = true;
-  # enable fwupd
-  services.fwupd.enable = true;
-  # Mitigate issue where like /usr/bin/bash, hardcoded links in scripts not found
-  services.envfs.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

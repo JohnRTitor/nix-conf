@@ -23,8 +23,8 @@
     ./gnome-keyring.nix
     # include printing settings
     ./printing.nix
-    # include power plan settings
-    # ./system/power.nix
+    # include essential services
+    ./services.nix
   ]
   ++
   # Configure secure boot with lanzaboote, if secureboot is enabled
