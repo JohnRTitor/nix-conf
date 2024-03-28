@@ -63,7 +63,6 @@
 
       ## EDITOR ##
       vim
-      vscode
 
       ## MONITORING TOOLS ##
       btop # for CPU, RAM, and Disk monitoring

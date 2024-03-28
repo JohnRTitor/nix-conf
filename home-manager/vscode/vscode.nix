@@ -4,6 +4,12 @@
   programs.vscode = {
     enable = true;
     enableUpdateCheck = false;
+    package = (pkgs.vscode.override {
+      # if keyring does not work, try either "libsecret" or "gnome"
+      commandLineArgs = '' --password-store=gnome-libsecret'';
+    });
+
+
     # Since not all extensions are provided via nixpkgs,
     # We are using a vscode marketplace flake
     # But we are still allowing extensions to be installed from VS code GUI
@@ -11,7 +17,7 @@
     extensions = with pkgs-vscode-extensions.vscode-marketplace; [
       ## Nix language support ##
       jnoortheen.nix-ide
-      arrterian.nix-env-selector
+      # arrterian.nix-env-selector # not needed at the moment
       mkhl.direnv # direnv support
 
       ms-python.python # Python language support
@@ -62,11 +68,5 @@
 
       "dev.containers.dockerPath" = "podman"; # Use podman as the docker path
     };
-  };
-
-  # Wrapper to configure which arguments vscode should be started with
-  home.file.".vscode/argv.json" = {
-    source = ./vscode-argv.json5;
-    executable = false;
   };
 }
