@@ -89,7 +89,7 @@
         "github-copilot"
         "nixidea"
       ])
-      scilab-bin
+      zed-editor
 
       # whatsapp-for-linux
       libreoffice-fresh

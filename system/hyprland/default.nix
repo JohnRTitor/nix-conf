@@ -154,7 +154,7 @@ in {
       ## Hypr ecosystem ##
       hyprcursor
       pyprland # hyprland plugin, dropdown term, etc
-      ags # widgets pipup
+      ags_1 # widgets popup
 
       ## MONITORING TOOLS ##
       btop # for CPU, RAM, and Disk monitoring
@@ -162,10 +162,25 @@ in {
     ])
     ++ [
       self.packages.${pkgs.system}.weather-python-script # weather script'
-      inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
-    ];
+    ] ++ (with pkgs-master; [
+      rose-pine-hyprcursor # cursor theme
+    ]);
 
-  security.soteria.enable = true; # soteria graphical polkit agent
+    systemd.user.services.hyprpolkitagent = {
+      description = "Hyprpolkitagent, GUI Polkit agent for Hyprland";
+
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+
+      script = lib.getExe pkgs.hyprpolkitagent;
+      serviceConfig = {
+        Type = "simple";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
 
   # Environment variables to start the session with
   environment.sessionVariables = {
