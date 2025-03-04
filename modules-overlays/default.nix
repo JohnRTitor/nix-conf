@@ -14,8 +14,9 @@
   ];
 
   nixpkgs.overlays = [
+    inputs.nix-vscode-extensions.overlays.default
     (final: prev: {
-      # Add custom overlays here
+      # Add custom overlays here for packages
     })
   ];
 }

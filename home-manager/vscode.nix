@@ -6,23 +6,26 @@
   inputs,
   ...
 }: let
-  pkgs-vscode-extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
   # extract package pname for each package in the list of all installed packages, then put them in a list
   packagesList = map (x: x.pname) (config.home.packages ++ osConfig.environment.systemPackages);
 in {
   programs.vscode = {
     enable = true;
-    enableUpdateCheck = false;
     package = (
       pkgs.callPackage ../pkgs/vscode-repackaged.nix {}
     );
+  };
 
+  # Default profile
+  programs.vscode.profiles.default = {
+    enableUpdateCheck = false;
+    enableExtensionUpdateCheck = false;
     # Since not all extensions are provided via nixpkgs,
     # We are using a vscode marketplace flake
     # But we are still allowing extensions to be installed from VS code GUI
     # disabling mutableExtensionsDir will mess up things
     extensions =
-      (with pkgs-vscode-extensions.vscode-marketplace; [
+      (with pkgs.vscode-marketplace; [
         ## Language support ##
         jnoortheen.nix-ide # Nix language support
         ms-python.python # Python language support

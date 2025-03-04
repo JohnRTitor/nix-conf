@@ -80,6 +80,7 @@
       # emacs
 
       # IDEs #
+      /*
       android-studio
       (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [
         "github-copilot"
@@ -89,13 +90,14 @@
         "github-copilot"
         "nixidea"
       ])
-      zed-editor
+      */
+      zed-editor_git
 
       # whatsapp-for-linux
       libreoffice-fresh
       deluge # Torrent client
       shotwell # GNOME image editor
-      gnome-logs # GNOME log viewer
+      # gnome-logs # GNOME log viewer
       mission-center # Taskmanager clone
       warp # file transfer, also install android app
       clapper

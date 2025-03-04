@@ -24,14 +24,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    nix-flatpak.url = "github:gmodena/nix-flatpak/v0.5.1"; # Declarative Flatpak support for NixOS
+    nix-flatpak.url = "github:gmodena/nix-flatpak/latest"; # Declarative Flatpak support for NixOS
 
     ## DESKTOP ENVIRONMENT ##
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # Hyprland, a Wayland WM, use git submodules too
-    rose-pine-hyprcursor = {
-      url = "github:ndom91/rose-pine-hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     ## MISC PACKAGES ##
 

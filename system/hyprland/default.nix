@@ -153,6 +153,7 @@ in {
 
       ## Hypr ecosystem ##
       hyprcursor
+      rose-pine-hyprcursor # cursor theme
       pyprland # hyprland plugin, dropdown term, etc
       ags_1 # widgets popup
 
@@ -162,9 +163,7 @@ in {
     ])
     ++ [
       self.packages.${pkgs.system}.weather-python-script # weather script'
-    ] ++ (with pkgs-master; [
-      rose-pine-hyprcursor # cursor theme
-    ]);
+    ];
 
     systemd.user.services.hyprpolkitagent = {
       description = "Hyprpolkitagent, GUI Polkit agent for Hyprland";
