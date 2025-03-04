@@ -25,7 +25,7 @@ in {
     # But we are still allowing extensions to be installed from VS code GUI
     # disabling mutableExtensionsDir will mess up things
     extensions =
-      (with pkgs.vscode-marketplace; [
+      (with (pkgs.forVSCodeVersion config.programs.vscode.package.version).vscode-marketplace; [
         ## Language support ##
         jnoortheen.nix-ide # Nix language support
         ms-python.python # Python language support
@@ -39,7 +39,6 @@ in {
 
         ## GIT Tools ##
         github.copilot # GitHub Copilot
-        github.copilot-chat # GitHub Copilot Chat
         github.codespaces # GitHub Codespaces
         github.vscode-pull-request-github # GitHub Pull Requests
         github.vscode-github-actions # GitHub Actions
@@ -63,6 +62,9 @@ in {
         robbowen.synthwave-vscode # SynthWave '84 theme
         pkief.material-icon-theme # Material Icon Theme
         pkief.material-product-icons # Material Product Icons
+      ])
+      ++ (with pkgs.vscode-marketplace-release; [
+        github.copilot-chat # GitHub Copilot Chat, need the release version
       ])
       ++ (with pkgs.vscode-extensions; [
         ms-vscode.cpptools # C/C++ language support, only available via nixpkgs
