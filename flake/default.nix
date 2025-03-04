@@ -3,8 +3,7 @@
   lib,
   inputs,
   ...
-}:
-let
+}: let
   # bleeding edge packages from nixpkgs master branch, for packages that need immediate updates
   pkgs-master = import inputs.nixpkgs-master {
     system = config.myOptions.systemSettings.systemarch;
@@ -14,15 +13,14 @@ let
       android_sdk.accept_license = true;
     };
   };
-in
-{
+in {
   imports = [
     ./hosts.nix # NixOS hosts/desktop systems are are defined there
     ./options-definitions.nix
     ../preferences.nix
   ];
 
-  _module.args = { inherit pkgs-master; };
+  _module.args = {inherit pkgs-master;};
 
   # systems for which you want to build the `perSystem` attributes
   systems = lib.unique [

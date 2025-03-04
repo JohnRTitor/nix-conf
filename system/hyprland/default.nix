@@ -34,16 +34,19 @@ in {
           (prevAttrs.patches or [])
           ++ [
             ./add-env-vars-to-export.patch
-          ] ++ lib.optionals hyprlandLTO [
+          ]
+          ++ lib.optionals hyprlandLTO [
             ./enable-lto.patch
           ];
-        mesonFlags = prevAttrs.mesonFlags or []
+        mesonFlags =
+          prevAttrs.mesonFlags
+          or []
           ++ lib.optionals hyprlandLTO [
-          (lib.mesonBool "b_lto" true)
-          (lib.mesonOption "b_lto_threads" "12")
-          (lib.mesonOption "b_lto_mode" "thin")
-          (lib.mesonBool "b_thinlto_cache" true)
-        ];
+            (lib.mesonBool "b_lto" true)
+            (lib.mesonOption "b_lto_threads" "12")
+            (lib.mesonOption "b_lto_mode" "thin")
+            (lib.mesonBool "b_thinlto_cache" true)
+          ];
       });
     portalPackage = pkgs-hyprland.xdg-desktop-portal-hyprland;
   };
@@ -165,21 +168,21 @@ in {
       self.packages.${pkgs.system}.weather-python-script # weather script'
     ];
 
-    systemd.user.services.hyprpolkitagent = {
-      description = "Hyprpolkitagent, GUI Polkit agent for Hyprland";
+  systemd.user.services.hyprpolkitagent = {
+    description = "Hyprpolkitagent, GUI Polkit agent for Hyprland";
 
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+    wantedBy = ["graphical-session.target"];
+    wants = ["graphical-session.target"];
+    after = ["graphical-session.target"];
 
-      script = lib.getExe pkgs.hyprpolkitagent;
-      serviceConfig = {
-        Type = "simple";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
+    script = lib.getExe pkgs.hyprpolkitagent;
+    serviceConfig = {
+      Type = "simple";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
     };
+  };
 
   # Environment variables to start the session with
   environment.sessionVariables = {
