@@ -38,7 +38,7 @@
         include ${config.services.nginx.package}/conf/fastcgi.conf;
       '';
     };
-    root = "${self.packages.${pkgs.system}.adminer-pematon-with-adminer-theme}";
+    root = "${self.packages.${pkgs.system}.adminneo-with-theme}";
   };
 
   # PHP-FPM pool configuration

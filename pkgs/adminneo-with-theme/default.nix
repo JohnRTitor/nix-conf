@@ -3,7 +3,7 @@
   fetchFromGitHub,
 }:
 adminer-pematon.overrideAttrs (finalAttrs: oldAttrs: {
-  pname = oldAttrs.pname + "-with-adminer-theme";
+  pname = oldAttrs.pname + "-with-theme";
 
   adminerThemeVersion = "1.8.1";
   # https://github.com/pematon/adminer-theme

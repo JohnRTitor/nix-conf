@@ -4,7 +4,7 @@
   inputs,
   ...
 }:
-let 
+let
   # bleeding edge packages from nixpkgs master branch, for packages that need immediate updates
   pkgs-master = import inputs.nixpkgs-master {
     system = config.myOptions.systemSettings.systemarch;
@@ -14,7 +14,7 @@ let
       android_sdk.accept_license = true;
     };
   };
-in 
+in
 {
   imports = [
     ./hosts.nix # NixOS hosts/desktop systems are are defined there
@@ -45,7 +45,7 @@ in
     packages = {
       fhs-shell = pkgs.callPackage ../pkgs/fhs-shell.nix {};
       weather-python-script = pkgs.callPackage ../pkgs/weather-python-script.nix {};
-      adminer-pematon-with-adminer-theme = pkgs.callPackage ../pkgs/adminer-pematon-with-adminer-theme {};
+      adminneo-with-theme = pkgs.callPackage ../pkgs/adminneo-with-theme {};
     };
   };
 }
