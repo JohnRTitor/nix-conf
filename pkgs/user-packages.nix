@@ -91,7 +91,11 @@
         "nixidea"
       ])
       */
-      zed-editor_git
+
+      # FHS wrapped version of zed-editor
+      # Allows extensions to be run without patching
+      # As zed sometimes downloads its own binaries
+      (zed-editor_git.fhsWithPackages (pkgs: [pkgs.zlib pkgs.openssl]))
 
       # whatsapp-for-linux
       libreoffice-fresh

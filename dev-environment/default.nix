@@ -26,8 +26,12 @@
       ./mysql.nix
     ];
 
+  # Nix LD - allows runnning unpatched FHS binaries without a hitch
+  programs.nix-ld.enable = true;
+
+  # Controlled by preferences.nix
   services.nginx.enable = servicesSettings.nginx;
   services.nginx.package = pkgs.nginxQuic;
 
-  programs.java.enable = true;
+  # programs.java.enable = true;
 }
