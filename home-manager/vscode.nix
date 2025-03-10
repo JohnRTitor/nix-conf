@@ -105,7 +105,4 @@ in {
       "[markdown]"."editor.defaultFormatter" = "DavidAnson.vscode-markdownlint";
     };
   };
-  home.packages = with pkgs; [
-    nixd # Nix Language Server
-  ];
 }

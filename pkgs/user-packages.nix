@@ -92,10 +92,12 @@
       ])
       */
 
-      # FHS wrapped version of zed-editor
-      # Allows extensions to be run without patching
-      # As zed sometimes downloads its own binaries
-      (zed-editor_git.fhsWithPackages (pkgs: [pkgs.zlib pkgs.openssl]))
+      zed-editor_git
+
+      ## LSPs and formatters
+      nixd
+      nixfmt-rfc-style
+      package-version-server # Zed autodownloads this
 
       # whatsapp-for-linux
       libreoffice-fresh
