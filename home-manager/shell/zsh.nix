@@ -3,18 +3,18 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (import ./common.nix) commonSessionVariables commonRcExtra;
-in {
-  imports = [./zsh-plugins.nix];
+in
+{
+  imports = [ ./zsh-plugins.nix ];
 
   programs.zsh = {
     enable = true;
-    sessionVariables =
-      commonSessionVariables
-      // {
-        # Add custom session variables for zsh
-      };
+    sessionVariables = commonSessionVariables // {
+      # Add custom session variables for zsh
+    };
 
     autosuggestion.strategy = [
       "history"

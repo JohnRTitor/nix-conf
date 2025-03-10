@@ -4,7 +4,8 @@
   pkgs,
   servicesSettings,
   ...
-}: {
+}:
+{
   # Enable CUPS to print documents.
   services.printing = lib.mkIf servicesSettings.printing {
     enable = true;

@@ -1,6 +1,8 @@
-{...}: let
+{ ... }:
+let
   inherit (import ./common.nix) commonSessionVariables commonRcExtra;
-in {
+in
+{
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -9,11 +11,9 @@ in {
       + ''
         # Custom bashrc go here, type below this line
       '';
-    sessionVariables =
-      commonSessionVariables
-      // {
-        # Add custom session variables for bash
-      };
+    sessionVariables = commonSessionVariables // {
+      # Add custom session variables for bash
+    };
 
     shellAliases = {
       # set some aliases specific for bash

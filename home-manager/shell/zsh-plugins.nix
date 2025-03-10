@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   # Zsh plugins'
   programs.zsh.autosuggestion.enable = true; # enable autosuggestion plugin
   programs.zsh.antidote.enable = true; # Plugin manager

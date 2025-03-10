@@ -8,7 +8,8 @@
   pkgs-master,
   inputs,
   ...
-}: {
+}:
+{
   home.packages =
     (with pkgs; [
       # here is some command line tools I use frequently
@@ -81,15 +82,15 @@
 
       # IDEs #
       /*
-      android-studio
-      (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [
-        "github-copilot"
-        "nixidea"
-      ])
-      (jetbrains.plugins.addPlugins jetbrains.pycharm-professional [
-        "github-copilot"
-        "nixidea"
-      ])
+        android-studio
+        (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [
+          "github-copilot"
+          "nixidea"
+        ])
+        (jetbrains.plugins.addPlugins jetbrains.pycharm-professional [
+          "github-copilot"
+          "nixidea"
+        ])
       */
 
       zed-editor_git

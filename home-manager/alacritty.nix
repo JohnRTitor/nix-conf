@@ -3,7 +3,8 @@
   pkgs,
   userSettings,
   ...
-}: {
+}:
+{
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
   programs.alacritty.enable = true;
   programs.alacritty.settings = {
@@ -98,9 +99,10 @@
 
     terminal.shell = {
       program =
-        if (userSettings.shell == "zsh")
-        then "/run/current-system/sw/bin/zsh"
-        else "/run/current-system/sw/bin/bash";
+        if (userSettings.shell == "zsh") then
+          "/run/current-system/sw/bin/zsh"
+        else
+          "/run/current-system/sw/bin/bash";
     };
 
     window = {

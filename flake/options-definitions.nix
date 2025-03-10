@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   options.myOptions = {
     # ---- SYSTEM SETTINGS ---- #
     systemSettings = {
@@ -63,7 +64,10 @@
         description = "GPG key ID for Git operations";
       };
       shell = lib.mkOption {
-        type = lib.types.enum ["zsh" "bash"];
+        type = lib.types.enum [
+          "zsh"
+          "bash"
+        ];
         default = "zsh";
         description = "User default shell";
       };

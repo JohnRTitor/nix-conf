@@ -3,7 +3,8 @@
   systemSettings,
   servicesSettings,
   ...
-}: {
+}:
+{
   imports =
     [
       ./nix-settings.nix
@@ -35,14 +36,14 @@
       ./shell
     ]
     ++
-    # Configure secure boot with lanzaboote, if secureboot is enabled
-    lib.optionals (systemSettings.secureboot) [./boot/lanzaboote.nix]
+      # Configure secure boot with lanzaboote, if secureboot is enabled
+      lib.optionals (systemSettings.secureboot) [ ./boot/lanzaboote.nix ]
     ++
-    # Import if Virtualization is enabled
-    lib.optionals (servicesSettings.virtualisation) [./virtualisation.nix]
+      # Import if Virtualization is enabled
+      lib.optionals (servicesSettings.virtualisation) [ ./virtualisation.nix ]
     ++
-    # Import if laptop mode is enabled
-    lib.optionals (systemSettings.laptop) [./power.nix];
+      # Import if laptop mode is enabled
+      lib.optionals (systemSettings.laptop) [ ./power.nix ];
 
-  system.nixos.tags = lib.mkDefault ["cachyos"];
+  system.nixos.tags = lib.mkDefault [ "cachyos" ];
 }

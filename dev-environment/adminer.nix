@@ -8,7 +8,8 @@
   pkgs,
   servicesSettings,
   ...
-}: {
+}:
+{
   # Nginx configuration for adminer.local
   # but for this to work, adminer.local must point to "127.0.0.1"
   # via networking.extraHosts, you should add to ../system/network.nix
@@ -55,6 +56,6 @@
       "pm.max_spare_servers" = 3;
       "pm.max_requests" = 500;
     };
-    phpEnv."PATH" = lib.makeBinPath [pkgs.php];
+    phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
 }

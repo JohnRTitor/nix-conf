@@ -4,7 +4,8 @@
   pkgs,
   userSettings,
   ...
-}: {
+}:
+{
   # Enable Virt Manager
   programs.virt-manager.enable = true;
   virtualisation.libvirtd = {
@@ -28,5 +29,5 @@
 
   # Enable Virtualbox
   virtualisation.virtualbox.host.enable = true;
-  boot.extraModulePackages = with config.boot.kernelPackages; [virtualbox];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
 }

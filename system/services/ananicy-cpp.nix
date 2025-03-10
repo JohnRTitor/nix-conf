@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # Enable Ananicy CPP for better system performance
   services.ananicy = {
     enable = true;

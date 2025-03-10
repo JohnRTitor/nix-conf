@@ -3,7 +3,8 @@
   pkgs,
   userSettings,
   ...
-}: {
+}:
+{
   programs.git = {
     # basic configuration of git, please change to your own
     enable = true;

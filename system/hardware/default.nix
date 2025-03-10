@@ -3,15 +3,14 @@
   lib,
   servicesSettings,
   ...
-}: {
-  imports =
-    [
-      ./audio.nix
-      ./bluetooth.nix
-      ./disk.nix
-      ./graphics.nix
-    ]
-    ++ lib.optionals servicesSettings.tpm [./tpm.nix];
+}:
+{
+  imports = [
+    ./audio.nix
+    ./bluetooth.nix
+    ./disk.nix
+    ./graphics.nix
+  ] ++ lib.optionals servicesSettings.tpm [ ./tpm.nix ];
 
   services.ucodenix = {
     enable = true;

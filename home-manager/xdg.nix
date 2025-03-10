@@ -1,9 +1,11 @@
 # This config file is used to configure the XDG user directories and MIME types
 # which is responsible for opening specific files, links in specific apps
 # Imported in home manager ../home.nix
-{config, ...}: let
+{ config, ... }:
+let
   homeDir = config.home.homeDirectory;
-in {
+in
+{
   xdg.enable = true;
   xdg.userDirs = {
     enable = true;
@@ -53,7 +55,8 @@ in {
     "application/xml" = "org.gnome.TextEditor.desktop;";
     "application/x-executable" = "kitty-open.desktop;Alacritty.desktop;";
     # Open directory with apps
-    "inode/directory" = "org.gnome.Nautilus.desktop;code.desktop;thunar.desktop;nnn.desktop;org.gnome.baobab.desktop;";
+    "inode/directory" =
+      "org.gnome.Nautilus.desktop;code.desktop;thunar.desktop;nnn.desktop;org.gnome.baobab.desktop;";
     # Telegram
     "x-scheme-handler/tg" = "org.telegram.desktop.desktop;";
     "x-xdg-protocol-tg" = "org.telegram.desktop.desktop;";

@@ -9,7 +9,8 @@
   pkgs-master,
   inputs,
   ...
-}: {
+}:
+{
   environment.systemPackages =
     (with pkgs; [
       # System Packages

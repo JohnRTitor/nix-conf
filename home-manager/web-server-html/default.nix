@@ -7,7 +7,8 @@
   pkgs,
   self,
   ...
-}: {
+}:
+{
   home.file = {
     "Website-Instances/index.php".source = ./index.php;
     "Website-Instances/logos/nginx-logo.png".source = ./logos/nginx-logo.png;

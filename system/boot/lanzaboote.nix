@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   # Bootloader - disable systemd in favor of lanzaboote
   boot.loader.systemd-boot.enable = lib.mkForce false;
 

@@ -8,12 +8,12 @@ let
   xhost = lib.getExe pkgs.xorg.xhost;
   gparted = lib.getExe pkgs.gparted;
 in
-  pkgs.writeShellScriptBin "gparted" ''
-    if [[ $EUID -ne 0 ]]; then
-      echo "Should be launched as root! Exiting......."
-      exit 1
-    fi
-    ${xhost} + && \
-    ${gparted} "$@" && \
-    ${xhost} -
-  ''
+pkgs.writeShellScriptBin "gparted" ''
+  if [[ $EUID -ne 0 ]]; then
+    echo "Should be launched as root! Exiting......."
+    exit 1
+  fi
+  ${xhost} + && \
+  ${gparted} "$@" && \
+  ${xhost} -
+''

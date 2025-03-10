@@ -2,9 +2,11 @@
 # You can add custom aliases, session variables, and other shell configurations here
 # NOTE: related global shell options like programs.zsh.enable must also be added to configuration.nix
 # Else files may not be sourced properly
-{...}: let
+{ ... }:
+let
   inherit (import ./common.nix) commonAliases;
-in {
+in
+{
   imports = [
     ./bash.nix
     ./zsh.nix

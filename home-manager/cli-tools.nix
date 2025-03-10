@@ -1,9 +1,10 @@
 /*
-Configure CLI tools here
-Bash Integration is disabled for some as they alias to existing commands
-And scripts may not work the high customised setup
+  Configure CLI tools here
+  Bash Integration is disabled for some as they alias to existing commands
+  And scripts may not work the high customised setup
 */
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # A better cat command
   programs.bat.enable = true;
 
@@ -46,15 +47,15 @@ And scripts may not work the high customised setup
   ];
 
   /*
-  # nnn, the terminal file manager
-  programs.nnn = {
-    enable = true;
-    package = pkgs.nnn.override {withNerdIcons = true;};
-    extraPackages = with pkgs; [
-      ffmpegthumbnailer
-      mediainfo
-      sxiv
-    ];
-  };
+    # nnn, the terminal file manager
+    programs.nnn = {
+      enable = true;
+      package = pkgs.nnn.override {withNerdIcons = true;};
+      extraPackages = with pkgs; [
+        ffmpegthumbnailer
+        mediainfo
+        sxiv
+      ];
+    };
   */
 }

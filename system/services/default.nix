@@ -7,7 +7,8 @@
   systemSettings,
   servicesSettings,
   ...
-}: {
+}:
+{
   imports =
     [
       ./ananicy-cpp.nix
@@ -15,15 +16,15 @@
       ./gnome-keyring.nix
       ./gnupg-ssh.nix
     ]
-    ++ lib.optionals servicesSettings.containers [./containers.nix]
-    ++ lib.optionals servicesSettings.apparmor [./apparmor.nix];
+    ++ lib.optionals servicesSettings.containers [ ./containers.nix ]
+    ++ lib.optionals servicesSettings.apparmor [ ./apparmor.nix ];
 
   ## Essential services ##
   # Enable xserver with xwayland
   services.xserver = {
     enable = true;
     # don't need xterm
-    excludePackages = [pkgs.xterm];
+    excludePackages = [ pkgs.xterm ];
   };
 
   # Enable scx extra schedulers, only available for linux-cachyos
@@ -50,19 +51,19 @@
   };
 
   /*
-  # Not used anywhere
-  xdg.terminal-exec = {
-    enable = true;
-    settings = {
-      default = [
-        "${pkgs.kitty}/share/applications/kitty.desktop"
-      ];
-      GNOME = [
-        "com.raggesilver.BlackBox.desktop"
-        "org.gnome.Terminal.desktop"
-      ];
+    # Not used anywhere
+    xdg.terminal-exec = {
+      enable = true;
+      settings = {
+        default = [
+          "${pkgs.kitty}/share/applications/kitty.desktop"
+        ];
+        GNOME = [
+          "com.raggesilver.BlackBox.desktop"
+          "org.gnome.Terminal.desktop"
+        ];
+      };
     };
-  };
   */
 
   # XDG portal paths to link if useUserPackages=true is enabled in home-manager (flake.nix)

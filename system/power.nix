@@ -1,6 +1,7 @@
 # Configure power profile and modes
 # Only needed for laptops
-{...}: {
+{ ... }:
+{
   services.tlp = {
     enable = true;
     settings = {

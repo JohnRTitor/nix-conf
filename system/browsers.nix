@@ -4,17 +4,18 @@
   pkgs-master,
   inputs,
   ...
-}: {
+}:
+{
   # Enable Firefox Wayland
   /*
-  programs.firefox = {
-    enable = true;
-    package = pkgs.firefox-wayland;
-    policies = {
-      DontCheckDefaultBrowser = true; # disable the annoying popup at startup
-      HardwareAcceleration = true;
+    programs.firefox = {
+      enable = true;
+      package = pkgs.firefox-wayland;
+      policies = {
+        DontCheckDefaultBrowser = true; # disable the annoying popup at startup
+        HardwareAcceleration = true;
+      };
     };
-  };
   */
 
   environment.systemPackages = with pkgs; [
@@ -36,29 +37,31 @@
         "--enable-zero-copy"
         "--ignore-gpu-blocklist"
         # "--use-vulkan"
-        "--enable-features=${lib.concatStringsSep "," [
-          "ParallelDownloading" # Faster downloads
-          "VaapiVideoEncoder" # Video encoding support
-          "CanvasOopRasterization"
-          "UseDMSAAForTiles"
-          "UseGpuSchedulerDfs"
-          "UIEnableSharedImageCacheForGpu" # Shared image cache
-          "UseClientGmbInterface" # new ClientGmb interface to create GpuMemoryBuffers
-          # "SkiaGraphite"
-          # "EnableDrDc"
-          # "Vulkan"
-          # "VulkanFromANGLE"
-          "PostQuantumKyber" # hybrid kyber for enhanced TLS security
-          "PulseaudioLoopbackForCast" # Audio support for casting and screen sharing
-          "PulseaudioLoopbackForScreenShare"
-          "ChromeWideEchoCancellation" # noise cancellation for WebRTC
-          "DesktopScreenshots"
-          "FluentOverlayScrollbar" # New scrollbar
-          "FluentScrollbar"
-          "EnableTabMuting" # Mute tabs from tab context
-          "GlobalMediaControlsUpdatedUI"
-          # New media controls, with PIP
-        ]}"
+        "--enable-features=${
+          lib.concatStringsSep "," [
+            "ParallelDownloading" # Faster downloads
+            "VaapiVideoEncoder" # Video encoding support
+            "CanvasOopRasterization"
+            "UseDMSAAForTiles"
+            "UseGpuSchedulerDfs"
+            "UIEnableSharedImageCacheForGpu" # Shared image cache
+            "UseClientGmbInterface" # new ClientGmb interface to create GpuMemoryBuffers
+            # "SkiaGraphite"
+            # "EnableDrDc"
+            # "Vulkan"
+            # "VulkanFromANGLE"
+            "PostQuantumKyber" # hybrid kyber for enhanced TLS security
+            "PulseaudioLoopbackForCast" # Audio support for casting and screen sharing
+            "PulseaudioLoopbackForScreenShare"
+            "ChromeWideEchoCancellation" # noise cancellation for WebRTC
+            "DesktopScreenshots"
+            "FluentOverlayScrollbar" # New scrollbar
+            "FluentScrollbar"
+            "EnableTabMuting" # Mute tabs from tab context
+            "GlobalMediaControlsUpdatedUI"
+            # New media controls, with PIP
+          ]
+        }"
       ];
     })
     tor-browser

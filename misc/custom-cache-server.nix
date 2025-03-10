@@ -3,12 +3,13 @@
 # NOT USED BY DEFAULT
 # ONLY KEPT FOR REFERENCE
 # SINCE IT IS DANEROUS TO USE AND CAN LEAD TO SYSTEM BREAKAGE
-{userSettings, ...}: {
+{ userSettings, ... }:
+{
   nix.settings = {
     # THIS IS REQUIRED BUT ALSO DANGEROUS
     # main user has access to nix store
     # THIS IS EQUIVALENT TO GIVING ROOT ACCESS TO THE MAIN USER
-    trusted-users = [userSettings.username];
+    trusted-users = [ userSettings.username ];
 
     substituters = [
       # cache mirror located in China
@@ -21,7 +22,7 @@
       "https://cache.nixos.org"
     ];
 
-    trusted-public-keys = ["cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="];
+    trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
   };
 
   # DONT USE THIS UNLESS YOU KNOW WHAT YOU ARE DOING

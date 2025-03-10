@@ -5,15 +5,15 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   # extract package pname for each package in the list of all installed packages, then put them in a list
   packagesList = map (x: x.pname) (config.home.packages ++ osConfig.environment.systemPackages);
-in {
+in
+{
   programs.vscode = {
     enable = true;
-    package = (
-      pkgs.callPackage ../pkgs/vscode-repackaged.nix {}
-    );
+    package = (pkgs.callPackage ../pkgs/vscode-repackaged.nix { });
   };
 
   # Default profile
@@ -80,7 +80,8 @@ in {
 
       "git.confirmSync" = false; # Do not ask for confirmation when syncing
       "git.autofetch" = true; # Periodically fetch from remotes
-      "editor.fontFamily" = "'Fira Code Nerd Font', 'Inconsolata LGC Nerd Font', 'Droid Sans Mono', 'monospace'";
+      "editor.fontFamily" =
+        "'Fira Code Nerd Font', 'Inconsolata LGC Nerd Font', 'Droid Sans Mono', 'monospace'";
       # fonts are defined in the ../../fonts.nix file
       "editor.fontLigatures" = true;
       "terminal.integrated.fontFamily" = "'JetBrains Nerd Font', 'Inconsolata LGC Nerd Font', monospace";
@@ -91,11 +92,12 @@ in {
 
       # Check if nixd or nil is installed and set the server accordingly
       "nix.serverPath" =
-        if (builtins.elem "nixd" packagesList)
-        then "nixd"
-        else if (builtins.elem "nil" packagesList)
-        then "nil"
-        else null;
+        if (builtins.elem "nixd" packagesList) then
+          "nixd"
+        else if (builtins.elem "nil" packagesList) then
+          "nil"
+        else
+          null;
 
       "dev.containers.dockerPath" = "podman"; # Use podman as the docker path
 

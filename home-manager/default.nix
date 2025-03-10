@@ -9,7 +9,8 @@
   userSettings,
   servicesSettings,
   ...
-}: {
+}:
+{
   imports =
     [
       # system packages are imported in ./configuration.nix
@@ -31,8 +32,8 @@
       # Nginx global config is located in ../dev-environment/nginx.nix
       ./web-server-html
     ]
-    ++ lib.optionals osConfig.programs.thunar.enable [./thunar.nix]
-    ++ lib.optionals servicesSettings.virtualisation [./virt-manager.nix];
+    ++ lib.optionals osConfig.programs.thunar.enable [ ./thunar.nix ]
+    ++ lib.optionals servicesSettings.virtualisation [ ./virt-manager.nix ];
 
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;

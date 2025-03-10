@@ -1,5 +1,6 @@
 # This conf file is used to configure fonts
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # FONTS
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [

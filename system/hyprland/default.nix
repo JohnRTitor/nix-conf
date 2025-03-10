@@ -9,14 +9,13 @@
   pkgs-master,
   inputs,
   ...
-}: let
+}:
+let
   hyprlandFlake = true;
   hyprlandLTO = true;
-  pkgs-hyprland =
-    if hyprlandFlake
-    then inputs.hyprland.packages.${pkgs.system}
-    else pkgs;
-in {
+  pkgs-hyprland = if hyprlandFlake then inputs.hyprland.packages.${pkgs.system} else pkgs;
+in
+{
   imports = [
     ./session.nix
   ];
@@ -27,32 +26,30 @@ in {
     package =
       (pkgs-hyprland.hyprland.override {
         stdenv = pkgs.clangStdenv;
-      })
-      .overrideAttrs
-      (prevAttrs: {
-        patches =
-          (prevAttrs.patches or [])
-          ++ [
-            ./add-env-vars-to-export.patch
-          ]
-          ++ lib.optionals hyprlandLTO [
-            ./enable-lto.patch
-          ];
-        mesonFlags =
-          prevAttrs.mesonFlags
-          or []
-          ++ lib.optionals hyprlandLTO [
-            (lib.mesonBool "b_lto" true)
-            (lib.mesonOption "b_lto_threads" "12")
-            (lib.mesonOption "b_lto_mode" "thin")
-            (lib.mesonBool "b_thinlto_cache" true)
-          ];
-      });
+      }).overrideAttrs
+        (prevAttrs: {
+          patches =
+            (prevAttrs.patches or [ ])
+            ++ [
+              ./add-env-vars-to-export.patch
+            ]
+            ++ lib.optionals hyprlandLTO [
+              ./enable-lto.patch
+            ];
+          mesonFlags =
+            prevAttrs.mesonFlags or [ ]
+            ++ lib.optionals hyprlandLTO [
+              (lib.mesonBool "b_lto" true)
+              (lib.mesonOption "b_lto_threads" "12")
+              (lib.mesonOption "b_lto_mode" "thin")
+              (lib.mesonBool "b_thinlto_cache" true)
+            ];
+        });
     portalPackage = pkgs-hyprland.xdg-desktop-portal-hyprland;
   };
 
   # hyprland portal is already included, gtk is also needed for compatibility
-  xdg.portal.extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+  xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
 
   ## QT theming ##
   qt = {
@@ -171,9 +168,9 @@ in {
   systemd.user.services.hyprpolkitagent = {
     description = "Hyprpolkitagent, GUI Polkit agent for Hyprland";
 
-    wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
-    after = ["graphical-session.target"];
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
 
     script = lib.getExe pkgs.hyprpolkitagent;
     serviceConfig = {

@@ -5,7 +5,8 @@
   pkgs-master,
   servicesSettings,
   ...
-}: {
+}:
+{
   # Configure the build environment
 
   # Containers and adb should be available by default
@@ -19,7 +20,7 @@
       # ./deprecated/c-toolchain.nix
       # ./deprecated/php.nix
     ]
-    ++ lib.optionals servicesSettings.adb [./adb-toolchain.nix]
+    ++ lib.optionals servicesSettings.adb [ ./adb-toolchain.nix ]
     ++ lib.optionals servicesSettings.nginx [
       ./localhost-website.nix
       ./adminer.nix

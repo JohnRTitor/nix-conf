@@ -7,7 +7,8 @@
   pkgs,
   userSettings,
   ...
-}: {
+}:
+{
   # Nginx virtual host configuration for localhost
   services.nginx.virtualHosts."localhost" = {
     root = "/var/www/localhost-server";
@@ -44,7 +45,7 @@
       "pm.max_spare_servers" = 3;
       "pm.max_requests" = 500;
     };
-    phpEnv."PATH" = lib.makeBinPath [pkgs.php];
+    phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
   };
 
   # Bind mount the website instances directory
@@ -53,6 +54,6 @@
   fileSystems."/var/www/localhost-server" = {
     device = "/home/masum/Website-Instances";
     fsType = "none";
-    options = ["bind"];
+    options = [ "bind" ];
   };
 }

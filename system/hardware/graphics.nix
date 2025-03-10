@@ -4,9 +4,11 @@
   pkgs,
   pkgs-master,
   ...
-}: let
+}:
+let
   nur-amdgpu = pkgs.nur.repos.materus;
-in {
+in
+{
   hardware.amdgpu = {
     initrd.enable = true;
     # disabled to use a mix of pocl and rocm below
@@ -14,21 +16,21 @@ in {
   };
 
   /*
-  # Enabling AMDVLK autodisables RADV
-  # RADV is better
-  # AMDVLK is buggy and VK implementation is not good
-  hardware.amdgpu.amdvlk = {
-    enable = true;
-    support32Bit.enable = true;
-    supportExperimental.enable = true;
-    settings = {
-      AllowVkPipelineCachingToDisk = 1;
-      ShaderCacheMode = 1;
-      IFH = 0;
-      EnableVmAlwaysValid = 1;
-      IdleAfterSubmitGpuMask = 0;
+    # Enabling AMDVLK autodisables RADV
+    # RADV is better
+    # AMDVLK is buggy and VK implementation is not good
+    hardware.amdgpu.amdvlk = {
+      enable = true;
+      support32Bit.enable = true;
+      supportExperimental.enable = true;
+      settings = {
+        AllowVkPipelineCachingToDisk = 1;
+        ShaderCacheMode = 1;
+        IFH = 0;
+        EnableVmAlwaysValid = 1;
+        IdleAfterSubmitGpuMask = 0;
+      };
     };
-  };
   */
 
   # AMDGPU-PRO firmware
@@ -66,11 +68,11 @@ in {
     (with pkgs; [
       ## GRAPHICS UTILS ##
       /*
-         NOT NEEDED UNLESS WE NEED TESTING
-      clinfo # OpenCL hardware information
-      libva-utils # libva graphics library tools
-      vdpauinfo # vdpau graphics library tools
-      vulkan-tools # vulkan graphics library tools
+           NOT NEEDED UNLESS WE NEED TESTING
+        clinfo # OpenCL hardware information
+        libva-utils # libva graphics library tools
+        vdpauinfo # vdpau graphics library tools
+        vulkan-tools # vulkan graphics library tools
       */
     ])
     ++ (with nur-amdgpu; [
@@ -79,7 +81,7 @@ in {
 
   # Use modesetting driver for Xorg, its better and updated
   # AMDGPU graphics driver for Xorg is deprecated
-  services.xserver.videoDrivers = ["modesetting"];
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   # Graphics environment variables
   environment.sessionVariables = {

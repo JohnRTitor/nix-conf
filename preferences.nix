@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   myOptions = {
     # ---- SYSTEM SETTINGS ---- #
     systemSettings = {

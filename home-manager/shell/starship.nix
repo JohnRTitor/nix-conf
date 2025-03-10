@@ -8,7 +8,8 @@ let
     left = "";
     right = "";
   };
-in {
+in
+{
   programs.starship = {
     enable = true;
     settings = {

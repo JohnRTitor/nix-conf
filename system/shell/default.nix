@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # include zsh support, bash is enabled by default
   # this sources the necassary files for zsh
   programs.zsh.enable = true;
@@ -12,5 +13,5 @@
   };
 
   # devenv a newer way for nix-shell
-  environment.systemPackages = [pkgs.devenv];
+  environment.systemPackages = [ pkgs.devenv ];
 }
