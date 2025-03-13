@@ -165,20 +165,11 @@ in
       self.packages.${pkgs.system}.weather-python-script # weather script'
     ];
 
+  systemd.packages = [ pkgs.hyprpolkitagent ];
   systemd.user.services.hyprpolkitagent = {
-    description = "Hyprpolkitagent, GUI Polkit agent for Hyprland";
-
     wantedBy = [ "graphical-session.target" ];
     wants = [ "graphical-session.target" ];
     after = [ "graphical-session.target" ];
-
-    script = lib.getExe pkgs.hyprpolkitagent;
-    serviceConfig = {
-      Type = "simple";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
   };
 
   # Environment variables to start the session with

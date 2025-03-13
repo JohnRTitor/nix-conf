@@ -39,7 +39,7 @@ in
     }:
     {
       # Setting this option, allows formatting via `nix fmt`
-      formatter = pkgs.nixfmt-nixfmt-rfc-style;
+      formatter = pkgs.nixfmt-rfc-style;
 
       # Packages defined in the flake, derivations usually reside in `../pkgs/`
       # Use `nix flake show` to see the list of packages
