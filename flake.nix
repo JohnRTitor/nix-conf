@@ -19,16 +19,12 @@
       url = "github:nix-community/home-manager/master"; # Home Manager, manage user configuration and home directories like a pro
       inputs.nixpkgs.follows = "nixpkgs"; # Must follow nixpkgs, else will cause conflicts with the system
     };
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote"; # Lanzaboote module used for Secure-Boot implementation
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
+    # Lanzaboote module used for Secure-Boot implementation, don't add follows nixpkgs, might cause issues with package versions and boot experience
+    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest"; # Declarative Flatpak support for NixOS
 
     ## DESKTOP ENVIRONMENT ##
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # Hyprland, a Wayland WM, use git submodules too
-
     ## MISC PACKAGES ##
 
     ucodenix.url = "github:e-tho/ucodenix";
@@ -39,6 +35,7 @@
     nur = {
       url = "github:nix-community/NUR"; # Nix User Repository, for community packages
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./flake ]; };
