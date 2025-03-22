@@ -1,0 +1,46 @@
+name: Cache Stuff
+
+on: [push, workflow_dispatch]
+
+env:
+  NIX_HOSTNAME: "Ainz-NIX"
+  PKGS_LIST: "programs.hyprland.package programs.hyprland.portalPackage services.ananicy.package programs.appimage.package"
+  CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+jobs:
+  cache:
+    name: Cache Stuff
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: prepare /nix
+        shell: bash
+        env:
+          CLEAN: "true"
+          BTRFS: "true"
+        run: |
+          curl -o prepare.sh https://raw.githubusercontent.com/JohnRTitor/nixpkgs-review-gha/refs/heads/main/helpers/prepare.sh
+          bash prepare.sh
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+        with:
+          install_url: https://nixos.org/nix/install
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+            build-dir = /nix/var
+
+      - uses: actions/checkout@v4
+
+      - name: Install required packages
+        run: |
+          nix profile install nixpkgs#cachix
+
+      - name: Build Packages and push to Cachix
+        run: |
+          for PKG in $PKGS_LIST; do
+            nix build .#nixosConfigurations.$NIX_HOSTNAME.config.$PKG --print-out-paths | cachix push johnrtitor
+          done
