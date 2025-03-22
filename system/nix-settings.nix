@@ -36,7 +36,7 @@
   nixpkgs.config.android_sdk.accept_license = true;
 
   programs.ssh.knownHosts."darwin-build-box.nix-community.org".publicKey =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFz8FXSVEdf8FvDMfboxhB5VjSe7y2WgSa09q1L4t099";
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKMHhlcn7fUpUuiOFeIhDqBzBNFsbNqq+NpzuGX3e6zv";
 
   nix = {
     distributedBuilds = true;
@@ -44,7 +44,7 @@
       {
         # https://nix-community.org/community-builder/
         hostName = "darwin-build-box.nix-community.org";
-        maxJobs = 64;
+        maxJobs = 6;
         sshKey = "/root/.ssh/id_ed25519_nix_com";
         sshUser = "johnrtitor";
         systems = [
