@@ -1,8 +1,8 @@
 {
-  adminer-pematon,
+  adminneo,
   fetchFromGitHub,
 }:
-adminer-pematon.overrideAttrs (
+adminneo.overrideAttrs (
   finalAttrs: oldAttrs: {
     pname = oldAttrs.pname + "-with-theme";
 

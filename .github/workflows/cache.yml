@@ -4,8 +4,18 @@ on: [push, workflow_dispatch]
 
 env:
   NIX_HOSTNAME: "Ainz-NIX"
-  PKGS_LIST: "programs.hyprland.package programs.hyprland.portalPackage services.ananicy.package programs.appimage.package"
-  CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
+  NIXOS_ATTRS_LIST: >
+    programs.hyprland.package
+    programs.hyprland.portalPackage
+    services.ananicy.package
+    programs.appimage.package
+    boot.kernelPackages.kernel
+  CACHIX_AUTH_TOKEN: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+  CACHIX_CACHE_NAME: "johnrtitor"
+  REQUIRED_PACKAGES: >
+    cachix
+    jq
+    findutils
 
 jobs:
   cache:
@@ -37,10 +47,18 @@ jobs:
 
       - name: Install required packages
         run: |
-          nix profile install nixpkgs#cachix
+          for PKG in $REQUIRED_PACKAGES; do
+            nix profile install nixpkgs#$PKG
+          done
 
       - name: Build Packages and push to Cachix
         run: |
-          for PKG in $PKGS_LIST; do
-            nix build .#nixosConfigurations.$NIX_HOSTNAME.config.$PKG --print-out-paths | cachix push johnrtitor
+          # Build packages defined in this flake
+          nix flake show --json | jq  '.packages."x86_64-linux"|keys[]' | xargs -I {} sh -c '
+            nix build .#{} --print-out-paths | xargs cachix push $CACHIX_CACHE_NAME
+          '
+
+          # Build NixOS configuration attributes
+          for ATTR in $NIXOS_ATTRS_LIST; do
+            nix build .#nixosConfigurations.$NIX_HOSTNAME.config.$ATTR --print-out-paths | cachix push $CACHIX_CACHE_NAME
           done
