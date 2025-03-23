@@ -52,13 +52,20 @@ jobs:
           done
 
       - name: Build Packages and push to Cachix
+        shell: bash
         run: |
-          # Build packages defined in this flake
-          nix flake show --json | jq  '.packages."x86_64-linux"|keys[]' | xargs -I {} sh -c '
-            nix build .#{} --print-out-paths | xargs cachix push $CACHIX_CACHE_NAME
-          '
+          echo "::notice::Fetching list of packages to build"
 
-          # Build NixOS configuration attributes
+          # Get a list of packages defined in this flake
+          PKGS_LIST=$(nix flake show --json | jq -r '.packages."x86_64-linux" | keys | join(" ")')
+
+          # Add NixOS configuration attributes
           for ATTR in $NIXOS_ATTRS_LIST; do
-            nix build .#nixosConfigurations.$NIX_HOSTNAME.config.$ATTR --print-out-paths | cachix push $CACHIX_CACHE_NAME
+            PKGS_LIST+=" nixosConfigurations.$NIX_HOSTNAME.config.$ATTR"
+          done
+
+          echo "::notice::Starting package build and cache push"
+          for PKG in $PKGS_LIST; do
+            echo "::notice::Building package $PKG"
+            nix build .#$PKG --print-out-paths | cachix push $CACHIX_CACHE_NAME
           done
