@@ -109,15 +109,12 @@ in
       pamixer
       pavucontrol # audio control
       playerctl # media player control
-      # POLKIT service is manually started
-      # as defined in Hyprland-Dots repo
       rofi-wayland # app launcher
       slurp # screenshots
       swappy # screenshots
       swaynotificationcenter # notification daemon
       swww # wallpaper daemon
       wallust # pywal alternative, graphical pallete generator
-      wlsunset # for night mode
       wl-clipboard # clipboard manager
       wlogout # logout dialog
       yad
@@ -153,15 +150,20 @@ in
 
       ## Hypr ecosystem ##
       hyprcursor
+      hyprsunset # for night mode
       rose-pine-hyprcursor # cursor theme
-      pyprland # hyprland plugin, dropdown term, etc
       ags_1 # widgets popup
 
       ## MONITORING TOOLS ##
       btop # for CPU, RAM, and Disk monitoring
       nvtopPackages.amd # for AMD GPUs
+
+      ## NEEDED FOR Hyprland-Dots ##
+      bc
+      pciutils
     ])
     ++ [
+      pkgs-master.pyprland # hyprland plugin, dropdown term, etc
       self.packages.${pkgs.system}.weather-python-script # weather script'
     ];
 
