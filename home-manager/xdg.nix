@@ -37,7 +37,7 @@ in
   # Chrome PWAs are located in ~/.local/share/applications/
   xdg.mimeApps.defaultApplications = {
     "text/html" = "google-chrome.desktop";
-    "inode/directory" = "org.gnome.Nautilus.desktop";
+    "inode/directory" = "nemo.desktop";
     "application/pdf" = "org.gnome.Evince.desktop";
     "x-scheme-handler/http" = "google-chrome.desktop";
     "x-scheme-handler/https" = "google-chrome.desktop";
@@ -48,15 +48,15 @@ in
   };
   xdg.mimeApps.associations.added = {
     # Text files
-    "text/plain" = "org.gnome.TextEditor.desktop;";
-    "text/x-python" = "org.gnome.TextEditor.desktop;";
-    "application/x-shellscript" = "org.gnome.TextEditor.desktop;";
-    "application/json" = "org.gnome.TextEditor.desktop;code.desktop;";
+    "text/plain" = "org.gnome.TextEditor.desktop;dev.zed.Zed.desktop;";
+    "text/x-python" = "org.gnome.TextEditor.desktop;dev.zed.Zed.desktop;";
+    "application/x-shellscript" = "org.gnome.TextEditor.desktop;dev.zed.Zed.desktop;";
+    "application/json" = "org.gnome.TextEditor.desktop;dev.zed.Zed.desktop;code.desktop;";
     "application/xml" = "org.gnome.TextEditor.desktop;";
     "application/x-executable" = "kitty-open.desktop;Alacritty.desktop;";
     # Open directory with apps
     "inode/directory" =
-      "org.gnome.Nautilus.desktop;code.desktop;thunar.desktop;nnn.desktop;org.gnome.baobab.desktop;";
+      "nemo.desktop;org.gnome.Nautilus.desktop;dev.zed.Zed.desktop;code.desktop;thunar.desktop;nnn.desktop;org.gnome.baobab.desktop;";
     # Telegram
     "x-scheme-handler/tg" = "org.telegram.desktop.desktop;";
     "x-xdg-protocol-tg" = "org.telegram.desktop.desktop;";

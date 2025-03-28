@@ -18,7 +18,7 @@ in
 {
   imports = [
     ./hosts.nix # NixOS hosts/desktop systems are are defined there
-    ./options-definitions.nix
+    ../lib/options-definitions.nix
     ../preferences.nix
   ];
 

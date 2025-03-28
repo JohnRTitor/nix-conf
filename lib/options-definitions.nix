@@ -83,5 +83,16 @@
       printing = lib.mkEnableOption "Printing";
       apparmor = lib.mkEnableOption "AppArmor";
     };
+
+    programsSettings = {
+      fileManager = lib.mkOption {
+        type = lib.types.enum [
+          "nautilus"
+          "nemo"
+        ];
+        default = "nautilus";
+        description = "File manager";
+      };
+    };
   };
 }

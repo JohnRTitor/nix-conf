@@ -33,5 +33,9 @@
       printing = false;
       apparmor = false;
     };
+
+    programsSettings = {
+      fileManager = "nemo";
+    };
   };
 }

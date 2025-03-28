@@ -18,6 +18,7 @@ in
 {
   imports = [
     ./session.nix
+    ./file-manager.nix
   ];
 
   # Enable Hyprland Window Manager
@@ -84,14 +85,7 @@ in
   };
 
   services.gnome = {
-    sushi.enable = true; # quick previewer for nautilus
     glib-networking.enable = true; # network extensions libs
-  };
-
-  services.tumbler.enable = true; # thumbnailer service for nauitlus
-  programs.nautilus-open-any-terminal = {
-    enable = true;
-    terminal = "kitty";
   };
 
   ## Configure essential packages ##
@@ -142,7 +136,6 @@ in
       xorg.xhost # needed for some packages running x11 like gparted
 
       ## GNOME Suite ##
-      nautilus # file manager
       gnome-text-editor # text editor
       shotcut # video editor
       gnome-system-monitor # system monitor

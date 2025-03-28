@@ -19,4 +19,6 @@
     })
   ];
   boot.blacklistedKernelModules = [ "k10temp" ];
+
+  environment.systemPackages = [ pkgs-master.zenmonitor ];
 }
