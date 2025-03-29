@@ -1,0 +1,9 @@
+[Nemo Action]
+Name=Open in Kitty
+Comment=Open folder in Kitty
+Exec=kitty %F
+Icon-Name=kitty
+Selection=s
+Extensions=dir;
+Quote=double
+EscapeSpaces=true

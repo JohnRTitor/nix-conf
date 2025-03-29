@@ -7,6 +7,7 @@
   inputs,
   systemSettings,
   userSettings,
+  programsSettings,
   servicesSettings,
   ...
 }:
@@ -33,6 +34,7 @@
       ./web-server-html
     ]
     ++ lib.optionals osConfig.programs.thunar.enable [ ./thunar.nix ]
+    ++ lib.optionals (programsSettings.fileManager == "nemo") [ ./nemo-extra.nix ]
     ++ lib.optionals servicesSettings.virtualisation [ ./virt-manager.nix ];
 
   # Let home Manager install and manage itself.

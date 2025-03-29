@@ -27,6 +27,10 @@ lib.mkMerge [
         ];
       })
     ];
+
+    environment.pathsToLink = [
+      "/share/nemo"
+    ];
   })
 
   {
