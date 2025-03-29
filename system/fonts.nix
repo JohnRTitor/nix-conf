@@ -4,17 +4,17 @@
   # FONTS
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
+    lohit-fonts.bengali # Bengali fonts
     noto-fonts
-    fira-code # used in VS code
     noto-fonts-cjk-sans
-    jetbrains-mono
-    font-awesome
+    font-awesome # for icons
+    nerd-fonts.arimo # similar to arial, used in Chrome
+    # Used in Hyprland-Dots + VS code
     nerd-fonts.jetbrains-mono
     nerd-fonts.inconsolata-lgc
     nerd-fonts.fira-code
     nerd-fonts.cousine
     roboto
-    lohit-fonts.bengali # Bengali fonts
     # ultimate-oldschool-pc-font-pack
   ];
 
