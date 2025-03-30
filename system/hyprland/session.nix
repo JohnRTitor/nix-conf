@@ -4,15 +4,8 @@
   ...
 }:
 {
-  # Enable GDM with wayland
-  services.xserver.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-    banner = ''
-                      Welcome Traveler, Behold!
-      You are about to enter the realm of Hyprland
-    '';
-  };
+  # Enable Cosmic-greeter
+  services.displayManager.cosmic-greeter.enable = true;
 
   # this adds a new UWSM managed Hyprland session
   # that properly starts Hyprland compositor with
