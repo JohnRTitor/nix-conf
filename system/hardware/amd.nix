@@ -10,11 +10,5 @@
     "amd-pstate=active"
   ];
 
-  # Zenpower is better power reporting module for AMD processors
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    zenpower
-  ];
-  boot.blacklistedKernelModules = [ "k10temp" ];
-
-  environment.systemPackages = [ pkgs-master.zenmonitor ];
+  # And do not use Zenpower because it lacks support for 7000 series
 }
