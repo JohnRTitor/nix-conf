@@ -22,7 +22,4 @@
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";
   services.xserver.xkb.variant = "";
-
-  # Enable touchpad support if laptop mode is enabled
-  services.libinput.enable = systemSettings.laptop;
 }

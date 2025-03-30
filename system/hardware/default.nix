@@ -1,17 +1,24 @@
 {
   config,
   lib,
+  systemSettings,
   servicesSettings,
   ...
 }:
 {
-  imports = [
-    ./amd.nix
-    ./audio.nix
-    ./bluetooth.nix
-    ./disk.nix
-    ./graphics.nix
-  ] ++ lib.optionals servicesSettings.tpm [ ./tpm.nix ];
+  imports =
+    [
+      ./amd.nix
+      ./audio.nix
+      ./bluetooth.nix
+      ./touchpad.nix
+      ./disk.nix
+      ./graphics.nix
+    ]
+    ++ lib.optionals systemSettings.laptop [
+      ./touchpad.nix
+    ]
+    ++ lib.optionals servicesSettings.tpm [ ./tpm.nix ];
 
   services.ucodenix = {
     enable = true;

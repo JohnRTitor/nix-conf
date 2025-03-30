@@ -160,7 +160,11 @@ in
       self.packages.${pkgs.system}.weather-python-script # weather script'
     ];
 
-  systemd.packages = [ pkgs.hyprpolkitagent ];
+  systemd.packages = with pkgs; [
+    hyprpolkitagent
+    swaynotificationcenter
+  ];
+  systemd.user.services.swaync.wantedBy = [ "graphical-session.target" ];
   systemd.user.services.hyprpolkitagent = {
     wantedBy = [ "graphical-session.target" ];
     wants = [ "graphical-session.target" ];
