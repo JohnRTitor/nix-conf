@@ -1,4 +1,9 @@
-{ config, pkgs, pkgs-master, ... }:
+{
+  config,
+  pkgs,
+  pkgs-master,
+  ...
+}:
 {
   boot.kernelParams = [
     # https://docs.kernel.org/admin-guide/pm/amd-pstate.html#active-mode

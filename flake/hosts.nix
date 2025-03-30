@@ -8,7 +8,12 @@
 let
   inherit (inputs.nixpkgs) lib; # use lib from nixpkgs
 
-  inherit (config.myOptions) systemSettings userSettings servicesSettings programsSettings;
+  inherit (config.myOptions)
+    systemSettings
+    userSettings
+    servicesSettings
+    programsSettings
+    ;
 
   specialArgs = {
     inherit
