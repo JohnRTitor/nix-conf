@@ -1,6 +1,14 @@
 name: Cache Stuff
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
-on: [push, workflow_dispatch]
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 env:
   NIX_HOSTNAME: "Ainz-NIX"
@@ -67,5 +75,5 @@ jobs:
           echo "::notice::Starting package build and cache push"
           for PKG in $PKGS_LIST; do
             echo "::notice::Building package $PKG"
-            nix build .#$PKG --print-out-paths | cachix push $CACHIX_CACHE_NAME
+            nix build .#$PKG --print-out-paths --print-build-logs | cachix push $CACHIX_CACHE_NAME
           done

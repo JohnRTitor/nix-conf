@@ -1,8 +1,12 @@
 name: update-flake-lock
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   workflow_dispatch:
     inputs:
-      bumpWhat:
+      INPUTS_TO_BUMP:
         description: Which flake input? (leave blank for all)
         required: false
         type: string
@@ -13,6 +17,10 @@ on:
   push:
     paths:
       - "flake.nix"
+
+permissions:
+  contents: write # To push to the branch
+
 jobs:
   lockfile:
     runs-on: ubuntu-latest
@@ -29,6 +37,12 @@ jobs:
             experimental-features = nix-command flakes
             accept-flake-config = true
       - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@v21
+        env:
+          INPUTS_TO_BUMP: ${{ inputs.INPUTS_TO_BUMP }}
+        run: nix flake update $INPUTS_TO_BUMP
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
         with:
-          inputs: ${{ inputs.bumpWhat }}
+          default_author: github_actions
+          add: flake.lock
+          message: Update flake.lock
