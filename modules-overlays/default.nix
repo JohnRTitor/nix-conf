@@ -8,8 +8,6 @@
 {
   imports = [
     #./amdgpu.nix # import modules here to test
-    "${inputs.nixpkgs-master}/nixos/modules/services/display-managers/cosmic-greeter.nix"
-    "${inputs.nixpkgs-master}/nixos/modules/services/desktop-managers/cosmic.nix"
   ];
 
   disabledModules = [
