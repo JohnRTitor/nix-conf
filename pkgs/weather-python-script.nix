@@ -91,7 +91,7 @@ writeScriptBin "weather-python-script" ''
   # print(temp_min_max)
 
   # wind speed
-  wind_speed = html_data("span[data-testid='Wind']").text().split("\n")[1]
+  wind_speed = html_data("span[data-testid='Wind']").text().split("\n")[0]
   wind_text = f"  {wind_speed}"
   # print(wind_text)
 
