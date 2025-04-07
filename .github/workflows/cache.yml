@@ -6,6 +6,10 @@ concurrency:
 on:
   push:
   workflow_dispatch:
+  workflow_run:
+    workflows: [update-flake-lock]
+    types:
+      - completed
 
 permissions:
   contents: read
