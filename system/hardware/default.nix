@@ -8,6 +8,8 @@
 {
   imports =
     [
+      # Include the results of the hardware scan.
+      ./hardware-configuration.nix
       ./amd.nix
       ./audio.nix
       ./bluetooth.nix
@@ -15,9 +17,7 @@
       ./disk.nix
       ./graphics.nix
     ]
-    ++ lib.optionals systemSettings.laptop [
-      ./touchpad.nix
-    ]
+    ++ lib.optionals systemSettings.laptop [ ./touchpad.nix ]
     ++ lib.optionals servicesSettings.tpm [ ./tpm.nix ];
 
   services.ucodenix = {

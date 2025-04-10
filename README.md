@@ -20,7 +20,7 @@ For instance, you can change values like username, hostname, language, and timez
 To regenerate the hardware configuration, use the following command:
 
 ```bash
-sudo nixos-generate-config --show-hardware-config > ./default-host/hardware-configuration.nix
+sudo nixos-generate-config --show-hardware-config > ./system/hardware/hardware-configuration.nix
 ```
 
 ## Commands
