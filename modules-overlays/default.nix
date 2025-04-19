@@ -18,6 +18,7 @@
     inputs.nix-vscode-extensions.overlays.default
     (final: prev: {
       # Add custom overlays here for packages
+      _64gram = inputs.nixpkgs-64gram-pin.legacyPackages.${pkgs.system}._64gram;
     })
   ];
 }

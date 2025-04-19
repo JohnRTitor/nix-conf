@@ -5,6 +5,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "nixpkgs/master"; # Testing branch of nixpkgs
+    nixpkgs-64gram-pin.url = "nixpkgs/2631b0b7abcea6e640ce31cd78ea58910d31e650"; # Unstable NixOS system (default)
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
@@ -12,7 +13,7 @@
     };
 
     # Don't add follows nixpkgs, else will cause local rebuilds
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # Bleeding edge packages from chaotic nyx, especially CachyOS kernel
+    chaotic.url = "github:chaotic-cx/nyx/main"; # Bleeding edge packages from chaotic nyx, especially CachyOS kernel
 
     ## SYSTEM SERVICES ##
     home-manager = {

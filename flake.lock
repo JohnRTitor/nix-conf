@@ -42,16 +42,16 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1744662018,
-        "narHash": "sha256-xfHUAfPVYp+zD0sOg9KMNEHBj8O06G7xHgDgNQ2Q1lw=",
+        "lastModified": 1745062618,
+        "narHash": "sha256-ZKC01BhD33DMIDJN/MxAvLw/bApTHhFDJZ2tAZUhFS8=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "6318c913eb1b29236050bbb0202d957c6ae97191",
+        "rev": "8659f94e68a9628647abc3fef1c18025eb6977e2",
         "type": "github"
       },
       "original": {
         "owner": "chaotic-cx",
-        "ref": "nyxpkgs-unstable",
+        "ref": "main",
         "repo": "nyx",
         "type": "github"
       }
@@ -684,6 +684,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-64gram-pin": {
+      "locked": {
+        "lastModified": 1744463964,
+        "narHash": "sha256-LWqduOgLHCFxiTNYi3Uj5Lgz0SR+Xhw3kr/3Xd0GPTM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2631b0b7abcea6e640ce31cd78ea58910d31e650",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "rev": "2631b0b7abcea6e640ce31cd78ea58910d31e650",
+        "type": "indirect"
+      }
+    },
     "nixpkgs-master": {
       "locked": {
         "lastModified": 1745057843,
@@ -846,6 +861,7 @@
         "nix-flatpak": "nix-flatpak",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-64gram-pin": "nixpkgs-64gram-pin",
         "nixpkgs-master": "nixpkgs-master",
         "nur": "nur",
         "ucodenix": "ucodenix"
