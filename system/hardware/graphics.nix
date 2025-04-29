@@ -92,4 +92,10 @@ in
     # we need to set this manually like below
     VDPAU_DRIVER = "radeonsi";
   };
+
+  programs.corectrl = {
+    enable = true;
+    gpuOverclock.enable = true;
+    gpuOverclock.ppfeaturemask = "0xffffffff";
+  };
 }

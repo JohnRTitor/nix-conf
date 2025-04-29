@@ -40,7 +40,6 @@ in
         ## GIT Tools ##
         github.copilot # GitHub Copilot
         github.codespaces # GitHub Codespaces
-        github.vscode-pull-request-github # GitHub Pull Requests
         github.vscode-github-actions # GitHub Actions
         donjayamanne.githistory # Git History
         eamodio.gitlens # GitLens
@@ -64,6 +63,11 @@ in
       ])
       ++ (with pkgs.vscode-marketplace-release; [
         github.copilot-chat # GitHub Copilot Chat, need the release version
+      ])
+      ++ (with pkgs.vscode-marketplace; [
+        ms-vscode-remote.remote-containers # Dev Containers
+
+        github.vscode-pull-request-github # GitHub Pull Requests
       ])
       ++ (with pkgs.vscode-extensions; [
         ms-vscode.cpptools # C/C++ language support, only available via nixpkgs
