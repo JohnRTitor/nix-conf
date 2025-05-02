@@ -27,6 +27,7 @@
       ./nix-tools.nix
 
       ./services.nix # services
+      ./cosmic-greeter
     ]
     ++ lib.optionals servicesSettings.nginx [
       # Default Nginx server welcome testing page
