@@ -28,7 +28,14 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # Hyprland, a Wayland WM, use git submodules too
     ## MISC PACKAGES ##
 
+    # For getting latest AMD microcode updates
     ucodenix.url = "github:e-tho/ucodenix";
+    # For getting latest zen-browser binary updates
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions"; # Grab latest VScode extensions as a package;
       inputs.nixpkgs.follows = "nixpkgs";

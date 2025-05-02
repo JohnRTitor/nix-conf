@@ -6,17 +6,15 @@
   ...
 }:
 {
-  # Enable Firefox Wayland
-  /*
-    programs.firefox = {
-      enable = true;
-      package = pkgs.firefox-wayland;
-      policies = {
-        DontCheckDefaultBrowser = true; # disable the annoying popup at startup
-        HardwareAcceleration = true;
-      };
+  # Zen-browser
+  programs.firefox = {
+    enable = true;
+    package = inputs.zen-browser.packages.${pkgs.system}.default;
+    policies = {
+      DontCheckDefaultBrowser = true; # disable the annoying popup at startup
+      HardwareAcceleration = true;
     };
-  */
+  };
 
   environment.systemPackages = with pkgs; [
     (google-chrome.override {

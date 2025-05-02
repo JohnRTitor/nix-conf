@@ -2,7 +2,6 @@
   systemPackages = [
     # Flatpak packages to be installed systemwide
     "com.github.tchx84.Flatseal" # Customising permission of Flatpaks
-    "io.github.zen_browser.zen" # Zen Browser
   ];
 
   userPackages = [
