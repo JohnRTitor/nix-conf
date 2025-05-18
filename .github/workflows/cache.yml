@@ -24,7 +24,6 @@ env:
     boot.kernelPackages.kernel
   NIXOS_PKGS_LIST: >
     zed-editor_git
-    google-chrome
     scx.full
   CACHIX_AUTH_TOKEN: "${{ secrets.CACHIX_AUTH_TOKEN }}"
   CACHIX_CACHE_NAME: "johnrtitor"

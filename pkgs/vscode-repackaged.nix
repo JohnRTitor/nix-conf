@@ -1,9 +1,8 @@
 # This file is specifically for overriding desktop item of VSCode
 # to make it work with my encrypted SSH keys by passing environment variables
 {
-  pkgs,
-  makeDesktopItem,
-  ...
+  vscode,
+  makeDesktopItem
 }:
 let
   executableName = "code";
@@ -12,7 +11,7 @@ let
   envVars = "env SSH_AUTH_SOCK=/run/user/1001/gnupg/S.gpg-agent.ssh";
 in
 (
-  (pkgs.vscode.override {
+  (vscode.override {
     # if keyring does not work, try either "libsecret" or "gnome"
     commandLineArgs = ''--password-store=gnome-libsecret'';
   }).overrideAttrs

@@ -3,6 +3,7 @@
   config,
   osConfig,
   pkgs,
+  self,
   inputs,
   ...
 }:
@@ -13,7 +14,7 @@ in
 {
   programs.vscode = {
     enable = true;
-    package = (pkgs.callPackage ../pkgs/vscode-repackaged.nix { });
+    package = self.packages.${pkgs.system}.vscode_repackaged;
   };
 
   # Default profile
