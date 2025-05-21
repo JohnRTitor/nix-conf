@@ -22,6 +22,7 @@ lib.mkMerge [
 			efiSupport = true;
 			maxGenerations = 32;
 			secureBoot.enable = true;
+			style.wallpapers = [ ./City-Rain.png ];
 		};
   })
 
