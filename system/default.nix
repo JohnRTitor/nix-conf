@@ -8,9 +8,9 @@
   imports =
     [
       ./nix-settings.nix
-      # include boot and kernel settings
+      # include bootloader and kernel settings
       ./boot/kernel.nix
-      ./boot/boot-options.nix
+      ./boot/bootloader.nix
       # include user account settings
       ./users.nix
       # include hardware settings
@@ -35,9 +35,6 @@
 
       ./shell
     ]
-    ++
-      # Configure secure boot with lanzaboote, if secureboot is enabled
-      lib.optionals (systemSettings.secureboot) [ ./boot/lanzaboote.nix ]
     ++
       # Import if Virtualization is enabled
       lib.optionals (servicesSettings.virtualisation) [ ./virtualisation.nix ]

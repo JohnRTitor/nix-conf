@@ -1,0 +1,47 @@
+{
+  config,
+  lib,
+  pkgs,
+  systemSettings,
+  ...
+}:
+lib.mkMerge [
+    # Common options
+    {
+      boot.loader.efi.canTouchEfiVariables = true;
+      # bootloader timeout set, also press t repeatedly in the bootmenu to set there
+      boot.loader.timeout = 15;
+      # Bootspec needed for secureboot
+      boot.bootspec.enable = true;
+    }
+
+  (lib.mkIf (systemSettings.bootloader == "limine") {
+    boot.loader.limine = {
+			# Whether to enable the Limine bootloader.
+			enable = true;
+			efiSupport = true;
+			maxGenerations = 32;
+			secureBoot.enable = true;
+		};
+  })
+
+  (lib.mkIf (systemSettings.bootloader == "lanzaboote") {
+    # Bootloader - disable systemd in favor of lanzaboote
+    boot.loader.systemd-boot.enable = lib.mkForce false;
+
+    # lanzaboote for secureboot
+    boot.lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
+
+    # sbctl - a frontend to create, enroll manage keys
+    # just need once for importing secureboot keys
+    # environment.systemPackages = [pkgs.sbctl];
+  })
+
+  (lib.mkIf (systemSettings.bootloader == "systemd-boot") {
+    # Use the systemd-boot EFI boot loader.
+    boot.loader.systemd-boot.enable = true;
+  })
+]

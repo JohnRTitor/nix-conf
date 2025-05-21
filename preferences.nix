@@ -9,7 +9,7 @@
       locale = "en_US.UTF-8"; # select locale
       additionalLocale = "en_IN";
       stableversion = "24.11";
-      secureboot = true;
+      bootloader = "limine";
       laptop = false;
     };
 

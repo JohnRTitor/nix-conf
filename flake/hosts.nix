@@ -37,6 +37,7 @@ in
         inputs.nur.modules.nixos.default # NUR - NixOS user repository
         inputs.ucodenix.nixosModules.ucodenix # ucodeNix - CPU microcode updates
         inputs.nix-flatpak.nixosModules.nix-flatpak # nix-flatpak, allows flatpak declaratively
+        inputs.lanzaboote.nixosModules.lanzaboote
 
         # install home-manager as NixOS module
         # so that it automatically gets deployed when running `nixos-rebuild switch`
@@ -58,7 +59,7 @@ in
             ];
           };
         }
-      ] ++ lib.optionals systemSettings.secureboot [ inputs.lanzaboote.nixosModules.lanzaboote ];
+      ];
     };
   };
 }

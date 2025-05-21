@@ -33,7 +33,11 @@
         default = "24.11";
         description = "Stable version (DO NOT CHANGE)";
       };
-      secureboot = lib.mkEnableOption "Secure Boot";
+      bootloader = lib.mkOption {
+        type = lib.types.enum [ "limine" "lanzaboote" "systemd-boot" ];
+        default = "lanzaboote";
+        description = "Bootloader to select, only lanzaboote has SecureBoot support for now";
+      };
       laptop = lib.mkEnableOption "Laptop features";
     };
 
