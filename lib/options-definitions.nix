@@ -40,7 +40,7 @@
           "systemd-boot"
         ];
         default = "lanzaboote";
-        description = "Bootloader to select, only lanzaboote has SecureBoot support for now";
+        description = "Bootloader to select, only lanzaboote and limine have SecureBoot support for now";
       };
       laptop = lib.mkEnableOption "Laptop features";
     };

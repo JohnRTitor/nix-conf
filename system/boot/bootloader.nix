@@ -23,6 +23,9 @@ lib.mkMerge [
       maxGenerations = 32;
       secureBoot.enable = true;
       style.wallpapers = [ ./City-Rain.png ];
+      style.graphicalTerminal.font = {
+        scale = "2x2"; # Scale the UI font to make it bigger, default is a lot smaller
+      };
     };
   })
 
