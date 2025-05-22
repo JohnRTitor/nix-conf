@@ -93,6 +93,7 @@
   services.envfs.enable = true;
 
   security.polkit.enable = true; # Enable polkit for elevated prompts
+  security.sudo-rs.enable = true; # Memory safe implementation of sudo in Rust
 
   # services.colord.enable = true; # For color management
 }
