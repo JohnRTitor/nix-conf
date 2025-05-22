@@ -37,6 +37,16 @@ in
       self',
       ...
     }:
+    let
+      pkgs-unfree = import inputs.nixpkgs {
+        system = config.myOptions.systemSettings.systemarch;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+          android_sdk.accept_license = true;
+        };
+      };
+    in
     {
       # Setting this option, allows formatting via `nix fmt`
       formatter = pkgs.nixfmt-rfc-style;
@@ -48,8 +58,8 @@ in
         fhs-shell = pkgs.callPackage ../pkgs/fhs-shell.nix { };
         weather-python-script = pkgs.callPackage ../pkgs/weather-python-script.nix { };
         adminneo-with-theme = pkgs.callPackage ../pkgs/adminneo-with-theme { };
-        google-chrome_repackaged = pkgs.callPackage ../pkgs/google-chrome-repackaged.nix { };
-        vscode_repackaged = pkgs.callPackage ../pkgs/vscode-repackaged.nix { };
+        google-chrome_repackaged = pkgs-unfree.callPackage ../pkgs/google-chrome-repackaged.nix { };
+        vscode_repackaged = pkgs-unfree.callPackage ../pkgs/vscode-repackaged.nix { };
       };
     };
 }

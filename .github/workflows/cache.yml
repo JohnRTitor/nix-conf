@@ -68,8 +68,6 @@ jobs:
 
       - name: Build Packages and push to Cachix
         shell: bash
-        env:
-          NIXPKGS_ALLOW_UNFREE: "1"
         run: |
           echo "::notice::Fetching list of packages to build"
 
@@ -88,5 +86,5 @@ jobs:
           echo "::notice::Starting package build and cache push"
           for PKG in $PKGS_LIST; do
             echo "::notice::Building package $PKG"
-            nix build .#$PKG --impure --print-out-paths --print-build-logs | cachix push $CACHIX_CACHE_NAME
+            nix build .#$PKG --print-out-paths --print-build-logs | cachix push $CACHIX_CACHE_NAME
           done
