@@ -5,7 +5,6 @@
   inputs = {
     nixpkgs.url = "github:johnrtitor/nixpkgs/limine-secureboot-nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "nixpkgs/master"; # Testing branch of nixpkgs
-    nixpkgs-64gram-pin.url = "nixpkgs/2631b0b7abcea6e640ce31cd78ea58910d31e650"; # Unstable NixOS system (default)
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
