@@ -34,7 +34,11 @@
         description = "Stable version (DO NOT CHANGE)";
       };
       bootloader = lib.mkOption {
-        type = lib.types.enum [ "limine" "lanzaboote" "systemd-boot" ];
+        type = lib.types.enum [
+          "limine"
+          "lanzaboote"
+          "systemd-boot"
+        ];
         default = "lanzaboote";
         description = "Bootloader to select, only lanzaboote has SecureBoot support for now";
       };
@@ -78,14 +82,18 @@
     };
 
     servicesSettings = {
-      adb = lib.mkEnableOption "ADB";
       avahi = lib.mkEnableOption "Avahi";
-      nginx = lib.mkEnableOption "Nginx";
       containers = lib.mkEnableOption "Containers";
       tpm = lib.mkEnableOption "TPM";
       virtualisation = lib.mkEnableOption "Virtualisation";
       printing = lib.mkEnableOption "Printing";
       apparmor = lib.mkEnableOption "AppArmor";
+    };
+
+    devSettings = {
+      adb = lib.mkEnableOption "ADB";
+      nginx = lib.mkEnableOption "Nginx";
+      jupyter = lib.mkEnableOption "Jupyter";
     };
 
     programsSettings = {

@@ -24,14 +24,18 @@
     };
 
     servicesSettings = {
-      adb = false;
       avahi = false;
-      nginx = false;
       containers = false;
       tpm = false;
       virtualisation = false;
       printing = false;
       apparmor = false;
+    };
+
+    devSettings = {
+      adb = false;
+      nginx = false;
+      jupyter = false;
     };
 
     programsSettings = {

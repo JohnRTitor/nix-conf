@@ -17,9 +17,11 @@
     };
   };
 
-  environment.systemPackages = (with pkgs; [
-    tor-browser
-  ]) ++ [
-    self.packages.${pkgs.system}.google-chrome_repackaged
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      tor-browser
+    ])
+    ++ [
+      self.packages.${pkgs.system}.google-chrome_repackaged
+    ];
 }

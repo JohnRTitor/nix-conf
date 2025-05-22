@@ -2,7 +2,7 @@
 # to make it work with my encrypted SSH keys by passing environment variables
 {
   vscode,
-  makeDesktopItem
+  makeDesktopItem,
 }:
 let
   executableName = "code";

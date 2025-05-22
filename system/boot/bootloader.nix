@@ -6,24 +6,24 @@
   ...
 }:
 lib.mkMerge [
-    # Common options
-    {
-      boot.loader.efi.canTouchEfiVariables = true;
-      # bootloader timeout set, also press t repeatedly in the bootmenu to set there
-      boot.loader.timeout = 15;
-      # Bootspec needed for secureboot
-      boot.bootspec.enable = true;
-    }
+  # Common options
+  {
+    boot.loader.efi.canTouchEfiVariables = true;
+    # bootloader timeout set, also press t repeatedly in the bootmenu to set there
+    boot.loader.timeout = 15;
+    # Bootspec needed for secureboot
+    boot.bootspec.enable = true;
+  }
 
   (lib.mkIf (systemSettings.bootloader == "limine") {
     boot.loader.limine = {
-			# Whether to enable the Limine bootloader.
-			enable = true;
-			efiSupport = true;
-			maxGenerations = 32;
-			secureBoot.enable = true;
-			style.wallpapers = [ ./City-Rain.png ];
-		};
+      # Whether to enable the Limine bootloader.
+      enable = true;
+      efiSupport = true;
+      maxGenerations = 32;
+      secureBoot.enable = true;
+      style.wallpapers = [ ./City-Rain.png ];
+    };
   })
 
   (lib.mkIf (systemSettings.bootloader == "lanzaboote") {

@@ -13,6 +13,7 @@ let
     userSettings
     servicesSettings
     programsSettings
+    devSettings
     ;
 
   specialArgs = {
@@ -24,6 +25,7 @@ let
       userSettings
       servicesSettings
       programsSettings
+      devSettings
       ;
   };
 in

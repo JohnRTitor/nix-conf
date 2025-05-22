@@ -5,7 +5,7 @@
   pkgs,
   pkgs-master,
   inputs,
-  systemSettings,
+  devSettings,
   userSettings,
   programsSettings,
   servicesSettings,
@@ -29,7 +29,7 @@
       ./services.nix # services
       ./cosmic-greeter
     ]
-    ++ lib.optionals servicesSettings.nginx [
+    ++ lib.optionals devSettings.nginx [
       # Default Nginx server welcome testing page
       # Nginx global config is located in ../dev-environment/nginx.nix
       ./web-server-html
