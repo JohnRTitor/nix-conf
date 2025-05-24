@@ -3,7 +3,7 @@
 
   # Main sources and repositories
   inputs = {
-    nixpkgs.url = "github:johnrtitor/nixpkgs/limine-secureboot-nixos-unstable"; # Unstable NixOS system (default)
+    nixpkgs.url = "nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "nixpkgs/master"; # Testing branch of nixpkgs
 
     flake-parts = {
@@ -12,7 +12,7 @@
     };
 
     # Don't add follows nixpkgs, else will cause local rebuilds
-    chaotic.url = "github:chaotic-cx/nyx/main"; # Bleeding edge packages from chaotic nyx, especially CachyOS kernel
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # Bleeding edge packages from chaotic nyx, especially CachyOS kernel
 
     ## SYSTEM SERVICES ##
     home-manager = {
