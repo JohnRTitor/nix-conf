@@ -14,7 +14,10 @@ in
 {
   programs.vscode = {
     enable = true;
-    package = self.packages.${pkgs.system}.vscode_repackaged;
+    package = pkgs.vscode.override {
+      # if keyring does not work, try either "libsecret" or "gnome"
+      commandLineArgs = ''--password-store=gnome-libsecret'';
+    };
   };
 
   # Default profile

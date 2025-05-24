@@ -59,7 +59,6 @@ in
         weather-python-script = pkgs.callPackage ../pkgs/weather-python-script.nix { };
         adminneo-with-theme = pkgs.callPackage ../pkgs/adminneo-with-theme { };
         google-chrome_repackaged = pkgs-unfree.callPackage ../pkgs/google-chrome-repackaged.nix { };
-        vscode_repackaged = pkgs-unfree.callPackage ../pkgs/vscode-repackaged.nix { };
       };
     };
 }
