@@ -749,17 +749,18 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1748026106,
-        "narHash": "sha256-6m1Y3/4pVw1RWTsrkAK2VMYSzG4MMIj7sqUy7o8th1o=",
-        "owner": "NixOS",
+        "lastModified": 1748244112,
+        "narHash": "sha256-B0r7M9fqMsjIiE5DrjNwrosovCTra9cxrzW8DQBQ62w=",
+        "owner": "JohnRTitor",
         "repo": "nixpkgs",
-        "rev": "063f43f2dbdef86376cc29ad646c45c46e93234c",
+        "rev": "4841ef9cb0faed01ffb1e03b152d9f85d8cef9ee",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-unstable",
-        "type": "indirect"
+        "owner": "JohnRTitor",
+        "ref": "limine-secureboot-nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nur": {
