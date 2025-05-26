@@ -15,6 +15,7 @@
       ./console-tty.nix
       ./gnome-keyring.nix
       ./gnupg-ssh.nix
+      ./ai-models.nix
     ]
     ++ lib.optionals servicesSettings.containers [ ./containers.nix ]
     ++ lib.optionals servicesSettings.apparmor [ ./apparmor.nix ];
