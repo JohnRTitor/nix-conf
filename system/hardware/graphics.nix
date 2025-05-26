@@ -93,9 +93,10 @@ in
     VDPAU_DRIVER = "radeonsi";
   };
 
-  programs.corectrl = {
+  services.lact.enable = true;
+
+  hardware.amdgpu.overdrive = {
     enable = true;
-    gpuOverclock.enable = true;
-    gpuOverclock.ppfeaturemask = "0xffffffff";
+    ppfeaturemask = "0xffffffff";
   };
 }

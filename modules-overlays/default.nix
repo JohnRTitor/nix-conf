@@ -8,6 +8,7 @@
 {
   imports = [
     #./amdgpu.nix # import modules here to test
+    ./lact.nix
   ];
 
   disabledModules = [
