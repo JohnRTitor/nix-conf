@@ -3,7 +3,7 @@
 
   # Main sources and repositories
   inputs = {
-    nixpkgs.url = "github:JohnRTitor/nixpkgs/limine-secureboot-nixos-unstable"; # Unstable NixOS system (default)
+    nixpkgs.url = "nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "nixpkgs/master"; # Testing branch of nixpkgs
 
     flake-parts = {
