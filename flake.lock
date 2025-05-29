@@ -684,13 +684,29 @@
         "type": "github"
       }
     },
+    "nixpkgs-lact": {
+      "locked": {
+        "lastModified": 1748529006,
+        "narHash": "sha256-Tal4jGQfaGgEPcVYbyO7tK36h9TKXzUMNYueU79e59o=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "6a4a1eafbbe191c40f7f7e842883b54b02b64d75",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "refs/pull/411707/merge",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1748451898,
-        "narHash": "sha256-cNIyItR/1xAb8K/TjgqNwHx32Xnjr2ZYkjgtIWF5+Q8=",
+        "lastModified": 1748533807,
+        "narHash": "sha256-2plCrpcgp1+OdIGij40O3jXajwVKRHza7JC2V4s8iwA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f1407d338ceebfd8630ca83541bd944371f32b54",
+        "rev": "c697944f848cdbb040f7e094c894163981abf126",
         "type": "github"
       },
       "original": {
@@ -846,6 +862,7 @@
         "nix-flatpak": "nix-flatpak",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-lact": "nixpkgs-lact",
         "nixpkgs-master": "nixpkgs-master",
         "nur": "nur",
         "ucodenix": "ucodenix",

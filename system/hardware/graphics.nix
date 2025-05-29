@@ -94,6 +94,7 @@ in
   };
 
   services.lact.enable = true;
+  services.lact.package = pkgs-master.lact;
 
   hardware.amdgpu.overdrive = {
     enable = true;

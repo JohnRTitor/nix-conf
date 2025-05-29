@@ -8,7 +8,7 @@
 {
   imports = [
     #./amdgpu.nix # import modules here to test
-    ./lact.nix
+    "${inputs.nixpkgs-lact}/nixos/modules/services/hardware/lact.nix"
   ];
 
   disabledModules = [
