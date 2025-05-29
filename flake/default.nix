@@ -38,7 +38,7 @@ in
       ...
     }:
     let
-      pkgs-unfree = import inputs.nixpkgs {
+      pkgs-unfree = import inputs.nixpkgs-master {
         system = config.myOptions.systemSettings.systemarch;
         config = {
           allowUnfree = true;
