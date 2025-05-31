@@ -8,6 +8,7 @@
   modulesPath,
   ...
 }:
+
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -17,21 +18,19 @@
     "nvme"
     "xhci_pci"
     "ahci"
-    "usb_storage"
     "usbhid"
-    "sd_mod"
   ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/lvm-pool/root";
+    device = "/dev/disk/by-uuid/924bdb45-c8c8-4a5d-8978-cdae8c8b37df";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/E804-6DF4";
+    device = "/dev/disk/by-uuid/C227-45B9";
     fsType = "vfat";
     options = [
       "fmask=0022"
