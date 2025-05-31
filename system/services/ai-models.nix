@@ -15,6 +15,7 @@
       "devstral:24b" # coding
       "dolphin-mistral:7b" # uncensored
     ];
+
     acceleration = "rocm";
     # 6700xt for ROCM is not officially supported by AMD
     # https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html
@@ -29,5 +30,8 @@
   };
 
   # Web UI for Ollama
-  services.nextjs-ollama-llm-ui.enable = true;
+  services.nextjs-ollama-llm-ui = {
+    enable = true;
+    hostname = "127.0.0.20";
+  };
 }
