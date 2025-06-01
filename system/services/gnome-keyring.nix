@@ -1,6 +1,6 @@
 # GNOME Keyring for storing/encrypting sycrets
 # apps like vscode stores encrypted data using it
-  # NOTE: GNOME keyring does not enable a ssh agent/GPG agent in NixOS
+# NOTE: GNOME keyring does not enable a ssh agent/GPG agent in NixOS
 { pkgs, ... }:
 {
   services.gnome.gnome-keyring.enable = true;
@@ -11,7 +11,10 @@
     greetd-password.enableGnomeKeyring = true;
     login.enableGnomeKeyring = true;
   };
-  services.dbus.packages = [ pkgs.gnome-keyring pkgs.gcr ];
+  services.dbus.packages = [
+    pkgs.gnome-keyring
+    pkgs.gcr
+  ];
 
   services.xserver.displayManager.sessionCommands = ''
     eval $(gnome-keyring-daemon --start --daemonize --components=ssh,secrets)

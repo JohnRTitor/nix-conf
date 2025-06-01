@@ -19,22 +19,23 @@
     "xhci_pci"
     "ahci"
     "usbhid"
+    "usb_storage"
   ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/924bdb45-c8c8-4a5d-8978-cdae8c8b37df";
-    fsType = "ext4";
+    device = "/dev/lvm-pool/root";
+    fsType = "bcachefs";
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/C227-45B9";
     fsType = "vfat";
     options = [
-      "fmask=0022"
-      "dmask=0022"
+      "fmask=0137"
+      "dmask=0027"
     ];
   };
 
