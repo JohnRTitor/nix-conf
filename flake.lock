@@ -749,11 +749,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1748877327,
-        "narHash": "sha256-R6URkvNfypoqOYaI8xf+0nbArSBt17b2E42jIX1UbFg=",
+        "lastModified": 1748902371,
+        "narHash": "sha256-BCbsdgco4WJjPKfTvwHI0mTuQc4vTsr/nZck1nncgcc=",
         "owner": "JohnRTitor",
         "repo": "nixpkgs",
-        "rev": "c689cad0442996599618838c81c273aa8b756ca8",
+        "rev": "82142bb64bee6c0696d145b70f01a9d58d999008",
         "type": "github"
       },
       "original": {
