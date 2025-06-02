@@ -14,8 +14,7 @@
     loadModels = [
       "gemma3:12b" # general purpose - 8.1GB
       # "gemma3:12b-it-qat" - low speed than normal variant
-      # "devstral:24b" - coding - 14GB, it offloads 23% to CPU, but tolerable
-      "mychen76/qwen3_cline_roocode:14b" # coding - 9.3GB
+      "devstral:24b" # coding, best for agents - 14GB, it offloads 23% to CPU, but tolerable
       "dolphin-mistral:7b" # uncensored
     ];
 
