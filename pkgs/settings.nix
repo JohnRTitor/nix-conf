@@ -1,7 +1,9 @@
 { pkgs, ... }:
 {
-  # Enable aarch64-linux cross-compilation and running those binaries
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = [
+    # "aarch64-linux" # enables running aarch64 binaries and compilation using qemu
+    "x86_64-windows" # running exe files using wine
+  ];
 
   programs.appimage = {
     enable = true;
