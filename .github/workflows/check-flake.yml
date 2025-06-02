@@ -1,4 +1,4 @@
-name: check-flake
+name: Check-Flake
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

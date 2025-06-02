@@ -1,4 +1,4 @@
-name: update-flake-lock
+name: Update-Flake-Lock
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -22,7 +22,7 @@ permissions:
   contents: write # To push to the branch
 
 jobs:
-  lockfile:
+  update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
