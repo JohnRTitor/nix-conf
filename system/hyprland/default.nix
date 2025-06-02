@@ -12,7 +12,7 @@
 }:
 let
   hyprlandFlake = true;
-  hyprlandLTO = true;
+  hyprlandLTO = false;
   pkgs-hyprland = if hyprlandFlake then inputs.hyprland.packages.${pkgs.system} else pkgs;
 in
 {
@@ -26,7 +26,7 @@ in
     enable = true;
     package =
       (pkgs-hyprland.hyprland.override {
-        stdenv = pkgs.clangStdenv;
+        # stdenv = pkgs.clangStdenv;
       }).overrideAttrs
         (prevAttrs: {
           patches =
