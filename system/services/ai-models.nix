@@ -9,10 +9,13 @@
     enable = true;
     # NOTE TO SELF: do not run 27B (18GB) models, it will crash your system
     # cuz you only have 12GB of VRAM and 16 GB of RAM
+    # with this setup, if a model does not fit in VRAM, it will offload to CPU
+    # and use system RAM, which is slower and will lead to low performance
     loadModels = [
-      "gemma3:12b" # general purpose
+      "gemma3:12b" # general purpose - 8.1GB
       # "gemma3:12b-it-qat" - low speed than normal variant
-      "devstral:24b" # coding
+      # "devstral:24b" - coding - 14GB, it offloads 23% to CPU, but tolerable
+      "mychen76/qwen3_cline_roocode:14b" # coding - 9.3GB
       "dolphin-mistral:7b" # uncensored
     ];
 
