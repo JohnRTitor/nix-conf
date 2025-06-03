@@ -25,15 +25,20 @@
     # and `RX 6700 XT` (gfx1031 - unsupported) is the closest to `gfx1030`, which is what I am using here.
     # you can get your gfx by `nix run nixpkgs#"rocmPackages.rocminfo" -- --run "rocminfo" | grep "gfx"`
     # it'll show multiple values if you have multiple GPUs configured
-    rocmOverrideGfx = "10.3.0";
-    environmentVariables = {
-      OLLAMA_ORIGINS = "*";
-    };
+    rocmOverrideGfx = "10.3.0"; # actual value for my gpu is 10.3.1 but ROCM does not support that
   };
 
   # Web UI for Ollama
+  services.open-webui = {
+    enable = true;
+    host = "127.0.0.20";
+    port = 3000;
+  };
+
+  /* This is inferior to open-webui
   services.nextjs-ollama-llm-ui = {
     enable = true;
     hostname = "127.0.0.20";
   };
+  */
 }
