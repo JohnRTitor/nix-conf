@@ -50,6 +50,8 @@
     port = 3000;
   };
 
+  networking.hosts."127.0.0.20" = [ "llm.local" ];
+
   /*
     This is inferior to open-webui
     services.nextjs-ollama-llm-ui = {

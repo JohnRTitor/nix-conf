@@ -6,4 +6,6 @@
   };
 
   #services.jupyter.notebookDir = "Notebooks";
+
+  networking.hosts."127.0.0.11" = [ "jupyter.local" ];
 }
