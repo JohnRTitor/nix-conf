@@ -7,38 +7,54 @@
 {
   services.ollama = {
     enable = true;
-    # NOTE TO SELF: do not run 27B (18GB) models, it will crash your system
-    # cuz you only have 12GB of VRAM and 16 GB of RAM
-    # with this setup, if a model does not fit in VRAM, it will offload to CPU
-    # and use system RAM, which is slower and will lead to low performance
+    # NOTE TO SELF: DO NOT RUN models greater than 12GB/14B as they
+    # will offload to CPU and RAM, slowing down the model and system
+    # The models below are chosen to run on my hardware: RX 6700XT 12GB and Ryzen 5 7600 + 16GB DDR5
     loadModels = [
-      "gemma3:12b" # general purpose - 8.1GB
-      # "gemma3:12b-it-qat" - low speed than normal variant
-      "devstral:24b" # coding, best for agents - 14GB, it offloads 23% to CPU, but tolerable
-      "dolphin-mistral:7b" # uncensored
+      ### CODING ###
+      # https://github.com/THUDM/GLM-4 - good quality with low memory usage
+      "hf.co/bartowski/THUDM_GLM-4-9B-0414-GGUF:Q8_0"
+
+      ## DEVSTRAL - very heavy, best for agents ##
+      # "devstral:24b"
+      # "hf.co/ngxson/Devstral-Small-Vision-2505-GGUF:Q4_K_M" # with vision support
+
+      ### GENERAL PURPOSE ###
+      "gemma3:12b" # general purpose - 8.1GB, fast and good, with vision support
+
+      ### UNCENSORED ###
+      # NOTE: some models may be marked as "uncensored" but they'll still refuse some requests
+      # Abiliterated models are trained to not refuse any requests and generate fully uncensored content
+      # See https://huggingface.co/models?other=uncensored&library=gguf for Uncensored models
+      # See https://huggingface.co/models?other=abliterated&library=gguf for abliterated models
+      # Also see https://ollama.com/search?q=abliterated
+
+      "hf.co/cognitivecomputations/Dolphin3.0-Llama3.1-8B-GGUF:Q8_0" # BEST OF THE ABLITERATED MODELS TESTED
+      "huihui_ai/deepseek-r1-abliterated:14b" # with reasoning capabilities
     ];
 
     acceleration = "rocm";
-    # 6700xt for ROCM is not officially supported by AMD
+    # AMD does not officially have support for ROCM on RX 6700 XT (gfx1031)
+    # However, the `AMD Radeon PRO W6800` or `RX 6800` are supported (gfx1030)
+    # See https://github.com/ollama/ollama/blob/main/docs/gpu.md#amd-radeon and
     # https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html
-    # however, the `AMD Radeon PRO W6800` or `RX 6800` are supported (gfx1030)
-    # and `RX 6700 XT` (gfx1031 - unsupported) is the closest to `gfx1030`, which is what I am using here.
-    # you can get your gfx by `nix run nixpkgs#"rocmPackages.rocminfo" -- --run "rocminfo" | grep "gfx"`
-    # it'll show multiple values if you have multiple GPUs configured
-    rocmOverrideGfx = "10.3.0"; # actual value for my gpu is 10.3.1 but ROCM does not support that
+    # Run `nix run nixpkgs#"rocmPackages.rocminfo" -- --run "rocminfo" | grep "gfx"` to know your gfx version
+    # 10.3.0 is closest supported version to 10.3.1 so we are using that here
+    rocmOverrideGfx = "10.3.0";
   };
 
-  # Web UI for Ollama
+  # Creates a Web UI for running models via Ollama at http://127.0.0.20:3000
   services.open-webui = {
     enable = true;
     host = "127.0.0.20";
     port = 3000;
   };
 
-  /* This is inferior to open-webui
-  services.nextjs-ollama-llm-ui = {
-    enable = true;
-    hostname = "127.0.0.20";
-  };
+  /*
+    This is inferior to open-webui
+    services.nextjs-ollama-llm-ui = {
+      enable = true;
+      hostname = "127.0.0.20";
+    };
   */
 }
