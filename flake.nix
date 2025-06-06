@@ -3,7 +3,7 @@
 
   # Main sources and repositories
   inputs = {
-    nixpkgs.url = "github:JohnRTitor/nixpkgs/nixpkgs-pr-test"; # Unstable NixOS system (default)
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "nixpkgs/master"; # Testing branch of nixpkgs
 
     flake-parts = {
@@ -11,8 +11,12 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    # Don't add follows nixpkgs, else will cause local rebuilds
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # Bleeding edge packages from chaotic nyx, especially CachyOS kernel
+    # Bleeding edge packages from chaotic nyx, especially CachyOS kernel
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      # Don't add follows nixpkgs, else will cause local rebuilds
+      inputs.home-manager.follows = "home-manager";
+    };
 
     ## SYSTEM SERVICES ##
     home-manager = {
@@ -20,7 +24,10 @@
       inputs.nixpkgs.follows = "nixpkgs"; # Must follow nixpkgs, else will cause conflicts with the system
     };
     # Lanzaboote module used for Secure-Boot implementation, don't add follows nixpkgs, might cause issues with package versions and boot experience
-    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest"; # Declarative Flatpak support for NixOS
 
     ## DESKTOP ENVIRONMENT ##
