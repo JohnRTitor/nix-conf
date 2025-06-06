@@ -50,7 +50,10 @@
     port = 3000;
   };
 
-  networking.hosts."127.0.0.20" = [ "llm.local" ];
+  networking.hosts."127.0.0.20" = [
+    "llm.local"
+    "ollama.local"
+  ];
 
   /*
     This is inferior to open-webui
