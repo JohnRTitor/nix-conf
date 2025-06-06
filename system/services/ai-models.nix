@@ -7,13 +7,15 @@
 {
   services.ollama = {
     enable = true;
-    # NOTE TO SELF: DO NOT RUN models greater than 12GB/14B as they
-    # will offload to CPU and RAM, slowing down the model and system
+    # NOTE TO SELF: DO NOT RUN models greater than 12GB/14B as they will offload to CPU and RAM,
+    # slowing down the model and system, sometimes causing crashes of the whole system
     # The models below are chosen to run on my hardware: RX 6700XT 12GB and Ryzen 5 7600 + 16GB DDR5
     loadModels = [
       ### CODING ###
       # https://github.com/THUDM/GLM-4 - good quality with low memory usage
       "hf.co/bartowski/THUDM_GLM-4-9B-0414-GGUF:Q8_0"
+
+      "mychen76/qwen3_cline_roocode:14b" # with reasoning capabilities
 
       ## DEVSTRAL - very heavy, best for agents ##
       # "devstral:24b"
