@@ -33,6 +33,7 @@ lib.mkMerge [
     ];
   })
 
+  # Common services
   {
     services.tumbler.enable = true; # thumbnailer service for nauitlus
   }

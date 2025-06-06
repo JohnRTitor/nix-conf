@@ -11,6 +11,7 @@
       stableversion = "24.11";
       bootloader = "limine";
       laptop = false;
+      tpm = false;
     };
 
     # ----- USER SETTINGS ----- #
@@ -40,6 +41,8 @@
 
     programsSettings = {
       fileManager = "nemo";
+      openrgb = false;
+      neovim = false;
     };
   };
 }

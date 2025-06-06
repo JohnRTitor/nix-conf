@@ -1,9 +1,10 @@
 {
+  lib,
   pkgs,
-  userSettings,
+  programsSettings,
   ...
 }:
-{
+lib.mkIf programsSettings.openrgb {
   # OpenRGB setup
   services.hardware.openrgb = {
     enable = true;

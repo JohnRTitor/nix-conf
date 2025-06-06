@@ -2,10 +2,11 @@
   config,
   lib,
   pkgs,
+  servicesSettings,
   userSettings,
   ...
 }:
-{
+lib.mkIf servicesSettings.containers {
   # Containers
   # Enable podman and docker compatibility
   virtualisation.podman = {

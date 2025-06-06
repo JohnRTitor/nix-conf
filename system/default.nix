@@ -8,31 +8,19 @@
   imports =
     [
       ./nix-settings.nix
-      # include bootloader and kernel settings
       ./boot/kernel.nix
       ./boot/bootloader.nix
-      # include user account settings
       ./users.nix
-      # include hardware settings
       ./hardware
-      # ./hardware/tpm.nix
-      # include network settings
+      ./hardware/tpm.nix
       ./network.nix
-      # include locale settings
       ./locale.nix
-      # include fonts settings
       ./fonts.nix
-      # include Hyprland settings
       ./hyprland
-      # Include browsers settings
       ./browsers.nix
-      # include printing settings
       ./printing.nix
-      # include essential services
       ./services
-      # include specializations
       ./safe-specialization.nix
-
       ./shell
     ]
     ++

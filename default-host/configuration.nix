@@ -21,10 +21,6 @@
     ../pkgs/global-packages.nix
     # user packages are imported in ./home.nix
 
-    # include APPS settings
-    # ../programs/openrgb.nix
-    #../programs/kde-connect.nix
-
     # include development environment
     ../dev-environment # check ./dev-environment/default.nix for more details
 

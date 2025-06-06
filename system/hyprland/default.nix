@@ -18,7 +18,8 @@ in
 {
   imports = [
     ./session.nix
-    ./file-manager.nix
+    ./programs
+    ./services.nix
   ];
 
   # Enable Hyprland Window Manager
@@ -57,118 +58,6 @@ in
     enable = true;
     style = "kvantum";
     platformTheme = "qt5ct";
-  };
-
-  ## Configure essential programs ##
-
-  programs.waybar = {
-    enable = true; # enable waybar launcher
-    package = pkgs.waybar;
-  };
-  systemd.user.services.waybar.environment = {
-    PATH = lib.mkForce "/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
-  };
-
-  programs.hyprlock = {
-    enable = true; # enable Hyprlock screen locker
-    package = pkgs.hyprlock;
-  };
-
-  services.hypridle = {
-    enable = true; # enable Hypridle idle manager, needed for Hyprlock
-    package = pkgs.hypridle;
-  };
-
-  programs = {
-    evince.enable = true; # document viewer
-    file-roller.enable = true; # archive manager
-  };
-
-  services.gnome = {
-    glib-networking.enable = true; # network extensions libs
-  };
-
-  ## Configure essential packages ##
-
-  environment.systemPackages =
-    (with pkgs; [
-      # Hyprland Stuff main
-      cava # audio visualizer
-      cliphist # clipboard history
-      grim # screenshots
-      jq # json parser
-      networkmanagerapplet
-      nwg-look # theme switcher
-      openssl # required by Rainbow borders
-      pamixer
-      pavucontrol # audio control
-      playerctl # media player control
-      rofi-wayland # app launcher
-      slurp # screenshots
-      swappy # screenshots
-      swaynotificationcenter # notification daemon
-      swww # wallpaper daemon
-      wallust # pywal alternative, graphical pallete generator
-      wl-clipboard # clipboard manager
-      wlogout # logout dialog
-      yad
-
-      gsettings-desktop-schemas
-      wlr-randr # xrandr but for wayland
-      ydotool
-
-      ## Graphical apps ##
-
-      kitty # default terminal on hyprland
-      linux-wifi-hotspot # for wifi hotspot
-      (mpv-unwrapped.override {
-        # mpv with more features
-        jackaudioSupport = true;
-        vapoursynthSupport = true;
-      }) # for video playback, needed for some scripts
-      mpvScripts.mpris
-
-      ## Utilities ##
-      desktop-file-utils
-      shared-mime-info
-      xdg-utils
-      xdg-user-dirs
-      xorg.xhost # needed for some packages running x11 like gparted
-
-      ## GNOME Suite ##
-      gnome-text-editor # text editor
-      shotcut # video editor
-      gnome-system-monitor # system monitor
-      loupe # image viewer
-
-      ## Hypr ecosystem ##
-      hyprcursor
-      hyprsunset # for night mode
-      rose-pine-hyprcursor # cursor theme
-      ags_1 # widgets popup
-
-      ## MONITORING TOOLS ##
-      btop # for CPU, RAM, and Disk monitoring
-      nvtopPackages.amd # for AMD GPUs
-
-      ## NEEDED FOR Hyprland-Dots ##
-      bc
-      pciutils
-    ])
-    ++ [
-      pkgs-master.pyprland # hyprland plugin, dropdown term, etc
-      self.packages.${pkgs.system}.weather-python-script # weather script'
-    ];
-
-  systemd.packages = with pkgs; [
-    hyprpolkitagent
-    swaynotificationcenter
-  ];
-  systemd.user.services.swaync.wantedBy = [ "graphical-session.target" ];
-  systemd.user.services.hyprpolkitagent = {
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
   };
 
   # Environment variables to start the session with

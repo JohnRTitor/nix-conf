@@ -43,6 +43,7 @@
         description = "Bootloader to select, only lanzaboote and limine have SecureBoot support for now";
       };
       laptop = lib.mkEnableOption "Laptop features";
+      tpm = lib.mkEnableOption "TPM control and features";
     };
 
     # ----- USER SETTINGS ----- #
@@ -105,6 +106,8 @@
         default = "nautilus";
         description = "File manager";
       };
+      openrgb = lib.mkEnableOption "OpenRGB";
+      neovim = lib.mkEnableOption "Neovim";
     };
   };
 }
