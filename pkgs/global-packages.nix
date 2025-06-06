@@ -15,13 +15,9 @@
     (with pkgs; [
       # System Packages
       git # obviously
-      openssh # for ssh
 
       ## URL FETCH TOOLS ##
       curl
-      wget
-
-      #(callPackage ./gparted-wrapper.nix {})
     ])
     ++ (with pkgs-master; [
       # list of latest packages from nixpkgs master

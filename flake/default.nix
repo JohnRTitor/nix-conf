@@ -55,10 +55,10 @@ in
       # Use `nix flake show` to see the list of packages
       # To access packages from this flake, use `self'.packages.<name>`
       packages = {
-        fhs-shell = pkgs.callPackage ../pkgs/fhs-shell.nix { };
-        weather-python-script = pkgs.callPackage ../pkgs/weather-python-script.nix { };
-        adminneo-with-theme = pkgs.callPackage ../pkgs/adminneo-with-theme { };
-        google-chrome_repackaged = pkgs-unfree.callPackage ../pkgs/google-chrome-repackaged.nix { };
+        fhs-shell = pkgs.callPackage ./pkgs/fhs-shell.nix { };
+        weather-python-script = pkgs.callPackage ./pkgs/weather-python-script.nix { };
+        adminneo-with-theme = pkgs.callPackage ./pkgs/adminneo-with-theme { };
+        google-chrome_repackaged = pkgs-unfree.callPackage ./pkgs/google-chrome-repackaged.nix { };
       };
     };
 }

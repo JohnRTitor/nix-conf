@@ -93,11 +93,12 @@ in
     VDPAU_DRIVER = "radeonsi";
   };
 
-  services.lact.enable = true;
-  services.lact.package = pkgs.lact;
-
+  # Enable driver support for AMD GPU overclocking
   hardware.amdgpu.overdrive = {
     enable = true;
     ppfeaturemask = "0xffffffff";
   };
+
+  # Overclocking software
+  services.lact.enable = true;
 }

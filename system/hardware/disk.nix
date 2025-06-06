@@ -6,10 +6,6 @@
       "defaults"
       "noatime"
     ]; # disable access time updates
-    "/boot".options = [
-      "fmask=0137"
-      "dmask=0027"
-    ]; # restrict access to /boot
   };
   # Enable zram swap
   zramSwap = {

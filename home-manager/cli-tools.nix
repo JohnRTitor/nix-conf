@@ -42,6 +42,9 @@
     enableBashIntegration = false;
   };
 
+  # search recursively in all types of files, pdfs, text, inside tarballs, etc
+  programs.ripgrep-all.enable = true;
+
   home.packages = with pkgs; [
     tree # List directory recursively in tree structure
   ];

@@ -19,7 +19,7 @@
 
   environment.systemPackages =
     (with pkgs; [
-      tor-browser
+      # tor-browser
     ])
     ++ [
       self.packages.${pkgs.system}.google-chrome_repackaged
