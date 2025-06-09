@@ -105,11 +105,13 @@
       deluge # Torrent client
       shotwell # GNOME image editor
       # gnome-logs # GNOME log viewer
-      mission-center # Taskmanager clone
-      warp # file transfer, also install android app
+      # mission-center # Taskmanager clone
+      # warp # file transfer, also install android app
       clapper
 
-      _64gram
+      materialgram # good looking material themed telegram client
+      vesktop # alternative discord client
+      element-desktop # Matrix client
     ])
     ++ (with pkgs-master; [
       # list of latest packages from nixpkgs master

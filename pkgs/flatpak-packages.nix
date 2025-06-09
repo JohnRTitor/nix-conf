@@ -6,7 +6,5 @@
 
   userPackages = [
     # Flatpak packages to be installed on a per user basis
-    "im.riot.Riot" # Element Matrix Client
-    "dev.vencord.Vesktop" # Vesktop
   ];
 }
