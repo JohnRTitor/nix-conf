@@ -711,16 +711,16 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1749285348,
-        "narHash": "sha256-frdhQvPbmDYaScPFiCnfdh3B/Vh81Uuoo0w5TkWmmjU=",
-        "owner": "nixos",
+        "lastModified": 1749745018,
+        "narHash": "sha256-attMLMd91ffDl+XC7Y65Pli0UQozxwr19/qQ5VfQoVE=",
+        "owner": "JohnRTitor",
         "repo": "nixpkgs",
-        "rev": "3e3afe5174c561dee0df6f2c2b2236990146329f",
+        "rev": "0cf4d1ac958bca0411163283255ed6a06bc77dbb",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
+        "owner": "JohnRTitor",
+        "ref": "limine-builder",
         "repo": "nixpkgs",
         "type": "github"
       }
