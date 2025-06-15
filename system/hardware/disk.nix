@@ -7,6 +7,9 @@
       "noatime"
     ]; # disable access time updates
   };
+
+  services.bcachefs.autoScrub.enable = true;
+
   # Enable zram swap
   zramSwap = {
     enable = true;
@@ -43,12 +46,6 @@
     # by caching pages in RAM
     # may cause OOM on large package builds
     # "vm.dirty_background_ratio" = 12;
-  };
-
-  # fstrim for SSD
-  services.fstrim = {
-    enable = true;
-    interval = "monthly";
   };
 
   # Automount USB and drives
