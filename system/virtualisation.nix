@@ -6,28 +6,27 @@
   ...
 }:
 {
-  # Enable Virt Manager
-  programs.virt-manager.enable = true;
   virtualisation.libvirtd = {
     enable = true;
     onShutdown = "shutdown"; # Shutdown VMs on host shutdown
-    qemu.runAsRoot = false;
-    allowedBridges = [
-      "nm-bridge"
-      "virbr0"
-    ];
+    qemu = {
+      package = pkgs.qemu_kvm;
+      ovmf = {
+        enable = true;
+        packages = [ pkgs.OVMFFull.fd ];
+      };
+      swtpm.enable = true;
+    };
   };
-
-  # Needed for virt-manager to work
-  environment.sessionVariables.GSETTINGS_BACKEND = "keyfile";
-
   virtualisation.spiceUSBRedirection.enable = true; # allows VMs to access USB
+
+  programs.virt-manager.enable = true;
   users.users.${userSettings.username}.extraGroups = [
     "libvirtd" # Needed for Virt Manager
-    "vboxusers" # Needed for Virtualbox
+    # "vboxusers" # Needed for Virtualbox
   ];
 
   # Enable Virtualbox
-  virtualisation.virtualbox.host.enable = true;
-  boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
+  # virtualisation.virtualbox.host.enable = true;
+  # boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
 }

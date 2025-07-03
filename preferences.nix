@@ -28,7 +28,7 @@
       avahi = false;
       containers = false;
       tpm = false;
-      virtualisation = false;
+      virtualisation = true;
       printing = false;
       apparmor = false;
     };
