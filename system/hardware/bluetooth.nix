@@ -1,5 +1,5 @@
 # Configure bluetooth settings
-{ ... }:
+{ pkgs-master, ... }:
 {
   hardware.bluetooth = {
     enable = true; # enables support for Bluetooth
@@ -9,5 +9,8 @@
       KernelExperimental = true;
     };
   };
-  services.blueman.enable = true; # enables the Bluetooth manager
+
+  environment.systemPackages = [ pkgs-master.overskride ];
+
+  # services.blueman.enable = true; # enables the Bluetooth manager
 }
