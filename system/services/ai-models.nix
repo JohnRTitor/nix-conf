@@ -49,7 +49,7 @@
   services.open-webui = {
     enable = true;
     host = "127.0.0.20";
-    port = 3000;
+    port = 8080;
   };
 
   networking.hosts."127.0.0.20" = [
