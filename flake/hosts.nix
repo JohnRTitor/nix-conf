@@ -60,6 +60,13 @@ in
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
             ];
           };
+
+          home-manager.users."masum-work" = {
+            imports = [
+              ../home-manager
+              inputs.nix-flatpak.homeManagerModules.nix-flatpak
+            ];
+          };
         }
       ];
     };

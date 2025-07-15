@@ -23,4 +23,18 @@
     # user shell changed to zsh
     shell = if (userSettings.shell == "zsh") then pkgs.zsh else pkgs.bashInteractive;
   };
+
+  users.users."masum-work" = {
+    isNormalUser = true;
+    description = "Masum R. Work";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [
+      # Configure in ../pkgs/user-packages.nix
+    ];
+    # user shell changed to zsh
+    shell = pkgs.bashInteractive;
+  };
 }
