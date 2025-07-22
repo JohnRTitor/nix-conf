@@ -3,7 +3,7 @@
 
   # Main sources and repositories
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
+    nixpkgs.url = "github:JohnRTitor/nixpkgs/nixos-unstable-test"; # Unstable NixOS system (default)
     nixpkgs-master.url = "nixpkgs/master"; # Testing branch of nixpkgs
 
     flake-parts = {
