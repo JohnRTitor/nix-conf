@@ -35,6 +35,6 @@
       # Configure in ../pkgs/user-packages.nix
     ];
     # user shell changed to zsh
-    shell = pkgs.bashInteractive;
+    shell = pkgs.zsh;
   };
 }
