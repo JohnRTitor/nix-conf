@@ -111,10 +111,13 @@
 
       materialgram # good looking material themed telegram client
       vesktop # alternative discord client
+      fluffychat
+      /*
       (element-desktop.override { # Matrix client
         # if keyring does not work, try either "libsecret" or "gnome"
         commandLineArgs = ''--password-store=gnome-libsecret'';
       })
+      */
     ])
     ++ (with pkgs-master; [
       # list of latest packages from nixpkgs master
