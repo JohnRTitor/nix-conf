@@ -15,14 +15,23 @@
     };
 
     # ----- USER SETTINGS ----- #
-    userSettings = {
-      username = "masum"; # username
-      name = "Masum R."; # name/identifier
-      gitname = "John Titor"; # git name
-      gitemail = "50095635+JohnRTitor@users.noreply.github.com"; # git email
-      gpgkey = "29B0514F4E3C1CC0"; # gpg key
+    userSettings."masum" = {
+      username = "masum";
+      name = "Masum R.";
+      gitname = "John Titor";
+      gitemail = "50095635+JohnRTitor@users.noreply.github.com";
+      gpgkey = "29B0514F4E3C1CC0";
       shell = "zsh"; # user default shell # choose either zsh or bash
     };
+    userSettings."masum-work" = {
+      username = "masum-work";
+      name = "Masum R. Work";
+      gitname = "Masum Reza";
+      gitemail = "221108133+johnrtitor-work@users.noreply.github.com";
+      gpgkey = "157769ECD30424AF";
+      shell = "zsh"; # user default shell # choose either zsh or bash
+    };
+
 
     servicesSettings = {
       avahi = false;

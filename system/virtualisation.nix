@@ -21,7 +21,7 @@
   virtualisation.spiceUSBRedirection.enable = true; # allows VMs to access USB
 
   programs.virt-manager.enable = true;
-  users.users.${userSettings.username}.extraGroups = [
+  users.users."masum".extraGroups = [
     "libvirtd" # Needed for Virt Manager
     # "vboxusers" # Needed for Virtualbox
   ];

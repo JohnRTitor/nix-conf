@@ -10,9 +10,9 @@
     # basic configuration of git, please change to your own
     enable = true;
     package = pkgs.gitFull;
-    userName = if (config.home.username == "masum-work") then "Masum Reza" else userSettings.gitname;
-    userEmail = if (config.home.username == "masum-work") then "221108133+johnrtitor-work@users.noreply.github.com" else userSettings.gitemail;
-    signing.key = if (config.home.username == "masum-work") then "157769ECD30424AF" else userSettings.gpgkey;
+    userName = userSettings.${config.home.username}.gitname;
+    userEmail = userSettings.${config.home.username}.gitemail;
+    signing.key = userSettings.${config.home.username}.gpgkey;
     signing.signByDefault = true;
     extraConfig = {
       color.ui = true;

@@ -8,7 +8,7 @@
   # Enable adb
   programs.adb.enable = true;
   # Add our primary user to adbusers group
-  users.users.${userSettings.username}.extraGroups = [
+  users.users."masum".extraGroups = [
     "adbusers"
     "plugdev"
   ];

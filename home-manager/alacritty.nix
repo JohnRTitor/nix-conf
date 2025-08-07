@@ -1,5 +1,6 @@
 # This config file is used to configure alacritty
 {
+  config,
   pkgs,
   userSettings,
   ...
@@ -99,7 +100,7 @@
 
     terminal.shell = {
       program =
-        if (userSettings.shell == "zsh") then
+        if (userSettings.${config.home.username}.shell == "zsh") then
           "/run/current-system/sw/bin/zsh"
         else
           "/run/current-system/sw/bin/bash";

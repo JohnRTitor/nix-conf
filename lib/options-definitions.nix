@@ -47,39 +47,50 @@
     };
 
     # ----- USER SETTINGS ----- #
-    userSettings = {
-      username = lib.mkOption {
-        type = lib.types.singleLineStr;
-        default = "alice";
-        description = "Username";
-      };
-      name = lib.mkOption {
-        type = lib.types.singleLineStr;
-        default = "Alice";
-        description = "Name/Identifier";
-      };
-      gitname = lib.mkOption {
-        type = lib.types.singleLineStr;
-        default = "Alice";
-        description = "Name used for Git operations";
-      };
-      gitemail = lib.mkOption {
-        type = lib.types.singleLineStr;
-        default = "example@example.com";
-        description = "Email used for Git operations";
-      };
-      gpgkey = lib.mkOption {
-        type = lib.types.singleLineStr;
-        description = "GPG key ID for Git operations";
-      };
-      shell = lib.mkOption {
-        type = lib.types.enum [
-          "zsh"
-          "bash"
-        ];
-        default = "zsh";
-        description = "User default shell";
-      };
+    userSettings = lib.mkOption {
+      description = "User specific configuration";
+      type = lib.types.attrsOf (
+        lib.types.submodule (
+          { ... }:
+          {
+            options = {
+              username = lib.mkOption {
+                type = lib.types.singleLineStr;
+                default = "alice";
+                description = "Username";
+              };
+              name = lib.mkOption {
+                type = lib.types.singleLineStr;
+                default = "Alice";
+                description = "Name/Identifier";
+              };
+              gitname = lib.mkOption {
+                type = lib.types.singleLineStr;
+                default = "Alice";
+                description = "Name used for Git operations";
+              };
+              gitemail = lib.mkOption {
+                type = lib.types.singleLineStr;
+                default = "example@example.com";
+                description = "Email used for Git operations";
+              };
+              gpgkey = lib.mkOption {
+                type = lib.types.singleLineStr;
+                description = "GPG key ID for Git operations";
+              };
+              shell = lib.mkOption {
+                type = lib.types.enum [
+                  "zsh"
+                  "bash"
+                ];
+                default = "zsh";
+                description = "User default shell";
+              };
+            };
+          }
+        )
+      );
+      example = "";
     };
 
     servicesSettings = {

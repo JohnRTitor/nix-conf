@@ -10,9 +10,9 @@
 }:
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${userSettings.username} = {
+  users.users.${userSettings."masum".username} = {
     isNormalUser = true;
-    description = userSettings.name;
+    description = userSettings."masum".name;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -21,12 +21,12 @@
       # Configure in ../pkgs/user-packages.nix
     ];
     # user shell changed to zsh
-    shell = if (userSettings.shell == "zsh") then pkgs.zsh else pkgs.bashInteractive;
+    shell = if (userSettings."masum".shell == "zsh") then pkgs.zsh else pkgs.bashInteractive;
   };
 
   users.users."masum-work" = {
     isNormalUser = true;
-    description = "Masum R. Work";
+    description = userSettings."masum-work".name;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -34,7 +34,6 @@
     packages = with pkgs; [
       # Configure in ../pkgs/user-packages.nix
     ];
-    # user shell changed to zsh
-    shell = pkgs.zsh;
+    shell = if (userSettings."masum-work".shell == "zsh") then pkgs.zsh else pkgs.bashInteractive;
   };
 }

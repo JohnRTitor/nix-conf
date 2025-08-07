@@ -54,7 +54,7 @@ in
             };
           };
 
-          home-manager.users.${userSettings.username} = {
+          home-manager.users."masum" = {
             imports = [
               ../home-manager
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
