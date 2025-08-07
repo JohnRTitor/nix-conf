@@ -102,7 +102,6 @@
 
       # whatsapp-for-linux
       libreoffice-fresh
-      deluge # Torrent client
       shotwell # GNOME image editor
       # gnome-logs # GNOME log viewer
       # mission-center # Taskmanager clone
@@ -113,10 +112,10 @@
       vesktop # alternative discord client
       fluffychat
       /*
-      (element-desktop.override { # Matrix client
-        # if keyring does not work, try either "libsecret" or "gnome"
-        commandLineArgs = ''--password-store=gnome-libsecret'';
-      })
+        (element-desktop.override { # Matrix client
+          # if keyring does not work, try either "libsecret" or "gnome"
+          commandLineArgs = ''--password-store=gnome-libsecret'';
+        })
       */
     ])
     ++ (with pkgs-master; [
@@ -125,5 +124,5 @@
       # Some packages may not be cached so.. it may take some time to build
     ]);
 
-  services.flatpak.packages = (import ./flatpak-packages.nix).userPackages;
+  services.flatpak.packages = (import ../flatpak-packages.nix).userPackages;
 }

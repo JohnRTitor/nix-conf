@@ -14,7 +14,7 @@
 {
   imports = [
     # system packages are imported in ./configuration.nix
-    ../pkgs/user-packages.nix # user specific packages
+    ../pkgs/user-packages/common.nix
     ./shell # shell (bash, zsh) and starship config
     ./xdg.nix # xdg config
     ./git.nix # git config
