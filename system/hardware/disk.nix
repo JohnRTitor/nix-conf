@@ -5,6 +5,7 @@
     "/".options = [
       "defaults"
       "noatime"
+      # "version_upgrade=incompatible" # set this to forcefully upgrade the version
     ]; # disable access time updates
   };
 
