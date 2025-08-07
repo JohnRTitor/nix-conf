@@ -24,13 +24,12 @@ lib.mkMerge [
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages =
-        with pkgs; [
-          # LIBVA and VDPAU are hardware acceleration drivers
-          libva
-          libva-vdpau-driver
-          libvdpau-va-gl
-        ];
+      extraPackages = with pkgs; [
+        # LIBVA and VDPAU are hardware acceleration drivers
+        libva
+        libva-vdpau-driver
+        libvdpau-va-gl
+      ];
       # For 32 bit applications
       extraPackages32 = with pkgs.driversi686Linux; [
         libva-vdpau-driver

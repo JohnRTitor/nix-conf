@@ -32,7 +32,6 @@
       shell = "zsh"; # user default shell # choose either zsh or bash
     };
 
-
     servicesSettings = {
       avahi = false;
       containers = false;

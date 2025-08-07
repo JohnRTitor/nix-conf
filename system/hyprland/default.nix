@@ -25,8 +25,7 @@ in
   # Enable Hyprland Window Manager
   programs.hyprland = {
     enable = true;
-    package =
-      (pkgs-hyprland.hyprland);
+    package = (pkgs-hyprland.hyprland);
     portalPackage = pkgs-hyprland.xdg-desktop-portal-hyprland;
   };
 

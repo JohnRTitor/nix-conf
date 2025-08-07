@@ -6,11 +6,9 @@ in
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    bashrcExtra =
-      commonRcExtra
-      + ''
-        # Custom bashrc go here, type below this line
-      '';
+    bashrcExtra = commonRcExtra + ''
+      # Custom bashrc go here, type below this line
+    '';
     sessionVariables = commonSessionVariables // {
       # Add custom session variables for bash
     };

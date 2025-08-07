@@ -10,24 +10,23 @@
   # Configure the build environment
 
   # Containers and adb should be available by default
-  imports =
-    [
-      # Use devenv instead, it's more flexible
-      # and contains a lot of prebuilt packages
-      # configured in home manager
+  imports = [
+    # Use devenv instead, it's more flexible
+    # and contains a lot of prebuilt packages
+    # configured in home manager
 
-      # ./deprecated/c-toolchain.nix
-      # ./deprecated/php.nix
-    ]
-    ++ lib.optionals devSettings.adb [ ./adb-toolchain.nix ]
-    ++ lib.optionals devSettings.nginx [
-      ./localhost-website.nix
-      ./adminer.nix
-      ./mysql.nix
-    ]
-    ++ lib.optionals devSettings.jupyter [
-      ./jupyter.nix
-    ];
+    # ./deprecated/c-toolchain.nix
+    # ./deprecated/php.nix
+  ]
+  ++ lib.optionals devSettings.adb [ ./adb-toolchain.nix ]
+  ++ lib.optionals devSettings.nginx [
+    ./localhost-website.nix
+    ./adminer.nix
+    ./mysql.nix
+  ]
+  ++ lib.optionals devSettings.jupyter [
+    ./jupyter.nix
+  ];
 
   # Nix LD - allows runnning unpatched FHS binaries without a hitch
   programs.nix-ld.enable = true;

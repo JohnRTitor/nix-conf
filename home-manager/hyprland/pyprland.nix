@@ -2,7 +2,10 @@
 let
   pyprlandSettings = {
     pyprland = {
-      plugins = ["scratchpads" "magnify"];
+      plugins = [
+        "scratchpads"
+        "magnify"
+      ];
     };
 
     "scratchpads.term" = {
@@ -12,8 +15,11 @@ let
       size = "75% 60%";
     };
   };
-in {
-  xdg.configFile."pypr/pyprland.toml".source = (pkgs.formats.toml { }).generate "pyprland-config.toml" pyprlandSettings;
+in
+{
+  xdg.configFile."pypr/pyprland.toml".source =
+    (pkgs.formats.toml { }).generate "pyprland-config.toml"
+      pyprlandSettings;
 
   home.packages = with pkgs; [
     pyprland
