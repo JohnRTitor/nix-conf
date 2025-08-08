@@ -1,6 +1,8 @@
 {pkgs, ...}: {
+  ## Work profile packages ##
   home.packages = with pkgs; [
     postman # Testing API
+    prettier
   ];
 
   xdg.desktopEntries = {

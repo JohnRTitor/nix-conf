@@ -69,8 +69,6 @@
       gawk
       gnused
 
-      ## PERSONAL ENJOYMENT ##
-      # ani-cli # watch anime in terminal!
 
       ## MONITORING TOOLS ##
       #iotop # for disk I/O monitoring
