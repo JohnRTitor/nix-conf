@@ -107,7 +107,6 @@
       clapper
 
       materialgram # good looking material themed telegram client
-      vesktop # alternative discord client
       fluffychat
       /*
         (element-desktop.override { # Matrix client
