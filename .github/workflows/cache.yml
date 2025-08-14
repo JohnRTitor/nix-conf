@@ -15,7 +15,8 @@ permissions:
   contents: read
 
 env:
-  NIX_HOSTNAME: "Ainz-NIX"
+  NIXOS_HOSTNAME: "Ainz-NIX"
+  NIXOS_USER: "masum"
   NIXOS_ATTRS_LIST: >
     programs.hyprland.package
     programs.hyprland.portalPackage
@@ -76,15 +77,28 @@ jobs:
 
           # Add NixOS configuration attributes
           for ATTR in $NIXOS_ATTRS_LIST; do
-            PKGS_LIST+=" nixosConfigurations.$NIX_HOSTNAME.config.$ATTR"
+            PKGS_LIST+=" nixosConfigurations.$NIXOS_HOSTNAME.config.$ATTR"
           done
 
           for PKG in $NIXOS_PKGS_LIST; do
-            PKGS_LIST+=" nixosConfigurations.$NIX_HOSTNAME.pkgs.$PKG"
+            PKGS_LIST+=" nixosConfigurations.$NIXOS_HOSTNAME.pkgs.$PKG"
           done
+          echo "::notice::Flake Attributes to build:\n $PKGS_LIST"
+
+          echo "Getting a list of VSCode extensions (configured using home-manager) to build"
+          vscodeExtensionNames=$(nix eval --json .#nixosConfigurations.$NIXOS_HOSTNAME.config.home-manager.users.$NIXOS_USER.programs.vscode.profiles.default.extensions --apply 'map (drv: drv.pname)' | jq -r '.[]')
+          echo "::notice::VSCode extensions to build:\n $vscodeExtensionNames"
 
           echo "::notice::Starting package build and cache push"
           for PKG in $PKGS_LIST; do
-            echo "::notice::Building package $PKG"
+            echo "::notice::Building package $PKG ..."
             nix build .#$PKG --print-out-paths --print-build-logs | cachix push $CACHIX_CACHE_NAME
+          done
+
+          vscodeExtensionDRVs=$(nix eval --json .#nixosConfigurations.$NIXOS_HOSTNAME.config.home-manager.users.$NIXOS_USER.programs.vscode.profiles.default.extensions --apply 'map (drv: drv.drvPath)' | jq -r '.[]')
+          echo "::notice::Starting VSCode extensions build and cache push"
+          echo "$vscodeExtensionDRVs"
+          for drv in $vscodeExtensionDRVs; do
+            echo "Building vscode extension drv: $drv ..."
+            nix build "${drv}^*" --print-out-paths | cachix push $CACHIX_CACHE_NAME
           done
