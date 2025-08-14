@@ -5,6 +5,11 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+
+    # some headphones might use the alsa api
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    jack.enable = true;
   };
 
   # Enable rtkit for real-time scheduling, required for pipewire
