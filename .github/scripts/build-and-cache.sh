@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-
 echo "::notice::Fetching list of packages to build"
 
 # Get a list of packages defined in this flake
@@ -26,7 +25,7 @@ $(printf '%s\n' $PKGS_LIST)
 
 EOF
 
-echo "Getting a list of VSCode extensions (configured using home-manager) to build"
+echo "Fetching a list of VSCode extensions (configured using home-manager) to build"
 vscodeExtensionNames=$(nix eval --json .#nixosConfigurations.$NIXOS_HOSTNAME.config.home-manager.users.$NIXOS_USER.programs.vscode.profiles.default.extensions --apply 'map (drv: drv.pname)' | jq -r '.[]')
 
 # Write VSCode extensions to step summary
@@ -41,13 +40,12 @@ EOF
 
 echo "::notice::Starting package build and cache push"
 for PKG in $PKGS_LIST; do
-  echo "::notice::Building package $PKG ..."
+  echo "Building package $PKG ..."
   nix build .#$PKG --print-out-paths --print-build-logs | cachix push $CACHIX_CACHE_NAME
 done
 
 vscodeExtensionDRVs=$(nix eval --json .#nixosConfigurations.$NIXOS_HOSTNAME.config.home-manager.users.$NIXOS_USER.programs.vscode.profiles.default.extensions --apply 'map (drv: drv.drvPath)' | jq -r '.[]')
 echo "::notice::Starting VSCode extensions build and cache push"
-echo "$vscodeExtensionDRVs"
 for drv in $vscodeExtensionDRVs; do
   echo "Building vscode extension drv: $drv ..."
   nix build "${drv}^*" --print-build-logs --print-out-paths | cachix push $CACHIX_CACHE_NAME
