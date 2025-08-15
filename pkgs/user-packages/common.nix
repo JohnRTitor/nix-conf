@@ -69,7 +69,6 @@
       gawk
       gnused
 
-
       ## MONITORING TOOLS ##
       #iotop # for disk I/O monitoring
       #iftop # for network I/O monitoring
@@ -105,15 +104,6 @@
       # mission-center # Taskmanager clone
       # warp # file transfer, also install android app
       clapper
-
-      materialgram # good looking material themed telegram client
-      fluffychat
-      /*
-        (element-desktop.override { # Matrix client
-          # if keyring does not work, try either "libsecret" or "gnome"
-          commandLineArgs = ''--password-store=gnome-libsecret'';
-        })
-      */
     ])
     ++ (with pkgs-master; [
       # list of latest packages from nixpkgs master
