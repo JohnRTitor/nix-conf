@@ -30,4 +30,8 @@
     lib.optionals (systemSettings.laptop) [ ./power.nix ];
 
   system.nixos.tags = lib.mkDefault [ "cachyos" ];
+
+  virtualisation.docker = {
+    enable = true;
+  };
 }
