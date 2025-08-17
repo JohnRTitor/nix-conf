@@ -34,7 +34,7 @@
 
     servicesSettings = {
       avahi = false;
-      containers = false;
+      containers = true;
       tpm = false;
       virtualisation = true;
       printing = false;

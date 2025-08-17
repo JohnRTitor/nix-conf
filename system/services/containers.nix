@@ -12,10 +12,21 @@ lib.mkIf servicesSettings.containers {
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
-    # dockerSocket.enable = true;
+    dockerSocket.enable = true;
   };
   users.users."masum".extraGroups = lib.optionals (config.virtualisation.podman.dockerSocket.enable) [
     "podman"
   ];
-  environment.systemPackages = with pkgs; [ distrobox ];
+  users.users."masum-work".extraGroups = lib.optionals (config.virtualisation.podman.dockerSocket.enable) [
+    "podman"
+  ];
+
+  environment.systemPackages =
+    with pkgs;
+    (
+      [ distrobox ]
+      ++ lib.optionals (config.virtualisation.podman.enable) [
+        podman-desktop
+      ]
+    );
 }
