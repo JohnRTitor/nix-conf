@@ -1,0 +1,61 @@
+name: setup-nix
+description: "Set up GitHub actions with free space and install Nix"
+
+runs:
+  using: composite
+  steps:
+    - name: reclaim space (linux)
+      if: runner.os == 'Linux'
+      uses: wimpysworld/nothing-but-nix@main
+      with:
+        hatchet-protocol: rampage
+
+    - name: reclaim space (darwin)
+      if: runner.os == 'macOS'
+      shell: bash
+      run: |
+        echo "::group::disk space (before)"
+        sudo df -h
+        echo "::endgroup::"
+
+        echo "::group::disable mds"
+        sudo mdutil -i off -a || echo "mdutil failed"
+        sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist \
+         || echo "launchctl unload failed"
+        echo "::endgroup::"
+
+        echo "Background space expansion started. /nix will grow as space becomes available."
+        sudo rm -rf \
+          /Applications/Xcode_* \
+          /Library/Developer/CoreSimulator \
+          /Library/Frameworks \
+          /Users/runner/.dotnet \
+          /Users/runner/.rustup \
+          /Users/runner/Library/Android \
+          /Users/runner/Library/Caches \
+          /Users/runner/Library/Developer/CoreSimulator \
+          /Users/runner/hostedtoolcache &
+
+    - name: install nix
+      uses: cachix/install-nix-action@v31
+      with:
+        # Putting build-dir in /nix is a workaround for https://github.com/wimpysworld/nothing-but-nix/issues/18
+        extra_nix_config: |
+          build-dir = /nix/var/nix/builds
+          accept-flake-config = true
+          experimental-features = nix-command flakes
+          auto-optimise-store = true
+
+    - name: create build-dir
+      shell: bash
+      run: sudo mkdir -p /nix/var/nix/builds
+
+    - name: post setup-nix
+      if: runner.os == 'macOS'
+      uses: srz-zumix/post-run-action@v2
+      with:
+        shell: bash -e {0}
+        post-run: |
+          echo "::group::disk space (after)"
+          sudo df -h
+          echo "::endgroup::"

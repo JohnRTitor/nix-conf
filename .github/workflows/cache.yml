@@ -39,32 +39,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: prepare /nix
-        shell: bash
-        env:
-          CLEAN: "true"
-          BTRFS: "true"
-        run: |
-          curl -o prepare.sh https://raw.githubusercontent.com/JohnRTitor/nixpkgs-review-gha/refs/heads/main/helpers/prepare.sh
-          bash prepare.sh
-
-      - name: Install Nix
-        uses: cachix/install-nix-action@v30
+      - uses: actions/checkout@v4
         with:
-          install_url: https://nixos.org/nix/install
-          extra_nix_config: |
-            auto-optimise-store = true
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-            experimental-features = nix-command flakes
-            accept-flake-config = true
-            build-dir = /nix/var
+          sparse-checkout: |
+            .github/actions
+
+      - name: setup nix
+        uses: ./.github/actions/setup-nix
 
       - uses: actions/checkout@v4
 
       - name: Install required packages
         run: |
           for PKG in $REQUIRED_PACKAGES; do
-            nix profile install nixpkgs#$PKG
+            nix profile add nixpkgs#$PKG
           done
 
       - name: Build Packages and push to Cachix
