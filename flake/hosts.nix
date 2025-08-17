@@ -58,6 +58,7 @@ in
             imports = [
               ../home-manager
               ../pkgs/user-packages/masum.nix
+              ../home-manager/user-config/masum.nix
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
             ];
           };
@@ -66,6 +67,7 @@ in
             imports = [
               ../home-manager
               ../pkgs/user-packages/masum-work.nix
+              ../home-manager/user-config/masum-work.nix
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
             ];
           };
