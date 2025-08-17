@@ -52,10 +52,33 @@ jobs:
       - name: Install required packages
         run: |
           for PKG in $REQUIRED_PACKAGES; do
-            nix profile add nixpkgs#$PKG
+            nix profile install nixpkgs#$PKG
           done
 
       - name: Build Packages and push to Cachix
+        id: build
         run: |
           chmod +x ./.github/scripts/build-and-cache.sh
           ./.github/scripts/build-and-cache.sh
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs-${{ github.run_number }}
+          path: |
+            build.log
+            errors.log
+            success.txt
+            failures.txt
+          retention-days: 30
+          if-no-files-found: ignore
+      - name: Upload build summary
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-summary-${{ github.run_number }}
+          path: |
+            success.txt
+            failures.txt
+          retention-days: 7
+          if-no-files-found: ignore
