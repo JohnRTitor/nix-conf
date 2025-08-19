@@ -23,7 +23,7 @@
       # automatically convert crlf line endings to lf when commiting
       core.autocrlf = "input";
       # signoff at the end of each commit every time
-      format.signoff = true;
+      format.signOff = true;
     };
     lfs.enable = true; # git lfs for large files
     diff-so-fancy.enable = true;
