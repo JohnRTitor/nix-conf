@@ -86,6 +86,9 @@ in
       "editor.cursorBlinking" = "expand";
       "editor.cursorSmoothCaretAnimation" = "on";
       "editor.formatOnSave" = true;
+      "editor.minimap.enabled" = false;
+      "files.autoSave" = "afterDelay";
+
 
       "git.confirmSync" = false; # Do not ask for confirmation when syncing
       "git.autofetch" = true; # Periodically fetch from remotes

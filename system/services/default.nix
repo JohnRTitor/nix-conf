@@ -33,6 +33,7 @@
   # lavd is better for gaming
   # rustland is better for general workloads
   services.scx.scheduler = "scx_lavd";
+  services.scx.extraArgs = [ "--performance" ];
 
   # Accounts daemon is needed to remember passwords and other account information
   # by display manager and other services
