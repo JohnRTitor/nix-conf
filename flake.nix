@@ -5,6 +5,7 @@
   inputs = {
     nixpkgs.url = "github:JohnRTitor/nixpkgs/nixos-unstable-test"; # Unstable NixOS system (default)
     nixpkgs-master.url = "nixpkgs/master"; # Testing branch of nixpkgs
+    nixpkgs-open-webui-pin.url = "github:NixOS/nixpkgs/fbcf476f790d8a217c3eab4e12033dc4a0f6d23c";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
