@@ -32,10 +32,11 @@ in
       (with (pkgs.forVSCodeVersion config.programs.vscode.package.version).vscode-marketplace; [
         ## Language support ##
         jnoortheen.nix-ide # Nix language support
-        ms-python.python # Python language support
-        ms-vscode.cpptools-extension-pack # C/C++ extension pack
+        # ms-python.python # Python language support
+        # ms-vscode.cpptools-extension-pack # C/C++ extension pack
         tamasfe.even-better-toml # TOML language support
-        bmewburn.vscode-intelephense-client # PHP language support
+        # bmewburn.vscode-intelephense-client # PHP language support
+        bradlc.vscode-tailwindcss # Tailwind CSS IntelliSense
 
         ## Linters ##
         esbenp.prettier-vscode # Prettier code formatter
@@ -53,7 +54,7 @@ in
         ms-vscode-remote.remote-ssh # Remote SSH
 
         rolandgreim.sharecode # Pastebin/Gist support
-        ritwickdey.liveserver # launch local html web server
+        # ritwickdey.liveserver # launch local html web server
         mkhl.direnv # direnv support
         oderwat.indent-rainbow # colorful indentation
         # arrterian.nix-env-selector # not needed at the moment
@@ -74,7 +75,7 @@ in
         github.vscode-pull-request-github # GitHub Pull Requests
       ])
       ++ (with pkgs.vscode-extensions; [
-        ms-vscode.cpptools # C/C++ language support, only available via nixpkgs
+        # ms-vscode.cpptools # C/C++ language support, only available via nixpkgs
       ]);
     userSettings = {
       "workbench.colorTheme" = "SynthWave '84";
@@ -84,6 +85,7 @@ in
 
       "editor.cursorBlinking" = "expand";
       "editor.cursorSmoothCaretAnimation" = "on";
+      "editor.formatOnSave" = true;
 
       "git.confirmSync" = false; # Do not ask for confirmation when syncing
       "git.autofetch" = true; # Periodically fetch from remotes
@@ -95,7 +97,6 @@ in
 
       "direnv.restart.automatic" = true; # Automatically restart direnv if .envrc changes
       "nix.enableLanguageServer" = true;
-      "github.copilot.editor.enableAutoCompletions" = true;
 
       # Check if nixd or nil is installed and set the server accordingly
       "nix.serverPath" =
@@ -108,9 +109,13 @@ in
 
       "dev.containers.dockerPath" = "podman"; # Use podman as the docker path
 
-      # Prettier linting
+      ## Formatter Config ##
+      "editor.defaultFormatter" = "esbenp.prettier-vscode";
       "[html]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
       "[javascript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+      "[javascriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+      "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
+      "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
       "[markdown]"."editor.defaultFormatter" = "DavidAnson.vscode-markdownlint";
     };
   };
