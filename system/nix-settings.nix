@@ -8,7 +8,10 @@
 {
   nix.package = pkgs.nixVersions.latest; # Use latest nix
   # DONOT DISABLE THIS
-  nix.settings.trusted-users = [ "masum" "masum-work" ]; # FIXME: if someday custom cache works without this
+  nix.settings.trusted-users = [
+    "masum"
+    "masum-work"
+  ]; # FIXME: if someday custom cache works without this
 
   # Features for building
   nix.settings.system-features = [

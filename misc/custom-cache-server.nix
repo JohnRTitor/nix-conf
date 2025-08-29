@@ -9,7 +9,10 @@
     # THIS IS REQUIRED BUT ALSO DANGEROUS
     # main user has access to nix store
     # THIS IS EQUIVALENT TO GIVING ROOT ACCESS TO THE MAIN USER
-    trusted-users = [ "masum" "masum-work" ];
+    trusted-users = [
+      "masum"
+      "masum-work"
+    ];
 
     substituters = [
       # cache mirror located in China

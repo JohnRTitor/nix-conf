@@ -17,9 +17,11 @@ lib.mkIf servicesSettings.containers {
   users.users."masum".extraGroups = lib.optionals (config.virtualisation.podman.dockerSocket.enable) [
     "podman"
   ];
-  users.users."masum-work".extraGroups = lib.optionals (config.virtualisation.podman.dockerSocket.enable) [
-    "podman"
-  ];
+  users.users."masum-work".extraGroups =
+    lib.optionals (config.virtualisation.podman.dockerSocket.enable)
+      [
+        "podman"
+      ];
 
   environment.systemPackages =
     with pkgs;

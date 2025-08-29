@@ -56,18 +56,20 @@ in
 
           home-manager.users."masum" = {
             imports = [
-              ../home-manager
-              ../pkgs/user-packages/masum.nix
               ../home-manager/user-config/masum.nix
+              ../pkgs/user-packages/masum.nix
+              # system packages are imported in ./configuration.nix
+              ../pkgs/user-packages/common.nix
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
             ];
           };
 
           home-manager.users."masum-work" = {
             imports = [
-              ../home-manager
-              ../pkgs/user-packages/masum-work.nix
               ../home-manager/user-config/masum-work.nix
+              ../pkgs/user-packages/masum-work.nix
+              # system packages are imported in ./configuration.nix
+              ../pkgs/user-packages/common.nix
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
             ];
           };

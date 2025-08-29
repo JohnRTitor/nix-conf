@@ -13,13 +13,10 @@
 }:
 {
   imports = [
-    # system packages are imported in ./configuration.nix
-    ../pkgs/user-packages/common.nix
     ./shell # shell (bash, zsh) and starship config
     ./xdg.nix # xdg config
     ./git.nix # git config
     ./alacritty.nix
-    ./vscode.nix
     ./cli-tools.nix # Useful CLI tools
     # ./thunar.nix
     ./vesktop.nix

@@ -118,8 +118,9 @@ let
     udev
     vulkan-loader
     wayland
-  ] ++ lib.optional pulseSupport libpulseaudio
-    ++ lib.optional libvaSupport libva;
+  ]
+  ++ lib.optional pulseSupport libpulseaudio
+  ++ lib.optional libvaSupport libva;
 
 in
 stdenv.mkDerivation rec {
@@ -152,7 +153,8 @@ stdenv.mkDerivation rec {
     mesa
     glib
     libsecret
-  ] ++ deps;
+  ]
+  ++ deps;
 
   runtimeDependencies = [
     (lib.getLib systemd)
@@ -179,7 +181,10 @@ stdenv.mkDerivation rec {
       desktopName = "Docker Desktop";
       comment = "Docker Desktop";
       genericName = "Container Management";
-      categories = [ "Development" "System" ];
+      categories = [
+        "Development"
+        "System"
+      ];
       startupWMClass = "Docker Desktop";
       startupNotify = true;
     })
