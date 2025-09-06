@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs-master,
   ...
 }:
 {
@@ -48,6 +49,7 @@
   # Creates a Web UI for running models via Ollama at http://127.0.0.20:3000
   services.open-webui = {
     enable = true;
+    package = pkgs-master.open-webui;
     host = "127.0.0.20";
     port = 8080;
   };

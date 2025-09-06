@@ -6,10 +6,6 @@
     prettier
 
     wf-recorder # Record screen (with audio)
-
-    (discord.override {
-      withEquicord = true;
-    })
   ];
 
   xdg.desktopEntries.mongodb-compass = {

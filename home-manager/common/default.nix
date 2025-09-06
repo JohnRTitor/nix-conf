@@ -19,6 +19,7 @@
     ./alacritty.nix
     ./cli-tools.nix # Useful CLI tools
     # ./thunar.nix
+    ./vesktop.nix
 
     ./nix-tools.nix
 
