@@ -1,5 +1,5 @@
 # Configure bluetooth settings
-{ pkgs-master, ... }:
+{ pkgs, ... }:
 {
   hardware.bluetooth = {
     enable = true; # enables support for Bluetooth
@@ -10,7 +10,7 @@
     };
   };
 
-  environment.systemPackages = [ pkgs-master.overskride ];
+  environment.systemPackages = [ pkgs.overskride ];
 
   # services.blueman.enable = true; # enables the Bluetooth manager
 }
