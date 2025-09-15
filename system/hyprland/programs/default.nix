@@ -24,7 +24,7 @@
       pamixer
       pavucontrol # audio control
       playerctl # media player control
-      rofi-wayland # app launcher
+      rofi # app launcher
       slurp # screenshots
       swappy # screenshots
       swaynotificationcenter # notification daemon
