@@ -7,13 +7,8 @@
   ...
 }:
 let
-  nur-amdgpu = pkgs.nur.repos.materus;
-
   ## PREFS ##
-  enablePRODrivers = false;
   enableOpenCL = true;
-  # Enabling AMDVLK autodisables Mesa Radv
-  enableAMDVLK = false;
   enableOverclocking = true;
 in
 lib.mkMerge [
@@ -81,41 +76,5 @@ lib.mkMerge [
 
     # Overclocking software
     services.lact.enable = true;
-  })
-
-  (lib.mkIf enablePRODrivers {
-    # AMDGPU-PRO firmware
-    hardware.firmware = with nur-amdgpu; [
-      amdgpu-pro-libs.firmware.vcn
-      amdgpu-pro-libs.firmware
-    ];
-
-    environment.systemPackages = with nur-amdgpu; [
-      amdgpu-pro-libs.prefixes
-    ];
-
-    hardware.graphics.extraPackages = with nur-amdgpu; [
-      amdgpu-pro-libs.opengl
-      amdgpu-pro-libs.vulkan
-      amdgpu-pro-libs.amf
-    ];
-  })
-
-  ### Alternate Vulkan driver - AMDVLK ###
-  (lib.mkIf enableAMDVLK {
-    # AMDVLK is buggy and VK implementation is not good
-    # RADV is better
-    hardware.amdgpu.amdvlk = {
-      enable = true;
-      support32Bit.enable = true;
-      supportExperimental.enable = true;
-      settings = {
-        AllowVkPipelineCachingToDisk = 1;
-        ShaderCacheMode = 1;
-        IFH = 0;
-        EnableVmAlwaysValid = 1;
-        IdleAfterSubmitGpuMask = 0;
-      };
-    };
   })
 ]
