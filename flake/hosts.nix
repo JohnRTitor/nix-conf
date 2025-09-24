@@ -41,6 +41,8 @@ in
         inputs.nix-flatpak.nixosModules.nix-flatpak # nix-flatpak, allows flatpak declaratively
         inputs.lanzaboote.nixosModules.lanzaboote
 
+        inputs.determinate.nixosModules.default # Determinate Nix
+
         # install home-manager as NixOS module
         # so that it automatically gets deployed when running `nixos-rebuild switch`
         inputs.home-manager.nixosModules.home-manager

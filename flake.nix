@@ -11,6 +11,8 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    determinate.url = "github:DeterminateSystems/determinate";
+
     # Bleeding edge packages from chaotic nyx, especially CachyOS kernel
     chaotic = {
       url = "github:chaotic-cx/nyx/main";

@@ -6,7 +6,7 @@
   ...
 }:
 {
-  nix.package = pkgs.nixVersions.latest; # Use latest nix
+  # nix.package = pkgs.nixVersions.latest; # Use latest nix
   # DONOT DISABLE THIS
   nix.settings.trusted-users = [
     "masum"
@@ -30,6 +30,8 @@
     "nix-command"
     "flakes"
   ]; # enable nix command and flakes
+
+  nix.settings.eval-cores = 0;
 
   nix.settings.auto-optimise-store = true; # enable space optimisation by hardlinking
 
