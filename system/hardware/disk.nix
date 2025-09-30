@@ -9,9 +9,6 @@
     ]; # disable access time updates
   };
 
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    bcachefs
-  ];
   services.bcachefs.autoScrub.enable = true;
   boot.kernel.sysfs.fs.bcachefs.dm-0.dev-0.label = "NixOS-Root";
 
