@@ -4,8 +4,14 @@
   ...
 }:
 {
-  # Enable Cosmic-greeter
-  services.displayManager.cosmic-greeter.enable = true;
+  services.displayManager.gdm = {
+    enable = true;
+    wayland = true;
+    banner = ''
+                      Welcome Traveler, Behold!
+      You are about to enter the realm of Hyprland
+    '';
+  };
 
   # this adds a new UWSM managed Hyprland session
   # that properly starts Hyprland compositor with

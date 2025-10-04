@@ -24,7 +24,7 @@
     ./nix-tools.nix
 
     ./services.nix # services
-    ./cosmic-greeter
+    #./cosmic-greeter
     ./hyprland/pyprland.nix
   ]
   ++ lib.optionals devSettings.nginx [
