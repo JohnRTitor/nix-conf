@@ -29,7 +29,7 @@
 
   # Enable scx extra schedulers, only available for linux-cachyos
   services.scx.enable = true;
-  services.scx.package = pkgs-master.scx.full;
+  services.scx.package = pkgs.scx.full;
   # lavd is better for gaming
   # rustland is better for general workloads
   services.scx.scheduler = "scx_lavd";

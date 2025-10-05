@@ -26,5 +26,5 @@ in
 
   # devenv is a faster and easier way to configure development
   # environment, better than nix-shell
-  home.packages = [ inputs.devenv.packages.${pkgs.system}.devenv ];
+  home.packages = [ pkgs.devenv ];
 }
