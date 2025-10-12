@@ -21,6 +21,7 @@
     ./services
     ./safe-specialization.nix
     ./shell
+    ./programs
   ]
   ++
     # Import if Virtualization is enabled

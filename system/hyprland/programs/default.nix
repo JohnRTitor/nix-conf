@@ -70,7 +70,7 @@
       pyprland # hyprland plugin, dropdown term, etc
 
       ## MONITORING TOOLS ##
-      btop # for CPU, RAM, and Disk monitoring
+      btop-rocm # for CPU, RAM, and Disk monitoring
       nvtopPackages.amd # for AMD GPUs
 
       ## NEEDED FOR Hyprland-Dots ##

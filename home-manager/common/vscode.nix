@@ -47,7 +47,7 @@ in
         github.codespaces # GitHub Codespaces
         github.vscode-github-actions # GitHub Actions
         donjayamanne.githistory # Git History
-        eamodio.gitlens # GitLens
+        # eamodio.gitlens # GitLens
 
         ## MISCELLANEOUS ##
         ms-azuretools.vscode-docker # Docker

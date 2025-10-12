@@ -9,7 +9,7 @@ lib.mkIf programsSettings.openrgb {
   services.hardware.openrgb = {
     enable = true;
     motherboard = "amd";
-    package = pkgs.openrgb_git; # enable all plugins
+    package = pkgs.openrgb-with-all-plugins; # enable all plugins
   };
   environment.systemPackages = [ pkgs.i2c-tools ];
   # MAKE SURE TO ADD YOUR USER TO THE I2C GROUP

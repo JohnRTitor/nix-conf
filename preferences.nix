@@ -34,7 +34,7 @@
 
     servicesSettings = {
       avahi = false;
-      containers = true;
+      containers = false;
       tpm = false;
       virtualisation = true;
       printing = false;
@@ -49,7 +49,7 @@
 
     programsSettings = {
       fileManager = "nemo";
-      openrgb = false;
+      openrgb = true;
       neovim = false;
     };
   };
