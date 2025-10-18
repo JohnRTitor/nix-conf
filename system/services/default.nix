@@ -14,7 +14,7 @@
     ./console-tty.nix
     ./gnome-keyring.nix
     ./gnupg-ssh.nix
-    # ./ai-models.nix
+    ./ai-models.nix
     ./apparmor.nix
     ./containers.nix
   ];
@@ -45,11 +45,7 @@
   services.udev.enable = true;
   programs.dconf.enable = true;
 
-  ## Configure XDG portal ##
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true; # use xdg-open with xdg-desktop-portal
-  };
+  services.smartd.enable = true;
 
   /*
     # Not used anywhere
