@@ -39,7 +39,7 @@
         include ${config.services.nginx.package}/conf/fastcgi.conf;
       '';
     };
-    root = "${self.packages.${pkgs.system}.adminneo-with-theme}";
+    root = "${self.packages.${pkgs.hostPlatform.system}.adminneo-with-theme}";
   };
 
   # PHP-FPM pool configuration

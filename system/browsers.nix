@@ -10,7 +10,7 @@
   # Zen-browser
   programs.firefox = {
     enable = true;
-    package = inputs.zen-browser.packages.${pkgs.system}.default;
+    package = inputs.zen-browser.packages.${pkgs.hostPlatform.system}.default;
     policies = {
       DontCheckDefaultBrowser = true; # disable the annoying popup at startup
       HardwareAcceleration = true;
@@ -22,6 +22,6 @@
       # tor-browser
     ])
     ++ [
-      self.packages.${pkgs.system}.google-chrome_repackaged
+      self.packages.${pkgs.hostPlatform.system}.google-chrome_repackaged
     ];
 }
