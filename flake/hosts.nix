@@ -37,7 +37,6 @@ in
         ../default-host/configuration.nix # main nixos configuration
         inputs.chaotic.nixosModules.default # chaotic-nyx bleeding edge packages
         inputs.nur.modules.nixos.default # NUR - NixOS user repository
-        inputs.ucodenix.nixosModules.ucodenix # ucodeNix - CPU microcode updates
         inputs.nix-flatpak.nixosModules.nix-flatpak # nix-flatpak, allows flatpak declaratively
         inputs.lanzaboote.nixosModules.lanzaboote
 

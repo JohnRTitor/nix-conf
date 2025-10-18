@@ -36,8 +36,6 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # Hyprland, a Wayland WM, use git submodules too
     ## MISC PACKAGES ##
 
-    # For getting latest AMD microcode updates
-    ucodenix.url = "github:e-tho/ucodenix";
     # For getting latest zen-browser binary updates
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
@@ -52,6 +50,11 @@
       url = "github:nix-community/NUR"; # Nix User Repository, for community packages
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
+    };
+
+    platomav-microcode = { # For getting latest AMD microcode updates
+      url = "github:platomav/CPUMicrocodes";
+      flake = false;
     };
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./flake ]; };
