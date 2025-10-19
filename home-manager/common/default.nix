@@ -26,6 +26,7 @@
     ./services.nix # services
     ./cosmic-greeter
     ./hyprland/pyprland.nix
+    ./hyprland/hyprpanel.nix
   ]
   ++ lib.optionals devSettings.nginx [
     # Default Nginx server welcome testing page

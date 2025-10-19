@@ -1,12 +1,13 @@
 { lib, pkgs, ... }:
 {
-  programs.waybar = {
-    enable = true; # enable waybar launcher
-    package = pkgs.waybar;
-  };
-  systemd.user.services.waybar.environment = {
-    PATH = lib.mkForce "/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
-  };
+  /* Hyprpanel is used in place of Waybar */
+  # programs.waybar = {
+  #   enable = true; # enable waybar launcher
+  #   package = pkgs.waybar;
+  # };
+  # systemd.user.services.waybar.environment = {
+  #   PATH = lib.mkForce "/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
+  # };
 
   programs.hyprlock = {
     enable = true; # enable Hyprlock screen locker

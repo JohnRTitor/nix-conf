@@ -22,7 +22,7 @@
       nwg-look # theme switcher
       openssl # required by Rainbow borders
       pamixer
-      pavucontrol # audio control
+      pwvucontrol # audio control
       playerctl # media player control
       rofi # app launcher
       slurp # screenshots
