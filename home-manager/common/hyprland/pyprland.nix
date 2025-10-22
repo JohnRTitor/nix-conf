@@ -1,14 +1,15 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   pyprlandSettings = {
     pyprland = {
       plugins = [
         "scratchpads"
         "magnify"
+        "expose"
       ];
     };
 
-    "scratchpads.term" = {
+    scratchpads.term = {
       animation = "fromTop";
       command = "kitty --class kitty-dropterm";
       class = "kitty-dropterm";
@@ -24,4 +25,26 @@ in
   home.packages = with pkgs; [
     pyprland
   ];
+
+  systemd.user.services.pyprland = {
+    Unit = {
+      Description = "Autostart Pyprland on Hyprland session start";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+
+      X-Restart-Triggers = [
+        config.xdg.configFile."pypr/pyprland.toml".source
+      ];
+
+      ConditionEnvironment = "WAYLAND_DISPLAY";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.pyprland}/bin/pypr --config ~/.config/pypr/pyprland.toml";
+      Restart = "on-failure";
+    };
+  };
 }
