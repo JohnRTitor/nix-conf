@@ -60,7 +60,8 @@ in
     # Telegram
     "x-scheme-handler/tg" = "org.telegram.desktop.desktop;io.github.kukuruzka165.materialgram.desktop;";
     "x-xdg-protocol-tg" = "org.telegram.desktop.desktop;io.github.kukuruzka165.materialgram.desktop;";
-    "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop;io.github.kukuruzka165.materialgram.desktop;";
+    "x-scheme-handler/tonsite" =
+      "org.telegram.desktop.desktop;io.github.kukuruzka165.materialgram.desktop;";
 
     # Images
     "image/png" = "org.gnome.Loupe.desktop;";

@@ -14,5 +14,6 @@
   # And do NOT use Zenpower because it lacks support for 7000 series
 
   # load the latest microcode from platomav's repository
-  hardware.cpu.amd.microcodePackage = self.packages.${pkgs.hostPlatform.system}.microcode-amd-platomav;
+  hardware.cpu.amd.microcodePackage =
+    self.packages.${pkgs.hostPlatform.system}.microcode-amd-platomav;
 }

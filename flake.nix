@@ -52,7 +52,8 @@
       inputs.flake-parts.follows = "flake-parts";
     };
 
-    platomav-microcode = { # For getting latest AMD microcode updates
+    platomav-microcode = {
+      # For getting latest AMD microcode updates
       url = "github:platomav/CPUMicrocodes";
       flake = false;
     };

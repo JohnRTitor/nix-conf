@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 {
-  /* Hyprpanel is used in place of Waybar */
+  # Hyprpanel is used in place of Waybar
   # programs.waybar = {
   #   enable = true; # enable waybar launcher
   #   package = pkgs.waybar;
