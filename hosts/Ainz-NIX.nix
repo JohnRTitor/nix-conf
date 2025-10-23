@@ -63,7 +63,7 @@ in
 
             "masum-work".imports = commonImports ++ [
               ../modules/home-manager/user-config/masum-work.nix
-              ../modules/pkgs-configuration/user-packages/masum-work.nix
+              # ../modules/pkgs-configuration/user-packages/masum-work.nix
             ];
           };
       }
