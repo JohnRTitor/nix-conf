@@ -52,13 +52,13 @@
 
   # Automount USB and drives
   # for virtual file systems, removable media, and remote filesystems
-  services.devmon.enable = true;
+  # udiskie (in hm config) does the job fine, so devmon not needed
+  # services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   programs.gnome-disks.enable = true;
   environment.systemPackages = with pkgs; [
     baobab # disk usage analyzer
     fuseiso # to mount iso system images
-    udiskie # automount usb drives
   ];
 }
