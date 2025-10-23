@@ -8,6 +8,7 @@
   ...
 }:
 let
+  pkgs-vscode-extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
   # extract package pname for each package in the list of all installed packages, then put them in a list
   packagesList = map (x: x.pname) (config.home.packages ++ osConfig.environment.systemPackages);
 in
@@ -29,7 +30,7 @@ in
     # But we are still allowing extensions to be installed from VS code GUI
     # disabling mutableExtensionsDir will mess up things
     extensions =
-      (with (pkgs.forVSCodeVersion config.programs.vscode.package.version).vscode-marketplace; [
+      (with pkgs-vscode-extensions.vscode-marketplace; [
         ## Language support ##
         jnoortheen.nix-ide # Nix language support
         # ms-python.python # Python language support
@@ -66,10 +67,10 @@ in
         pkief.material-icon-theme # Material Icon Theme
         pkief.material-product-icons # Material Product Icons
       ])
-      ++ (with pkgs.vscode-marketplace-release; [
+      ++ (with pkgs-vscode-extensions.vscode-marketplace-release; [
         github.copilot-chat # GitHub Copilot Chat, need the release version
       ])
-      ++ (with pkgs.vscode-marketplace; [
+      ++ (with pkgs-vscode-extensions.vscode-marketplace; [
         ms-vscode-remote.remote-containers # Dev Containers
 
         github.vscode-pull-request-github # GitHub Pull Requests

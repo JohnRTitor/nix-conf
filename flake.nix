@@ -15,7 +15,7 @@
 
     # Bleeding edge packages from chaotic nyx, especially CachyOS kernel
     chaotic = {
-      url = "github:chaotic-cx/nyx/main";
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
       # Don't add follows nixpkgs, else will cause local rebuilds
       inputs.home-manager.follows = "home-manager";
     };
@@ -44,7 +44,7 @@
 
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions"; # Grab latest VScode extensions as a package;
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs-vscode-extensions-pin";
     };
     nur = {
       url = "github:nix-community/NUR"; # Nix User Repository, for community packages
