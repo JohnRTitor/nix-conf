@@ -27,7 +27,7 @@
     ./cosmic-greeter
     ./hyprland/pyprland.nix
     ./hyprland/hyprpanel.nix
-    ./hyprland/hyprland-plugins.nix
+    # ./hyprland/hyprland-plugins.nix
 
     ./virt-manager.nix
 
