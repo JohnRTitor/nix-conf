@@ -17,16 +17,15 @@ let
 in
 {
   imports = [
-    ./hosts.nix # NixOS hosts/desktop systems are are defined there
-    ../lib/options-definitions.nix
-    ../preferences.nix
+    ../hosts/Ainz-NIX.nix # Ainz-NIX host configuration
+    ../modules/lib/options-definitions.nix
+    ../modules/preferences.nix
   ];
 
   _module.args = { inherit pkgs-master; };
 
   # systems for which you want to build the `perSystem` attributes
-  systems = lib.unique [
-    config.myOptions.systemSettings.systemarch
+  systems = [
     "x86_64-linux"
     "aarch64-linux"
   ];
@@ -55,11 +54,11 @@ in
       # Use `nix flake show` to see the list of packages
       # To access packages from this flake, use `self'.packages.<name>`
       packages = {
-        fhs-shell = pkgs.callPackage ./pkgs/fhs-shell.nix { };
-        weather-python-script = pkgs.callPackage ./pkgs/weather-python-script.nix { };
-        adminneo-with-theme = pkgs.callPackage ./pkgs/adminneo-with-theme { };
-        google-chrome_repackaged = pkgs-unfree.callPackage ./pkgs/google-chrome-repackaged.nix { };
-        microcode-amd-platomav = pkgs-unfree.callPackage ./pkgs/microcode-amd-platomav {
+        fhs-shell = pkgs.callPackage ../packages/fhs-shell.nix { };
+        weather-python-script = pkgs.callPackage ../packages/weather-python-script.nix { };
+        adminneo-with-theme = pkgs.callPackage ../packages/adminneo-with-theme { };
+        google-chrome_repackaged = pkgs-unfree.callPackage ../packages/google-chrome-repackaged.nix { };
+        microcode-amd-platomav = pkgs-unfree.callPackage ../packages/microcode-amd-platomav {
           microcode-src = inputs.platomav-microcode;
         };
       };

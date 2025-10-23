@@ -4,7 +4,6 @@
     # ---- SYSTEM SETTINGS ---- #
     systemSettings = {
       systemarch = "x86_64-linux"; # system arch
-      hostname = "Ainz-NIX"; # hostname
       timezone = "Asia/Kolkata"; # select timezone
       locale = "en_US.UTF-8"; # select locale
       additionalLocale = "en_IN";

@@ -4,7 +4,10 @@
     # ---- SYSTEM SETTINGS ---- #
     systemSettings = {
       systemarch = lib.mkOption {
-        type = lib.types.singleLineStr;
+        type = lib.types.enum [
+          "x86_64-linux"
+          "aarch64-linux"
+        ];
         default = "x86_64-linux";
         description = "System architecture";
       };
