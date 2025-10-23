@@ -25,11 +25,15 @@
       url = "github:nix-community/home-manager/master"; # Home Manager, manage user configuration and home directories like a pro
       inputs.nixpkgs.follows = "nixpkgs"; # Must follow nixpkgs, else will cause conflicts with the system
     };
-    # Lanzaboote module used for Secure-Boot implementation, don't add follows nixpkgs, might cause issues with package versions and boot experience
+
     lanzaboote = {
+      # Lanzaboote module used for Secure-Boot implementation
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.flake-parts.follows = "flake-parts";
+      # If follows nixpkgs cause issues with package versions and boot experience, remove this
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest"; # Declarative Flatpak support for NixOS
 
     ## DESKTOP ENVIRONMENT ##
@@ -44,7 +48,7 @@
 
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions"; # Grab latest VScode extensions as a package;
-      # inputs.nixpkgs.follows = "nixpkgs-vscode-extensions-pin";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nur = {
       url = "github:nix-community/NUR"; # Nix User Repository, for community packages
