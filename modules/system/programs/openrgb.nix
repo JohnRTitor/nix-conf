@@ -1,10 +1,11 @@
 {
+  config,
   lib,
   pkgs,
   programsSettings,
   ...
 }:
-lib.mkIf programsSettings.openrgb {
+lib.mkIf config.myOptions.programsSettings.openrgb {
   # OpenRGB setup
   services.hardware.openrgb = {
     enable = true;

@@ -1,10 +1,10 @@
 {
+  config,
   lib,
   pkgs,
-  servicesSettings,
   ...
 }:
-lib.mkIf servicesSettings.apparmor {
+lib.mkIf config.myOptions.servicesSettings.apparmor {
   security.apparmor.enable = true;
   security.apparmor.enableCache = true;
   services.dbus.apparmor = "enabled";

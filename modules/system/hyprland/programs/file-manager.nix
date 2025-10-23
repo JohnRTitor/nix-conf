@@ -6,7 +6,7 @@
   ...
 }:
 lib.mkMerge [
-  (lib.mkIf (programsSettings.fileManager == "nautilus") {
+  (lib.mkIf (config.myOptions.programsSettings.fileManager == "nautilus") {
     environment.systemPackages = with pkgs; [
       nautilus
     ];
@@ -17,7 +17,7 @@ lib.mkMerge [
     services.gnome.sushi.enable = true; # quick previewer for nautilus
   })
 
-  (lib.mkIf (programsSettings.fileManager == "nemo") {
+  (lib.mkIf (config.myOptions.programsSettings.fileManager == "nemo") {
     environment.systemPackages = with pkgs; [
       (nemo-with-extensions.override {
         extensions = with pkgs; [

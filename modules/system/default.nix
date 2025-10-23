@@ -1,6 +1,6 @@
 {
+  config,
   lib,
-  systemSettings,
   servicesSettings,
   ...
 }:
@@ -30,21 +30,17 @@
 
     # include development environment
     ./dev-environment
+    ./power.nix
+    ./virtualisation.nix
 
     # include custom cache server settings (DANGEROUS: this will mess up nix-shell)
     #../misc/custom-cache-server.nix
-  ]
-  ++
-    # Import if Virtualization is enabled
-    lib.optionals (servicesSettings.virtualisation) [ ./virtualisation.nix ]
-  ++
-    # Import if laptop mode is enabled
-    lib.optionals (systemSettings.laptop) [ ./power.nix ];
+  ];
 
   system.nixos.tags = lib.mkDefault [ "cachyos" ];
 
   # Dont change this without reading documentation
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   # May cause data loss, scary stuff
-  system.stateVersion = systemSettings.stableversion; # Did you read the comment?
+  system.stateVersion = config.myOptions.systemSettings.stableversion; # Did you read the comment?
 }

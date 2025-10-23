@@ -16,6 +16,6 @@
     ./disk.nix
     ./graphics.nix
     ./tpm.nix
-  ]
-  ++ lib.optionals systemSettings.laptop [ ./touchpad.nix ];
+    ./touchpad.nix
+  ];
 }

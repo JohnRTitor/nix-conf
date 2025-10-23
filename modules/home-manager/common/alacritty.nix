@@ -100,7 +100,7 @@
 
     terminal.shell = {
       program =
-        if (userSettings.${config.home.username}.shell == "zsh") then
+        if (config.myOptions.userSettings.${config.home.username}.shell == "zsh") then
           "/run/current-system/sw/bin/zsh"
         else
           "/run/current-system/sw/bin/bash";

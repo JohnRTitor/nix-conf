@@ -1,4 +1,4 @@
-# Import of thie module is controlled by bool: servicesSettings.nginx
+# Import of thie module is controlled by bool: config.myOptions.devSettings.nginx
 # This is a configuration file for the adminer.local virtual host
 # It is a database management tool that is a single PHP file
 {
@@ -6,10 +6,9 @@
   config,
   lib,
   pkgs,
-  servicesSettings,
   ...
 }:
-{
+lib.mkIf config.myOptions.devSettings.nginx {
   # Nginx configuration for adminer.local
   # but for this to work, adminer.local must point to "127.0.0.1"
   # via networking.extraHosts, you should add to ../system/network.nix

@@ -1,4 +1,4 @@
-# Import of thie module is controlled by bool: servicesSettings.nginx
+# Import of thie module is controlled by bool: config.myOptions.devSettings.nginx
 # This config file mainly contains the Nginx configuration for localhost
 # Integrates with PHP (done through PHP-FPM) and MySQL
 {
@@ -8,7 +8,7 @@
   userSettings,
   ...
 }:
-{
+lib.mkIf config.myOptions.devSettings.nginx {
   # Nginx virtual host configuration for localhost
   services.nginx.virtualHosts."localhost" = {
     root = "/var/www/localhost-server";

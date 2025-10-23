@@ -28,15 +28,15 @@
     ./hyprland/pyprland.nix
     ./hyprland/hyprpanel.nix
     ./hyprland/hyprland-plugins.nix
-  ]
-  ++ lib.optionals devSettings.nginx [
+
+    ./virt-manager.nix
+
     # Default Nginx server welcome testing page
     # Nginx global config is located in ../dev-environment/nginx.nix
     ./web-server-html
+    ./nemo-extra.nix
   ]
-  ++ lib.optionals osConfig.programs.thunar.enable [ ./thunar.nix ]
-  ++ lib.optionals (programsSettings.fileManager == "nemo") [ ./nemo-extra.nix ]
-  ++ lib.optionals servicesSettings.virtualisation [ ./virt-manager.nix ];
+  ++ lib.optionals osConfig.programs.thunar.enable [ ./thunar.nix ];
 
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;

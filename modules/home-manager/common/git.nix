@@ -10,9 +10,9 @@
     # basic configuration of git, please change to your own
     enable = true;
     package = pkgs.gitFull;
-    userName = userSettings.${config.home.username}.gitname;
-    userEmail = userSettings.${config.home.username}.gitemail;
-    signing.key = userSettings.${config.home.username}.gpgkey;
+    userName = config.myOptions.userSettings.${config.home.username}.gitname;
+    userEmail = config.myOptions.userSettings.${config.home.username}.gitemail;
+    signing.key = config.myOptions.userSettings.${config.home.username}.gpgkey;
     signing.signByDefault = true;
     extraConfig = {
       color.ui = true;

@@ -1,10 +1,10 @@
 {
+  config,
   lib,
   pkgs,
-  programsSettings,
   ...
 }:
-lib.mkIf programsSettings.neovim {
+lib.mkIf config.myOptions.programsSettings.neovim {
   programs.neovim = {
     enable = true; # Enable Neovim
     vimAlias = true; # Enable vim alias

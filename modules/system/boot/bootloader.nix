@@ -15,7 +15,7 @@ lib.mkMerge [
     boot.bootspec.enable = true;
   }
 
-  (lib.mkIf (systemSettings.bootloader == "limine") {
+  (lib.mkIf (config.myOptions.systemSettings.bootloader == "limine") {
     boot.loader.limine = {
       # Whether to enable the Limine bootloader.
       enable = true;
@@ -29,7 +29,7 @@ lib.mkMerge [
     };
   })
 
-  (lib.mkIf (systemSettings.bootloader == "lanzaboote") {
+  (lib.mkIf (config.myOptions.systemSettings.bootloader == "lanzaboote") {
     # Bootloader - disable systemd in favor of lanzaboote
     boot.loader.systemd-boot.enable = lib.mkForce false;
 
@@ -44,7 +44,7 @@ lib.mkMerge [
     # environment.systemPackages = [pkgs.sbctl];
   })
 
-  (lib.mkIf (systemSettings.bootloader == "systemd-boot") {
+  (lib.mkIf (config.myOptions.systemSettings.bootloader == "systemd-boot") {
     # Use the systemd-boot EFI boot loader.
     boot.loader.systemd-boot.enable = true;
   })

@@ -1,18 +1,10 @@
 # This conf file is used to configure adb - android debug bridge
 {
-  pkgs,
-  userSettings,
+  config,
+  lib,
   ...
 }:
-{
+lib.mkIf config.myOptions.devSettings.adb {
   # Enable adb
   programs.adb.enable = true;
-  # Add our primary user to adbusers group
-  users.users."masum".extraGroups = [
-    "adbusers"
-    "plugdev"
-  ];
-
-  # configure the udev rules
-  services.udev.packages = [ pkgs.android-udev-rules ];
 }

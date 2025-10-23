@@ -6,7 +6,7 @@
   userSettings,
   ...
 }:
-lib.mkIf servicesSettings.containers {
+lib.mkIf config.myOptions.servicesSettings.containers {
   # Containers
   # Enable podman and docker compatibility
   virtualisation.podman = {

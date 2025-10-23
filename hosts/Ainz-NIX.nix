@@ -8,24 +8,11 @@
 let
   inherit (inputs.nixpkgs) lib; # use lib from nixpkgs
 
-  inherit (config.myOptions)
-    systemSettings
-    userSettings
-    servicesSettings
-    programsSettings
-    devSettings
-    ;
-
   specialArgs = {
     inherit
       self
       inputs
       pkgs-master
-      systemSettings
-      userSettings
-      servicesSettings
-      programsSettings
-      devSettings
       ;
   };
 in
@@ -33,6 +20,10 @@ in
   flake.nixosConfigurations.Ainz-NIX = lib.nixosSystem {
     inherit specialArgs;
     modules = [
+      {
+        networking.hostName = "Ainz-NIX";
+      }
+
       ### FLAKE MODULES ###
       inputs.chaotic.nixosModules.default # chaotic-nyx bleeding edge packages
       inputs.nur.modules.nixos.default # NUR - NixOS user repository
@@ -52,36 +43,38 @@ in
           };
         };
 
-        home-manager.users."masum" = {
-          imports = [
-            inputs.nix-flatpak.homeManagerModules.nix-flatpak
+        home-manager.users =
+          let
+            commonImports = [
+              inputs.nix-flatpak.homeManagerModules.nix-flatpak
 
-            ../modules/home-manager/user-config/masum.nix
-            # system packages are imported in ./configuration.nix
-            ../modules/pkgs-configuration/user-packages/common.nix
-            ../modules/pkgs-configuration/user-packages/masum.nix
-          ];
-        };
+              # To pass preferences and options definitions
+              ../modules/preferences.nix
+              ../modules/lib/options-definitions.nix
 
-        home-manager.users."masum-work" = {
-          imports = [
-            inputs.nix-flatpak.homeManagerModules.nix-flatpak
+              ../modules/pkgs-configuration/user-packages/common.nix
+            ];
+          in
+          {
+            "masum".imports = commonImports ++ [
+              ../modules/home-manager/user-config/masum.nix
+              ../modules/pkgs-configuration/user-packages/masum.nix
+            ];
 
-            ../modules/home-manager/user-config/masum-work.nix
-            # system packages are imported in ./configuration.nix
-            ../modules/pkgs-configuration/user-packages/common.nix
-            ../modules/pkgs-configuration/user-packages/masum-work.nix
-          ];
-        };
+            "masum-work".imports = commonImports ++ [
+              ../modules/home-manager/user-config/masum-work.nix
+              ../modules/pkgs-configuration/user-packages/masum-work.nix
+            ];
+          };
       }
 
       ## LOCAL MODULES ##
       ../modules/system
       ../modules/modules-overlays
 
-      {
-        networking.hostName = "Ainz-NIX";
-      }
+      # To pass preferences and options definitions
+      ../modules/preferences.nix
+      ../modules/lib/options-definitions.nix
     ];
   };
 }

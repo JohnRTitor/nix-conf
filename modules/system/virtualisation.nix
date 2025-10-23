@@ -1,11 +1,12 @@
 # Configure packages and softwares needed for virtualization
 {
   config,
+  lib,
   pkgs,
   userSettings,
   ...
 }:
-{
+lib.mkIf config.myOptions.servicesSettings.virtualisation {
   virtualisation.libvirtd = {
     enable = true;
     onShutdown = "shutdown"; # Shutdown VMs on host shutdown
