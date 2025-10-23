@@ -11,11 +11,6 @@
         default = "x86_64-linux";
         description = "System architecture";
       };
-      hostname = lib.mkOption {
-        type = lib.types.singleLineStr;
-        default = "NixOS";
-        description = "Hostname";
-      };
       timezone = lib.mkOption {
         type = lib.types.singleLineStr;
         default = "America/New_York";
