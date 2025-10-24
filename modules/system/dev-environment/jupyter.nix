@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 lib.mkIf config.myOptions.devSettings.jupyter {
   services.jupyter = {
     enable = true;

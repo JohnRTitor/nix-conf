@@ -5,10 +5,6 @@
   pkgs,
   pkgs-master,
   inputs,
-  devSettings,
-  userSettings,
-  programsSettings,
-  servicesSettings,
   ...
 }:
 {
@@ -18,6 +14,7 @@
     ./git.nix # git config
     ./alacritty.nix
     ./cli-tools.nix # Useful CLI tools
+    ./fastfetch
     # ./thunar.nix
     ./vesktop.nix
 
@@ -37,6 +34,8 @@
     ./nemo-extra.nix
   ]
   ++ lib.optionals osConfig.programs.thunar.enable [ ./thunar.nix ];
+
+  home.file.".face.icon".source = ./face-logo.png;
 
   # Let home Manager install and manage itself.
   programs.home-manager.enable = true;

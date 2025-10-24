@@ -12,14 +12,17 @@
   services.bcachefs.autoScrub.enable = true;
   boot.kernel.sysfs.fs.bcachefs.dm-0.dev-0.label = "NixOS-Root";
 
-  # Enable zram swap
+  # Enable ZRAM
   zramSwap = {
     enable = true;
     # this means that maximum 200% worth of physical memory size
     # can be utilised in zram, by using compression
     # this does not mean 200% of actual physical memory is used
-    memoryPercent = 200;
+    memoryPercent = 100;
   };
+
+  # Enable ZSwap
+  boot.kernel.sysfs.module.zswap.parameters.enabled = 1;
 
   /*
        SWAP DELETED

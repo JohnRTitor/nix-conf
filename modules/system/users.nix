@@ -20,7 +20,8 @@
       # Configure in ../pkgs/user-packages.nix
     ];
     # user shell changed to zsh
-    shell = if (config.myOptions.userSettings."masum".shell == "zsh") then pkgs.zsh else pkgs.bashInteractive;
+    shell =
+      if (config.myOptions.userSettings."masum".shell == "zsh") then pkgs.zsh else pkgs.bashInteractive;
   };
 
   users.users."masum-work" = {
@@ -33,6 +34,10 @@
     packages = with pkgs; [
       # Configure in ../pkgs/user-packages.nix
     ];
-    shell = if (config.myOptions.userSettings."masum-work".shell == "zsh") then pkgs.zsh else pkgs.bashInteractive;
+    shell =
+      if (config.myOptions.userSettings."masum-work".shell == "zsh") then
+        pkgs.zsh
+      else
+        pkgs.bashInteractive;
   };
 }
