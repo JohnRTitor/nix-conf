@@ -8,14 +8,14 @@ let
   hypr-plugin-dir = pkgs.symlinkJoin {
     name = "hyrpland-plugins";
     paths = with pkgs.hyprlandPlugins; [
-      hyprspace
+      hyprscrolling
     ];
   };
 in
 {
   home.sessionVariables.HYPR_PLUGIN_DIR = hypr-plugin-dir;
 
-  systemd.user.services.load-hyprland-plugin-hyprspace = {
+  systemd.user.services.load-hyprland-plugin-hyprscrolling = {
     Unit = {
       Description = "Load Hyprland plugins";
       After = [ "graphical-session.target" ];
@@ -28,7 +28,7 @@ in
     };
     Service = {
       Type = "oneshot";
-      ExecStart = "${lib.getExe' osConfig.programs.hyprland.package "hyprctl"} plugin load ${hypr-plugin-dir}/lib/libhyprspace.so";
+      ExecStart = "${lib.getExe' osConfig.programs.hyprland.package "hyprctl"} plugin load ${hypr-plugin-dir}/lib/libhyprscrolling.so";
       Restart = "on-failure";
     };
   };
