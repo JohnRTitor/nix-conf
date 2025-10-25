@@ -20,16 +20,13 @@
   };
 
   systemd.packages = with pkgs; [
-    hyprpolkitagent
-    swaynotificationcenter
+    # swaynotificationcenter
   ];
 
-  systemd.user.services.swaync.wantedBy = [ "graphical-session.target" ];
-  systemd.user.services.hyprpolkitagent = {
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-  };
+  # Hyprpanel already runs a notification center, so swaync is not needed
+  # systemd.user.services.swaync.wantedBy = [ "graphical-session.target" ];
+
+  security.soteria.enable = true; # Polkit Auth Agent
 
   ## Configure XDG portal ##
   xdg.portal = {

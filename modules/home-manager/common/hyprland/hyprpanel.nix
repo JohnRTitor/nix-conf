@@ -11,19 +11,51 @@
 
     "bar.layouts" = {
       "0" = {
-        left = [ "dashboard" "cputemp" "workspaces" "windowtitle" ];
-        middle = [ "cava" "notifications" "netstat" ];
-        right = [ "volume" "network" "bluetooth" "systray" "clock" "power" ];
+        left = [
+          "dashboard"
+          "cputemp"
+          "workspaces"
+          "windowtitle"
+        ];
+        middle = [
+          "cava"
+          "notifications"
+          "netstat"
+        ];
+        right = [
+          "volume"
+          "network"
+          "bluetooth"
+          "systray"
+          "clock"
+          "power"
+        ];
       };
       "1" = {
-        left = [ "dashboard" "workspaces" "windowtitle" ];
+        left = [
+          "dashboard"
+          "workspaces"
+          "windowtitle"
+        ];
         middle = [ "media" ];
-        right = [ "volume" "clock" "notifications" ];
+        right = [
+          "volume"
+          "clock"
+          "notifications"
+        ];
       };
       "2" = {
-        left = [ "dashboard" "workspaces" "windowtitle" ];
+        left = [
+          "dashboard"
+          "workspaces"
+          "windowtitle"
+        ];
         middle = [ "media" ];
-        right = [ "volume" "clock" "notifications" ];
+        right = [
+          "volume"
+          "clock"
+          "notifications"
+        ];
       };
     };
 
