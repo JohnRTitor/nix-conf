@@ -13,7 +13,6 @@
     ./xdg.nix # xdg config
     ./git.nix # git config
     # ./alacritty.nix
-    ./neovim
     ./cli-tools.nix # Useful CLI tools
     ./fastfetch
     # ./thunar.nix

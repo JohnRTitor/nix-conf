@@ -40,11 +40,6 @@
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # Hyprland, a Wayland WM, use git submodules too
     ## MISC PACKAGES ##
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # For getting latest zen-browser binary updates
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";

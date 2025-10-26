@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   ## Work profile packages ##
+  /*
   home.packages = with pkgs; [
     postman # Testing API
     prettier
@@ -38,4 +39,5 @@
       Version = "1.4";
     };
   };
+  */
 }

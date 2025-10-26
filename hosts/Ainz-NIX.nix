@@ -47,7 +47,6 @@ in
           let
             commonImports = [
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
-              inputs.nixvim.homeModules.nixvim
 
               # To pass preferences and options definitions
               ../modules/preferences.nix
@@ -64,7 +63,7 @@ in
 
             "masum-work".imports = commonImports ++ [
               ../modules/home-manager/user-config/masum-work.nix
-              # ../modules/pkgs-configuration/user-packages/masum-work.nix
+              ../modules/pkgs-configuration/user-packages/masum-work.nix
             ];
           };
       }
