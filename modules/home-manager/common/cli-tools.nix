@@ -44,21 +44,9 @@
 
   # search recursively in all types of files, pdfs, text, inside tarballs, etc
   programs.ripgrep-all.enable = true;
+  programs.ripgrep.enable = true;
 
   home.packages = with pkgs; [
     tree # List directory recursively in tree structure
   ];
-
-  /*
-    # nnn, the terminal file manager
-    programs.nnn = {
-      enable = true;
-      package = pkgs.nnn.override {withNerdIcons = true;};
-      extraPackages = with pkgs; [
-        ffmpegthumbnailer
-        mediainfo
-        sxiv
-      ];
-    };
-  */
 }

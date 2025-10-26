@@ -116,7 +116,6 @@
         description = "File manager";
       };
       openrgb = lib.mkEnableOption "OpenRGB";
-      neovim = lib.mkEnableOption "Neovim";
     };
   };
 }

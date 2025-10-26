@@ -49,7 +49,6 @@
     programsSettings = {
       fileManager = "nemo";
       openrgb = true;
-      neovim = false;
     };
   };
 }
