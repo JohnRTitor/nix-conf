@@ -1,26 +1,18 @@
 {
   description = "NixOS configuration of JohnRTitor (Hyprland, Secure-Boot)";
 
-  # Main sources and repositories
   inputs = {
-    nixpkgs.url = "github:JohnRTitor/nixpkgs/nixos-unstable-test"; # Unstable NixOS system (default)
+    ### CORE REPOSITORIES ###
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "github:NixOS/nixpkgs/master"; # Testing branch of nixpkgs
 
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-
-    determinate.url = "github:DeterminateSystems/determinate";
-
-    # Bleeding edge packages from chaotic nyx, especially CachyOS kernel
     chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # Bleeding edge packages from chaotic nyx, especially CachyOS kernel
       # Don't add follows nixpkgs, else will cause local rebuilds
       inputs.home-manager.follows = "home-manager";
     };
 
-    ## SYSTEM SERVICES ##
+    ### SYSTEM SERVICES ###
     home-manager = {
       url = "github:nix-community/home-manager/master"; # Home Manager, manage user configuration and home directories like a pro
       inputs.nixpkgs.follows = "nixpkgs"; # Must follow nixpkgs, else will cause conflicts with the system
@@ -38,11 +30,12 @@
 
     ## DESKTOP ENVIRONMENT ##
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # Hyprland, a Wayland WM, use git submodules too
-    ## MISC PACKAGES ##
 
-    # For getting latest zen-browser binary updates
+    ### MISC PACKAGES ###
+    determinate.url = "github:DeterminateSystems/determinate"; # Downstream Nix distribution
+
     zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
+      url = "github:youwen5/zen-browser-flake"; # Latest Zen Browser binary
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -56,16 +49,24 @@
       inputs.flake-parts.follows = "flake-parts";
     };
 
+    ### UTILS ###
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    ### NON-FLAKE REPOSITORIES ###
     platomav-microcode = {
-      # For getting latest AMD microcode updates
-      url = "github:platomav/CPUMicrocodes";
+      url = "github:platomav/CPUMicrocodes"; # For getting latest AMD microcode updates
       flake = false;
     };
   };
+
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./flake ]; };
 
-  # Allows the user to use our cache when using `nix run <thisFlake>`.
+  ### Flake specific Nix configuration ###
   nixConfig = {
+    # Allows the user to use these caches when using `nix run <thisFlake>`.
     extra-substituters = [
       "https://nyx.chaotic.cx/"
       "https://devenv.cachix.org"
