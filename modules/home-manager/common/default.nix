@@ -12,7 +12,7 @@
     ./shell # shell (bash, zsh) and starship config
     ./xdg.nix # xdg config
     ./git.nix # git config
-    ./alacritty.nix
+    # ./alacritty.nix
     ./cli-tools.nix # Useful CLI tools
     ./fastfetch
     # ./thunar.nix

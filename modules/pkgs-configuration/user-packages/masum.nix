@@ -8,6 +8,7 @@
 
     materialgram # Good looking material themed telegram client
     fluffychat # Matrix client
+    gajim # XMPP client
     /*
       (element-desktop.override { # Matrix client
         # if keyring does not work, try either "libsecret" or "gnome"

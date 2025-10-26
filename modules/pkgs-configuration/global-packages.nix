@@ -27,7 +27,7 @@
       # Can be used to install latest version of some packages
     ])
     ++ [
-      self.packages.${pkgs.hostPlatform.system}.fhs-shell
+      # self.packages.${pkgs.hostPlatform.system}.fhs-shell
     ];
   services.flatpak.packages = (import ./flatpak-packages.nix).systemPackages;
 }
