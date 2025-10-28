@@ -16,14 +16,8 @@
       # https://github.com/THUDM/GLM-4 - good quality with low memory usage
       "hf.co/bartowski/THUDM_GLM-4-9B-0414-GGUF:Q8_0"
 
-      "mychen76/qwen3_cline_roocode:14b" # with reasoning capabilities
-
-      ## DEVSTRAL - very heavy, best for agents ##
-      # "devstral:24b"
-      # "hf.co/ngxson/Devstral-Small-Vision-2505-GGUF:Q4_K_M" # with vision support
-
       ### GENERAL PURPOSE ###
-      "gemma3:12b" # general purpose - 8.1GB, fast and good, with vision support
+      "gemma3:12b" # general purpose, fast, good, vision
 
       ### UNCENSORED ###
       # NOTE: some models may be marked as "uncensored" but they'll still refuse some requests
@@ -33,7 +27,7 @@
       # Also see https://ollama.com/search?q=abliterated
 
       "hf.co/cognitivecomputations/Dolphin3.0-Llama3.1-8B-GGUF:Q8_0" # BEST OF THE ABLITERATED MODELS TESTED
-      "huihui_ai/deepseek-r1-abliterated:14b" # with reasoning capabilities
+      "huihui_ai/deepseek-r1-abliterated:14b" # (reasoning)
     ];
 
     acceleration = "rocm";

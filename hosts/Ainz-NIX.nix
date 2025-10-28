@@ -57,7 +57,7 @@ in
           in
           {
             "masum".imports = commonImports ++ [
-              ../modules/home-manager/user-config/masum.nix
+              ../modules/home-manager/user-config/masum
               ../modules/pkgs-configuration/user-packages/masum.nix
             ];
 
