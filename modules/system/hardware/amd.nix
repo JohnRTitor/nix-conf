@@ -15,5 +15,5 @@
 
   # load the latest microcode from platomav's repository
   hardware.cpu.amd.microcodePackage =
-    self.packages.${pkgs.hostPlatform.system}.microcode-amd-platomav;
+    self.packages.${pkgs.stdenv.hostPlatform.system}.microcode-amd-platomav;
 }

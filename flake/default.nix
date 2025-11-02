@@ -5,15 +5,17 @@
   ...
 }:
 let
-  # bleeding edge packages from nixpkgs master branch, for packages that need immediate updates
-  pkgs-master = import inputs.nixpkgs-master {
-    system = config.myOptions.systemSettings.systemarch;
+  mkPkgs = nixpkgs: system: import inputs.nixpkgs {
+    inherit system;
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
       android_sdk.accept_license = true;
     };
   };
+
+  # bleeding edge packages from nixpkgs master branch, for packages that need immediate updates
+  pkgs-master = mkPkgs inputs.nixpkgs-master config.myOptions.systemSettings.systemarch;
 in
 {
   imports = [
@@ -37,14 +39,7 @@ in
       ...
     }:
     let
-      pkgs-unfree = import inputs.nixpkgs-master {
-        system = config.myOptions.systemSettings.systemarch;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-          android_sdk.accept_license = true;
-        };
-      };
+      pkgs-unfree = mkPkgs inputs.nixpkgs config.myOptions.systemSettings.systemarch;
     in
     {
       # Setting this option, allows formatting via `nix fmt`

@@ -38,7 +38,7 @@ lib.mkIf config.myOptions.devSettings.nginx {
         include ${config.services.nginx.package}/conf/fastcgi.conf;
       '';
     };
-    root = "${self.packages.${pkgs.hostPlatform.system}.adminneo-with-theme}";
+    root = "${self.packages.${pkgs.stdenv.hostPlatform.system}.adminneo-with-theme}";
   };
 
   # PHP-FPM pool configuration

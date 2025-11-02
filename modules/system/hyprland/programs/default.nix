@@ -78,6 +78,6 @@
       pciutils
     ])
     ++ [
-      # self.packages.${pkgs.hostPlatform.system}.weather-python-script # weather script'
+      # self.packages.${pkgs.stdenv.hostPlatform.system}.weather-python-script # weather script'
     ];
 }

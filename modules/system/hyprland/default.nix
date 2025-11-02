@@ -14,7 +14,7 @@ let
   hyprlandFlake = false;
   hyprlandLTO = false;
   pkgs-hyprland =
-    if hyprlandFlake then inputs.hyprland.packages.${pkgs.hostPlatform.system} else pkgs;
+    if hyprlandFlake then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system} else pkgs;
 in
 {
   imports = [
