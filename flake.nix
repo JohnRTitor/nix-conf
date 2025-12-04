@@ -3,7 +3,7 @@
 
   inputs = {
     ### CORE REPOSITORIES ###
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "github:NixOS/nixpkgs/master"; # Testing branch of nixpkgs
 
     chaotic = {

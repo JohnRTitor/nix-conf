@@ -4,11 +4,6 @@
     ./file-manager.nix
   ];
 
-  ## Configure essential programs ##
-
-  programs.evince.enable = true; # document viewer
-  programs.file-roller.enable = true; # archive manager
-
   ## Configure essential packages ##
 
   environment.systemPackages =
@@ -61,6 +56,8 @@
       shotcut # video editor
       gnome-system-monitor # system monitor
       loupe # image viewer
+      file-roller # archive manager
+      evince # document viewer
 
       ## Hypr ecosystem ##
       hyprcursor
