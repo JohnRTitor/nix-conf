@@ -5,7 +5,7 @@
     enable = true;
     package = pkgs.ananicy-cpp;
     # from nixpkgs: ananicy-rules-cachyos
-    rulesProvider = pkgs.ananicy-rules-cachyos_git.overrideAttrs (prevAttrs: {
+    rulesProvider = pkgs.ananicy-rules-cachyos.overrideAttrs (prevAttrs: {
       patches = [
         (pkgs.fetchpatch {
           # Revert removal of Compiler rules

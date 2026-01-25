@@ -33,6 +33,8 @@ in
       - 1500 (mkAfter: Last to run configuration
     */
     initContent = lib.mkOrder 1000 commonRcExtra;
+    
+    dotDir = "${config.xdg.configHome}/zsh";
   };
 
   # If starship is enabled, don't enable oh-my-zsh

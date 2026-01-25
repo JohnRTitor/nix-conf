@@ -90,11 +90,11 @@
         ])
       */
 
-      zed-editor_git
+      zed-editor
 
       ## LSPs and formatters
       nixd
-      nixfmt-rfc-style
+      nixfmt
       package-version-server # Zed autodownloads this
 
       # whatsapp-for-linux

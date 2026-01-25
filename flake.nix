@@ -6,12 +6,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "github:NixOS/nixpkgs/master"; # Testing branch of nixpkgs
 
-    chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # Bleeding edge packages from chaotic nyx, especially CachyOS kernel
-      # Don't add follows nixpkgs, else will cause local rebuilds
-      inputs.home-manager.follows = "home-manager";
-    };
-
     ### SYSTEM SERVICES ###
     home-manager = {
       url = "github:nix-community/home-manager/master"; # Home Manager, manage user configuration and home directories like a pro

@@ -27,7 +27,7 @@
     excludePackages = [ pkgs.xterm ];
   };
 
-  # Enable scx extra schedulers, only available for linux-cachyos
+  # Enable scx extra schedulers
   services.scx.enable = true;
   services.scx.package = pkgs.scx.full;
   # lavd is better for gaming

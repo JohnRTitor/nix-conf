@@ -30,7 +30,7 @@
       "huihui_ai/deepseek-r1-abliterated:14b" # (reasoning)
     ];
 
-    acceleration = "rocm";
+    package = pkgs.ollama-rocm;
     # AMD does not officially have support for ROCM on RX 6700 XT (gfx1031)
     # However, the `AMD Radeon PRO W6800` or `RX 6800` are supported (gfx1030)
     # See https://github.com/ollama/ollama/blob/main/docs/gpu.md#amd-radeon and

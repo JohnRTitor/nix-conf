@@ -19,7 +19,6 @@
     ./browsers.nix
     ./printing.nix
     ./services
-    ./safe-specialization.nix
     ./shell
     ./programs
 
@@ -36,8 +35,6 @@
     # include custom cache server settings (DANGEROUS: this will mess up nix-shell)
     #../misc/custom-cache-server.nix
   ];
-
-  system.nixos.tags = lib.mkDefault [ "cachyos" ];
 
   # Dont change this without reading documentation
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
