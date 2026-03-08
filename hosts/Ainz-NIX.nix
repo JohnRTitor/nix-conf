@@ -28,7 +28,6 @@ in
       inputs.nur.modules.nixos.default # NUR - NixOS user repository
       inputs.nix-flatpak.nixosModules.nix-flatpak # nix-flatpak, allows flatpak declaratively
       inputs.lanzaboote.nixosModules.lanzaboote
-      inputs.determinate.nixosModules.default # Determinate Nix
 
       # Home Manager as NixOS module, this makes it so it is auto deployed with `nixos-rebuild switch`
       inputs.home-manager.nixosModules.home-manager

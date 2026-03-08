@@ -49,7 +49,7 @@
       shared-mime-info
       xdg-utils
       xdg-user-dirs
-      xorg.xhost # needed for some packages running x11 like gparted
+      xhost # needed for some packages running x11 like gparted
 
       ## GNOME Suite ##
       gnome-text-editor # text editor

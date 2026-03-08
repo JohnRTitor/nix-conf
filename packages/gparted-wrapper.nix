@@ -5,7 +5,7 @@
 }:
 # Wrapper for GParted to run under Wayland
 let
-  xhost = lib.getExe pkgs.xorg.xhost;
+  xhost = lib.getExe pkgs.xhost;
   gparted = lib.getExe pkgs.gparted;
 in
 pkgs.writeShellScriptBin "gparted" ''

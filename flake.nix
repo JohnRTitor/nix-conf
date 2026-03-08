@@ -22,12 +22,7 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest"; # Declarative Flatpak support for NixOS
 
-    ## DESKTOP ENVIRONMENT ##
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # Hyprland, a Wayland WM, use git submodules too
-
     ### MISC PACKAGES ###
-    determinate.url = "github:DeterminateSystems/determinate"; # Downstream Nix distribution
-
     zen-browser = {
       url = "github:youwen5/zen-browser-flake"; # Latest Zen Browser binary
       inputs.nixpkgs.follows = "nixpkgs";

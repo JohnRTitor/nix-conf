@@ -10,12 +10,6 @@
   inputs,
   ...
 }:
-let
-  hyprlandFlake = false;
-  hyprlandLTO = false;
-  pkgs-hyprland =
-    if hyprlandFlake then inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system} else pkgs;
-in
 {
   imports = [
     ./session.nix
@@ -26,8 +20,6 @@ in
   # Enable Hyprland Window Manager
   programs.hyprland = {
     enable = true;
-    package = (pkgs-hyprland.hyprland);
-    portalPackage = pkgs-hyprland.xdg-desktop-portal-hyprland;
   };
 
   # hyprland portal is already included, gtk is also needed for compatibility
