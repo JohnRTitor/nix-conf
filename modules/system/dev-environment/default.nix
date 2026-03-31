@@ -33,4 +33,10 @@
   services.nginx.package = pkgs.nginxQuic;
 
   # programs.java.enable = true;
+  
+  # PostgreSQL
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_18;
+  };
 }

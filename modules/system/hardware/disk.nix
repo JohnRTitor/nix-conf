@@ -1,5 +1,5 @@
 # Configure disks and zram
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-master, ... }:
 {
   fileSystems = {
     "/".options = [
@@ -9,6 +9,7 @@
     ]; # disable access time updates
   };
 
+  boot.bcachefs.package = pkgs-master.bcachefs-tools;
   services.bcachefs.autoScrub.enable = true;
   boot.kernel.sysfs.fs.bcachefs.dm-0.dev-0.label = "NixOS-Root";
 
