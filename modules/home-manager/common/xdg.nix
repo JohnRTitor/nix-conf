@@ -2,32 +2,11 @@
 # which is responsible for opening specific files, links in specific apps
 # Imported in home manager ../home.nix
 { config, ... }:
-let
-  homeDir = config.home.homeDirectory;
-in
 {
   xdg.enable = true;
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
-    music = "${homeDir}/Media/Music";
-    videos = "${homeDir}/Media/Videos";
-    pictures = "${homeDir}/Media/Pictures";
-    templates = "${homeDir}/Templates";
-    download = "${homeDir}/Downloads";
-    documents = "${homeDir}/Documents";
-    # can be null since hyprland does not use Desktop
-    desktop = "${homeDir}/Desktop"; # null;
-    publicShare = "${homeDir}/Public";
-
-    extraConfig = {
-      # XDG_DOTFILES_DIR = "${homeDir}/.dotfiles";
-      XDG_ARCHIVE_DIR = "${homeDir}/Archive";
-      # XDG_VM_DIR = "${homeDir}/Machines";
-      # XDG_ORG_DIR = "${homeDir}/Org";
-      XDG_PODCAST_DIR = "${homeDir}/Media/Podcasts";
-      XDG_BOOK_DIR = "${homeDir}/Media/Books";
-    };
   };
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;

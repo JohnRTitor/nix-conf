@@ -17,6 +17,7 @@
 
     ./adminer.nix
     ./mysql.nix
+    ./postgresql.nix
     # Use devenv instead, it's more flexible
     # and contains a lot of prebuilt packages
     # configured in home manager
@@ -35,9 +36,4 @@
   # programs.java.enable = true;
   
   # PostgreSQL
-  services.postgresql = {
-    enable = true;
-    package = pkgs.postgresql_18;
-  };
-  environment.systemPackages = [ pkgs.pgadmin4-desktopmode ];
 }

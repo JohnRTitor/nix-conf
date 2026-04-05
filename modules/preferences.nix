@@ -35,7 +35,7 @@
       avahi = false;
       containers = false;
       tpm = false;
-      virtualisation = true;
+      virtualisation = false;
       printing = false;
       apparmor = false;
     };
@@ -44,6 +44,8 @@
       adb = false;
       nginx = false;
       jupyter = false;
+      mysql = false;
+      postgresql = true;
     };
 
     programsSettings = {

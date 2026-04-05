@@ -103,6 +103,8 @@
     devSettings = {
       adb = lib.mkEnableOption "ADB";
       nginx = lib.mkEnableOption "Nginx";
+      mysql = lib.mkEnableOption "MySQL";
+      postgresql = lib.mkEnableOption "PostgreSQL";
       jupyter = lib.mkEnableOption "Jupyter";
     };
 

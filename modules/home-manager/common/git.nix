@@ -16,6 +16,7 @@
       user.email = config.myOptions.userSettings.${config.home.username}.gitemail;
 
       signing.key = config.myOptions.userSettings.${config.home.username}.gpgkey;
+      signing.format = "openpgp";
       signing.signByDefault = true;
 
       color.ui = true;
