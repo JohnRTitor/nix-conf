@@ -39,4 +39,5 @@
     enable = true;
     package = pkgs.postgresql_18;
   };
+  environment.systemPackages = [ pkgs.pgadmin4-desktopmode ];
 }
