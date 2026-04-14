@@ -23,6 +23,12 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest"; # Declarative Flatpak support for NixOS
 
     ### MISC PACKAGES ###
+    nix = {
+      url = "github:DeterminateSystems/nix-src";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
+
     zen-browser = {
       url = "github:youwen5/zen-browser-flake"; # Latest Zen Browser binary
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,7 +67,9 @@
       "https://hyprland.cachix.org"
       "https://nix-community.cachix.org"
       "https://johnrtitor.cachix.org"
-      "https://cache.flakehub.com"
+      "https://cache.numtide.com"
+      "https://install.determinate.systems"
+      # "https://cache.flakehub.com" # requires login
     ];
     extra-trusted-public-keys = [
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
@@ -69,6 +77,7 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "johnrtitor.cachix.org-1:CCJikn7FNkt2G4h2k1CmAaRzmNN+efiv349u/Hf93to="
       "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     ];
   };
 }

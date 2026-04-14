@@ -1,18 +1,21 @@
 {
   config,
   pkgs,
-  pkgs-master,
+  inputs,
   userSettings,
   ...
 }:
 {
-  nix.package = pkgs.nixVersions.latest; # Use latest nix
+  nix.package = inputs.nix.packages.${pkgs.stdenv.hostPlatform.system}.nix; # Use latest nix
   # DONOT DISABLE THIS
   nix.settings.trusted-users = [
     "masum"
     "masum-work"
   ]; # FIXME: if someday custom cache works without this
 
+  # Parallel Evaluation
+  nix.settings.eval-cores = 0;
+  
   # Features for building
   nix.settings.system-features = [
     # Defaults
