@@ -23,7 +23,15 @@
       slurp # screenshots
       swappy # screenshots
       swaynotificationcenter # notification daemon
-      swww # wallpaper daemon
+
+      # swww # wallpaper daemon    
+      (writeShellScriptBin "swww" ''
+          exec ${lib.getExe' awww "awww"} "$@"
+        '')
+      (writeShellScriptBin "swww-daemon" ''
+          exec ${lib.getExe' awww "awww-daemon"} "$@"
+    '')
+      
       wallust # pywal alternative, graphical pallete generator
       wl-clipboard # clipboard manager
       wlogout # logout dialog

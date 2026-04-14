@@ -18,8 +18,6 @@
     inputs.nix-vscode-extensions.overlays.default
 
     (final: prev: {
-      # Add custom overlays here for packages
-      bcachefs-tools = pkgs-master.bcachefs-tools;
     })
   ];
 }

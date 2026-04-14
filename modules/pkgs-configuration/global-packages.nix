@@ -20,7 +20,7 @@
       curl
 
       # use uutils (rust rewrite) instead of gnu coreutils
-      (lib.hiPrio pkgs.uutils-coreutils-noprefix)
+      # (lib.hiPrio pkgs.uutils-coreutils-noprefix)
     ])
     ++ (with pkgs-master; [
       # list of latest packages from nixpkgs master

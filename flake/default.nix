@@ -5,7 +5,7 @@
   ...
 }:
 let
-  mkPkgs = nixpkgs: system: import inputs.nixpkgs {
+  mkPkgs = nixpkgs: system: import nixpkgs {
     inherit system;
     config = {
       allowUnfree = true;
