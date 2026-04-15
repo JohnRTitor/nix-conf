@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    ./nix-settings.nix
+    ./nix
     ./boot/kernel.nix
     ./boot/bootloader.nix
     ./users.nix
@@ -31,9 +31,6 @@
     ./dev-environment
     ./power.nix
     ./virtualisation.nix
-
-    # include custom cache server settings (DANGEROUS: this will mess up nix-shell)
-    #../misc/custom-cache-server.nix
   ];
 
   # Dont change this without reading documentation

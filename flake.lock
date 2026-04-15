@@ -15,6 +15,30 @@
         "type": "github"
       }
     },
+    "determinate-nix": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "git-hooks-nix": "git-hooks-nix",
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-23-11": "nixpkgs-23-11",
+        "nixpkgs-regression": "nixpkgs-regression"
+      },
+      "locked": {
+        "lastModified": 1776096306,
+        "narHash": "sha256-tAVYXMhsT4Wjf0AUQQzhIytM5IKH6YbVRP3SfMITr5U=",
+        "owner": "DeterminateSystems",
+        "repo": "nix-src",
+        "rev": "7c99fe68fb9c4a20380f056103d4c45ef851509e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DeterminateSystems",
+        "repo": "nix-src",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -69,12 +93,12 @@
     },
     "git-hooks-nix": {
       "inputs": {
-        "flake-compat": "flake-compat_2",
+        "flake-compat": "flake-compat",
         "gitignore": [
-          "nix"
+          "determinate-nix"
         ],
         "nixpkgs": [
-          "nix",
+          "determinate-nix",
           "nixpkgs"
         ]
       },
@@ -137,7 +161,7 @@
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
-        "flake-compat": "flake-compat",
+        "flake-compat": "flake-compat_2",
         "flake-parts": [
           "flake-parts"
         ],
@@ -159,30 +183,6 @@
         "owner": "nix-community",
         "ref": "v0.4.2",
         "repo": "lanzaboote",
-        "type": "github"
-      }
-    },
-    "nix": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "git-hooks-nix": "git-hooks-nix",
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-23-11": "nixpkgs-23-11",
-        "nixpkgs-regression": "nixpkgs-regression"
-      },
-      "locked": {
-        "lastModified": 1776096306,
-        "narHash": "sha256-tAVYXMhsT4Wjf0AUQQzhIytM5IKH6YbVRP3SfMITr5U=",
-        "owner": "DeterminateSystems",
-        "repo": "nix-src",
-        "rev": "7c99fe68fb9c4a20380f056103d4c45ef851509e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DeterminateSystems",
-        "repo": "nix-src",
         "type": "github"
       }
     },
@@ -384,10 +384,10 @@
     },
     "root": {
       "inputs": {
+        "determinate-nix": "determinate-nix",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
-        "nix": "nix",
         "nix-flatpak": "nix-flatpak",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_2",

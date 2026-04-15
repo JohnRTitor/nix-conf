@@ -23,7 +23,7 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest"; # Declarative Flatpak support for NixOS
 
     ### MISC PACKAGES ###
-    nix = {
+    determinate-nix = {
       url = "github:DeterminateSystems/nix-src";
       # inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
