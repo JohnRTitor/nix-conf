@@ -1,0 +1,119 @@
+From f9339dbbf5a681fc5aea9b39b68998d32023955b Mon Sep 17 00:00:00 2001
+From: John Titor <50095635+JohnRTitor@users.noreply.github.com>
+Date: Thu, 16 Apr 2026 01:49:48 +0530
+Subject: [PATCH] alsa: acp: don’t override user-selected port on availability changes
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+ACP was re-selecting the “best” port on every port availability event,
+even when a port was already explicitly selected by the user. This
+differs from PulseAudio’s behavior, where port switching decisions are
+left to higher-level policy.
+
+This caused issues on devices where Line Out (speakers) and Headphones
+share the same analog interface: when headphones are plugged in, ACP
+would immediately switch away from the user-selected Line Out, or end up
+in a state where no sound is produced despite selecting speakers explicitly from
+clients like pwvucontrol.
+
+Fix this by only re-evaluating and switching ports when:
+  - no active port is currently selected, or
+  - the active port has become unavailable
+
+This preserves manual user choices and prevents ACP from fighting client
+port selections during route activation.
+
+Additionally, adjust ALSA mixer paths to better separate Line Out and
+Headphones behavior:
+  - Disable Line Out controls in the headphones path
+  - Add explicit Line Out and Auto-Mute Mode handling in the lineout path
+
+Together, these changes align PipeWire’s behavior more closely with
+PulseAudio and fix cases where selecting speakers while headphones are
+plugged results in no audio output.
+
+Fixes: incorrect port switching when Line Out and Headphones share analog interface
+Signed-off-by: John Titor <50095635+JohnRTitor@users.noreply.github.com>
+---
+ spa/plugins/alsa/alsa-acp-device.c                 | 11 +++++++++++
+ .../alsa/mixer/paths/analog-output-headphones.conf |  6 ++++++
+ .../alsa/mixer/paths/analog-output-lineout.conf    | 14 ++++++++++++++
+ 3 files changed, 31 insertions(+)
+
+diff --git a/spa/plugins/alsa/alsa-acp-device.c b/spa/plugins/alsa/alsa-acp-device.c
+index 44342a7a3..eb38b3f9e 100644
+--- a/spa/plugins/alsa/alsa-acp-device.c
++++ b/spa/plugins/alsa/alsa-acp-device.c
+@@ -990,11 +990,22 @@ static void card_port_available(void *data, uint32_t index,
+ 
+ 		for (i = 0; i < p->n_devices; i++) {
+ 			struct acp_device *d = p->devices[i];
++			struct acp_port *active_port = NULL;
++			uint32_t j;
+ 			uint32_t best;
+ 
+ 			if (!(d->flags & ACP_DEVICE_ACTIVE))
+ 				continue;
+ 
++			for (j = 0; j < d->n_ports; j++) {
++				if (d->ports[j]->flags & ACP_PORT_ACTIVE) {
++					active_port = d->ports[j];
++					break;
++				}
++			}
++			if (active_port != NULL && active_port->available != ACP_AVAILABLE_NO)
++				continue;
++
+ 			best = acp_device_find_best_port_index(d, NULL);
+ 			acp_device_set_port(d, best, 0);
+ 		}
+diff --git a/spa/plugins/alsa/mixer/paths/analog-output-headphones.conf b/spa/plugins/alsa/mixer/paths/analog-output-headphones.conf
+index 3c62c5e67..0e698bd9c 100644
+--- a/spa/plugins/alsa/mixer/paths/analog-output-headphones.conf
++++ b/spa/plugins/alsa/mixer/paths/analog-output-headphones.conf
+@@ -93,6 +93,12 @@ volume = merge
+ override-map.1 = all
+ override-map.2 = all-left,all-right
+ 
++; Keep Line Out disabled in the headphones path so selecting headphones
++; does not also drive speaker/line outputs on shared controls.
++[Element Line Out]
++switch = off
++volume = off
++
+ ; This path is intended to control the first headphones, not
+ ; the second headphones. But it should not hurt if we leave the second
+ ; headphone jack enabled nonetheless.
+diff --git a/spa/plugins/alsa/mixer/paths/analog-output-lineout.conf b/spa/plugins/alsa/mixer/paths/analog-output-lineout.conf
+index 1ffce2225..06a38c245 100644
+--- a/spa/plugins/alsa/mixer/paths/analog-output-lineout.conf
++++ b/spa/plugins/alsa/mixer/paths/analog-output-lineout.conf
+@@ -113,10 +113,24 @@ override-map.1 = all
+ override-map.2 = all-left,all-right
+ required-any = any
+ 
++; Explicitly expose and control the Line Out element for this path.
++[Element Line Out]
++switch = mute
++volume = merge
++override-map.1 = all
++override-map.2 = all-left,all-right
++
+ [Element Master Mono]
+ switch = off
+ volume = off
+ 
++; Prefer manual routing decisions by disabling codec auto-mute here.
++[Element Auto-Mute Mode]
++enumeration = select
++
++[Option Auto-Mute Mode:Disabled]
++name = analog-output-lineout
++
+ [Element Line HP Swap]
+ switch = off
+ required-any = any
+-- 
+2.53.0
+
