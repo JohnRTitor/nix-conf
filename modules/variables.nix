@@ -1,25 +1,4 @@
 {
-
-  # Set Displau Manager
-  # `tui` for Text login
-  # `sddm` for graphical GUI (default)
-  # SDDM background is set with stylixImage
-  displayManager = "tui";
-
-  # Emable/disable bundled applications
-  tmuxEnable = false;
-  alacrittyEnable = false;
-  weztermEnable = false;
-  ghosttyEnable = false;
-  vscodeEnable = false;
-  antigravityEnable = false; # Google port of vscodium
-  # Note: This is evil-helix with VIM keybindings by default
-  helixEnable = false;
-  #To install: Enable here, zcli rebuild, then run zcli doom install
-  doomEmacsEnable = false;
-
-  # Python development tools are included by default
-
   # Hyprland Settings
   # Examples:
   # extraMonitorSettings = "monitor = Virtual-1,1920x1080@60,auto,1";
@@ -30,10 +9,6 @@
    monitor = Virtual-1,1920x1080@60,auto,1
     ";
 
-  # Bar/Shell Settings
-  # Choose between noctalia or waybar
-  barChoice = "noctalia";
-
   # Waybar Settings (used when barChoice = "waybar")
   clock24h = false;
 
@@ -42,7 +17,7 @@
   # This does NOT install your browser
   # You need to install it by adding it to the `packages.nix`
   # or as a flatpak
-  browser = "brave";
+  browser = "google-chrome";
 
   # Host-level default applications (picked up by Home Manager xdg.mimeApps)
   # Uncomment and adjust the .desktop IDs to set per-host defaults.
@@ -59,30 +34,11 @@
   #   "text/plain"      = ["nvim.desktop"];        # or code.desktop
   # };
 
-  # Available Options:
-  # Kitty, ghostty, wezterm, aalacrity
-  # Note: kitty, wezterm, alacritty have to be enabled in `variables.nix`
-  # Setting it here does not enable it. Kitty is installed by default
-  terminal = "kitty"; # Set Default System Terminal
-
-  keyboardLayout = "us";
-  keyboardVariant = "";
-  consoleKeyMap = "us";
-
-  # For hybrid support (Intel/NVIDIA Prime or AMD/NVIDIA)
-  intelID = "PCI:1:0:0";
-  amdgpuID = "PCI:5:0:0";
-  nvidiaID = "PCI:0:2:0";
-
   # Enable NFS
   enableNFS = true;
 
   # Enable Printing Support
   printEnable = false;
-
-  # Enable Thunar GUI File Manager
-  # Yazi is alternate File Manager
-  thunarEnable = true;
 
   # Themes, waybar and animation.
   #  Only uncomment your selection
@@ -95,7 +51,8 @@
   #stylixImage = ../wallpapers/mountainscapedark.jpg;
   #stylixImage = ../wallpapers/AnimeGirlNightSky.jpg;
   #stylixImage = ../wallpapers/Anime-Purple-eyes.png;
-  stylixImage = ../wallpapers/purple_gasstation_abstract_dark_night.jpg;
+  #stylixImage = ../wallpapers/purple_gasstation_abstract_dark_night.jpg;
+  stylixImage = ../wallpapers/Fantasy-Japanese-Street.png;
   #stylixImage = ../wallpapers/zaney-wallpaper.jpg;
   #stylixImage = ../wallpapers/nix-wallpaper-stripes-logo.png;
   #stylixImage = ../wallpapers/beautifulmountainscape.jpg;
@@ -138,8 +95,4 @@
   animChoice = ../../modules/home/hyprland/animations-ml4w-classic.nix;
   #animChoice = ../../modules/home/hyprland/animations-ml4w-fast.nix;
   #animChoice = ../../modules/home/hyprland/animations-ml4w-high.nix;
-
-  # Set network hostId if required (needed for zfs)
-  # Otherwise leave as-is
-  hostId = "5ab03f50";
 }

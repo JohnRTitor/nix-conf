@@ -1,58 +1,48 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
   vars = import ../../../../variables.nix;
   inherit (vars)
-    barChoice
     browser
     ;
-  inherit (config.myOptions.programsSettings) terminal;
+  inherit (config.myOptions.programsSettings) statusbar terminal;
 
-  # Noctalia-specific bindings (only included when barChoice == "noctalia")
-  noctaliaBind =
-    if barChoice == "noctalia" then
-      [
-        "$modifier,D, Noctalia Launcher, exec, noctalia-shell ipc call launcher toggle"
-        "$modifier SHIFT,Return, Noctalia Launcher, exec, noctalia-shell ipc call launcher toggle"
-        "$modifier,M, Noctalia Notifications, exec,  noctalia-shell ipc call notifications toggleHistory"
-        "$modifier,V, Noctalia Clipboard, exec,  noctalia-shell ipc call launcher clipboard"
-        "$modifier ALT,P, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
-        "$modifier SHIFT,comma, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
-        "$modifier CTRL,L, Noctalia Lock Screen, exec,  noctalia-shell ipc call sessionMenu lockscreen lock"
-        "$modifier SHIFT,W, Noctalia Wallpaper, exec, noctalia-shell ipc call wallpaper toggle"
-        "$modifier,X, Noctalia Power Menu, exec,  noctalia-shell ipc call sessionMenu toggle"
-        "$modifier,C, Noctalia Control Center, exec,  noctalia-shell ipc call controlCenter toggle"
-        "$modifier CTRL,R, Noctalia Screen Recorder, exec,  noctalia-shell ipc call screenRecorder toggle"
-        "$modifier SHIFT,R, Restart Noctalia shell, exec,  restart.noctalia"
-      ]
-    else
-      [ ];
-  # Rofi launcher bindings (only included when barChoice != "noctalia")
-  rofiBind =
-    if barChoice != "noctalia" then
-      [
-        "$modifier,D, Rofi Launcher, exec, rofi-launcher"
-        "$modifier SHIFT,Return, Rofi Launcher, exec, rofi-launcher"
-      ]
-    else
-      [ ];
+  # Noctalia-specific bindings (only included when statusbar == "noctalia")
+  noctaliaBind = lib.optionals (statusbar == "noctalia") [
+    "$modifier,D, Noctalia Launcher, exec, noctalia-shell ipc call launcher toggle"
+    "$modifier SHIFT,Return, Noctalia Launcher, exec, noctalia-shell ipc call launcher toggle"
+    "$modifier,M, Noctalia Notifications, exec,  noctalia-shell ipc call notifications toggleHistory"
+    "$modifier,V, Noctalia Clipboard, exec,  noctalia-shell ipc call launcher clipboard"
+    "$modifier ALT,P, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
+    "$modifier SHIFT,comma, Noctalia Settings, exec, noctalia-shell ipc call settings toggle"
+    "$modifier CTRL,L, Noctalia Lock Screen, exec,  noctalia-shell ipc call sessionMenu lockscreen lock"
+    "$modifier SHIFT,W, Noctalia Wallpaper, exec, noctalia-shell ipc call wallpaper toggle"
+    "$modifier,X, Noctalia Power Menu, exec,  noctalia-shell ipc call sessionMenu toggle"
+    "$modifier,C, Noctalia Control Center, exec,  noctalia-shell ipc call controlCenter toggle"
+    "$modifier CTRL,R, Noctalia Screen Recorder, exec,  noctalia-shell ipc call screenRecorder toggle"
+    "$modifier SHIFT,R, Restart Noctalia shell, exec,  restart.noctalia"
+  ];
+  # Rofi launcher bindings (only included when statusbar != "noctalia")
+  rofiBind = lib.optionals (statusbar != "noctalia") [
+    "$modifier,D, Rofi Launcher, exec, rofi-launcher"
+    "$modifier SHIFT,Return, Rofi Launcher, exec, rofi-launcher"
+  ];
   # Rofi clipboard binding (only included when barChoice != "noctalia")
-  rofiClipboardBind =
-    if barChoice != "noctalia" then
-      [
-        "$modifier,V, Clipboard History, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
-      ]
-    else
-      [ ];
+  rofiClipboardBind = lib.optionals (statusbar != "noctalia") [
+    "$modifier,V, Clipboard History, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+  ];
 in
 {
   wayland.windowManager.hyprland.settings = {
+    bindr = lib.optionals (statusbar == "noctalia") [
+      "$modifier, $modifier_L, exec, noctalia-shell ipc call launcher toggle"
+    ];
+
     bindd =
       noctaliaBind
       ++ rofiBind
       ++ rofiClipboardBind
       ++ [
         # ============= WORKSPACE OVERVIEW =============
-        "$modifier, $modifier_L, Toggle Dock, exec, dock"
         "$modifier CTRL,D, Toggle Dock, exec, dock"
         "$modifier, TAB, QS Overview, exec, qs ipc -c overview call overview toggle"
         # ============= TERMINALS =============

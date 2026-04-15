@@ -1,13 +1,13 @@
-{ host, ... }:
+{ config, ... }:
 let
   vars = import ../../../../variables.nix;
+  inherit (config.myOptions.programsSettings) statusbar;
   inherit (vars)
-    barChoice
     stylixImage
     ;
   # Noctalia-specific startup commands
   noctaliaExec =
-    if barChoice == "noctalia" then
+    if statusbar == "noctalia" then
       [
         "killall -q waybar"
         "pkill waybar"
@@ -19,7 +19,7 @@ let
       [ ];
   # Waybar-specific startup commands
   waybarExec =
-    if barChoice != "noctalia" then
+    if statusbar != "noctalia" then
       [
         "killall -q awww;sleep .5 && awww-daemon"
         "killall -q waybar;sleep .5 && waybar"
