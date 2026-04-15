@@ -1,5 +1,10 @@
 # Configure disks and zram
-{ config, pkgs, pkgs-master, ... }:
+{
+  config,
+  pkgs,
+  pkgs-master,
+  ...
+}:
 {
   fileSystems = {
     "/".options = [

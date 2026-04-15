@@ -12,6 +12,8 @@
       inputs.nixpkgs.follows = "nixpkgs"; # Must follow nixpkgs, else will cause conflicts with the system
     };
 
+    stylix.url = "github:nix-community/stylix";
+
     lanzaboote = {
       # Lanzaboote module used for Secure-Boot implementation
       url = "github:nix-community/lanzaboote/v0.4.2";

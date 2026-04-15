@@ -22,6 +22,9 @@
     ./shell
     ./programs
 
+    ./quickshell.nix
+    ./stylix.nix
+
     # include global/system packages list and settings
     ../pkgs-configuration/settings.nix
     ../pkgs-configuration/global-packages.nix

@@ -5,14 +5,16 @@
   ...
 }:
 let
-  mkPkgs = nixpkgs: system: import nixpkgs {
-    inherit system;
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-      android_sdk.accept_license = true;
+  mkPkgs =
+    nixpkgs: system:
+    import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+        allowUnfreePredicate = _: true;
+        android_sdk.accept_license = true;
+      };
     };
-  };
 
   # bleeding edge packages from nixpkgs master branch, for packages that need immediate updates
   pkgs-master = mkPkgs inputs.nixpkgs-master config.myOptions.systemSettings.systemarch;

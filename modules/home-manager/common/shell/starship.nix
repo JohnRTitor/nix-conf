@@ -32,10 +32,10 @@ in
         "$status"
         "$line_break"
         "[❯](bold purple)"
-        ''''${custom.space}''
+        "\${custom.space}"
       ];
       custom.space = {
-        when = ''! test $env'';
+        when = "! test $env";
         format = "  ";
       };
       continuation_prompt = "∙  ┆ ";

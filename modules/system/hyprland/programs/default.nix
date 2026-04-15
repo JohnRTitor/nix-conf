@@ -9,29 +9,23 @@
   environment.systemPackages =
     (with pkgs; [
       # Hyprland Stuff main
-      cava # audio visualizer
       cliphist # clipboard history
       grim # screenshots
-      jq # json parser
       networkmanagerapplet
       nwg-look # theme switcher
-      openssl # required by Rainbow borders
       pamixer
-      pwvucontrol # audio control
       playerctl # media player control
-      rofi # app launcher
       slurp # screenshots
       swappy # screenshots
-      swaynotificationcenter # notification daemon
 
-      # swww # wallpaper daemon    
+      # swww # wallpaper daemon
       (writeShellScriptBin "swww" ''
-          exec ${lib.getExe' awww "awww"} "$@"
-        '')
+        exec ${lib.getExe' awww "awww"} "$@"
+      '')
       (writeShellScriptBin "swww-daemon" ''
-          exec ${lib.getExe' awww "awww-daemon"} "$@"
-    '')
-      
+        exec ${lib.getExe' awww "awww-daemon"} "$@"
+      '')
+
       wallust # pywal alternative, graphical pallete generator
       wl-clipboard # clipboard manager
       wlogout # logout dialog
@@ -43,7 +37,6 @@
 
       ## Graphical apps ##
 
-      kitty # default terminal on hyprland
       linux-wifi-hotspot # for wifi hotspot
       (mpv-unwrapped.override {
         # mpv with more features
@@ -68,9 +61,7 @@
       evince # document viewer
 
       ## Hypr ecosystem ##
-      hyprcursor
       hyprsunset # for night mode
-      rose-pine-hyprcursor # cursor theme
       ags_1 # widgets popup
       pyprland # hyprland plugin, dropdown term, etc
 

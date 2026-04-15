@@ -49,7 +49,8 @@
     };
 
     programsSettings = {
-      fileManager = "nemo";
+      fileManager = "nautilus";
+      terminal = "kitty";
       openrgb = true;
     };
   };

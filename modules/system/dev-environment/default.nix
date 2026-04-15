@@ -34,6 +34,6 @@
   services.nginx.package = pkgs.nginxQuic;
 
   # programs.java.enable = true;
-  
+
   # PostgreSQL
 }

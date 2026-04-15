@@ -16,7 +16,7 @@ in
     enable = true;
     package = pkgs.vscode.override {
       # if keyring does not work, try either "libsecret" or "gnome"
-      commandLineArgs = ''--password-store=gnome-libsecret'';
+      commandLineArgs = "--password-store=gnome-libsecret";
     };
   };
 

@@ -1,21 +1,38 @@
 # This conf file is used to configure fonts
 { pkgs, ... }:
 {
-  # FONTS
+  # FONTS and ICONS
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     lohit-fonts.bengali # Bengali fonts
-    noto-fonts
-    noto-fonts-cjk-sans
-    font-awesome # for icons
-    nerd-fonts.arimo # similar to arial, used in Chrome
-    # Used in Hyprland-Dots + VS code
+
+    dejavu_fonts
+    fira-code
+    fira-code-symbols
+    font-awesome
+    hackgen-nf-font
+    ibm-plex
+    inter
+    jetbrains-mono
+    material-icons
+    maple-mono.NF
+    minecraftia
+    nerd-fonts.im-writing
+    nerd-fonts.blex-mono
+    nerd-fonts.iosevka-term
+    nerd-fonts.lilex
+    nerd-fonts.ubuntu
     nerd-fonts.jetbrains-mono
-    nerd-fonts.inconsolata-lgc
-    nerd-fonts.fira-code
-    nerd-fonts.cousine
+    nerd-fonts.fira-mono
+    noto-fonts
+    noto-fonts-color-emoji
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-monochrome-emoji
+    powerline-fonts
     roboto
-    # ultimate-oldschool-pc-font-pack
+    roboto-mono
+    symbola
   ];
 
   fonts.fontDir.enable = true;

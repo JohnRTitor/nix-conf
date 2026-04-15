@@ -15,11 +15,14 @@
           id = "M62TYHV-PRY74RS-HLDCUN7-CXAERJE-J67LQGR-I2ODB4R-VZWXQ5B-WRAPSQF";
         };
       };
-      
+
       folders = {
         "PairaShared" = {
           path = "/home/masum/syncthing/Paira";
-          devices = [ "pairadevice" "pairadevice2" ];
+          devices = [
+            "pairadevice"
+            "pairadevice2"
+          ];
           order = "alphabetic";
           ignorePerms = false; # Enable file permission syncing
         };

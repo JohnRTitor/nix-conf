@@ -12,7 +12,7 @@ lib.mkMerge [
     ];
     programs.nautilus-open-any-terminal = {
       enable = true;
-      terminal = "kitty";
+      terminal = config.myOptions.programsSettings.terminal;
     };
     services.gnome.sushi.enable = true; # quick previewer for nautilus
   })
@@ -30,6 +30,20 @@ lib.mkMerge [
 
     environment.pathsToLink = [
       "/share/nemo"
+    ];
+  })
+
+  (lib.mkIf (config.myOptions.programsSettings.fileManager == "thunar") {
+    programs.thunar = {
+      enable = true;
+      plugins = [
+        pkgs.thunar-archive-plugin
+        pkgs.thunar-volman
+      ];
+    };
+
+    environment.systemPackages = with pkgs; [
+      ffmpegthumbnailer # Need For Video / Image Preview
     ];
   })
 

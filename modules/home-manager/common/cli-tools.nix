@@ -28,9 +28,6 @@
   # fzf, a command-line fuzzy finder
   programs.fzf.enable = true;
 
-  # Fast terminal file manager written in Rust
-  programs.yazi.enable = true;
-
   # zoxide, A smarter cd command which learns your habits as you go
   programs.zoxide = {
     enable = true;

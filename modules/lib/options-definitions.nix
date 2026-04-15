@@ -113,10 +113,31 @@
         type = lib.types.enum [
           "nautilus"
           "nemo"
+          "thunar"
         ];
         default = "nautilus";
         description = "File manager";
       };
+
+      terminal = lib.mkOption {
+        type = lib.types.enum [
+          "kitty"
+          "alacritty"
+        ];
+        default = "kitty";
+        description = "Terminal emulator";
+      };
+
+      statusbar = lib.mkOption {
+        type = lib.types.enum [
+          "waybar"
+          "noctalia"
+          "hyprpanel"
+        ];
+        default = "noctalia";
+        description = "Status bar";
+      };
+
       openrgb = lib.mkEnableOption "OpenRGB";
     };
   };

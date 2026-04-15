@@ -29,6 +29,8 @@ in
       inputs.nix-flatpak.nixosModules.nix-flatpak # nix-flatpak, allows flatpak declaratively
       inputs.lanzaboote.nixosModules.lanzaboote
 
+      inputs.stylix.nixosModules.stylix
+
       # Home Manager as NixOS module, this makes it so it is auto deployed with `nixos-rebuild switch`
       inputs.home-manager.nixosModules.home-manager
       {

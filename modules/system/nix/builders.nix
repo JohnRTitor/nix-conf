@@ -1,7 +1,8 @@
-{...}:{
+{ ... }:
+{
   programs.ssh.knownHosts."darwin-build-box.nix-community.org".publicKey =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKMHhlcn7fUpUuiOFeIhDqBzBNFsbNqq+NpzuGX3e6zv";
-  
+
   nix = {
     distributedBuilds = true;
     buildMachines = [
