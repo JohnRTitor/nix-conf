@@ -5,18 +5,7 @@ let
   inherit (vars)
     stylixImage
     ;
-  # Noctalia-specific startup commands
-  noctaliaExec =
-    if statusbar == "noctalia" then
-      [
-        "killall -q waybar"
-        "pkill waybar"
-        "killall -q swaync"
-        "pkill swaync"
-        "noctalia-shell &"
-      ]
-    else
-      [ ];
+
   # Waybar-specific startup commands
   waybarExec =
     if statusbar != "noctalia" then
@@ -42,7 +31,6 @@ in
       "qs -c overview" # Start quickshell-overview daemon
       "hyprland-change-layout init"
     ]
-    ++ noctaliaExec
     ++ waybarExec;
   };
 }

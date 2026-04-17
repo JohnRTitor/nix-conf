@@ -5,12 +5,34 @@
   ...
 }:
 let
-  system = pkgs.stdenv.hostPlatform.system;
   noctaliaPkg = pkgs.noctalia-shell;
   configDir = "${noctaliaPkg}/share/noctalia-shell";
 in
 {
-  # Install the Noctalia package
+  # Install the Noctalia package and service
+  systemd.user.services.noctalia-shell = {
+    Unit = {
+      Description = "Noctalia Shell Service";
+      After = [ "hyprland-session.target" ];
+      BindsTo = [ "hyprland-session.target" ];
+      PartOf = [ "hyprland-session.target" ];
+      Requisite = [ "hyprland-session.target" ];
+
+      ConditionEnvironment = "WAYLAND_DISPLAY";
+    };
+
+    Install = {
+      WantedBy = [ "hyprland-session.target" ];
+    };
+    Service = {
+      ExecStart = "${noctaliaPkg}/bin/noctalia-shell";
+      Restart = "on-failure";
+      Environment = [
+        "PATH=\"/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin\""
+      ];
+    };
+  };
+  
   home.packages = with pkgs; [
     noctaliaPkg
     quickshell # Ensure quickshell is available for the service

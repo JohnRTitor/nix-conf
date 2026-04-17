@@ -34,8 +34,8 @@ in
   systemd.user.services.pyprland = {
     Unit = {
       Description = "Autostart Pyprland on Hyprland session start";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
+      After = [ "hyprland-session.target" ];
+      PartOf = [ "hyprland-session.target" ];
 
       X-Restart-Triggers = [
         config.xdg.configFile."pypr/pyprland.toml".source
@@ -45,7 +45,7 @@ in
     };
 
     Install = {
-      WantedBy = [ "graphical-session.target" ];
+      WantedBy = [ "hyprland-session.target" ];
     };
     Service = {
       ExecStart = "${pkgs.pyprland}/bin/pypr --config ${config.home.homeDirectory}/.config/pypr/pyprland.toml";

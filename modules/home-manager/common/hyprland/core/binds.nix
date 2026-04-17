@@ -19,7 +19,7 @@ let
     "$modifier,X, Noctalia Power Menu, exec,  noctalia-shell ipc call sessionMenu toggle"
     "$modifier,C, Noctalia Control Center, exec,  noctalia-shell ipc call controlCenter toggle"
     "$modifier CTRL,R, Noctalia Screen Recorder, exec,  noctalia-shell ipc call screenRecorder toggle"
-    "$modifier SHIFT,R, Restart Noctalia shell, exec,  restart.noctalia"
+    "$modifier SHIFT,R, Restart Noctalia shell, exec,  systemctl --user restart noctalia-shell.service"
   ];
   # Rofi launcher bindings (only included when statusbar != "noctalia")
   rofiBind = lib.optionals (statusbar != "noctalia") [
