@@ -20,15 +20,12 @@
       signing.signByDefault = true;
 
       color.ui = true;
-      # verbose messages
-      commit.verbose = true;
-      # always rebase when pulling
-      pull.rebase = true;
-      # automatically convert crlf line endings to lf when commiting
-      core.autocrlf = "input";
-      # signoff at the end of each commit every time
-      format.signOff = true;
-      diff.algorithm = "histogram";
+      commit.verbose = true; # show diff of changes in commit message editor
+      pull.rebase = true; # rebase by default when pulling
+      core.autocrlf = "input"; # automatically convert crlf line endings to lf when commiting
+      format.signOff = true; # signoff at the end of each commit every time
+      diff.algorithm = "histogram"; # better diff algorithm for git diff
+
     };
     lfs.enable = true; # git lfs for large files
 
