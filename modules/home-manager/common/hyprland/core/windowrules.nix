@@ -1,9 +1,12 @@
 _: {
   wayland.windowManager.hyprland = {
     extraConfig = ''
-      # Set float and centering for dialog boxes
-      rule = float(true), match:modal:1
-      rule = center(true), match:modal:1
+      windowrule {
+        name = Dialog boxes
+        match:modal = true
+        center = on
+        float = on
+      }
 
       windowrule {
         name = Resolve
@@ -194,6 +197,13 @@ _: {
         opacity = 0.95 = 0.75
         pin = 0
         keep_aspect_ratio = on
+      }
+      
+      windowrule {
+        name = Screenshare Dialog
+        match:title = ^(Select what to share)$
+        center = on
+        float = on
       }
 
       windowrule {
