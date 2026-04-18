@@ -32,7 +32,7 @@ in
       ];
     };
   };
-  
+
   home.packages = with pkgs; [
     noctaliaPkg
     quickshell # Ensure quickshell is available for the service

@@ -28,6 +28,7 @@
       core.autocrlf = "input";
       # signoff at the end of each commit every time
       format.signOff = true;
+      diff.algorithm = "histogram";
     };
     lfs.enable = true; # git lfs for large files
 
