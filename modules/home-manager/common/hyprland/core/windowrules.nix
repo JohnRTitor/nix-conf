@@ -4,10 +4,61 @@ _: {
       {
         name = "Dialog boxes";
         "match:modal" = "true";
-        center = "on";
+        tag = "+dialog";
+      }
+
+      {
+        name = "Picture-in-Picture";
+        "match:title" = "^(Picture-in-Picture|Picture in picture)$";
+        tag = "+pip";
+      }
+      
+      {
+        name = "Google Meet Popup";
+        "match:title" = "^(Meet - [a-z]{3}-[a-z]{4}-[a-z]{3})$";
+        # "match:class" = "^(google-chrome)$"; # disabled so we can match for each browser
+        tag = "+pip";
+      }
+
+      {
+        name = "Screenshare Dialog";
+        "match:title" = "^(Select what to share)$";
+        tag = "+dialog";
+      }
+
+      {
+        name = "Add-Folder";
+        "match:initial_title" = "(Add Folder to Workspace)";
+        float = "on";
+        size = "70% = 60%";
+      }
+
+      {
+        name = "Open-File";
+        "match:initial_title" = "(Open Files)";
+        float = "on";
+        size = "70% = 60%";
+      }
+
+      {
+        name = "Wants-to-Save";
+        "match:initial_title" = "(wants to save)";
         float = "on";
       }
 
+      {
+        name = "Authentication-Required";
+        "match:title" = "^(Authentication Required)$";
+        tag = "+dialog";
+      }
+      
+      {
+        name = "MetaMask";
+        # "match:title" = "^(MetaMask)$"; # for some reason, this doesn't work
+        "match:class" = "^(chrome-nkbihfbeogaeaoehlefnkodbefgpgknn-Default)$";
+        tag = "+dialog";
+      }
+      
       {
         name = "Resolve";
         "match:class" = "^(\\bresolve\\b)$";
@@ -159,7 +210,7 @@ _: {
       }
 
       {
-        name = "PlusAudio";
+        name = "PulseAudio/Pipewire Volume Control";
         "match:class" = "^(pavucontrol|org.pulseaudio.pavucontrol|com.saivert.pwvucontrol)$";
         center = "on";
         tag = "+settings";
@@ -191,33 +242,9 @@ _: {
       }
 
       {
-        name = "Picture-in-Picture";
-        "match:title" = "^(Picture-in-Picture)$";
-        float = "on";
-        move = "72% = 7%";
-        opacity = "0.95 = 0.75";
-        pin = "0";
-        "keep_aspect_ratio" = "on";
-      }
-
-      {
-        name = "Screenshare Dialog";
-        "match:title" = "^(Select what to share)$";
-        center = "on";
-        float = "on";
-      }
-
-      {
         name = "ThunarFileMgr";
         "match:class" = "([Tt]hunar)";
         "match:title" = "negative:(.*[Tt]hunar.*)";
-        center = "on";
-        float = "on";
-      }
-
-      {
-        name = "Authentication-Required";
-        "match:title" = "^(Authentication Required)$";
         center = "on";
         float = "on";
       }
@@ -284,23 +311,20 @@ _: {
       }
 
       {
-        name = "Add-Folder";
-        "match:initial_title" = "(Add Folder to Workspace)";
+        name = "Dialog";
+        "match:tag" = "dialog*";
+        center = "on";
         float = "on";
-        size = "70% = 60%";
       }
-
+      
       {
-        name = "Open-File";
-        "match:initial_title" = "(Open Files)";
+        name = "Picture in Picture";
+        "match:tag" = "pip*";
         float = "on";
-        size = "70% = 60%";
-      }
-
-      {
-        name = "Wants-to-Save";
-        "match:initial_title" = "(wants to save)";
-        float = "on";
+        move = "72% = 7%";
+        opacity = "0.95 = 0.75";
+        pin = "0";
+        "keep_aspect_ratio" = "on";
       }
 
       {
@@ -308,7 +332,7 @@ _: {
         "match:tag" = "browser*";
         opacity = "1.0 = 1.0";
       }
-
+      
       {
         name = "Projects";
         "match:tag" = "projects*";
