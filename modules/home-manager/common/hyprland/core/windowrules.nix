@@ -10,6 +10,7 @@ _: {
       {
         name = "Picture-in-Picture";
         "match:title" = "^(Picture-in-Picture|Picture in picture)$";
+        "keep_aspect_ratio" = "on";
         tag = "+pip";
       }
       
@@ -17,6 +18,7 @@ _: {
         name = "Google Meet Popup";
         "match:title" = "^(Meet - [a-z]{3}-[a-z]{4}-[a-z]{3})$";
         # "match:class" = "^(google-chrome)$"; # disabled so we can match for each browser
+        "keep_aspect_ratio" = "off";
         tag = "+pip";
       }
 
@@ -324,7 +326,6 @@ _: {
         move = "72% = 7%";
         opacity = "0.95 = 0.75";
         pin = "0";
-        "keep_aspect_ratio" = "on";
       }
 
       {
