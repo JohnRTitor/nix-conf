@@ -15,5 +15,7 @@
         commandLineArgs = ''--password-store=gnome-libsecret'';
       })
     */
+    
+    postman
   ];
 }
