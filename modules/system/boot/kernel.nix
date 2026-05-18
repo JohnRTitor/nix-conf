@@ -6,5 +6,5 @@
   ...
 }:
 {
-  boot.kernelPackages = pkgs-master.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 }
