@@ -48,7 +48,6 @@ in
     wl-clipboard
     swappy
     ydotool
-    hyprpolkitagent
     hyprshot
     hyprshutdown
     hyprpicker

@@ -2,6 +2,7 @@
 {
   imports = [
     ./core
+    ./polkit.nix
     ./pyprland.nix
     ./quickshell-overview
     ./rofi
