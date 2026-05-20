@@ -11,6 +11,9 @@ lib.mkMerge [
   {
     # Enable Cosmic-greeter
     services.displayManager.cosmic-greeter.enable = true;
+    environment.systemPackages = with pkgs; [
+      cosmic-icons
+    ];
 
     # Run XDG autostart, this is needed for a DE-less setup like Hyprland
     services.xserver.desktopManager.runXdgAutostartIfNone = true;
@@ -20,7 +23,7 @@ lib.mkMerge [
     # this adds a new UWSM managed Hyprland session
     # that properly starts Hyprland compositor with
     # `graphical-session.target` and necessary services
-    # graphical-session.target is managed by hyprland nixos module 
+    # graphical-session.target is managed by hyprland nixos module
     programs.uwsm.enable = true;
     programs.uwsm.package = pkgs.uwsm;
     programs.uwsm.waylandCompositors = {
@@ -30,6 +33,6 @@ lib.mkMerge [
         binPath = "/run/current-system/sw/bin/start-hyprland";
       };
     };
-  
+
   })
 ]

@@ -7,7 +7,7 @@
 }:
 let
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
-  inherit (import ../../../hosts/${host}/variables.nix) clock24h;
+  clockIs24h = config.myOptions.userSettings.${config.home.username}.clockType == "24h";
 in
 with lib;
 {
@@ -46,7 +46,7 @@ with lib;
           on-scroll-down = "hyprctl dispatch workspace e-1";
         };
         "clock" = {
-          format = if clock24h == true then " {:L%H:%M}" else " {:L%I:%M %p}";
+          format = if clockIs24h then " {:L%H:%M}" else " {:L%I:%M %p}";
           tooltip = true;
           tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
         };

@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   options.myOptions = {
     # ---- SYSTEM SETTINGS ---- #
@@ -42,6 +42,11 @@
       };
       laptop = lib.mkEnableOption "Laptop features";
       tpm = lib.mkEnableOption "TPM control and features";
+      stylixImage = lib.mkOption {
+        type = lib.types.path;
+        default = "${pkgs.cosmic-wallpapers}/share/backgrounds/cosmic/orion_nebula_nasa_heic0601a.jpg";
+        description = "Stylix wallpaper image path";
+      };
     };
 
     # ----- USER SETTINGS ----- #
@@ -83,6 +88,19 @@
                 ];
                 default = "zsh";
                 description = "User default shell";
+              };
+              clockType = lib.mkOption {
+                type = lib.types.enum [
+                  "12h"
+                  "24h"
+                ];
+                default = "24h";
+                description = "Clock display format";
+              };
+              default-browser = lib.mkOption {
+                type = lib.types.singleLineStr;
+                default = "google-chrome";
+                description = "Default browser (e.g., google-chrome)";
               };
             };
           }

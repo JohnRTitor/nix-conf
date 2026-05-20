@@ -11,6 +11,7 @@
       bootloader = "limine";
       laptop = false;
       tpm = false;
+      stylixImage = ../wallpapers/Fantasy-Japanese-Street.png;
     };
 
     # ----- USER SETTINGS ----- #
@@ -21,6 +22,8 @@
       gitemail = "50095635+JohnRTitor@users.noreply.github.com";
       gpgkey = "29B0514F4E3C1CC0";
       shell = "zsh"; # user default shell # choose either zsh or bash
+      clockType = "24h";
+      default-browser = "google-chrome";
     };
     userSettings."masum-work" = {
       username = "masum-work";
@@ -29,6 +32,8 @@
       gitemail = "221108133+johnrtitor-work@users.noreply.github.com";
       gpgkey = "157769ECD30424AF";
       shell = "zsh"; # user default shell # choose either zsh or bash
+      clockType = "24h";
+      default-browser = "google-chrome";
     };
 
     servicesSettings = {

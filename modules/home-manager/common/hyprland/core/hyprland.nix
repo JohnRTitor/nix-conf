@@ -1,4 +1,4 @@
-{
+args@{
   host,
   config,
   pkgs,
@@ -7,10 +7,8 @@
 }:
 let
   vars = import ../../../../variables.nix;
-  extraMonitorSettings = vars.extraMonitorSettings or "";
   keyboardLayout = vars.keyboardLayout or "us";
   keyboardVariant = vars.keyboardVariant or "";
-  stylixImage = vars.stylixImage or null;
 
   # Treat only known US-based variants as implying layout = "us".
   usVariants = [
@@ -68,34 +66,58 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
+    configType = "lua";
+
     systemd = {
       enable = true;
       enableXdgAutostart = true;
       variables = [ "--all" ];
     };
-    xwayland = {
-      enable = true;
-    };
-    settings = {
-      input = {
-        kb_layout = hyprKbLayout;
-        kb_options = [
-          "grp:alt_caps_toggle"
-          "caps:super"
-        ];
-        numlock_by_default = true;
-        repeat_delay = 300;
-        follow_mouse = 1;
-        float_switch_override_focus = 0;
-        sensitivity = 0;
-        touchpad = {
-          natural_scroll = true;
-          disable_while_typing = true;
-          scroll_factor = 0.8;
-        };
+    xwayland.enable = true;
+
+    settings.monitor = [
+      {
+        output = "";
+        mode = "preferred";
+        position = "auto";
+        scale = "1";
       }
-      // lib.optionalAttrs (hyprKbVariant != "") { kb_variant = hyprKbVariant; };
+      {
+        output = "Virtual-1";
+        mode = "1920x1080@60";
+        position = "auto";
+        scale = "1";
+      }
+    ];
+
+    settings.layer_rule = [
+      {
+        blur = true;
+        match.namespace = "waybar";
+      }
+    ];
+
+    settings.config = {
+      input = (
+        {
+          kb_layout = hyprKbLayout;
+          kb_options = lib.concatStringsSep ", " [
+            "grp:alt_caps_toggle"
+            "caps:super"
+          ];
+          numlock_by_default = true;
+          repeat_delay = 300;
+          follow_mouse = 1;
+          float_switch_override_focus = 0;
+          sensitivity = 0;
+          touchpad = {
+            natural_scroll = true;
+            disable_while_typing = true;
+            scroll_factor = 0.8;
+          };
+        }
+        // lib.optionalAttrs (hyprKbVariant != "") { kb_variant = hyprKbVariant; }
+      );
 
       gestures = {
         gesture = [ "3, horizontal, workspace" ];
@@ -106,7 +128,6 @@ in
         workspace_swipe_create_new = true;
         workspace_swipe_forever = true;
       };
-      "$modifier" = "SUPER";
 
       scrolling = {
         column_width = 0.80;
@@ -123,8 +144,7 @@ in
         gaps_out = 8;
         border_size = 2;
         resize_on_border = true;
-        "col.active_border" =
-          "rgb(${config.lib.stylix.colors.base08}) rgb(${config.lib.stylix.colors.base0C}) 45deg";
+        "col.active_border" = "rgb(${config.lib.stylix.colors.base08})";
         "col.inactive_border" = "rgb(${config.lib.stylix.colors.base01})";
       };
 
@@ -173,6 +193,10 @@ in
         };
       };
 
+      animations = {
+        enabled = true;
+      };
+
       ecosystem = {
         no_donation_nag = true;
         no_update_news = false;
@@ -206,20 +230,7 @@ in
       };
 
       # Ensure Xwayland windows render at integer scale; compositor scales them
-      xwayland = {
-        force_zero_scaling = true;
-      };
+      xwayland.force_zero_scaling = true;
     };
-
-    extraConfig = "
-      monitor=,preferred,auto,auto
-      monitor=Virtual-1,1920x1080@60,auto,1
-      ${
-            extraMonitorSettings
-          }
-      # To enable blur on waybar uncomment the line below
-      # Thanks to SchotjeChrisman
-      #layerrule = blur,waybar
-    ";
   };
 }

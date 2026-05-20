@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (import ../../../hosts/${host}/variables.nix) clock24h;
+  clockIs24h = config.myOptions.userSettings.${config.home.username}.clockType == "24h";
   scriptsDir = ./scripts;
   scripts = builtins.attrNames (builtins.readDir scriptsDir);
 in
@@ -184,7 +184,7 @@ with lib;
         "clock#2" = {
           interval = 60;
           "tooltip-format" = "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>";
-          format = if clock24h then "{:%H:%M}" else "{:%I:%M %p}";
+          format = if clockIs24h then "{:%H:%M}" else "{:%I:%M %p}";
           "format-alt" = "{:%a %b %d, %G}";
         };
 

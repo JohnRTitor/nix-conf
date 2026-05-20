@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  animChoice = ./animations-ml4w-classic.nix;
+  animChoice = ./animations-def.nix;
 in
 {
   imports = [

@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
-  wayland.windowManager.hyprland.settings.bindd = [
-    "$modifier,E, Emoji Picker, exec, emopicker9000"
-  ];
+  # wayland.windowManager.hyprland.settings.bindd = [
+  #   "$modifier,E, Emoji Picker, exec, emopicker9000"
+  # ];
 
   home.packages = [
     (import ./scripts/emopicker9000.nix { inherit pkgs; })

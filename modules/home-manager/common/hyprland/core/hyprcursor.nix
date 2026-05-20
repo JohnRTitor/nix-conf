@@ -1,15 +1,29 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  lua = import ../utils/lua.nix { inherit lib; };
+  inherit (lua) args;
+in
 {
   home.packages = with pkgs; [
     rose-pine-hyprcursor
   ];
 
   wayland.windowManager.hyprland.settings = {
-    enable_hyprcursor = true;
+    config = {
+      cursor = {
+        enable_hyprcursor = true;
+      };
+    };
 
     env = [
-      "HYPRCURSOR_THEME, rose-pine-hyprcursor"
-      "HYPRCURSOR_SIZE, 42"
+      (args [
+        "HYPRCURSOR_THEME"
+        "rose-pine-hyprcursor"
+      ])
+      (args [
+        "HYPRCURSOR_SIZE"
+        "42"
+      ])
     ];
   };
 }

@@ -1,9 +1,4 @@
 { pkgs, ... }:
-let
-  settings = import ./yazi.nix;
-  keymap = import ./keymap.nix;
-  theme = import ./theme.nix;
-in
 {
   programs.yazi = {
     enable = true;
@@ -11,9 +6,9 @@ in
     enableBashIntegration = true;
     enableFishIntegration = true;
     shellWrapperName = "yy";
-    settings = settings;
-    keymap = keymap;
-    theme = theme;
+    settings = import ./yazi.nix;
+    keymap = import ./keymap.nix;
+    theme = import ./theme.nix;
     plugins = {
       lazygit = pkgs.yaziPlugins.lazygit;
       full-border = pkgs.yaziPlugins.full-border;
@@ -23,10 +18,10 @@ in
 
     initLua = ''
       require("full-border"):setup()
-         require("git"):setup()
-         require("smart-enter"):setup {
-           open_multi = true,
-         }
+      require("git"):setup()
+      require("smart-enter"):setup {
+        open_multi = true,
+      }
     '';
   };
 }
