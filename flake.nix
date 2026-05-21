@@ -36,6 +36,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    noctalia-shell = {
+      url = "github:noctalia-dev/noctalia-shell"; # Latest Noctalia Shell
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions"; # Grab latest VScode extensions as a package;
       inputs.nixpkgs.follows = "nixpkgs";

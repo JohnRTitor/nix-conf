@@ -65,6 +65,7 @@ in
     ".face.icon".source = ./face.jpg;
     ".config/face.jpg".source = ./face.jpg;
   };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;

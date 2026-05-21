@@ -5,7 +5,7 @@
   ...
 }:
 let
-  noctaliaPkg = pkgs.noctalia-shell;
+  noctaliaPkg = inputs.noctalia-shell.packages.${pkgs.system}.default;
   configDir = "${noctaliaPkg}/share/noctalia-shell";
 in
 {

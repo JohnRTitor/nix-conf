@@ -26,6 +26,8 @@
     ./cosmic-greeter
 
     ./hyprland
+
+    ./easyeffects
     ./stylix.nix
     ./yazi
 
