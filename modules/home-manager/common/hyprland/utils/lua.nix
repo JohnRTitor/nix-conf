@@ -13,7 +13,7 @@ in
     ;
 
   dspExec = cmd: mkLuaInline ("hl.dsp.exec_cmd(" + toLua cmd + ")");
-  
+
   mkBezier =
     name: points:
     args [

@@ -1,7 +1,7 @@
 {
   lib,
   pkgs,
-  pkgs-master,
+  config,
   ...
 }:
 let
@@ -9,7 +9,19 @@ let
 in
 lib.mkMerge [
   {
-    # Enable Cosmic-greeter
+    ## Configure XDG portal ##
+    xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true; # use xdg-open with xdg-desktop-portal
+
+      configPackages = [ config.programs.hyprland.package ];
+
+      # hyprland portal is already included (provides screen-shareing)
+      # gtk is also needed for a file picker
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    };
+
+    # Enable Cosmic-greeter login manager
     services.displayManager.cosmic-greeter.enable = true;
     environment.systemPackages = with pkgs; [
       cosmic-icons
@@ -33,6 +45,5 @@ lib.mkMerge [
         binPath = "/run/current-system/sw/bin/start-hyprland";
       };
     };
-
   })
 ]

@@ -1,5 +1,4 @@
-args@{
-  host,
+{
   config,
   pkgs,
   lib,
@@ -40,42 +39,8 @@ let
   hyprKbVariant = variantFinal;
 in
 {
-  home.packages = with pkgs; [
-    grim
-    slurp
-    wl-clipboard
-    swappy
-    ydotool
-    hyprshot
-    hyprshutdown
-    hyprpicker
-    #hyprland-qtutils # needed for banners and ANR messages
-  ];
-  systemd.user.targets.hyprland-session.Unit.Wants = [
-    "xdg-desktop-autostart.target"
-  ];
-  # Place Files Inside Home Directory
-  home.file = {
-    "Pictures/Wallpapers" = {
-      source = ../../../../../wallpapers;
-      recursive = true;
-    };
-    ".face.icon".source = ./face.jpg;
-    ".config/face.jpg".source = ./face.jpg;
-  };
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    configType = "lua";
-
-    systemd = {
-      enable = true;
-      enableXdgAutostart = true;
-      variables = [ "--all" ];
-    };
-    xwayland.enable = true;
-
-    settings.monitor = [
+  wayland.windowManager.hyprland.settings = {
+    monitor = [
       {
         output = "";
         mode = "preferred";
@@ -90,14 +55,14 @@ in
       }
     ];
 
-    settings.layer_rule = [
+    layer_rule = [
       {
         blur = true;
         match.namespace = "waybar";
       }
     ];
 
-    settings.config = {
+    config = {
       input = (
         {
           kb_layout = hyprKbLayout;

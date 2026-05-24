@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  osConfig,
+  pkgs,
+  ...
+}:
 let
   animChoice = ./animations-def.nix;
 in
@@ -15,13 +20,43 @@ in
     ./windowrules.nix
   ];
 
-  xdg.portal = {
+  wayland.windowManager.hyprland = {
     enable = true;
-    extraPortals = [
-      config.wayland.windowManager.hyprland.portalPackage
+    configType = "lua";
+    # Use the nixos system level Hyprland package and system level portalPackage
+    package = null;
+    portalPackage = null;
 
-      pkgs.xdg-desktop-portal-gtk
-    ];
-    configPackages = [ config.wayland.windowManager.hyprland.package ];
+    systemd = {
+      enable = true;
+      enableXdgAutostart = true;
+      variables = [ "--all" ];
+    };
   };
+
+  home.packages = with pkgs; [
+    grim
+    slurp
+    wl-clipboard
+    swappy
+    ydotool
+    hyprshot
+    hyprshutdown
+    hyprpicker
+    #hyprland-qtutils # needed for banners and ANR messages
+  ];
+  systemd.user.targets.hyprland-session.Unit.Wants = [
+    "xdg-desktop-autostart.target"
+  ];
+
+  # Place Files Inside Home Directory
+  home.file = {
+    "Pictures/Wallpapers" = {
+      source = ../../../../../wallpapers;
+      recursive = true;
+    };
+    ".face.icon".source = ./face.jpg;
+    ".config/face.jpg".source = ./face.jpg;
+  };
+
 }
