@@ -19,13 +19,15 @@
     ./containers.nix
   ];
 
-  ## Essential services ##
-  # Enable xserver with xwayland
-  services.xserver = {
-    enable = true;
-    # don't need xterm
-    excludePackages = [ pkgs.xterm ];
-  };
+  /*
+    ## Essential services ##
+    # Enable xserver with xwayland
+    services.xserver = {
+      enable = true;
+      # don't need xterm
+      excludePackages = [ pkgs.xterm ];
+    };
+  */
 
   # Enable scx extra schedulers
   services.scx.enable = true;

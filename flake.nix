@@ -12,6 +12,8 @@
       inputs.nixpkgs.follows = "nixpkgs"; # Must follow nixpkgs, else will cause conflicts with the system
     };
 
+    hyprland.url = "github:JohnRTitor/Hyprland";
+
     stylix.url = "github:nix-community/stylix";
 
     lanzaboote = {
