@@ -46,7 +46,6 @@
     };
 
     devSettings = {
-      adb = false;
       nginx = false;
       jupyter = false;
       mysql = false;

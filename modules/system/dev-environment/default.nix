@@ -11,7 +11,6 @@
 
   # Containers and adb should be available by default
   imports = [
-    ./adb-toolchain.nix
     ./jupyter.nix
     ./example-localhost-website.nix
 
