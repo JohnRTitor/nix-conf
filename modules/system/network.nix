@@ -31,4 +31,13 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  boot.kernel.sysctl = {
+    # Low Latency Queueing & Congestion Control
+    "net.core.default_qdisc" = "fq";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+    # Handle Rapid Connection Bursts
+    "net.ipv4.tcp_max_syn_backlog" = 2048;
+  };
+
 }
