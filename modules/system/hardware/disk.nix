@@ -68,6 +68,5 @@
   programs.gnome-disks.enable = true;
   environment.systemPackages = with pkgs; [
     baobab # disk usage analyzer
-    fuseiso # to mount iso system images
   ];
 }

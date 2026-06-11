@@ -31,6 +31,8 @@ in
 
       inputs.stylix.nixosModules.stylix
 
+      inputs.odysseus.nixosModules.default
+
       # Home Manager as NixOS module, this makes it so it is auto deployed with `nixos-rebuild switch`
       inputs.home-manager.nixosModules.home-manager
       {

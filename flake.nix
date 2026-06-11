@@ -53,6 +53,11 @@
       inputs.flake-parts.follows = "flake-parts";
     };
 
+    odysseus = {
+      url = "github:ToyVo/odysseus/nix-add-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ### UTILS ###
     flake-parts = {
       url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
