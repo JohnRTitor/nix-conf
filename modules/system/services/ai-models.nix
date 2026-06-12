@@ -9,8 +9,8 @@
 
 let
   ## PREFS ##
-  enableOpenWebUI = false;
   enableOdysseus = true;
+  enableOpenWebUI = false;
 in
 lib.mkMerge [
   {
@@ -69,11 +69,21 @@ lib.mkMerge [
       # Add admin password, admin user here
       # https://github.com/pewdiepie-archdaemon/odysseus/blob/dev/.env.example
       environmentFile = "/var/lib/odysseus/odysseus-env";
-      host = "127.0.0.20";
-      port = 8080;
+      # This maps to localhost on this PC
+      # and this PC's private IP on the local network
+      host = "0.0.0.0";
+      port = 8000;
+
+      extraPythonPackages = ps: [
+        # For viewing PDFs
+        ps.pymupdf
+        ps.pymupdf4llm
+      ];
     };
 
-    networking.hosts."127.0.0.20" = [
+    networking.firewall.allowedTCPPorts = [ 8000 ];
+
+    networking.hosts."127.0.0.1" = [
       "odysseus.local"
     ];
   })
@@ -83,11 +93,13 @@ lib.mkMerge [
     services.open-webui = {
       enable = true;
       # package = pkgs-master.open-webui;
-      host = "127.0.0.30";
-      port = 8080;
+      host = "0.0.0.0";
+      port = 9000;
     };
 
-    networking.hosts."127.0.0.30" = [
+    networking.firewall.allowedTCPPorts = [ 9000 ];
+
+    networking.hosts."127.0.0.1" = [
       "ollama.local"
     ];
   })

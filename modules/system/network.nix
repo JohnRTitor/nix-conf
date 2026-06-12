@@ -40,4 +40,15 @@
     "net.ipv4.tcp_max_syn_backlog" = 2048;
   };
 
+  networking.firewall = {
+    enable = true;
+    # Open ports for local web development servers and frameworks (Next.js, Vite, FastAPI, HTTP/S)
+    # This allows access from the local network, ie, another PC or mobile device
+    allowedTCPPorts = [
+      3000
+      5173
+      8080
+    ];
+  };
+
 }
