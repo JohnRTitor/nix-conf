@@ -35,8 +35,11 @@ lib.mkMerge [
         # See https://huggingface.co/models?other=abliterated&library=gguf for abliterated models
         # Also see https://ollama.com/search?q=abliterated
 
-        "hf.co/cognitivecomputations/Dolphin3.0-Llama3.1-8B-GGUF:Q8_0" # BEST OF THE ABLITERATED MODELS TESTED
-        "huihui_ai/deepseek-r1-abliterated:14b" # (reasoning)
+        # https://huggingface.co/HauhauCS/models
+        "hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q6_K" # (reasoning) BEST ABLITERATED MODEL
+
+        # Quantized version, intentionally chosen for coding
+        "hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q4_K_M"
 
         ### SPECIAL PURPOSE ###
         # https://ollama.com/library/glm-ocr

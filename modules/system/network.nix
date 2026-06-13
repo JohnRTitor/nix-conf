@@ -42,13 +42,22 @@
 
   networking.firewall = {
     enable = true;
+
     # Open ports for local web development servers and frameworks (Next.js, Vite, FastAPI, HTTP/S)
     # This allows access from the local network, ie, another PC or mobile device
+    allowedTCPPortRanges = [
+      {
+        from = 3000;
+        to = 3010;
+      }
+    ];
+
     allowedTCPPorts = [
-      3000
       5173
       8080
     ];
   };
 
+  # New Firewall backend
+  networking.nftables.enable = true;
 }
