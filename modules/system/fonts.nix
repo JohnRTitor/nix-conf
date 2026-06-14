@@ -6,32 +6,29 @@
   fonts.packages = with pkgs; [
     lohit-fonts.bengali # Bengali fonts
 
-    dejavu_fonts
-    fira-code
-    fira-code-symbols
-    font-awesome
-    hackgen-nf-font
-    inter
+
+
+    # Needed for wlogout and several Waybar themes (Jerry, ddubs, jak-oglo, etc.)
+    # font-awesome
+
     jetbrains-mono
-    material-icons
+
+    # Only used in Kitty terminal (modules/home-manager/common/terminals/kitty.nix)
     maple-mono.NF
-    minecraftia
-    nerd-fonts.im-writing
-    nerd-fonts.blex-mono
-    nerd-fonts.iosevka-term
-    nerd-fonts.lilex
-    nerd-fonts.ubuntu
+
+    # Only used in Waybar TheBlackDon theme
+    # nerd-fonts.iosevka-term
+
     nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-mono
     noto-fonts
     noto-fonts-color-emoji
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-monochrome-emoji
-    powerline-fonts
-    roboto
-    roboto-mono
-    symbola
+
+    # Only used in Waybar jak-oglo-simple theme
+    # roboto
+    # roboto-mono
   ];
 
   fonts.fontDir.enable = true;
