@@ -68,7 +68,8 @@ in
           kb_layout = hyprKbLayout;
           kb_options = lib.concatStringsSep ", " [
             "grp:alt_caps_toggle"
-            "caps:super"
+            # Enabling this makes caps lock act like super key
+            # "caps:super"
           ];
           numlock_by_default = true;
           repeat_delay = 300;

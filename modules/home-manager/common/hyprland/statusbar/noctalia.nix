@@ -35,6 +35,9 @@
   home.packages = with pkgs; [
     matugen # color palette generator needed for noctalia-shell
     app2unit # launcher for noctalia-shell
-    gpu-screen-recorder # needed for noctalia-shell
+
+    ## GPU SCREEN RECORDER, used in a plugin, disabled here, as
+    # this is enabled in a system module
+    # gpu-screen-recorder
   ];
 }
