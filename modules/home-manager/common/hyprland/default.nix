@@ -3,6 +3,7 @@
   imports = [
     ./core
     ./polkit.nix
+    ./clipboard.nix
     ./pyprland.nix
     ./rofi
     ./scripts

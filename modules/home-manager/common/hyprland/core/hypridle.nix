@@ -24,4 +24,6 @@
       };
     };
   };
+
+  systemd.user.services.hypridle.Service.OOMScoreAdjust = "-400";
 }

@@ -7,12 +7,8 @@ let
 
   # Shared startup commands
   startupCommands = [
-    "wl-paste --type text --watch cliphist store"
-    "wl-paste --type image --watch cliphist store"
-    "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-    "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-    "qs -c overview"
-    "hyprland-change-layout init"
+    # "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+    # "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
   ]
   ++ lib.optionals (statusbar != "noctalia") [
     "killall -q awww;sleep .5 && awww-daemon"
