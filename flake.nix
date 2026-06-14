@@ -6,15 +6,29 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "github:NixOS/nixpkgs/master"; # Testing branch of nixpkgs
 
-    ### SYSTEM SERVICES ###
+    ### NIX ECOSYSTEM & UTILS ###
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR"; # Nix User Repository, for community packages
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
+
+    determinate-nix = {
+      url = "github:DeterminateSystems/nix-src";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
+
+    ### SYSTEM COMPONENTS & SERVICES ###
     home-manager = {
       url = "github:nix-community/home-manager/master"; # Home Manager, manage user configuration and home directories like a pro
       inputs.nixpkgs.follows = "nixpkgs"; # Must follow nixpkgs, else will cause conflicts with the system
     };
-
-    hyprland.url = "github:hyprwm/Hyprland";
-
-    stylix.url = "github:nix-community/stylix";
 
     lanzaboote = {
       # Lanzaboote module used for Secure-Boot implementation
@@ -26,13 +40,12 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest"; # Declarative Flatpak support for NixOS
 
-    ### MISC PACKAGES ###
-    determinate-nix = {
-      url = "github:DeterminateSystems/nix-src";
-      # inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
+    ### DESKTOP ENVIRONMENT & WINDOW MANAGER ###
+    hyprland.url = "github:hyprwm/Hyprland";
 
+    stylix.url = "github:nix-community/stylix";
+
+    ### USER PACKAGES & APPS ###
     zen-browser = {
       url = "github:youwen5/zen-browser-flake"; # Latest Zen Browser binary
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,21 +60,10 @@
       url = "github:nix-community/nix-vscode-extensions"; # Grab latest VScode extensions as a package;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur = {
-      url = "github:nix-community/NUR"; # Nix User Repository, for community packages
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
 
     odysseus = {
       url = "github:ToyVo/odysseus/nix-add-modules";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ### UTILS ###
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
-      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
     ### NON-FLAKE REPOSITORIES ###

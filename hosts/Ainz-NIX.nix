@@ -20,19 +20,33 @@ in
   flake.nixosConfigurations.Ainz-NIX = lib.nixosSystem {
     inherit specialArgs;
     modules = [
+      ### CORE SYSTEM & HOST CONFIGURATION ###
       {
         networking.hostName = "Ainz-NIX";
       }
+      ../modules/system
 
-      ### FLAKE MODULES ###
+      ### OPTIONS & PREFERENCES ###
+      ../modules/preferences.nix
+      ../modules/lib/options-definitions.nix
+
+      ### OVERLAYS ###
+      ../modules/modules-overlays
+
+      ### NIX ECOSYSTEM & UTILS ###
       inputs.nur.modules.nixos.default # NUR - NixOS user repository
-      inputs.nix-flatpak.nixosModules.nix-flatpak # nix-flatpak, allows flatpak declaratively
-      inputs.lanzaboote.nixosModules.lanzaboote
 
+      ### SYSTEM COMPONENTS & SERVICES ###
+      inputs.lanzaboote.nixosModules.lanzaboote
+      inputs.nix-flatpak.nixosModules.nix-flatpak # nix-flatpak, allows flatpak declaratively
+
+      ### DESKTOP ENVIRONMENT & WINDOW MANAGER ###
       inputs.stylix.nixosModules.stylix
 
+      ### USER PACKAGES AND APPS ###
       inputs.odysseus.nixosModules.default
 
+      ### USER CONFIGURATION (HOME MANAGER) ###
       # Home Manager as NixOS module, this makes it so it is auto deployed with `nixos-rebuild switch`
       inputs.home-manager.nixosModules.home-manager
       {
@@ -48,13 +62,16 @@ in
         home-manager.users =
           let
             commonImports = [
+              ### FLAKE MODULES ###
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
               inputs.noctalia.homeModules.default
 
+              ### OPTIONS & PREFERENCES ###
               # To pass preferences and options definitions
               ../modules/preferences.nix
               ../modules/lib/options-definitions.nix
 
+              ### LOCAL USER MODULES ###
               ../modules/pkgs-configuration/user-packages/common.nix
             ];
           in
@@ -70,14 +87,6 @@ in
             ];
           };
       }
-
-      ## LOCAL MODULES ##
-      ../modules/system
-      ../modules/modules-overlays
-
-      # To pass preferences and options definitions
-      ../modules/preferences.nix
-      ../modules/lib/options-definitions.nix
     ];
   };
 }
