@@ -32,6 +32,12 @@
     # difftastic.enable = true; # enables difft command
   };
 
+  home.packages = with pkgs; [
+    # Faster Git Clone, Fetch, etc
+    # https://github.com/GitoxideLabs/gitoxide
+    gitoxide
+  ];
+
   programs.gh = {
     # GitHub CLI
     enable = true;

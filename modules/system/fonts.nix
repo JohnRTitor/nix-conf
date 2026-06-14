@@ -11,7 +11,6 @@
     fira-code-symbols
     font-awesome
     hackgen-nf-font
-    ibm-plex
     inter
     jetbrains-mono
     material-icons

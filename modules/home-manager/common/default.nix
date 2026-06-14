@@ -17,6 +17,7 @@
     ./terminals/kitty.nix
 
     ./cli-tools.nix # Useful CLI tools
+    ./btop
     ./fastfetch
     ./vesktop.nix
 

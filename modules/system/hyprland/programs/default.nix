@@ -34,7 +34,6 @@
       evince # document viewer
 
       ## MONITORING TOOLS ##
-      btop-rocm # for CPU, RAM, and Disk monitoring
       nvtopPackages.amd # for AMD GPUs
     ])
     ++ [

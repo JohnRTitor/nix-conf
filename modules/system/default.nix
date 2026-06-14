@@ -22,7 +22,6 @@
     ./shell
     ./programs
 
-    ./quickshell.nix
     ./stylix.nix
 
     # include global/system packages list and settings

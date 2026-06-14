@@ -18,7 +18,7 @@ let
       animation = "fromTop";
       command = "kitty --class kitty-dropterm";
       class = "kitty-dropterm";
-      size = "75% 60%";
+      size = "75% 70%";
     };
   };
 in

@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs"; # Must follow nixpkgs, else will cause conflicts with the system
     };
 
-    hyprland.url = "github:JohnRTitor/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     stylix.url = "github:nix-community/stylix";
 
@@ -38,8 +38,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia-shell = {
-      url = "github:noctalia-dev/noctalia-shell"; # Latest Noctalia Shell
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/c08fd2d79dd4f9c887f77b04c7bc4f26f62249f8"; # Latest Noctalia
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

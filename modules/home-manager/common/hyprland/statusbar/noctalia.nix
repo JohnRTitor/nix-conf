@@ -5,14 +5,10 @@
   ...
 }:
 {
-  imports = [
-    inputs.noctalia-shell.homeModules.default
-  ];
-
   programs.noctalia = {
     enable = true;
     systemd.enable = true;
-    package = inputs.noctalia-shell.packages.${pkgs.system}.default;
+    package = inputs.noctalia.packages.${pkgs.system}.default;
   };
 
   # Install the Noctalia package and service

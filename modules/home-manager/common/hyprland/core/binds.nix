@@ -132,7 +132,6 @@ in
         (mkBind ''mainMod .. " + o"'' "OBS Studio" (dspExec "obs") { })
         (mkBind ''mainMod .. " + ALT + c"'' "Color Picker" (dspExec "hyprpicker -a") { })
         (mkBind ''mainMod .. " + g"'' "GIMP" (dspExec "gimp") { })
-        (mkBind ''mainMod .. " + t"'' "Dropdown Terminal" (dspExec "pypr toggle term") { })
         (mkBind ''mainMod .. " + ALT + m"'' "Audio Control" (dspExec "pwvucontrol") { })
 
         # ── Window Management ───────────────────────────────────────────────
@@ -315,7 +314,11 @@ in
         (mkBind ''"XF86MonBrightnessDown"'' "Brightness Down" (dspExec "brightnessctl set 5%-") { })
         (mkBind ''"XF86MonBrightnessUp"'' "Brightness Up" (dspExec "brightnessctl set +5%") { })
 
-        # mouse = true replaces mkMouseBind
+        # ── Pyprland, a Hyprland plugin ───────────────────────────────────────────────
+        (mkBind ''mainMod .. " + t"'' "Dropdown Terminal" (dspExec "pypr toggle term") { })
+        (mkBind ''mainMod .. " + z"'' "Pyprland Zoom" (dspExec "pypr zoom") { })
+
+        # ── Mouse binds ───────────────────────────────────────────────
         (mkBind ''mainMod .. " + mouse:272"'' "Move Window" (mkLuaInline "hl.dsp.window.drag()") {
           mouse = true;
         })

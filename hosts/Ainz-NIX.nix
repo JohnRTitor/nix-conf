@@ -49,6 +49,7 @@ in
           let
             commonImports = [
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
+              inputs.noctalia.homeModules.default
 
               # To pass preferences and options definitions
               ../modules/preferences.nix
