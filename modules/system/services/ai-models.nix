@@ -38,7 +38,7 @@ lib.mkMerge [
         # https://huggingface.co/HauhauCS/models
         "hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q6_K" # (reasoning) BEST ABLITERATED MODEL
 
-        # Quantized version, intentionally chosen for coding
+        # Quantized version, intentionally chosen for coding, make sure to use a low context size like 64000
         "hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q4_K_M"
 
         ### SPECIAL PURPOSE ###

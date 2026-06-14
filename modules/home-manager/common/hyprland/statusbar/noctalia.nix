@@ -4,15 +4,20 @@
   lib,
   ...
 }:
-let
-  noctaliaPkg = inputs.noctalia-shell.packages.${pkgs.system}.default;
-  configDir = "${noctaliaPkg}/share/noctalia-shell";
-in
 {
+  imports = [
+    inputs.noctalia-shell.homeModules.default
+  ];
+
+  programs.noctalia = {
+    enable = true;
+    systemd.enable = true;
+    package = inputs.noctalia-shell.packages.${pkgs.system}.default;
+  };
+
   # Install the Noctalia package and service
-  systemd.user.services.noctalia-shell = {
+  systemd.user.services.noctalia = {
     Unit = {
-      Description = "Noctalia Shell Service";
       After = [ "hyprland-session.target" ];
       BindsTo = [ "hyprland-session.target" ];
       PartOf = [ "hyprland-session.target" ];
@@ -25,8 +30,6 @@ in
       WantedBy = [ "hyprland-session.target" ];
     };
     Service = {
-      ExecStart = "${noctaliaPkg}/bin/noctalia-shell";
-      Restart = "on-failure";
       Environment = [
         "PATH=\"/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin\""
       ];
@@ -34,24 +37,8 @@ in
   };
 
   home.packages = with pkgs; [
-    noctaliaPkg
-    quickshell # Ensure quickshell is available for the service
-
     matugen # color palette generator needed for noctalia-shell
     app2unit # launcher for noctalia-shell
-    gpu-screen-recorder # needed for nnoctalia-shell
+    gpu-screen-recorder # needed for noctalia-shell
   ];
-
-  # Seed the configuration
-  home.activation.seedNoctaliaShellCode = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    set -eu
-    DEST="$HOME/.config/quickshell/noctalia-shell"
-    SRC="${configDir}"
-
-    if [ ! -d "$DEST" ]; then
-      $DRY_RUN_CMD mkdir -p "$HOME/.config/quickshell"
-      $DRY_RUN_CMD cp -R "$SRC" "$DEST"
-      $DRY_RUN_CMD chmod -R u+rwX "$DEST"
-    fi
-  '';
 }

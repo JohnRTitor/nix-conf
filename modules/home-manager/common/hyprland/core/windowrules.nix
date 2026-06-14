@@ -153,6 +153,22 @@ _: {
       }
 
       {
+        name = "antigravity";
+        match = {
+          class = "^(antigravity|antigravity-url-handler)$";
+        };
+        tag = "+projects";
+      }
+
+      {
+        name = "jetbrains";
+        match = {
+          class = "^(jetbrains-.+)$";
+        };
+        tag = "+projects";
+      }
+
+      {
         name = "zed-editor";
         match = {
           class = "^(dev.zed.Zed)$";
@@ -274,6 +290,16 @@ _: {
           class = "^(nm-applet|nm-connection-editor|blueman-manager)$";
         };
         tag = "+settings";
+      }
+
+      {
+        name = "Noctalia Settings";
+        match = {
+          class = "^(dev.noctalia.Noctalia.Settings)$";
+        };
+        center = true;
+        tag = "+settings";
+        no_blur = false;
       }
 
       {

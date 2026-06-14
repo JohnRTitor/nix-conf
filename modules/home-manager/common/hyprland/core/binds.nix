@@ -7,58 +7,54 @@ let
   workspaces = builtins.genList (x: builtins.toString (x + 1)) 9;
 
   noctaliaBind = lib.optionals (statusbar == "noctalia") [
-    (mkBind ''mainMod .. " + d"'' "Noctalia Launcher"
-      (dspExec "noctalia-shell ipc call launcher toggle")
+    (mkBind ''mainMod .. " + d"'' "Noctalia Launcher" (dspExec "noctalia msg panel-toggle launcher")
       { }
     )
-    (mkBind ''mainMod .. " + SHIFT + return"'' "Noctalia Launcher"
-      (dspExec "noctalia-shell ipc call launcher toggle")
+
+    # (mkBind ''mainMod .. " + m"'' "Noctalia Notifications"
+    #   (dspExec "noctalia-shell ipc call notifications toggleHistory")
+    #   { }
+    # )
+    (mkBind ''mainMod .. " + v"'' "Noctalia Clipboard" (dspExec "noctalia msg panel-toggle clipboard")
       { }
     )
-    (mkBind ''mainMod .. " + m"'' "Noctalia Notifications"
-      (dspExec "noctalia-shell ipc call notifications toggleHistory")
-      { }
-    )
-    (mkBind ''mainMod .. " + v"'' "Noctalia Clipboard"
-      (dspExec "noctalia-shell ipc call launcher clipboard")
-      { }
-    )
-    (mkBind ''mainMod .. " + ALT + p"'' "Noctalia Settings"
-      (dspExec "noctalia-shell ipc call settings toggle")
+    (mkBind ''mainMod .. " + ALT + p"'' "Noctalia Settings" (dspExec "noctalia msg settings-toggle")
       { }
     )
     (mkBind ''mainMod .. " + SHIFT + comma"'' "Noctalia Settings"
-      (dspExec "noctalia-shell ipc call settings toggle")
+      (dspExec "noctalia msg settings-toggle")
       { }
     )
-    (mkBind ''mainMod .. " + CTRL + l"'' "Noctalia Lock Screen"
-      (dspExec "noctalia-shell ipc call sessionMenu lockscreen lock")
+    (mkBind ''mainMod .. " + CTRL + l"'' "Noctalia Lock Screen" (dspExec "noctalia msg session lock")
+      { }
+    )
+    (mkBind ''"CTRL + ALT + delete"'' "Noctalia Logout "
+      (dspExec "noctalia msg session logout || loginctl terminate-session $XDG_SESSION_ID")
       { }
     )
     (mkBind ''mainMod .. " + SHIFT + w"'' "Noctalia Wallpaper"
-      (dspExec "noctalia-shell ipc call wallpaper toggle")
+      (dspExec "noctalia msg panel-toggle wallpaper")
       { }
     )
-    (mkBind ''mainMod .. " + x"'' "Noctalia Power Menu"
-      (dspExec "noctalia-shell ipc call sessionMenu toggle")
+    (mkBind ''mainMod .. " + x"'' "Noctalia Power Menu" (dspExec "noctalia msg panel-toggle session   ")
       { }
     )
     (mkBind ''mainMod .. " + c"'' "Noctalia Control Center"
-      (dspExec "noctalia-shell ipc call controlCenter toggle")
+      (dspExec "noctalia msg panel-toggle control-center")
       { }
     )
-    (mkBind ''mainMod .. " + CTRL + r"'' "Noctalia Screen Recorder"
-      (dspExec "noctalia-shell ipc call screenRecorder toggle")
-      { }
-    )
+    # (mkBind ''mainMod .. " + CTRL + r"'' "Noctalia Screen Recorder"
+    #   (dspExec "noctalia-shell ipc call screenRecorder toggle")
+    #   { }
+    # )
     (mkBind ''mainMod .. " + SHIFT + r"'' "Restart Noctalia Shell"
-      (dspExec "systemctl --user restart noctalia-shell.service")
+      (dspExec "systemctl --user restart noctalia.service")
       { }
     )
 
     # Toggle the launcher using only mainMod
     (mkBind ''mainMod .. " + " .. mainMod .. "_L"'' "Noctalia Launcher Toggle"
-      (dspExec "noctalia-shell ipc call launcher toggle")
+      (dspExec "noctalia msg panel-toggle launcher")
       { release = true; }
     )
   ];
