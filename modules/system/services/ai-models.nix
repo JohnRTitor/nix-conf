@@ -36,10 +36,16 @@ lib.mkMerge [
         # Also see https://ollama.com/search?q=abliterated
 
         # https://huggingface.co/HauhauCS/models
+        # CONTEXT sizes for coding
+        # Low: 65536 (64K)
+        # Max context: 131072 (128)
         "hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q6_K" # (reasoning) BEST ABLITERATED MODEL
 
-        # Quantized version, intentionally chosen for coding, make sure to use a low context size like 64000
-        "hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q4_K_M"
+        # Quantized version, reduced quality, but can support higher context size
+        # LOW: 65536 (64K)
+        # Suitable: 153600 (150K)
+        # MAX: 184320 (180K)
+        # "hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q4_K_M"
 
         ### SPECIAL PURPOSE ###
         # https://ollama.com/library/glm-ocr
@@ -55,7 +61,12 @@ lib.mkMerge [
       # Run `nix run nixpkgs#"rocmPackages.rocminfo" -- --run "rocminfo" | grep "gfx"` to know your gfx version
       # 10.3.0 is closest supported version to 10.3.1 so we are using that here
       rocmOverrideGfx = "10.3.0";
+
     };
+
+    # cap context length
+    services.ollama.environmentVariables.OLLAMA_CONTEXT_LENGTH = "131072";
+    environment.sessionVariables.OLLAMA_CONTEXT_LENGTH = "131072";
 
     /*
       This is inferior to open-webui
