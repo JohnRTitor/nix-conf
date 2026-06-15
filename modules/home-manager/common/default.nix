@@ -20,6 +20,7 @@
     ./btop
     ./fastfetch
     ./vesktop.nix
+    ./micro.nix
 
     ./nix-tools.nix
 
