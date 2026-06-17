@@ -254,14 +254,14 @@ in
         )
 
         # ── Special Workspace ───────────────────────────────────────────────
-        (mkBind ''mainMod .. " + SHIFT + space"'' "Move to Special"
-          (mkLuaInline "hl.dsp.window.move({ workspace = \"special\" })")
-          { }
-        )
-        (mkBind ''mainMod .. " + space"'' "Toggle Special"
-          (mkLuaInline "hl.dsp.focus({ workspace = \"special\", toggle = true })")
-          { }
-        )
+        # (mkBind ''mainMod .. " + SHIFT + space"'' "Move to Special"
+        #   (mkLuaInline "hl.dsp.window.move({ workspace = \"special\" })")
+        #   { }
+        # )
+        # (mkBind ''mainMod .. " + space"'' "Toggle Special"
+        #   (mkLuaInline "hl.dsp.focus({ workspace = \"special\", toggle = true })")
+        #   { }
+        # )
 
         # ── Workspace Navigation ────────────────────────────────────────────
         (mkBind ''mainMod .. " + CTRL + right"'' "Next Workspace"
