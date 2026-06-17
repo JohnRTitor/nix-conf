@@ -80,6 +80,18 @@ lib.mkMerge [
     services.llama-cpp =
       let
         modelsPreset = {
+          qwen = {
+            reasoning = "on";
+            jinja = "on";
+
+            hf-repo = "HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive";
+            hf-file = "Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q6_K.gguf";
+
+            temp = "0.7";
+            top-p = "0.8";
+            top-k = "20";
+          };
+
           # gemma-4-E2B = {
           #   hf-repo = "unsloth/gemma-4-E2B-it-GGUF";
           #   hf-file = "gemma-4-E2B-it-UD-Q5_K_XL.gguf";
@@ -178,8 +190,11 @@ lib.mkMerge [
         openFirewall = true;
 
         settings.models-dir = "/var/lib/ai-models";
-        # settings.model = "Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q6_K.gguf";
         settings.models-preset = modelsPresetFile;
+
+        # Force single model mode
+        # settings.model = "/var/lib/ai-models/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q6_K.gguf";
+        # settings.chat-template-file = "/var/lib/ai-models/qwen-3.5.jinja";
 
         settings = {
           # host = "0.0.0.0";

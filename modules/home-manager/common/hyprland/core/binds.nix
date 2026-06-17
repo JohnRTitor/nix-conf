@@ -28,10 +28,6 @@ let
     (mkBind ''mainMod .. " + CTRL + l"'' "Noctalia Lock Screen" (dspExec "noctalia msg session lock")
       { }
     )
-    (mkBind ''"CTRL + ALT + delete"'' "Noctalia Logout "
-      (dspExec "noctalia msg session logout || loginctl terminate-session $XDG_SESSION_ID")
-      { }
-    )
     (mkBind ''mainMod .. " + SHIFT + w"'' "Noctalia Wallpaper"
       (dspExec "noctalia msg panel-toggle wallpaper")
       { }
@@ -96,21 +92,20 @@ in
       ++ workspaceBinds
       ++ [
         # ── Workspace Overview ──────────────────────────────────────────────
-        (mkBind ''mainMod .. " + CTRL + d"'' "Toggle Dock" (dspExec "dock") { })
+        # (mkBind ''mainMod .. " + CTRL + d"'' "Toggle Dock" (dspExec "dock") { })
         (mkBind ''mainMod .. " + tab"'' "QS Overview" (dspExec "qs ipc -c overview call overview toggle")
           { }
         )
 
         # ── Terminals ───────────────────────────────────────────────────────
-        (mkBind ''mainMod .. " + return"'' "Terminal" (dspExec "${terminal}") { })
+        (mkBind ''mainMod .. " + return"'' "Terminal"
+          (dspExec "systemd-run --user --scope --slice=app.slice ${terminal}")
+          { }
+        )
 
         # ── Application Launchers ───────────────────────────────────────────
-        (mkBind ''mainMod .. " + k"'' "Keybinds Search" (dspExec "qs-keybinds") { })
-        (mkBind ''mainMod .. " + CTRL + c"'' "Cheatsheets Viewer" (dspExec "qs-cheatsheets") { })
-        (mkBind ''mainMod .. " + SHIFT + k"'' "Keybinds Search" (dspExec "qs-keybinds") { })
         (mkBind ''mainMod .. " + SHIFT + d"'' "Discord" (dspExec "discord") { })
         (mkBind ''mainMod .. " + ALT + w"'' "Web Search" (dspExec "web-search") { })
-        (mkBind ''mainMod .. " + SHIFT + w"'' "QS Wallpaper Setter" (dspExec "qs-wallpapers-apply") { })
         (mkBind ''mainMod .. " + SHIFT + n"'' "Notification Reset" (dspExec "swaync-client -rs") { })
         (mkBind ''mainMod .. " + w"'' "Web Browser" (dspExec "${default-browser}") { })
         (mkBind ''mainMod .. " + y"'' "File Manager" (dspExec "kitty -e yazi") { })
@@ -145,17 +140,8 @@ in
           (mkLuaInline "hl.dsp.window.float({ action = \"toggle\" })")
           { }
         )
-        (mkBind ''mainMod .. " + ALT + f"'' "Float All Windows" (dspExec "hyprland-float-all") { })
 
-        # ── Layouts ─────────────────────────────────────────────────────────
-        (mkBind ''mainMod .. " + ALT + l"'' "Toggle Layouts" (dspExec "hyprland-change-layout toggle") { })
-        (mkBind ''mainMod .. " + ALT + 1"'' "Layout Dwindle" (dspExec "hyprland-change-layout dwindle") { })
-        (mkBind ''mainMod .. " + ALT + 2"'' "Layout Master" (dspExec "hyprland-change-layout master") { })
-        (mkBind ''mainMod .. " + ALT + 3"'' "Layout Scrolling" (dspExec "hyprland-change-layout scrolling")
-          { }
-        )
-        (mkBind ''mainMod .. " + ALT + 4"'' "Layout Monocle" (dspExec "hyprland-change-layout monocle") { })
-        (mkBind ''mainMod .. " + SHIFT + c"'' "Exit Hyprland" (mkLuaInline "hl.dsp.exit()") { })
+        (mkBind ''"CTRL + ALT + delete"'' "Noctalia Logout " (mkLuaInline "hl.dsp.exit()") { })
 
         # ── Window Movement ─────────────────────────────────────────────────
         (mkBind ''mainMod .. " + SHIFT + left"'' "Move Left"

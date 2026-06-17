@@ -9,6 +9,15 @@ let
 in
 lib.mkMerge [
   {
+    systemd.user.slices.hyprland-session = {
+      description = "Essential desktop services for Hyprland (OOM-proof)";
+      sliceConfig = {
+        MemoryAccounting = true;
+        ManagedOOMPreference = "omit";
+        OOMScoreAdjust = "-800";
+      };
+    };
+
     ## Configure XDG portal ##
     xdg.portal = {
       enable = true;

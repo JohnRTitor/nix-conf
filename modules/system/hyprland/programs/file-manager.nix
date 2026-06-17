@@ -10,10 +10,12 @@ lib.mkMerge [
     environment.systemPackages = with pkgs; [
       nautilus
     ];
+
     programs.nautilus-open-any-terminal = {
       enable = true;
       terminal = config.myOptions.programsSettings.terminal;
     };
+
     services.gnome.sushi.enable = true; # quick previewer for nautilus
   })
 

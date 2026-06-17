@@ -16,7 +16,7 @@ let
 
     scratchpads.term = {
       animation = "fromTop";
-      command = "kitty --class kitty-dropterm";
+      command = "systemd-run --user --slice=app.slice --scope kitty --class kitty-dropterm";
       class = "kitty-dropterm";
       size = "75% 70%";
     };
@@ -50,7 +50,7 @@ in
     Service = {
       ExecStart = "${pkgs.pyprland}/bin/pypr --config ${config.home.homeDirectory}/.config/pypr/pyprland.toml";
       Restart = "on-failure";
-      OOMScoreAdjust = "-500";
+      Slice = "hyprland-session.slice";
     };
   };
 }

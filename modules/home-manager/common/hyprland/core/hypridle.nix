@@ -25,5 +25,5 @@
     };
   };
 
-  systemd.user.services.hypridle.Service.OOMScoreAdjust = "-400";
+  systemd.user.services.hypridle.Service.Slice = "hyprland-session.slice";
 }

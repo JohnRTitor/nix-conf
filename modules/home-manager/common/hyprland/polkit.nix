@@ -18,7 +18,7 @@
     Service = {
       ExecStart = "${pkgs.pantheon.pantheon-agent-polkit}/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit";
       Restart = "on-failure";
-      OOMScoreAdjust = "-700";
+      Slice = "hyprland-session.slice";
     };
   };
 }
