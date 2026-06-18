@@ -37,11 +37,9 @@ in
   home.packages = with pkgs; [
     grim
     slurp
-    wl-clipboard
     swappy
     ydotool
-    hyprshot
-    hyprshutdown
+    hyprshutdown # Graceful shutdown of apps
     hyprpicker
     #hyprland-qtutils # needed for banners and ANR messages
   ];

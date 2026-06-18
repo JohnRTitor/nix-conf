@@ -109,25 +109,25 @@ in
         (mkBind ''mainMod .. " + SHIFT + n"'' "Notification Reset" (dspExec "swaync-client -rs") { })
         (mkBind ''mainMod .. " + w"'' "Web Browser" (dspExec "${default-browser}") { })
         (mkBind ''mainMod .. " + y"'' "File Manager" (dspExec "kitty -e yazi") { })
-        (mkBind ''mainMod .. " + s"'' "Screenshot" (dspExec "screenshootin") { })
 
         # ── Screenshots ─────────────────────────────────────────────────────
-        (mkBind ''mainMod .. " + CTRL + s"'' "Screenshot Output"
-          (dspExec "hyprshot -m output -o $HOME/Pictures/ScreenShots")
+        (mkBind ''"Print"'' "Screenshot Region" (dspExec "screenshootin --silent") { })
+        (mkBind ''mainMod .. " + Print"'' "Screenshot Fullscreen" (dspExec "screenshootin --fullscreen")
           { }
         )
-        (mkBind ''mainMod .. " + SHIFT + s"'' "Screenshot Window"
-          (dspExec "hyprshot -m window -o $HOME/Pictures/ScreenShots")
+        (mkBind ''mainMod .. " + s"'' "Screenshot Region" (dspExec "screenshootin") { })
+        (mkBind ''mainMod .. " + SHIFT + s"'' "Screenshot Fullscreen" (dspExec "screenshootin --fullscreen")
           { }
         )
-        (mkBind ''mainMod .. " + ALT + s"'' "Screenshot Region"
-          (dspExec "hyprshot -m region -o $HOME/Pictures/ScreenShots")
+        (mkBind ''mainMod .. " + ALT + s"'' "Screenshot Fullscreen (5 secs timer)"
+          (dspExec "screenshootin --fullscreen --timer 5")
           { }
         )
-        (mkBind ''mainMod .. " + o"'' "OBS Studio" (dspExec "obs") { })
+
+        # (mkBind ''mainMod .. " + o"'' "OBS Studio" (dspExec "obs") { })
         (mkBind ''mainMod .. " + ALT + c"'' "Color Picker" (dspExec "hyprpicker -a") { })
-        (mkBind ''mainMod .. " + g"'' "GIMP" (dspExec "gimp") { })
-        (mkBind ''mainMod .. " + ALT + m"'' "Audio Control" (dspExec "pwvucontrol") { })
+        # (mkBind ''mainMod .. " + g"'' "GIMP" (dspExec "gimp") { })
+        # (mkBind ''mainMod .. " + ALT + m"'' "Audio Control" (dspExec "pwvucontrol") { })
 
         # ── Window Management ───────────────────────────────────────────────
         (mkBind ''mainMod .. " + q"'' "Kill Active Window" (mkLuaInline "hl.dsp.window.close()") { })
@@ -141,7 +141,7 @@ in
           { }
         )
 
-        (mkBind ''"CTRL + ALT + delete"'' "Noctalia Logout " (mkLuaInline "hl.dsp.exit()") { })
+        (mkBind ''"CTRL + ALT + delete"'' "Force Logout" (mkLuaInline "hl.dsp.exit()") { })
 
         # ── Window Movement ─────────────────────────────────────────────────
         (mkBind ''mainMod .. " + SHIFT + left"'' "Move Left"
