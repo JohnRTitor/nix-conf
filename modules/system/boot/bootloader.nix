@@ -11,8 +11,6 @@ lib.mkMerge [
     boot.loader.efi.canTouchEfiVariables = true;
     # bootloader timeout set, also press t repeatedly in the bootmenu to set there
     boot.loader.timeout = 15;
-    # Bootspec needed for secureboot
-    boot.bootspec.enable = true;
   }
 
   (lib.mkIf (config.myOptions.systemSettings.bootloader == "limine") {

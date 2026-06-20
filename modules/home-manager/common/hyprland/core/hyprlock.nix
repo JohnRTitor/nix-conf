@@ -1,8 +1,9 @@
 {
+  lib,
   config,
   ...
 }:
-{
+lib.mkIf (config.myOptions.programsSettings.statusbar != "noctalia") {
   programs.hyprlock = {
     enable = true;
     settings = {

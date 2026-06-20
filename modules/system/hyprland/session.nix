@@ -9,7 +9,7 @@ let
 in
 lib.mkMerge [
   {
-    systemd.user.slices.hyprland-session = {
+    systemd.user.slices.hyprland = {
       description = "Essential desktop services for Hyprland (OOM-proof)";
       sliceConfig = {
         MemoryAccounting = true;

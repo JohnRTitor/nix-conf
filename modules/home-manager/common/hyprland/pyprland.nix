@@ -50,7 +50,7 @@ in
     Service = {
       ExecStart = "${pkgs.pyprland}/bin/pypr --config ${config.home.homeDirectory}/.config/pypr/pyprland.toml";
       Restart = "on-failure";
-      Slice = "hyprland-session.slice";
+      Slice = "hyprland.slice";
     };
   };
 }

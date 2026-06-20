@@ -35,7 +35,7 @@ let
       prettyName = "Hyprland (OOM Resistant)";
       comment = "Hyprland compositor launched using systemd";
       # See status using `systemctl --user status hyprland-session.scope`
-      binPath = "systemd-run --user --scope --slice=hyprland-session.slice --unit=hyprland-session /run/current-system/sw/bin/start-hyprland";
+      binPath = ''systemd-run --user --scope --slice=hyprland.slice --unit=hyprland-session --property="ManagedOOMPreference=omit" "/run/current-system/sw/bin/start-hyprland"'';
     };
   };
 in
