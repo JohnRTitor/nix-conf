@@ -26,6 +26,11 @@
       "name": "boot.kernelPackages.kernel"
     },
     {
+      "group": "nixos_config_attribute",
+      "hostname": "Ainz-NIX",
+      "name": "boot.kernelPackages.bcachefs"
+    },
+    {
       "group": "nixos_package",
       "hostname": "Ainz-NIX",
       "name": "zed-editor"
@@ -44,6 +49,11 @@
       "group": "nixos_config_attribute",
       "hostname": "Ainz-NIX",
       "name": "home-manager.users.masum.programs.noctalia.package"
+    },
+    {
+      "group": "nixos_config_attribute",
+      "hostname": "Ainz-NIX",
+      "name": "nix.package"
     }
   ]
 }
