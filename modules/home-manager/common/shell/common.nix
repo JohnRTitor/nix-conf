@@ -43,8 +43,8 @@
     getpkgpath = "nix build --print-out-paths";
     # cfastfetch is just an alias to run compact fastfetch
     cfastfetch = "fastfetch --config ~/.config/fastfetch/config-compact.jsonc";
-    # alias for running ollama llm
-    ask = "execmd ollama run gemma3:12b";
+    # alias for running ollama llm, see ai-models.nix for configured models
+    ask = "execmd ollama run lfm2.5:8b";
   };
 
   # Define common session variables which would apply to all shells
