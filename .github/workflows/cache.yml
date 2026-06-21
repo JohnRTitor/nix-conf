@@ -80,8 +80,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          # Use the job index to ensure unique artifact names per matrix job
-          name: build-logs-${{ strategy.job-index }}
+          # Include the job index for uniqueness, plus group and name for readability
+          name: build-logs-${{ strategy.job-index }}-${{ matrix.target.group }}-${{ matrix.target.name || matrix.target.user || 'all' }}
           path: |
             build.log
             errors.log
