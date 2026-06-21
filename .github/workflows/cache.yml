@@ -15,17 +15,6 @@ permissions:
   contents: read
 
 env:
-  NIXOS_HOSTNAME: "Ainz-NIX"
-  NIXOS_USER: "masum"
-  NIXOS_ATTRS_LIST: >
-    programs.hyprland.package
-    programs.hyprland.portalPackage
-    services.ananicy.package
-    programs.appimage.package
-    boot.kernelPackages.kernel
-  NIXOS_PKGS_LIST: >
-    zed-editor
-    scx.full
   CACHIX_AUTH_TOKEN: "${{ secrets.CACHIX_AUTH_TOKEN }}"
   CACHIX_CACHE_NAME: "johnrtitor"
   REQUIRED_PACKAGES: >
@@ -34,16 +23,42 @@ env:
     findutils
 
 jobs:
-  cache:
-    name: Cache Stuff
+  prepare-matrix:
+    name: Prepare Matrix
     runs-on: ubuntu-latest
+    outputs:
+      targets: ${{ steps.set-matrix.outputs.targets }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate Matrix from cache.json
+        id: set-matrix
+        run: |
+          # Read the targets array from cache.json and output it as a single JSON string
+          TARGETS=$(jq -c '.targets' cache.json)
+          echo "targets=$TARGETS" >> $GITHUB_OUTPUT
+
+  build:
+    name: Build ${{ matrix.target.name || matrix.target.group }}
+    needs: prepare-matrix
+    runs-on: ubuntu-latest
+    
+    # We use fail-fast: false so one failing target does not cancel the rest of the builds.
+    # Note on parallel Cachix pushes: 
+    # Cachix safely handles concurrent uploads. If multiple jobs build the same shared 
+    # dependencies, Cachix will deduplicate them gracefully. However, running fully parallel jobs
+    # can consume a lot of GitHub Actions minutes if many derivations share long-building dependencies
+    # that haven't been cached yet.
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJson(needs.prepare-matrix.outputs.targets) }}
 
     steps:
       - uses: actions/checkout@v4
         with:
           sparse-checkout: |
             .github/actions
-
+      
       - name: setup nix
         uses: ./.github/actions/setup-nix
 
@@ -55,29 +70,21 @@ jobs:
             nix profile install nixpkgs#$PKG
           done
 
-      - name: Build Packages and push to Cachix
-        id: build
+      - name: Build target and push to Cachix
         run: |
           chmod +x ./.github/scripts/build-and-cache.sh
-          ./.github/scripts/build-and-cache.sh
+          # Pass the JSON representation of the matrix target as the single argument
+          ./.github/scripts/build-and-cache.sh '${{ toJSON(matrix.target) }}'
+          
       - name: Upload build logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: build-logs-${{ github.run_number }}
+          # Use the job index to ensure unique artifact names per matrix job
+          name: build-logs-${{ strategy.job-index }}
           path: |
             build.log
             errors.log
-            success.txt
-            failures.txt
-          retention-days: 30
-          if-no-files-found: ignore
-      - name: Upload build summary
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-summary-${{ github.run_number }}
-          path: |
             success.txt
             failures.txt
           retention-days: 7

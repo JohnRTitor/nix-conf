@@ -3,10 +3,6 @@ set -euo pipefail
 
 # Configuration with defaults
 CACHIX_CACHE_NAME="${CACHIX_CACHE_NAME:-}"
-NIXOS_HOSTNAME="${NIXOS_HOSTNAME:-}"
-NIXOS_USER="${NIXOS_USER:-}"
-NIXOS_ATTRS_LIST="${NIXOS_ATTRS_LIST:-}"
-NIXOS_PKGS_LIST="${NIXOS_PKGS_LIST:-}"
 BUILD_FLAGS="${BUILD_FLAGS:---print-out-paths --print-build-logs}"
 
 # Colors for output
@@ -50,19 +46,15 @@ function prepare() {
     exit 1
   fi
 
-  if [ -z "$NIXOS_HOSTNAME" ]; then
-    echo_error "NIXOS_HOSTNAME is required"
-    exit 1
-  fi
-
-  if [ -z "$NIXOS_USER" ]; then
-    echo_error "NIXOS_USER is required"
-    exit 1
-  fi
-
   # Check if cachix is available
   if ! command -v cachix >/dev/null 2>&1; then
     echo_error "cachix command not found"
+    exit 1
+  fi
+
+  # Check if jq is available
+  if ! command -v jq >/dev/null 2>&1; then
+    echo_error "jq command not found"
     exit 1
   fi
 
@@ -171,70 +163,65 @@ function build_drv() {
   fi
 }
 
-# Get list of packages to build
-function get_packages_list() {
-  local pkgs_list
-  if ! pkgs_list=$(nix flake show --json 2>/dev/null | jq -r '.packages."x86_64-linux" | keys | join(" ")' 2>/dev/null); then
-    echo_error "Failed to get package list from flake" >&2
-    exit 1
-  fi
+function build_target() {
+  local target_json="$1"
+  local group=$(echo "$target_json" | jq -r '.group')
+  local name=$(echo "$target_json" | jq -r '.name // empty')
+  local hostname=$(echo "$target_json" | jq -r '.hostname // empty')
+  local user=$(echo "$target_json" | jq -r '.user // empty')
 
-  # Add NixOS configuration attributes
-  if [ -n "$NIXOS_ATTRS_LIST" ]; then
-    for attr in $NIXOS_ATTRS_LIST; do
-      pkgs_list+=" nixosConfigurations.$NIXOS_HOSTNAME.config.$attr"
+  if [ "$group" = "flake_package" ]; then
+    if [ -z "$name" ] || [ "$name" = "all" ]; then
+      local pkgs=$(nix flake show --json 2>/dev/null | jq -r '.packages."x86_64-linux" | keys | join(" ")' 2>/dev/null)
+      local failed=0
+      for p in $pkgs; do
+        build_package "$p" "flake package" || failed=1
+        sleep 1
+      done
+      return $failed
+    else
+      build_package "$name" "flake package" || return 1
+    fi
+  elif [ "$group" = "nixos_config_attribute" ]; then
+    build_package "nixosConfigurations.$hostname.config.$name" "NixOS config attribute ($hostname)" || return 1
+  elif [ "$group" = "nixos_package" ]; then
+    build_package "nixosConfigurations.$hostname.pkgs.$name" "NixOS package ($hostname)" || return 1
+  elif [ "$group" = "vscode_extensions" ]; then
+    local vscode_path=".#nixosConfigurations.$hostname.config.home-manager.users.$user.programs.vscode.profiles.default.extensions"
+    local ext_names ext_drvs
+    
+    if ! ext_names=$(nix eval --json "$vscode_path" --apply 'map (drv: drv.pname)' 2>/dev/null | jq -r '.[]' 2>/dev/null); then
+      echo_warning "Failed to get VSCode extension names for $user@$hostname"
+      return 0
+    fi
+    
+    if ! ext_drvs=$(nix eval --json "$vscode_path" --apply 'map (drv: drv.drvPath)' 2>/dev/null | jq -r '.[]' 2>/dev/null); then
+      echo_warning "Failed to get VSCode extension derivations for $user@$hostname"
+      return 0
+    fi
+
+    if [ -z "$ext_drvs" ]; then
+      echo_warning "No VSCode extensions found for $user@$hostname"
+      return 0
+    fi
+
+    mapfile -t drv_array <<< "$ext_drvs"
+    mapfile -t name_array <<< "$ext_names"
+
+    local failed=0
+    for i in "${!drv_array[@]}"; do
+      local drv="${drv_array[i]}"
+      local ext_name="${name_array[i]:-unknown-$i}"
+      [ -z "$drv" ] && continue
+      if ! build_drv "$drv" "$ext_name" "VSCode extension ($hostname/$user)"; then
+        failed=1
+      fi
+      sleep 1
     done
-  fi
-
-  # Add NixOS packages
-  if [ -n "$NIXOS_PKGS_LIST" ]; then
-    for pkg in $NIXOS_PKGS_LIST; do
-      pkgs_list+=" nixosConfigurations.$NIXOS_HOSTNAME.pkgs.$pkg"
-    done
-  fi
-
-  echo "$pkgs_list"
-}
-
-# Get VSCode extensions
-function get_vscode_extensions() {
-  local vscode_path=".#nixosConfigurations.$NIXOS_HOSTNAME.config.home-manager.users.$NIXOS_USER.programs.vscode.profiles.default.extensions"
-
-  # Get extension names
-  local ext_names
-  if ! ext_names=$(nix eval --json "$vscode_path" --apply 'map (drv: drv.pname)' 2>/dev/null | jq -r '.[]' 2>/dev/null); then
-    echo_warning "Failed to get VSCode extensions names" >&2
-    ext_names=""
-  fi
-
-  # Get extension derivations
-  local ext_drvs
-  if ! ext_drvs=$(nix eval --json "$vscode_path" --apply 'map (drv: drv.drvPath)' 2>/dev/null | jq -r '.[]' 2>/dev/null); then
-    echo_warning "Failed to get VSCode extensions derivations" >&2
-    ext_drvs=""
-  fi
-
-  echo "$ext_names|$ext_drvs"
-}
-
-# Update GitHub step summary
-function update_step_summary() {
-  local pkgs_list="$1"
-  local vscode_names="$2"
-
-  if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
-    {
-      echo "## 📦 Flake Attributes to Build"
-      echo '```'
-      printf '%s\n' $pkgs_list
-      echo '```'
-      echo
-      echo "## 🔧 VSCode Extensions to Build"
-      echo '```'
-      echo "$vscode_names"
-      echo '```'
-      echo
-    } >> "$GITHUB_STEP_SUMMARY"
+    return $failed
+  else
+    echo_error "Unknown group: $group"
+    return 1
   fi
 }
 
@@ -298,62 +285,42 @@ trap cleanup EXIT INT TERM
 function main() {
   prepare
 
-  echo_info "Fetching list of packages to build"
-  # Get packages and extensions
-  local pkgs_list
-  pkgs_list=$(get_packages_list)
-
-  echo_info "Fetching VSCode extensions list"
-  local vscode_info
-  vscode_info=$(get_vscode_extensions)
-  local vscode_names="${vscode_info%|*}"
-  local vscode_drvs="${vscode_info#*|}"
-
-  # Update GitHub summary
-  update_step_summary "$pkgs_list" "$vscode_names"
-
-  echo_info "Starting package builds"
-
-  # Build packages
   local build_failures=0
-  for pkg in $pkgs_list; do
-    if ! build_package "$pkg" "flake package"; then
+
+  if [ $# -gt 0 ]; then
+    # If an argument is provided, treat it as a specific target JSON (e.g. from matrix)
+    local target_json="$1"
+    echo_info "Building specific target: $target_json"
+    if ! build_target "$target_json"; then
       ((build_failures++))
     fi
-    # Small delay between builds
-    sleep 1
-  done
+  else
+    # Default behavior: read cache.json and build all targets sequentially
+    if [ ! -f "cache.json" ]; then
+      echo_error "cache.json not found in repository root"
+      exit 1
+    fi
 
-  echo_info "Starting VSCode extension builds"
-
-  # Build VSCode extensions
-  if [ -n "$vscode_drvs" ]; then
-    # Convert derivations and names to arrays for parallel processing
-    local -a drv_array name_array
-    read -ra drv_array <<< "$vscode_drvs"
-    read -ra name_array <<< "$vscode_names"
-
-    for i in "${!drv_array[@]}"; do
-      local drv="${drv_array[i]}"
-      local name="${name_array[i]:-unknown-$i}"
-
-      if ! build_drv "$drv" "$name" "VSCode extension"; then
+    echo_info "Reading targets from cache.json"
+    local targets_count=$(jq '.targets | length' cache.json)
+    
+    for (( i=0; i<$targets_count; i++ )); do
+      local target_json=$(jq -c ".targets[$i]" cache.json)
+      echo_info "Processing target $[i+1]/$targets_count..."
+      if ! build_target "$target_json"; then
         ((build_failures++))
       fi
-      # Small delay between builds
       sleep 1
     done
-  else
-    echo_warning "No VSCode extensions found to build"
   fi
 
   # Exit with error if any builds failed
   if [ $build_failures -gt 0 ]; then
-    echo_error "$build_failures build(s) failed"
+    echo_error "$build_failures target(s) failed"
     exit 1
   fi
 
-  echo_success "All builds completed successfully"
+  echo_success "All targets completed successfully"
 }
 
 # Run main function
