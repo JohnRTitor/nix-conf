@@ -43,6 +43,19 @@ Switch/update to a new configuration:
 sudo nixos-rebuild switch --flake .
 ```
 
+## Automated Caching
+
+This repository uses GitHub Actions and Cachix to automatically build and cache large or frequently changing packages. 
+
+Targets are defined in `.github/cache-targets.toml`. You can specify individual packages, NixOS configuration attributes (like custom kernels or desktop environments), and VSCode extensions. 
+By defining them in the TOML file, CI will build them in parallel and push the results to Cachix. When you switch to a new configuration locally using `nixos-rebuild`, it will pull the pre-compiled binaries from the cache instead of compiling them on your machine, saving significant time.
+
+### Setup Requirements
+
+For the GitHub Actions workflow to push to your Cachix cache successfully, you must configure the following in your repository settings:
+- **GitHub Repository Secret**: Create a secret named `CACHIX_AUTH_TOKEN` containing your Cachix authentication token.
+- **Workflow Variable**: Update the `CACHIX_CACHE_NAME` environment variable inside `.github/workflows/cache.yml` to match your actual Cachix cache name.
+
 ## Contributions
 
 While I do not accept contributions or pull requests, you are welcome to suggest ideas to fix problems via the Issues tab.

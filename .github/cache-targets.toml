@@ -1,0 +1,54 @@
+[[targets]]
+group = "nixos_config_attribute"
+hostname = "Ainz-NIX"
+name = "programs.hyprland.package"
+
+[[targets]]
+group = "nixos_config_attribute"
+hostname = "Ainz-NIX"
+name = "programs.hyprland.portalPackage"
+
+[[targets]]
+group = "nixos_config_attribute"
+hostname = "Ainz-NIX"
+name = "services.ananicy.package"
+
+[[targets]]
+group = "nixos_config_attribute"
+hostname = "Ainz-NIX"
+name = "programs.appimage.package"
+
+[[targets]]
+group = "nixos_config_attribute"
+hostname = "Ainz-NIX"
+name = "boot.kernelPackages.kernel"
+
+[[targets]]
+group = "nixos_config_attribute"
+hostname = "Ainz-NIX"
+name = "boot.kernelPackages.bcachefs"
+
+[[targets]]
+group = "nixos_package"
+hostname = "Ainz-NIX"
+name = "zed-editor"
+
+[[targets]]
+group = "nixos_package"
+hostname = "Ainz-NIX"
+name = "scx.full"
+
+[[targets]]
+group = "vscode_extensions"
+hostname = "Ainz-NIX"
+user = "masum"
+
+[[targets]]
+group = "nixos_config_attribute"
+hostname = "Ainz-NIX"
+name = "home-manager.users.masum.programs.noctalia.package"
+
+[[targets]]
+group = "nixos_config_attribute"
+hostname = "Ainz-NIX"
+name = "nix.package"

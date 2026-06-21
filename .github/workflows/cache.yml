@@ -21,6 +21,7 @@ env:
     cachix
     jq
     findutils
+    yq-go
 
 jobs:
   prepare-matrix:
@@ -30,11 +31,11 @@ jobs:
       targets: ${{ steps.set-matrix.outputs.targets }}
     steps:
       - uses: actions/checkout@v7
-      - name: Generate Matrix from cache.json
+      - name: Generate Matrix from cache-targets.toml
         id: set-matrix
         run: |
-          # Read the targets array from cache.json and output it as a single JSON string
-          TARGETS=$(jq -c '.targets' cache.json)
+          # Read the targets array from cache-targets.toml and output it as a single JSON string
+          TARGETS=$(yq -o=json '.targets' .github/cache-targets.toml | jq -c .)
           echo "targets=$TARGETS" >> $GITHUB_OUTPUT
 
   build:
