@@ -35,18 +35,30 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       targets: ${{ steps.set-matrix.outputs.targets }}
+      has_targets: ${{ steps.set-matrix.outputs.has_targets }}
     steps:
       - uses: actions/checkout@v7
-      - name: Generate Matrix from cache-targets.toml
+      
+      - name: setup nix
+        uses: ./.github/actions/setup-nix
+
+      - name: Install required tools
+        run: nix profile install nixpkgs#yq-go nixpkgs#jq
+
+      - name: Filter Matrix Targets
         id: set-matrix
         run: |
-          # Read the targets array from cache-targets.toml and output it as a single JSON string
-          TARGETS=$(yq -o=json '.targets' .github/cache-targets.toml | jq -c .)
-          echo "targets=$TARGETS" >> $GITHUB_OUTPUT
+          # Read all targets from TOML
+          TARGETS_JSON=$(yq -o=json '.targets' .github/cache-targets.toml | jq -c .)
+          
+          # Filter matrix to only include targets missing from Cachix
+          chmod +x .github/scripts/filter-matrix.sh
+          ./.github/scripts/filter-matrix.sh "$TARGETS_JSON" "${{ env.CACHIX_CACHE_NAME }}"
 
   build:
     name: Build ${{ matrix.target.name || matrix.target.group }}
     needs: prepare-matrix
+    if: needs.prepare-matrix.outputs.has_targets == 'true'
     runs-on: ubuntu-latest
     
     # We use fail-fast: false so one failing target does not cancel the rest of the builds.
