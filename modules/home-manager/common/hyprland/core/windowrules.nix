@@ -67,6 +67,7 @@ _: {
         match = {
           title = "^(Authentication Required)$";
         };
+        pin = true;
         tag = "+dialog";
       }
 
