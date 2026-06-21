@@ -39,6 +39,11 @@
       "group": "vscode_extensions",
       "hostname": "Ainz-NIX",
       "user": "masum"
+    },
+    {
+      "group": "nixos_config_attribute",
+      "hostname": "Ainz-NIX",
+      "name": "home-manager.users.masum.programs.noctalia.package"
     }
   ]
 }
