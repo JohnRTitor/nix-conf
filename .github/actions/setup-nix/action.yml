@@ -6,7 +6,7 @@ runs:
   steps:
     - name: reclaim space (linux)
       if: runner.os == 'Linux'
-      uses: wimpysworld/nothing-but-nix@main
+      uses: wimpysworld/nothing-but-nix@v10
       with:
         hatchet-protocol: rampage
 
@@ -52,7 +52,7 @@ runs:
 
     - name: post setup-nix
       if: runner.os == 'macOS'
-      uses: srz-zumix/post-run-action@v2
+      uses: srz-zumix/post-run-action@v3
       with:
         shell: bash -e {0}
         post-run: |

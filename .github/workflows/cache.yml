@@ -29,7 +29,7 @@ jobs:
     outputs:
       targets: ${{ steps.set-matrix.outputs.targets }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Generate Matrix from cache.json
         id: set-matrix
         run: |
@@ -54,7 +54,7 @@ jobs:
         target: ${{ fromJson(needs.prepare-matrix.outputs.targets) }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           sparse-checkout: |
             .github/actions
@@ -62,7 +62,7 @@ jobs:
       - name: setup nix
         uses: ./.github/actions/setup-nix
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install required packages
         run: |
@@ -78,7 +78,7 @@ jobs:
           
       - name: Upload build logs
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           # Use the job index to ensure unique artifact names per matrix job
           name: build-logs-${{ strategy.job-index }}

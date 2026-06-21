@@ -26,9 +26,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Install Nix
-        uses: cachix/install-nix-action@v30
+        uses: cachix/install-nix-action@v31
         with:
           install_url: https://nixos.org/nix/install
           extra_nix_config: |
@@ -41,7 +41,7 @@ jobs:
           INPUTS_TO_BUMP: ${{ inputs.INPUTS_TO_BUMP }}
         run: nix flake update $INPUTS_TO_BUMP
       - name: Commit changes
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v10
         with:
           default_author: github_actions
           add: flake.lock
