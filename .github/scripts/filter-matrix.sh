@@ -11,10 +11,10 @@ MISSING_TARGETS="[]"
 
 for row in $(echo "${TARGETS_JSON}" | jq -r '.[] | @base64'); do
     _jq() {
-     echo ${row} | base64 --decode | jq -r ${1}
+     echo "${row}" | base64 --decode | jq -r "${1}"
     }
     
-    TARGET_JSON=$(echo ${row} | base64 --decode)
+    TARGET_JSON=$(echo "${row}" | base64 --decode)
     GROUP=$(_jq '.group')
     HOSTNAME=$(_jq '.hostname // empty')
     NAME=$(_jq '.name // empty')
@@ -51,7 +51,7 @@ for row in $(echo "${TARGETS_JSON}" | jq -r '.[] | @base64'); do
     fi
 done
 
-COMPACT_TARGETS=$(echo $MISSING_TARGETS | jq -c .)
+COMPACT_TARGETS=$(echo "$MISSING_TARGETS" | jq -c .)
 echo "Filtered targets: $COMPACT_TARGETS"
 
 echo "targets=$COMPACT_TARGETS" >> $GITHUB_OUTPUT

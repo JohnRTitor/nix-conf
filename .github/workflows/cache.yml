@@ -6,11 +6,11 @@ concurrency:
 on:
   push:
     paths-ignore:
-      - 'README.md'
-      - 'LICENSE'
-      - '.gitignore'
-      - '.git-blame-ignore-revs'
-      - 'wallpapers/**'
+      - "README.md"
+      - "LICENSE"
+      - ".gitignore"
+      - ".git-blame-ignore-revs"
+      - "wallpapers/**"
   workflow_dispatch:
   workflow_run:
     workflows: [update-flake-lock]
@@ -38,19 +38,19 @@ jobs:
       has_targets: ${{ steps.set-matrix.outputs.has_targets }}
     steps:
       - uses: actions/checkout@v7
-      
+
       - name: setup nix
         uses: ./.github/actions/setup-nix
 
       - name: Install required tools
-        run: nix profile install nixpkgs#yq-go nixpkgs#jq
+        run: nix profile add nixpkgs#yq-go nixpkgs#jq
 
       - name: Filter Matrix Targets
         id: set-matrix
         run: |
           # Read all targets from TOML
           TARGETS_JSON=$(yq -o=json '.targets' .github/cache-targets.toml | jq -c .)
-          
+
           # Filter matrix to only include targets missing from Cachix
           chmod +x .github/scripts/filter-matrix.sh
           ./.github/scripts/filter-matrix.sh "$TARGETS_JSON" "${{ env.CACHIX_CACHE_NAME }}"
@@ -60,10 +60,10 @@ jobs:
     needs: prepare-matrix
     if: needs.prepare-matrix.outputs.has_targets == 'true'
     runs-on: ubuntu-latest
-    
+
     # We use fail-fast: false so one failing target does not cancel the rest of the builds.
-    # Note on parallel Cachix pushes: 
-    # Cachix safely handles concurrent uploads. If multiple jobs build the same shared 
+    # Note on parallel Cachix pushes:
+    # Cachix safely handles concurrent uploads. If multiple jobs build the same shared
     # dependencies, Cachix will deduplicate them gracefully. However, running fully parallel jobs
     # can consume a lot of GitHub Actions minutes if many derivations share long-building dependencies
     # that haven't been cached yet.
@@ -77,7 +77,7 @@ jobs:
         with:
           sparse-checkout: |
             .github/actions
-      
+
       - name: setup nix
         uses: ./.github/actions/setup-nix
 
@@ -86,7 +86,7 @@ jobs:
       - name: Install required packages
         run: |
           for PKG in $REQUIRED_PACKAGES; do
-            nix profile install nixpkgs#$PKG
+            nix profile add nixpkgs#$PKG
           done
 
       - name: Build target and push to Cachix
@@ -94,7 +94,7 @@ jobs:
           chmod +x ./.github/scripts/build-and-cache.sh
           # Pass the JSON representation of the matrix target as the single argument
           ./.github/scripts/build-and-cache.sh '${{ toJSON(matrix.target) }}'
-          
+
       - name: Upload build logs
         if: always()
         uses: actions/upload-artifact@v7
