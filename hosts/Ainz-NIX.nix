@@ -33,8 +33,10 @@ in
       ### OVERLAYS ###
       ../modules/modules-overlays
 
-      ### NIX ECOSYSTEM & UTILS ###
+      ## NIX ECOSYSTEM & UTILS ###
+      inputs.chaotic.nixosModules.default # Bleeding edge packages
       inputs.nur.modules.nixos.default # NUR - NixOS user repository
+      inputs.nix-index-database.nixosModules.default # Better command-not-found interface
 
       ### SYSTEM COMPONENTS & SERVICES ###
       inputs.lanzaboote.nixosModules.lanzaboote

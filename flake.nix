@@ -12,6 +12,11 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # For cachyos kernel
+      inputs.home-manager.follows = "home-manager";
+    };
+
     nur = {
       url = "github:nix-community/NUR"; # Nix User Repository, for community packages
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +27,11 @@
       url = "github:DeterminateSystems/nix-src";
       # inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ### SYSTEM COMPONENTS & SERVICES ###
@@ -43,7 +53,12 @@
     ### DESKTOP ENVIRONMENT & WINDOW MANAGER ###
     hyprland.url = "github:hyprwm/Hyprland";
 
-    stylix.url = "github:nix-community/stylix";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nur.follows = "nur";
+    };
 
     ### USER PACKAGES & APPS ###
     zen-browser = {
