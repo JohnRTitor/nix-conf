@@ -35,8 +35,9 @@ function echo_info() {
 
 # Preparation function
 function prepare() {
-  # Initialize log files
+  # Initialize log files and directories
   touch build.log errors.log success.txt failures.txt
+  mkdir -p logs
 
   echo_info "Starting build preparation"
 
@@ -68,6 +69,8 @@ function prepare() {
 function build_package() {
   local pkg="$1"
   local description="$2"
+  local safe_pkg_name=$(echo "$pkg" | tr -c 'a-zA-Z0-9.-' '_')
+  local log_file="logs/${safe_pkg_name}.log"
 
   echo -n "* Building $description ($pkg)..."
 
@@ -90,25 +93,29 @@ function build_package() {
   {
     echo "--- Building: $pkg ---"
     echo "Command: nix build .#$pkg $BUILD_FLAGS"
-  } >> build.log
+  } > "$log_file"
 
   # Attempt to build
-  if nix build ".#$pkg" $BUILD_FLAGS 2>> errors.log | tee -a build.log | cachix push "$CACHIX_CACHE_NAME"; then
+  local exit_code=0
+  nix build ".#$pkg" $BUILD_FLAGS > paths.tmp 2> >(tee -a "$log_file" >&2) || exit_code=$?
+  
+  cat paths.tmp >> "$log_file" 2>/dev/null || true
+  echo "Exit code: $exit_code" >> "$log_file"
+
+  kill $keepalive 2>/dev/null || true
+
+  if [ $exit_code -eq 0 ]; then
     # Build succeeded
-    kill $keepalive 2>/dev/null || true
     echo -e "${G} SUCCESS${W}"
     echo "$pkg" >> success.txt
+    if [ -s paths.tmp ]; then
+      cachix push "$CACHIX_CACHE_NAME" < paths.tmp
+    fi
     return 0
   else
     # Build failed
-    kill $keepalive 2>/dev/null || true
-    echo -e "${R} FAILED${W}"
-    echo "$pkg" >> failures.txt
-    {
-      echo "--- FAILED: $pkg ---"
-      echo "Last 20 lines of error log:"
-      tail -20 errors.log
-    } >> build.log
+    echo -e "${R} FAILED${W} (Exit code: $exit_code)"
+    echo -e "$pkg\t$log_file" >> failures.txt
     return 1
   fi
 }
@@ -118,6 +125,8 @@ function build_drv() {
   local drv="$1"
   local name="$2"
   local description="${3:-derivation}"
+  local safe_name=$(echo "$name" | tr -c 'a-zA-Z0-9.-' '_')
+  local log_file="logs/drv_${safe_name}.log"
 
   echo -n "* Building $description: $name..."
 
@@ -140,25 +149,29 @@ function build_drv() {
   {
     echo "--- Building $description: $name ---"
     echo "Command: nix build ${drv}^* --print-build-logs --print-out-paths"
-  } >> build.log
+  } > "$log_file"
 
   # Attempt to build
-  if nix build "${drv}^*" --print-build-logs --print-out-paths 2>> errors.log | tee -a build.log | cachix push "$CACHIX_CACHE_NAME"; then
+  local exit_code=0
+  nix build "${drv}^*" --print-build-logs --print-out-paths > paths.tmp 2> >(tee -a "$log_file" >&2) || exit_code=$?
+  
+  cat paths.tmp >> "$log_file" 2>/dev/null || true
+  echo "Exit code: $exit_code" >> "$log_file"
+
+  kill $keepalive 2>/dev/null || true
+
+  if [ $exit_code -eq 0 ]; then
     # Build succeeded
-    kill $keepalive 2>/dev/null || true
     echo -e "${G} SUCCESS${W}"
     echo "drv:$name" >> success.txt
+    if [ -s paths.tmp ]; then
+      cachix push "$CACHIX_CACHE_NAME" < paths.tmp
+    fi
     return 0
   else
     # Build failed
-    kill $keepalive 2>/dev/null || true
-    echo -e "${R} FAILED${W}"
-    echo "drv:$name" >> failures.txt
-    {
-      echo "--- FAILED $description: $name ---"
-      echo "Last 20 lines of error log:"
-      tail -20 errors.log
-    } >> build.log
+    echo -e "${R} FAILED${W} (Exit code: $exit_code)"
+    echo -e "drv:$name\t$log_file" >> failures.txt
     return 1
   fi
 }
@@ -243,7 +256,9 @@ function generate_report() {
   if [ $failure_count -gt 0 ]; then
     echo
     echo "Failed builds:"
-    cat failures.txt 2>/dev/null | sed 's/^/  - /'
+    while IFS=$'\t' read -r pkg log; do
+      echo "  - $pkg (Log: $log)"
+    done < failures.txt
   fi
 
   if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
@@ -257,7 +272,20 @@ function generate_report() {
       if [ $failure_count -gt 0 ]; then
         echo
         echo "### ❌ Failed Builds"
-        cat failures.txt 2>/dev/null | sed 's/^/- /' || echo "- None"
+        while IFS=$'\t' read -r pkg log; do
+          echo "#### \`$pkg\`"
+          if [ -f "$log" ]; then
+            echo '<details><summary>Click to view last 30 lines of error log</summary>'
+            echo
+            echo '```text'
+            tail -n 30 "$log"
+            echo '```'
+            echo '</details>'
+          else
+            echo "- Log file missing for $pkg"
+          fi
+          echo
+        done < failures.txt
       fi
     } >> "$GITHUB_STEP_SUMMARY"
   fi

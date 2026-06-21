@@ -87,5 +87,6 @@ jobs:
             errors.log
             success.txt
             failures.txt
+            logs/
           retention-days: 7
           if-no-files-found: ignore
