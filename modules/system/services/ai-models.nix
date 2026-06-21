@@ -10,7 +10,7 @@
 let
   ## PREFS ##
   enableOllama = true;
-  enableLlamaCPP = true;
+  enableLlamaCPP = false;
   enableOdysseus = true;
   enableOpenWebUI = false;
 

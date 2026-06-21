@@ -77,7 +77,7 @@
     };
 
     odysseus = {
-      url = "github:ToyVo/odysseus/nix-add-modules";
+      url = "github:JohnRTitor/odysseus/model-parameter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

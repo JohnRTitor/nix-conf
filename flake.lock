@@ -1003,16 +1003,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1781968520,
-        "narHash": "sha256-iy5h8VNkEo0KsDb2DVxG4w6MMO0g4hDXq3OLY0uDzoI=",
-        "owner": "ToyVo",
+        "lastModified": 1782071669,
+        "narHash": "sha256-ASJQkZqmbyMeq5BC5/ELHZuESght5X0JhHTusB7hLLg=",
+        "owner": "JohnRTitor",
         "repo": "odysseus",
-        "rev": "b2a99f5b199c33c1ac3aab21dcadcbb0f949a360",
+        "rev": "944e1ce87e7b85f31a82dbb34fa62fe789bc922c",
         "type": "github"
       },
       "original": {
-        "owner": "ToyVo",
-        "ref": "nix-add-modules",
+        "owner": "JohnRTitor",
+        "ref": "model-parameter",
         "repo": "odysseus",
         "type": "github"
       }
