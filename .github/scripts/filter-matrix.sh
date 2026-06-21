@@ -38,11 +38,13 @@ for row in $(echo "${TARGETS_JSON}" | jq -r '.[] | @base64'); do
         echo "Always building group $GROUP"
     else
         HASH=$(basename "$OUT_PATH" | cut -d'-' -f1)
-        if ! curl -sSf "https://${CACHIX_CACHE_NAME}.cachix.org/${HASH}.narinfo" > /dev/null 2>&1; then
-            BUILD_IT=true
-            echo "Target $NAME ($HASH) is missing from Cachix."
+        if curl -sSf "https://${CACHIX_CACHE_NAME}.cachix.org/${HASH}.narinfo" > /dev/null 2>&1; then
+            echo "Target $NAME ($HASH) is already in your Cachix, skipping."
+        elif curl -sSf "https://cache.nixos.org/${HASH}.narinfo" > /dev/null 2>&1; then
+            echo "Target $NAME ($HASH) is already in upstream NixOS cache, skipping."
         else
-            echo "Target $NAME ($HASH) is already in Cachix, skipping."
+            BUILD_IT=true
+            echo "Target $NAME ($HASH) is missing from both caches."
         fi
     fi
 
