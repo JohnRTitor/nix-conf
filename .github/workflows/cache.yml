@@ -5,6 +5,12 @@ concurrency:
 
 on:
   push:
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+      - '.gitignore'
+      - '.git-blame-ignore-revs'
+      - 'wallpapers/**'
   workflow_dispatch:
   workflow_run:
     workflows: [update-flake-lock]
