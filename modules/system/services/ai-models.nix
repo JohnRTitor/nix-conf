@@ -37,6 +37,13 @@ lib.mkMerge [
         # https://ollama.com/library/lfm2.5
         "lfm2.5:8b" # thinking
 
+        ### CODING ###
+        # https://huggingface.co/collections/Jackrong/qwopus-coder
+        # CONTEXT sizes for coding
+        # Low: 65536 (64K)
+        # Max context: 131072 (128)
+        "hf.co/Jackrong/Qwopus3.5-9B-Coder-GGUF:Q6_K"
+
         ### UNCENSORED ###
         # NOTE: some models may be marked as "uncensored" but they'll still refuse some requests
         # Abiliterated models are trained to not refuse any requests and generate fully uncensored content
@@ -49,12 +56,6 @@ lib.mkMerge [
         # Low: 65536 (64K)
         # Max context: 131072 (128)
         "hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q6_K" # (reasoning) BEST ABLITERATED MODEL
-
-        # Quantized version, reduced quality, but can support higher context size
-        # LOW: 65536 (64K)
-        # Suitable: 153600 (150K)
-        # MAX: 184320 (180K)
-        # "hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q4_K_M"
 
         ### SPECIAL PURPOSE ###
         # https://ollama.com/library/glm-ocr

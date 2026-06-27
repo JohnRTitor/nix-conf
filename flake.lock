@@ -1003,11 +1003,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782549923,
-        "narHash": "sha256-8/Y76IYl8il5TCJi4IN/1HEosO0c+1inABFELZLaCq8=",
+        "lastModified": 1782553555,
+        "narHash": "sha256-yRdbcph8UciyEpYPMHHJPJUtu3Ghynh7mkqxfL8jgJg=",
         "owner": "JohnRTitor",
         "repo": "odysseus",
-        "rev": "93e1f9e90675daeabfc16264b78267a26537bc82",
+        "rev": "10fe4c32c396975aa4f20852a2db81311f657547",
         "type": "github"
       },
       "original": {
