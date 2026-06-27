@@ -1003,16 +1003,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1782071669,
-        "narHash": "sha256-ASJQkZqmbyMeq5BC5/ELHZuESght5X0JhHTusB7hLLg=",
+        "lastModified": 1782549923,
+        "narHash": "sha256-8/Y76IYl8il5TCJi4IN/1HEosO0c+1inABFELZLaCq8=",
         "owner": "JohnRTitor",
         "repo": "odysseus",
-        "rev": "944e1ce87e7b85f31a82dbb34fa62fe789bc922c",
+        "rev": "93e1f9e90675daeabfc16264b78267a26537bc82",
         "type": "github"
       },
       "original": {
         "owner": "JohnRTitor",
-        "ref": "model-parameter",
+        "ref": "nix-model-parameter",
         "repo": "odysseus",
         "type": "github"
       }
