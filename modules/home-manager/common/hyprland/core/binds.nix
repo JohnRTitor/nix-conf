@@ -240,14 +240,14 @@ in
         )
 
         # ── Special Workspace ───────────────────────────────────────────────
-        # (mkBind ''mainMod .. " + SHIFT + space"'' "Move to Special"
-        #   (mkLuaInline "hl.dsp.window.move({ workspace = \"special\" })")
-        #   { }
-        # )
-        # (mkBind ''mainMod .. " + space"'' "Toggle Special"
-        #   (mkLuaInline "hl.dsp.focus({ workspace = \"special\", toggle = true })")
-        #   { }
-        # )
+        (mkBind ''mainMod .. " + SHIFT + space"'' "Move to Scratchpads Workspace"
+          (mkLuaInline ''hl.dsp.window.move({ workspace = "special:scratchpads" })'')
+          { }
+        )
+        (mkBind ''mainMod .. " + space"'' "Toggle Scratchpads"
+          (mkLuaInline ''hl.dsp.workspace.toggle_special("scratchpads")'')
+          { }
+        )
 
         # ── Workspace Navigation ────────────────────────────────────────────
         (mkBind ''mainMod .. " + CTRL + right"'' "Next Workspace"
@@ -299,10 +299,6 @@ in
         (mkBind ''"XF86AudioPrev"'' "Previous Track" (dspExec "playerctl previous") { })
         (mkBind ''"XF86MonBrightnessDown"'' "Brightness Down" (dspExec "brightnessctl set 5%-") { })
         (mkBind ''"XF86MonBrightnessUp"'' "Brightness Up" (dspExec "brightnessctl set +5%") { })
-
-        # ── Pyprland, a Hyprland plugin ───────────────────────────────────────────────
-        (mkBind ''mainMod .. " + t"'' "Dropdown Terminal" (dspExec "pypr toggle term") { })
-        (mkBind ''mainMod .. " + z"'' "Pyprland Zoom" (dspExec "pypr zoom") { })
 
         # ── Mouse binds ───────────────────────────────────────────────
         (mkBind ''mainMod .. " + mouse:272"'' "Move Window" (mkLuaInline "hl.dsp.window.drag()") {

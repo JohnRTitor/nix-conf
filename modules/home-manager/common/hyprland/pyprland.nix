@@ -5,6 +5,9 @@
   ...
 }:
 let
+  enablePyprland = false;
+  inherit (import ../utils/lua.nix { inherit lib; }) mkBind dspExec mkLuaInline;
+
   pyprlandSettings = {
     pyprland = {
       plugins = [
@@ -22,7 +25,13 @@ let
     };
   };
 in
-{
+# ── Pyprland, a Hyprland plugin ───────────────────────────────────────────────
+lib.mkIf enablePyprland {
+  wayland.windowManager.hyprland.settings.bind = [
+    (mkBind ''mainMod .. " + t"'' "Dropdown Terminal" (dspExec "pypr toggle term") { })
+    (mkBind ''mainMod .. " + z"'' "Pyprland Zoom" (dspExec "pypr zoom") { })
+  ];
+
   xdg.configFile."pypr/pyprland.toml".source =
     (pkgs.formats.toml { }).generate "pyprland-config.toml"
       pyprlandSettings;

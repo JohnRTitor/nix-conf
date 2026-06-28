@@ -32,6 +32,8 @@ in
       enableXdgAutostart = true;
       variables = [ "--all" ];
     };
+
+    extraConfig = builtins.readFile ./zoom.lua;
   };
 
   home.packages = with pkgs; [
