@@ -14,7 +14,7 @@
     ./console-tty.nix
     ./gnome-keyring.nix
     ./gnupg-ssh.nix
-    ./ai-models.nix
+    ./ai-models
     ./apparmor.nix
     ./containers.nix
   ];
