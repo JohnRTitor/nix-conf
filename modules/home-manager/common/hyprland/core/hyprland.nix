@@ -46,12 +46,14 @@ in
         mode = "preferred";
         position = "auto";
         scale = "1";
+        supports_wide_color = true;
       }
       {
         output = "Virtual-1";
         mode = "1920x1080@60";
         position = "auto";
         scale = "1";
+        supports_wide_color = true;
       }
     ];
 

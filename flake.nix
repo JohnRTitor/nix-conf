@@ -5,6 +5,7 @@
     ### CORE REPOSITORIES ###
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "github:NixOS/nixpkgs/master"; # Testing branch of nixpkgs
+    nixpkgs-ollama-test.url = "github:johnrtitor/nixpkgs/ollama";
 
     ### NIX ECOSYSTEM & UTILS ###
     flake-parts = {

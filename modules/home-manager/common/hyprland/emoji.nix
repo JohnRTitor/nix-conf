@@ -1,8 +1,11 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
+let
+  inherit (import ./utils/lua.nix { inherit lib; }) mkBind dspExec;
+in
 {
-  # wayland.windowManager.hyprland.settings.bindd = [
-  #   "$modifier,E, Emoji Picker, exec, emopicker9000"
-  # ];
+  wayland.windowManager.hyprland.settings.bind = [
+    (mkBind ''mainMod .. " + e"'' "Emoji Picker" (dspExec "emopicker9000") { })
+  ];
 
   home.packages = [
     (import ./scripts/emopicker9000.nix { inherit pkgs; })

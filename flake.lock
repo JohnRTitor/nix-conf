@@ -873,6 +873,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-ollama-test": {
+      "locked": {
+        "lastModified": 1782910567,
+        "narHash": "sha256-WSzFc3ufex1AXoW6TIJ1IqS3mcRiwzcxfm5RruTohzY=",
+        "owner": "johnrtitor",
+        "repo": "nixpkgs",
+        "rev": "68985c0b553f38cd9df51de5eb1da3735de6aa82",
+        "type": "github"
+      },
+      "original": {
+        "owner": "johnrtitor",
+        "ref": "ollama",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-regression": {
       "locked": {
         "lastModified": 1643052045,
@@ -1096,6 +1112,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-ollama-test": "nixpkgs-ollama-test",
         "noctalia": "noctalia",
         "nur": "nur",
         "odysseus": "odysseus",

@@ -8,17 +8,19 @@
 {
   imports = [
     #./amdgpu.nix # import modules here to test
+    "${inputs.nixpkgs-ollama-test}/nixos/modules/services/misc/ollama.nix"
   ];
 
   disabledModules = [
     # Disable specific modules
+    "${inputs.nixpkgs}/nixos/modules/services/misc/ollama.nix"
   ];
 
   nixpkgs.overlays = [
     inputs.nix-vscode-extensions.overlays.default
 
     (final: prev: {
-      open-webui = pkgs-master.open-webui;
+      #   open-webui = pkgs-master.open-webui;
     })
   ];
 
