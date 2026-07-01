@@ -6,7 +6,7 @@
   ...
 }:
 {
-  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto-znver4;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
   boot.kernelParams = [
     # Switch to lazy preemption for better performance
