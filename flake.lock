@@ -873,6 +873,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-ntfs-test": {
+      "locked": {
+        "lastModified": 1783064005,
+        "narHash": "sha256-kqe1UXdfrzTYct03Vf1kEGpFC8JP1lO0NEGVnDEepAg=",
+        "owner": "johnrtitor",
+        "repo": "nixpkgs",
+        "rev": "a1161a601c5e31bb72515d08059bd621c8c50a20",
+        "type": "github"
+      },
+      "original": {
+        "owner": "johnrtitor",
+        "ref": "ntfs",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-ollama-test": {
       "locked": {
         "lastModified": 1782911452,
@@ -1112,6 +1128,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-ntfs-test": "nixpkgs-ntfs-test",
         "nixpkgs-ollama-test": "nixpkgs-ollama-test",
         "noctalia": "noctalia",
         "nur": "nur",

@@ -91,6 +91,17 @@ in
       ++ rofiClipboardBind
       ++ workspaceBinds
       ++ [
+        # ── Special Workspace ───────────────────────────────────────────────
+        (mkBind ''mainMod .. " + SHIFT + space"'' "Move to Scratchpads Workspace"
+          (mkLuaInline ''hl.dsp.window.move({ workspace = "special:scratchpads" })'')
+          { }
+        )
+        (mkBind ''mainMod .. " + space"'' "Toggle Scratchpads"
+          (mkLuaInline ''hl.dsp.workspace.toggle_special("scratchpads")'')
+          { }
+        )
+      ]
+      ++ [
         # ── Workspace Overview ──────────────────────────────────────────────
         # (mkBind ''mainMod .. " + CTRL + d"'' "Toggle Dock" (dspExec "dock") { })
         (mkBind ''mainMod .. " + tab"'' "QS Overview" (dspExec "qs ipc -c overview call overview toggle")
@@ -236,16 +247,6 @@ in
         )
         (mkBind ''mainMod .. " + j"'' "Focus Down (VI)"
           (mkLuaInline "hl.dsp.focus({ direction = \"down\" })")
-          { }
-        )
-
-        # ── Special Workspace ───────────────────────────────────────────────
-        (mkBind ''mainMod .. " + SHIFT + space"'' "Move to Scratchpads Workspace"
-          (mkLuaInline ''hl.dsp.window.move({ workspace = "special:scratchpads" })'')
-          { }
-        )
-        (mkBind ''mainMod .. " + space"'' "Toggle Scratchpads"
-          (mkLuaInline ''hl.dsp.workspace.toggle_special("scratchpads")'')
           { }
         )
 
