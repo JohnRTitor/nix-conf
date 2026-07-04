@@ -282,7 +282,15 @@ _: {
         match = {
           class = "^(file-roller|org.gnome.FileRoller)$";
         };
-        tag = "+settings";
+        tag = "+fileviewer";
+      }
+
+      {
+        name = "Loupe";
+        match = {
+          class = "^(org.gnome.Loupe)$";
+        };
+        tag = "+fileviewer";
       }
 
       {
@@ -441,6 +449,16 @@ _: {
         };
         center = true;
         float = true;
+      }
+
+      {
+        name = "File-Viewers";
+        match = {
+          tag = "fileviewer*";
+        };
+        float = true;
+        center = true;
+        opacity = "0.9 0.8";
       }
 
       {
