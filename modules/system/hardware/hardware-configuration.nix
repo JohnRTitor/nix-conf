@@ -39,6 +39,18 @@
     ];
   };
 
+  fileSystems."/mnt/WD-Shared" = {
+    device = "/dev/disk/by-uuid/4A8A1FBB8A1FA30D";
+    fsType = "ntfs";
+    options = [
+      "uid=1000"
+      "gid=100"
+      "fmask=0137"
+      "dmask=0027"
+      "comment=x-gvfs-show" # Force it to be shown in Nautilus
+    ];
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
