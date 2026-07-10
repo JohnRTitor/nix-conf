@@ -1,4 +1,4 @@
-_: {
+{ ... }: {
   stylix.targets = {
     # Avoid fetching GNOME Shell sources on non-GNOME systems (breaks on some remotes)
     gnome.enable = false;
@@ -9,8 +9,8 @@ _: {
     ghostty.enable = false;
     vscode.enable = false;
     qt = {
-      enable = true;
-      platform = "qtct";
+      enable = false; # QT is handled by Kvantum
+      # platform = "qtct";
     };
   };
 }

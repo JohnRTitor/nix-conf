@@ -53,5 +53,8 @@
         popups = 12;
       };
     };
+
+    # QT is handled by Home Manager and Kvantum is used
+    targets.qt.enable = false;
   };
 }
