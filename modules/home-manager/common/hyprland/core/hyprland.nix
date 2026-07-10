@@ -196,9 +196,6 @@ in
         drop_at_cursor = true;
         always_keep_position = false;
       };
-
-      # Ensure Xwayland windows render at integer scale; compositor scales them
-      xwayland.force_zero_scaling = true;
     };
   };
 }

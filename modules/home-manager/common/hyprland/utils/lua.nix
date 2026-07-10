@@ -4,12 +4,24 @@ let
   toLua = lib.generators.toLua { };
 
   args = xs: { _args = xs; };
+
+  mkEventHook =
+    eventName: commands:
+    args [
+      eventName
+      (mkLuaInline ''
+        function()
+        ${lib.concatMapStringsSep "\n" (command: "  hl.exec_cmd(${builtins.toJSON command})") commands}
+        end
+      '')
+    ];
 in
 {
   inherit
     mkLuaInline
     toLua
     args
+    mkEventHook
     ;
 
   dspExec = cmd: mkLuaInline ("hl.dsp.exec_cmd(" + toLua cmd + ")");
@@ -41,4 +53,6 @@ in
         value
       ]
     ) attrs;
+
+  mkStartupHook = mkEventHook "hyprland.start";
 }

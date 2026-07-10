@@ -18,6 +18,7 @@ in
     ./hyprland.nix
     ./hyprlock.nix
     ./windowrules.nix
+    ./x-compat.nix
   ];
 
   wayland.windowManager.hyprland = {
