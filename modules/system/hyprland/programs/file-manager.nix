@@ -6,6 +6,12 @@
   ...
 }:
 lib.mkMerge [
+  (lib.mkIf (config.myOptions.programsSettings.fileManager == "dolphin") {
+    environment.systemPackages = with pkgs; [
+      kdePackages.dolphin
+    ];
+  })
+
   (lib.mkIf (config.myOptions.programsSettings.fileManager == "nautilus") {
     environment.systemPackages = with pkgs; [
       nautilus

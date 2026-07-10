@@ -53,7 +53,7 @@
     };
 
     programsSettings = {
-      fileManager = "nautilus";
+      fileManager = "dolphin";
       terminal = "kitty";
       openrgb = true;
     };

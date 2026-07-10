@@ -128,6 +128,7 @@
     programsSettings = {
       fileManager = lib.mkOption {
         type = lib.types.enum [
+          "dolphin"
           "nautilus"
           "nemo"
           "thunar"

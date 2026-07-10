@@ -13,7 +13,9 @@ in
   # Instead let other toolkits scale windows themselves
   wayland.windowManager.hyprland.settings.env = mkEnvList {
     GDK_SCALE = "1";
-    QT_SCALE_FACTOR = "1";
+    QT_SCALE_FACTOR = "1.2";
+    # QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    QT_SCALE_FACTOR_ROUNDING_POLICY = "PassThrough";
   };
 
   # ESSENTIAL for preventing legacy X11 applications (like Furmark) from crashing

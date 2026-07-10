@@ -92,7 +92,7 @@ _: {
       {
         name = "Thunar";
         match = {
-          class = "^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt)$";
+          class = "^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt|org.kde.dolphin)$";
         };
         tag = "+file-manager";
       }
