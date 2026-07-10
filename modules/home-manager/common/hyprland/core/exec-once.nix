@@ -8,8 +8,8 @@ let
 in
 {
   wayland.windowManager.hyprland.settings.on = lib.mkAfter [
-    (
-      mkStartupHook [
+    (mkStartupHook (
+      [
         # "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         # "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
@@ -25,6 +25,6 @@ in
         # then user's wallpaper wins with a single change
         "sh -lc 'sleep 2 && (qs-wallpapers-restore || waypaper --wallpaper ${stylixImage} --backend awww) >/dev/null 2>&1 || true'"
       ]
-    )
+    ))
   ];
 }

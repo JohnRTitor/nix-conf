@@ -19,6 +19,9 @@
       ## URL FETCH TOOLS ##
       curl
 
+      ## MONITORING TOOLS ##
+      nvtopPackages.amd # for AMD GPUs
+
       # use uutils (rust rewrite) instead of gnu coreutils
       # (lib.hiPrio pkgs.uutils-coreutils-noprefix)
     ])

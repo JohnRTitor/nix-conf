@@ -6,8 +6,6 @@
   fonts.packages = with pkgs; [
     lohit-fonts.bengali # Bengali fonts
 
-
-
     # Needed for wlogout and several Waybar themes (Jerry, ddubs, jak-oglo, etc.)
     # font-awesome
 

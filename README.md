@@ -47,7 +47,7 @@ This repository is organized into several modules and directories to keep the co
     - `flatpak-packages.nix`: Declarative Flatpak definitions.
   - **`lib/`**: Custom library functions and NixOS option definitions (`options-definitions.nix`) that enable custom module switches.
   - **`modules-overlays/`**: Nixpkgs overlays applied across the system to modify packages or add custom patches.
-  - **`preferences.nix` & `variables.nix`**: Core configuration files for easy tweaking. They contain boolean switches, username, locale, themes, and default app preferences.
+  - **`preferences.nix` **: Core configuration files for easy tweaking. They contain boolean switches, username, locale, themes, and default app preferences.
 - **`packages/`**: Custom Nix package derivations created for this system.
   - Includes tools like `adminneo-with-theme`, repackaged `google-chrome`, `fhs-shell`, `gparted-wrapper`, and custom scripts.
 - **`wallpapers/`**: Contains desktop wallpapers, integrated with Stylix for system-wide dynamic color scheme generation.

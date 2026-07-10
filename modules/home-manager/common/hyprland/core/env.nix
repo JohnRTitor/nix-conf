@@ -12,7 +12,6 @@ in
     # This is to make electron apps start in wayland
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-    NIXPKGS_ALLOW_UNFREE = "1";
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
@@ -30,8 +29,6 @@ in
     # This is mostly needed by Hybrid laptops.
     # but if you have multiple discrete GPUs this will set order
     #"AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1:/dev/card2"
-    GDK_SCALE = "1";
-    QT_SCALE_FACTOR = "1";
     TERMINAL = "${config.myOptions.programsSettings.terminal}";
     XDG_TERMINAL_EMULATOR = "${config.myOptions.programsSettings.terminal}";
   };

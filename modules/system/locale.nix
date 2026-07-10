@@ -18,8 +18,4 @@
     LC_TELEPHONE = config.myOptions.systemSettings.additionalLocale;
     LC_TIME = config.myOptions.systemSettings.additionalLocale;
   };
-
-  # Configure keymap in X11
-  services.xserver.xkb.layout = "us";
-  services.xserver.xkb.variant = "";
 }

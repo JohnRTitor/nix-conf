@@ -126,7 +126,7 @@ in
         (mkBind ''mainMod .. " + Print"'' "Screenshot Fullscreen" (dspExec "screenshootin --fullscreen")
           { }
         )
-        (mkBind ''mainMod .. " + s"'' "Screenshot Region" (dspExec "screenshootin") { })
+        (mkBind ''mainMod .. " + s"'' "Screenshot Region" (dspExec "screenshootin --silent") { })
         (mkBind ''mainMod .. " + SHIFT + s"'' "Screenshot Fullscreen" (dspExec "screenshootin --fullscreen")
           { }
         )
