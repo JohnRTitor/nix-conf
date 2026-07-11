@@ -17,4 +17,10 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     cp -r ${finalAttrs.src}/* $out/share/Kvantum
     runHook postInstall
   '';
+
+  meta = {
+    description = "BonaFides Rounded Kvantum theme";
+    maintainers = with lib.maintainers; [ johnrtitor ];
+    platforms = lib.platforms.linux;
+  };
 })

@@ -1,5 +1,5 @@
-# This file is specifically for overriding desktop item of VSCode
-# to make it work with my encrypted SSH keys by passing environment variables
+# This file is specifically for overriding Google Chrome command line arguments
+# to enable Wayland and hardware acceleration flags.
 {
   lib,
   google-chrome,
@@ -48,4 +48,10 @@
       ]
     }"
   ];
-})
+}).overrideAttrs
+  (old: {
+    meta = old.meta // {
+      description = "Google Chrome repackaged with Wayland and hardware acceleration flags";
+      maintainers = with lib.maintainers; [ johnrtitor ] ++ (old.meta.maintainers or [ ]);
+    };
+  })

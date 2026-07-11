@@ -10,5 +10,11 @@ pkgs.buildFHSEnv (
     profile = "export FHS=1";
     runScript = "$SHELL";
     extraOutputsToInstall = [ "dev" ];
+
+    meta = with pkgs.lib; {
+      description = "FHS shell environment";
+      maintainers = with maintainers; [ johnrtitor ];
+      platforms = platforms.linux;
+    };
   }
 )

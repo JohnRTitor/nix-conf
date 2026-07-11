@@ -1,6 +1,7 @@
 {
   writeScriptBin,
   python3,
+  lib,
   locationId ? "ed1703727a892f7858b986a1be4bba78f3249e1eb96813a01022ecee01e664d6",
   ...
 }:
@@ -13,7 +14,7 @@ let
     ]
   );
 in
-writeScriptBin "weather-python-script" ''
+(writeScriptBin "weather-python-script" ''
   #!${python-packages.interpreter}
 
   import subprocess
@@ -150,4 +151,12 @@ writeScriptBin "weather-python-script" ''
           file.write(simple_weather)
   except:
       pass
-''
+'').overrideAttrs
+  (old: {
+    meta = {
+      description = "Weather Python script for Waybar";
+      maintainers = with lib.maintainers; [ johnrtitor ];
+      platforms = lib.platforms.linux;
+      mainProgram = "weather-python-script";
+    };
+  })

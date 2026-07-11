@@ -1,9 +1,10 @@
 {
   stdenvNoCC,
   kdePackages,
+  lib,
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
-  pname = "plasma-applications-schema";
+  pname = "plasma-xdg-menu";
   version = kdePackages.plasma-workspace.version;
 
   src = kdePackages.plasma-workspace.out;
@@ -17,4 +18,10 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     cp ${finalAttrs.src}/etc/xdg/menus/* $out/etc/xdg/menus/
     runHook postInstall
   '';
+
+  meta = {
+    description = "Plasma XDG menus";
+    maintainers = with lib.maintainers; [ johnrtitor ];
+    platforms = lib.platforms.linux;
+  };
 })

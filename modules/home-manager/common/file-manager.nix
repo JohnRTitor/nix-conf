@@ -13,7 +13,7 @@ lib.mkMerge [
 
     # Needed by kbuildsycoca6
     xdg.configFile."menus/applications.menu".source = "${
-      self.packages.${pkgs.stdenv.hostPlatform.system}.plasma-applications-schema
+      self.packages.${pkgs.stdenv.hostPlatform.system}.plasma-xdg-menu
     }/etc/xdg/menus/plasma-applications.menu";
 
     systemd.user.services.kbuildsycoca6 = {
