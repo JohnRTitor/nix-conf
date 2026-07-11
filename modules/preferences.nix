@@ -55,6 +55,7 @@
     programsSettings = {
       fileManager = "dolphin";
       terminal = "kitty";
+      guiSuite = "kde";
       openrgb = true;
     };
   };

@@ -56,6 +56,7 @@ in
         bonafides-rounded-kvantum-customised =
           pkgs.callPackage ../packages/bonafides-rounded-kvantum-customised
             { };
+        plasma-applications-schema = pkgs.callPackage ../packages/plasma-applications-schema { };
         utterly-sweet-kvantum = pkgs.callPackage ../packages/utterly-sweet-kvantum { };
         weather-python-script = pkgs.callPackage ../packages/weather-python-script.nix { };
         adminneo-with-theme = pkgs.callPackage ../packages/adminneo-with-theme { };

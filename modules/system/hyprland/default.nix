@@ -42,7 +42,6 @@ in
 {
   imports = [
     ./session.nix
-    ./programs
   ];
 
   # Enable Hyprland Window Manager

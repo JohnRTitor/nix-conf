@@ -26,18 +26,6 @@
     nwg-look # gtk theme configure
     pamixer
     playerctl # media player control
-
-    ## Graphical apps ##
-    linux-wifi-hotspot # for wifi hotspot
-    pwvucontrol # audio control
-
-    ## GNOME Graphical Suite ##
-    gnome-text-editor # text editor
-    shotcut # video editor
-    gnome-system-monitor # system monitor
-    loupe # image viewer
-    file-roller # archive manager
-    evince # document viewer
   ];
 
   # Place Files Inside Home Directory

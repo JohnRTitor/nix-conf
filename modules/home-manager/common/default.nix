@@ -35,8 +35,8 @@
 
     ./virt-manager.nix
 
-    ./nemo-extra.nix
-    ./thunar-extra.nix
+    ./file-manager.nix
+    ./gui-suite.nix
 
     ./kvantum.nix
 

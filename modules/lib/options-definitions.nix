@@ -156,6 +156,14 @@
         description = "Status bar";
       };
 
+      guiSuite = lib.mkOption {
+        type = lib.types.nullOr (lib.types.enum [
+          "gnome"
+          "kde"
+        ]);
+        description = "GUI Suite applications to install";
+      };
+
       openrgb = lib.mkEnableOption "OpenRGB";
     };
   };

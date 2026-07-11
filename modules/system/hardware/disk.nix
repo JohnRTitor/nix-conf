@@ -46,8 +46,4 @@
   # services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-  programs.gnome-disks.enable = true;
-  environment.systemPackages = with pkgs; [
-    baobab # disk usage analyzer
-  ];
 }
