@@ -53,6 +53,9 @@ in
       packages = {
         fhs-shell = pkgs.callPackage ../packages/fhs-shell.nix { };
         bonafides-rounded-kvantum = pkgs.callPackage ../packages/bonafides-rounded-kvantum { };
+        bonafides-rounded-kvantum-customised =
+          pkgs.callPackage ../packages/bonafides-rounded-kvantum-customised
+            { };
         utterly-sweet-kvantum = pkgs.callPackage ../packages/utterly-sweet-kvantum { };
         weather-python-script = pkgs.callPackage ../packages/weather-python-script.nix { };
         adminneo-with-theme = pkgs.callPackage ../packages/adminneo-with-theme { };
