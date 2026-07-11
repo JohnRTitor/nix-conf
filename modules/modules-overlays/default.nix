@@ -8,13 +8,11 @@
 {
   imports = [
     #./amdgpu.nix # import modules here to test
-    "${inputs.nixpkgs-ollama-test}/nixos/modules/services/misc/ollama.nix"
     "${inputs.nixpkgs-ntfs-test}/nixos/modules/tasks/filesystems/ntfs.nix"
   ];
 
   disabledModules = [
     # Disable specific modules
-    "${inputs.nixpkgs}/nixos/modules/services/misc/ollama.nix"
     "${inputs.nixpkgs}/nixos/modules/tasks/filesystems/ntfs.nix"
   ];
 
@@ -23,9 +21,9 @@
 
     (final: prev: {
       #   open-webui = pkgs-master.open-webui;
-      vesktop = prev.vesktop.override {
-        pnpm_10_29_2 = final.pnpm_10;
-      };
+      # vesktop = prev.vesktop.override {
+      #   pnpm_10_29_2 = final.pnpm_10;
+      # };
     })
   ];
 
