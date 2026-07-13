@@ -55,4 +55,5 @@ in
     ) attrs;
 
   mkStartupHook = mkEventHook "hyprland.start";
+  mkShutdownHook = mkEventHook "hyprland.shutdown";
 }

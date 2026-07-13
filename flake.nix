@@ -52,7 +52,10 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest"; # Declarative Flatpak support for NixOS
 
     ### DESKTOP ENVIRONMENT & WINDOW MANAGER ###
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     stylix = {
       url = "github:nix-community/stylix";

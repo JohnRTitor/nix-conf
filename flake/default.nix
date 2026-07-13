@@ -63,6 +63,7 @@ in
         microcode-amd-platomav = pkgs-unfree.callPackage ../packages/microcode-amd-platomav {
           microcode-src = inputs.platomav-microcode;
         };
+        xdg-desktop-portal-gtk4 = pkgs.callPackage ../packages/xdg-desktop-portal-gtk4 { };
       };
     };
 }

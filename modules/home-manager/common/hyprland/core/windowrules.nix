@@ -83,7 +83,7 @@ _: {
       {
         name = "Resolve";
         match = {
-          class = "^(\\bresolve\\b)$";
+          class = "^(resolve)$";
           xwayland = "1";
         };
         no_blur = true;
@@ -92,7 +92,7 @@ _: {
       {
         name = "Thunar";
         match = {
-          class = "^([Tt]hunar|org.gnome.Nautilus|[Pp]cmanfm-qt|org.kde.dolphin)$";
+          class = "^([Tt]hunar|org\\.gnome\\.Nautilus|[Pp]cmanfm-qt|org\\.kde\\.dolphin)$";
         };
         tag = "+file-manager";
       }
@@ -100,7 +100,7 @@ _: {
       {
         name = "Terminals";
         match = {
-          class = "^(com.mitchellh.ghostty|org.wezfurlong.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal)$";
+          class = "^(com\\.mitchellh\\.ghostty|org\\.wezfurlong\\.wezterm|Alacritty|kitty|kitty-dropterm|dropterminal)$";
         };
         tag = "+terminal";
       }
@@ -116,7 +116,7 @@ _: {
       {
         name = "Firefox";
         match = {
-          class = "^([Ff]irefox|org.mozilla.firefox|[Ff]irefox-esr)$";
+          class = "^([Ff]irefox|org\\.mozilla\\.firefox|[Ff]irefox-esr)$";
         };
         tag = "+browser";
       }
@@ -172,7 +172,7 @@ _: {
       {
         name = "zed-editor";
         match = {
-          class = "^(dev.zed.Zed)$";
+          class = "^(dev\\.zed\\.Zed)$";
         };
         tag = "+projects";
       }
@@ -207,7 +207,7 @@ _: {
       {
         name = "Telegram-desktop";
         match = {
-          class = "^(org.telegram.desktop|io.github.tdesktop_x64.TDesktop)$";
+          class = "^(org\\.telegram\\.desktop|io\\.github\\.tdesktop_x64\\.TDesktop)$";
         };
         tag = "+im";
       }
@@ -255,7 +255,7 @@ _: {
       {
         name = "heroicgameslauncher";
         match = {
-          class = "^(com.heroicgameslauncher.hgl)$";
+          class = "^(com\\.heroicgameslauncher\\.hgl)$";
         };
         tag = "+gamestore";
       }
@@ -280,7 +280,7 @@ _: {
       {
         name = "FileRoller";
         match = {
-          class = "^(file-roller|org.gnome.FileRoller)$";
+          class = "^(file-roller|org\\.gnome\\.FileRoller)$";
         };
         tag = "+fileviewer";
       }
@@ -288,7 +288,7 @@ _: {
       {
         name = "Loupe";
         match = {
-          class = "^(org.gnome.Loupe)$";
+          class = "^(org\\.gnome\\.Loupe)$";
         };
         tag = "+fileviewer";
       }
@@ -304,7 +304,7 @@ _: {
       {
         name = "Noctalia Settings";
         match = {
-          class = "^(dev.noctalia.Noctalia.Settings)$";
+          class = "^(dev\\.noctalia\\.Noctalia\\.Settings)$";
         };
         center = true;
         tag = "+settings";
@@ -314,7 +314,7 @@ _: {
       {
         name = "PulseAudio/Pipewire Volume Control";
         match = {
-          class = "^(pavucontrol|org.pulseaudio.pavucontrol|com.saivert.pwvucontrol)$";
+          class = "^(pavucontrol|org\\.pulseaudio\\.pavucontrol|com\\.saivert\\.pwvucontrol)$";
         };
         center = true;
         tag = "+settings";
@@ -330,9 +330,9 @@ _: {
       }
 
       {
-        name = "xdg-desktop-portal-gtk";
+        name = "xdg-desktop-portal implementations";
         match = {
-          class = "(xdg-desktop-portal-gtk)";
+          class = "^(xdg-desktop-portal-.+)$";
         };
         tag = "+settings";
       }
@@ -340,7 +340,7 @@ _: {
       {
         name = "blueman";
         match = {
-          class = "(.blueman-manager-wrapped)";
+          class = "(\\.blueman-manager-wrapped)";
         };
         tag = "+settings";
       }
@@ -363,10 +363,13 @@ _: {
         float = true;
       }
 
+      # Prevent the system from going idle (screen blanking, DPMS, screen lock, etc.)
+      # while any application is running in fullscreen. Normal idle behavior resumes
+      # when the application exits fullscreen. This applies to all apps
       {
         name = "IdleInhibit-fullscreen-1";
         match = {
-          class = "^(*)$";
+          class = "^.*$";
         };
         idle_inhibit = "fullscreen";
       }
@@ -374,7 +377,7 @@ _: {
       {
         name = "IdleInhibit-fullscreen-2";
         match = {
-          title = "^(*)$";
+          title = "^.*$";
         };
         idle_inhibit = "fullscreen";
       }
@@ -410,7 +413,7 @@ _: {
       {
         name = "mpv-or-clapper";
         match = {
-          class = "^(mpv|com.github.rafostar.Clapper)$";
+          class = "^(mpv|com\\.github\\.rafostar\\.Clapper)$";
         };
         float = true;
       }
@@ -427,17 +430,8 @@ _: {
       {
         name = "heroicgameslauncher-1";
         match = {
-          class = "^(com.heroicgameslauncher.hgl)$";
+          class = "^(com\\.heroicgameslauncher\\.hgl)$";
           title = "negative:(Heroic Games Launcher)";
-        };
-        float = true;
-      }
-
-      {
-        name = "Steam";
-        match = {
-          class = "^([Ss]team)$";
-          title = "negative:^([Ss]team)$";
         };
         float = true;
       }
@@ -516,7 +510,7 @@ _: {
       {
         name = "windowrule-77";
         match = {
-          class = "^(gedit|org.gnome.TextEditor|mousepad)$";
+          class = "^(gedit|org\\.gnome\\.TextEditor|mousepad)$";
         };
         opacity = "0.8 0.7";
       }

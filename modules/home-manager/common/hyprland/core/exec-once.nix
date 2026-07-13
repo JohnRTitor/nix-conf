@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (import ../utils/lua.nix { inherit lib; }) mkStartupHook;
+  inherit (import ../utils/lua.nix { inherit lib; }) mkStartupHook mkShutdownHook;
   inherit (config.myOptions.systemSettings) stylixImage;
 
   inherit (config.myOptions.programsSettings) statusbar;
@@ -26,5 +26,9 @@ in
         "sh -lc 'sleep 2 && (qs-wallpapers-restore || waypaper --wallpaper ${stylixImage} --backend awww) >/dev/null 2>&1 || true'"
       ]
     ))
+
+    (mkShutdownHook [
+      "hyprshutdown"
+    ])
   ];
 }

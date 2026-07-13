@@ -1,4 +1,5 @@
 {
+  self,
   lib,
   pkgs,
   config,
@@ -21,19 +22,35 @@ lib.mkMerge [
     ## Configure XDG portal ##
     xdg.portal = {
       enable = true;
-      xdgOpenUsePortal = true; # use xdg-open with xdg-desktop-portal
 
-      configPackages = [ config.programs.hyprland.package ];
+      extraPortals = lib.mkForce [
+        config.programs.hyprland.portalPackage
+        self.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-gtk4
+        pkgs.xdg-desktop-portal-gtk
+      ];
 
       # hyprland portal is already included (provides screen-shareing)
       # gtk is also needed for a file picker
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      config.hyprland = {
+        default = [
+          "hyprland"
+          "gtk4"
+          "gtk"
+        ];
+
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
+        "org.freedesktop.impl.portal.ScreenShot" = [ "hyprland" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk4" ];
+      };
     };
 
     # Enable Cosmic-greeter login manager
     services.displayManager.cosmic-greeter.enable = true;
     environment.systemPackages = with pkgs; [
       cosmic-icons
+      lxqt.lxqt-qtplugin
+      kdePackages.breeze-icons
     ];
 
     # Run XDG autostart, this is needed for a DE-less setup like Hyprland
