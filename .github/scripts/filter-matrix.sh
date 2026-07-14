@@ -42,9 +42,13 @@ for row in $(echo "${TARGETS_JSON}" | jq -r '.[] | @base64'); do
             echo "Target $NAME ($HASH) is already in your Cachix, skipping."
         elif curl -sSf "https://cache.nixos.org/${HASH}.narinfo" > /dev/null 2>&1; then
             echo "Target $NAME ($HASH) is already in upstream NixOS cache, skipping."
+        elif curl -sSf "https://nix-community.cachix.org/${HASH}.narinfo" > /dev/null 2>&1; then
+            echo "Target $NAME ($HASH) is already in nix-community cache, skipping."
+        elif curl -sSf "https://nyx-cache.chaotic.cx/${HASH}.narinfo" > /dev/null 2>&1; then
+            echo "Target $NAME ($HASH) is already in chaotic cache, skipping."
         else
             BUILD_IT=true
-            echo "Target $NAME ($HASH) is missing from both caches."
+            echo "Target $NAME ($HASH) is missing from all caches."
         fi
     fi
 

@@ -57,6 +57,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    xdg-desktop-portal-gtk4 = {
+      url = "github:johnrtitor/xdg-desktop-portal-gtk4";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.flake-parts.follows = "flake-parts";

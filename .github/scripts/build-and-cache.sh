@@ -90,14 +90,19 @@ function build_package() {
   # Ensure keepalive is killed on function exit
   trap "kill $keepalive 2>/dev/null || true" RETURN
 
+  local build_ref=".#$pkg"
+  if [[ "$pkg" == *"#"* ]]; then
+    build_ref="$pkg"
+  fi
+
   {
     echo "--- Building: $pkg ---"
-    echo "Command: nix build .#$pkg $BUILD_FLAGS"
+    echo "Command: nix build $build_ref $BUILD_FLAGS"
   } > "$log_file"
 
   # Attempt to build
   local exit_code=0
-  nix build ".#$pkg" $BUILD_FLAGS > paths.tmp 2> >(tee -a "$log_file" >&2) || exit_code=$?
+  nix build "$build_ref" $BUILD_FLAGS > paths.tmp 2> >(tee -a "$log_file" >&2) || exit_code=$?
   
   cat paths.tmp >> "$log_file" 2>/dev/null || true
   echo "Exit code: $exit_code" >> "$log_file"
@@ -199,6 +204,8 @@ function build_target() {
     build_package "nixosConfigurations.$hostname.config.$name" "NixOS config attribute ($hostname)" || return 1
   elif [ "$group" = "nixos_package" ]; then
     build_package "nixosConfigurations.$hostname.pkgs.$name" "NixOS package ($hostname)" || return 1
+  elif [ "$group" = "remote_flake" ]; then
+    build_package "$name" "Remote flake package" || return 1
   elif [ "$group" = "vscode_extensions" ]; then
     local vscode_path=".#nixosConfigurations.$hostname.config.home-manager.users.$user.programs.vscode.profiles.default.extensions"
     local ext_names ext_drvs

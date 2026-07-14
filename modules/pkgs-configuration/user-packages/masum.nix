@@ -16,7 +16,8 @@
       })
     */
 
-    postman
+    thunderbird
+    # postman
 
     (antigravity.override {
       # if keyring does not work, try either "libsecret" or "gnome"

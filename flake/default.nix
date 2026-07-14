@@ -37,6 +37,7 @@ in
   perSystem =
     {
       pkgs,
+      system,
       self',
       ...
     }:
@@ -63,7 +64,7 @@ in
         microcode-amd-platomav = pkgs-unfree.callPackage ../packages/microcode-amd-platomav {
           microcode-src = inputs.platomav-microcode;
         };
-        xdg-desktop-portal-gtk4 = pkgs.callPackage ../packages/xdg-desktop-portal-gtk4 { };
+        xdg-desktop-portal-gtk4 = inputs.xdg-desktop-portal-gtk4.packages.${system}.xdg-desktop-portal-gtk4;
       };
     };
 }

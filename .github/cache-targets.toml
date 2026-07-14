@@ -38,10 +38,10 @@ group = "nixos_package"
 hostname = "Ainz-NIX"
 name = "scx.full"
 
-[[targets]]
-group = "vscode_extensions"
-hostname = "Ainz-NIX"
-user = "masum"
+# [[targets]]
+# group = "vscode_extensions"
+# hostname = "Ainz-NIX"
+# user = "masum"
 
 [[targets]]
 group = "nixos_config_attribute"
@@ -52,3 +52,11 @@ name = "home-manager.users.masum.programs.noctalia.package"
 group = "nixos_config_attribute"
 hostname = "Ainz-NIX"
 name = "nix.package"
+
+[[targets]]
+group = "flake_package"
+name = "xdg-desktop-portal-gtk4"
+
+# [[targets]]
+# group = "remote_flake"
+# name = "github:koverstreet/bcachefs-tools#bcachefs-tools"

@@ -227,6 +227,22 @@
         "type": "github"
       }
     },
+    "flake-compat_4": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -1081,6 +1097,7 @@
         "odysseus": "odysseus",
         "platomav-microcode": "platomav-microcode",
         "stylix": "stylix",
+        "xdg-desktop-portal-gtk4": "xdg-desktop-portal-gtk4",
         "zen-browser": "zen-browser"
       }
     },
@@ -1248,6 +1265,30 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "xdg-desktop-portal-gtk4": {
+      "inputs": {
+        "flake-compat": "flake-compat_4",
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784407131,
+        "narHash": "sha256-uLGlEkQ4vph1ZDmO6TwBcIo36FtGbE9etg7A4sIU2Wk=",
+        "owner": "johnrtitor",
+        "repo": "xdg-desktop-portal-gtk4",
+        "rev": "be5e13f7e6ec2a107770cf1b3bfd15af76f4d381",
+        "type": "github"
+      },
+      "original": {
+        "owner": "johnrtitor",
+        "repo": "xdg-desktop-portal-gtk4",
         "type": "github"
       }
     },

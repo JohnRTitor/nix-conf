@@ -26,16 +26,15 @@ lib.mkMerge [
       extraPortals = lib.mkForce [
         config.programs.hyprland.portalPackage
         self.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-gtk4
-        pkgs.xdg-desktop-portal-gtk
+
       ];
 
-      # hyprland portal is already included (provides screen-shareing)
+      # hyprland portal is already included (provides screen-sharing)
       # gtk is also needed for a file picker
       config.hyprland = {
         default = [
           "hyprland"
           "gtk4"
-          "gtk"
         ];
 
         "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
