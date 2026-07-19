@@ -8,12 +8,12 @@
 {
   imports = [
     #./amdgpu.nix # import modules here to test
-    "${inputs.nixpkgs-ntfs-test}/nixos/modules/tasks/filesystems/ntfs.nix"
+    # "${inputs.nixpkgs-ntfs-test}/nixos/modules/tasks/filesystems/ntfs.nix"
   ];
 
   disabledModules = [
     # Disable specific modules
-    "${inputs.nixpkgs}/nixos/modules/tasks/filesystems/ntfs.nix"
+    # "${inputs.nixpkgs}/nixos/modules/tasks/filesystems/ntfs.nix"
   ];
 
   nixpkgs.overlays = [

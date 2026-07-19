@@ -5,7 +5,6 @@
     ### CORE REPOSITORIES ###
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "github:NixOS/nixpkgs/master"; # Testing branch of nixpkgs
-    nixpkgs-ntfs-test.url = "github:johnrtitor/nixpkgs/ntfs";
 
     ### NIX ECOSYSTEM & UTILS ###
     flake-parts = {
