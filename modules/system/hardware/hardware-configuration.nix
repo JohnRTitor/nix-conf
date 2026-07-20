@@ -43,10 +43,7 @@
     device = "/dev/disk/by-uuid/4A8A1FBB8A1FA30D";
     fsType = "ntfs";
     options = [
-      "uid=1000"
-      "gid=100"
-      "fmask=0137"
-      "dmask=0027"
+      "noatime"
       "comment=x-gvfs-show" # Force it to be shown in Nautilus
     ];
   };
