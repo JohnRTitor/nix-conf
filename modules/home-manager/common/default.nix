@@ -40,6 +40,8 @@
 
     ./kvantum.nix
 
+    ./images-wallpapers.nix
+
     # Default Nginx server welcome testing page
     # Nginx global config is located in ../dev-environment/nginx.nix
     ./web-server-html
