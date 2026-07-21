@@ -41,6 +41,7 @@ let
 in
 {
   imports = [
+    ./display-manager.nix
     ./session.nix
   ];
 

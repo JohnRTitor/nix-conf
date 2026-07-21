@@ -44,14 +44,6 @@ lib.mkMerge [
       };
     };
 
-    # Enable Cosmic-greeter login manager
-    services.displayManager.cosmic-greeter.enable = true;
-    environment.systemPackages = with pkgs; [
-      cosmic-icons
-      lxqt.lxqt-qtplugin
-      kdePackages.breeze-icons
-    ];
-
     # Run XDG autostart, this is needed for a DE-less setup like Hyprland
     services.xserver.desktopManager.runXdgAutostartIfNone = true;
   }

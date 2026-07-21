@@ -126,6 +126,15 @@
     };
 
     programsSettings = {
+      displayManager = lib.mkOption {
+        type = lib.types.enum [
+          "cosmic-greeter"
+          "sddm"
+        ];
+        default = "cosmic-greeter";
+        description = "Display manager";
+      };
+
       fileManager = lib.mkOption {
         type = lib.types.enum [
           "dolphin"
@@ -157,10 +166,12 @@
       };
 
       guiSuite = lib.mkOption {
-        type = lib.types.nullOr (lib.types.enum [
-          "gnome"
-          "kde"
-        ]);
+        type = lib.types.nullOr (
+          lib.types.enum [
+            "gnome"
+            "kde"
+          ]
+        );
         description = "GUI Suite applications to install";
       };
 
