@@ -130,6 +130,7 @@
         type = lib.types.enum [
           "cosmic-greeter"
           "regreet"
+          "dms-greeter"
           # "gdm"
           # "sddm" # shit stuff
         ];

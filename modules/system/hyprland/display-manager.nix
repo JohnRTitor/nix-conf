@@ -8,6 +8,34 @@
   ...
 }:
 lib.mkMerge [
+  (lib.mkIf (config.myOptions.programsSettings.displayManager == "dms-greeter") {
+    services.displayManager.dms-greeter = {
+      enable = true;
+      compositor.name = "hyprland";
+      compositor.customConfig = /* lua */ ''
+        hl.env("DMS_RUN_GREETER", "1")
+
+        hl.config({
+        	input = {
+        		follow_mouse = 1,
+        		kb_layout = "us",
+        		numlock_by_default = true,
+        		off_window_axis_events = 2,
+        		repeat_delay = 250,
+        		repeat_rate = 35,
+        		sensitivity = 0,
+        		touchpad = {
+        			clickfinger_behavior = true,
+        			disable_while_typing = true,
+        			natural_scroll = true,
+        			scroll_factor = 0.7,
+        		},
+        	},
+        })
+      '';
+    };
+  })
+
   (lib.mkIf (config.myOptions.programsSettings.displayManager == "regreet") {
     programs.regreet.enable = true;
   })
