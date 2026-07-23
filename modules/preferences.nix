@@ -53,7 +53,7 @@
     };
 
     programsSettings = {
-      displayManager = "sddm";
+      displayManager = "gdm";
       fileManager = "dolphin";
       terminal = "kitty";
       guiSuite = "kde";
