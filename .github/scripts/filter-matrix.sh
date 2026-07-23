@@ -27,6 +27,14 @@ for row in $(echo "${TARGETS_JSON}" | jq -r '.[] | @base64'); do
         OUT_PATH=$(nix eval --raw ".#nixosConfigurations.$HOSTNAME.pkgs.$NAME.outPath" 2>/dev/null || true)
     elif [ "$GROUP" = "vscode_extensions" ]; then
        OUT_PATH="always_build"
+    elif [ "$GROUP" = "flake_package" ]; then
+        if [ -z "$NAME" ] || [ "$NAME" = "all" ]; then
+            OUT_PATH="always_build"
+        else
+            OUT_PATH=$(nix eval --raw ".#$NAME.outPath" 2>/dev/null || true)
+        fi
+    elif [ "$GROUP" = "remote_flake" ]; then
+        OUT_PATH=$(nix eval --raw "$NAME.outPath" 2>/dev/null || true)
     fi
 
     BUILD_IT=false
