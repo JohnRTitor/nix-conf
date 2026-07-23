@@ -129,7 +129,8 @@
       displayManager = lib.mkOption {
         type = lib.types.enum [
           "cosmic-greeter"
-          "gdm"
+          "regreet"
+          # "gdm"
           # "sddm" # shit stuff
         ];
         default = "cosmic-greeter";

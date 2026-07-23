@@ -8,6 +8,10 @@
   ...
 }:
 lib.mkMerge [
+  (lib.mkIf (config.myOptions.programsSettings.displayManager == "regreet") {
+    programs.regreet.enable = true;
+  })
+
   (lib.mkIf (config.myOptions.programsSettings.displayManager == "cosmic-greeter") {
     services.displayManager.cosmic-greeter.enable = true;
 
@@ -16,6 +20,7 @@ lib.mkMerge [
     ];
   })
 
+  # FUCK GDM, BUGGY
   (lib.mkIf (config.myOptions.programsSettings.displayManager == "gdm") {
     services.displayManager.gdm = {
       enable = true;
