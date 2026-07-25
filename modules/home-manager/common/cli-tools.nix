@@ -15,8 +15,8 @@
     git = true;
     extraOptions = [
       # extra flags to pass to eza
-      "--git-repos" # show git directories repo status
       "--hyperlink" # display results as hyperlinks
+      "--git-repos" # show git directories repo status
     ];
     # disabled as some scripts may not work with eza
     enableBashIntegration = false;

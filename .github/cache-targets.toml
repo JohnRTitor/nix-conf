@@ -57,6 +57,10 @@ name = "nix.package"
 group = "flake_package"
 name = "xdg-desktop-portal-gtk4"
 
+[[targets]]
+group = "flake_package"
+name = "dms-greeter"
+
 # [[targets]]
 # group = "remote_flake"
 # name = "github:koverstreet/bcachefs-tools#bcachefs-tools"

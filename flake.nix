@@ -5,6 +5,7 @@
     ### CORE REPOSITORIES ###
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
     nixpkgs-master.url = "github:NixOS/nixpkgs/master"; # Testing branch of nixpkgs
+    nixpkgs-dms-greeter-test.url = "github:NixOS/nixpkgs/refs/pull/545231/merge";
 
     ### NIX ECOSYSTEM & UTILS ###
     flake-parts = {
@@ -56,14 +57,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    xdg-desktop-portal-gtk4 = {
-      url = "github:johnrtitor/xdg-desktop-portal-gtk4";
-      inputs.flake-parts.follows = "flake-parts";
+    dms-greeter = {
+      url = "github:AvengeMedia/dank-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pixie-sddm = {
-      url = "github:xCaptaiN09/pixie-sddm";
+    xdg-desktop-portal-gtk4 = {
+      url = "github:johnrtitor/xdg-desktop-portal-gtk4";
+      inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

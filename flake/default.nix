@@ -65,6 +65,7 @@ in
           microcode-src = inputs.platomav-microcode;
         };
         xdg-desktop-portal-gtk4 = inputs.xdg-desktop-portal-gtk4.packages.${system}.xdg-desktop-portal-gtk4;
+        dms-greeter = inputs.dms-greeter.packages.${system}.dms-greeter;
       };
     };
 }

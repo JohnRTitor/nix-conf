@@ -11,6 +11,8 @@ lib.mkMerge [
   (lib.mkIf (config.myOptions.programsSettings.displayManager == "dms-greeter") {
     services.displayManager.dms-greeter = {
       enable = true;
+      package = self.packages.${pkgs.stdenv.hostPlatform.system}.dms-greeter;
+
       compositor.name = "hyprland";
       compositor.customConfig = /* lua */ ''
         hl.env("DMS_RUN_GREETER", "1")
@@ -103,20 +105,6 @@ lib.mkMerge [
           cp -r themes/golden-horizon/* $out/share/sddm/themes/golden-horizon/
         ";
       })
-
-      # # Install and customize the theme. All fields are optional and will
-      # # fall back to theme defaults if not set.
-      # (inputs.pixie-sddm.packages.${pkgs.stdenv.hostPlatform.system}.pixie-sddm.override {
-      #   background = config.myOptions.systemSettings.stylixImage; # Nix path or absolute path
-      #   # avatar = ./my-avatar.jpg; # Nix path or absolute path
-      #   primaryColor = "#B3C8FF"; # Hex color code
-      #   accentColor = "#3F5F91"; # Hex color code
-      #   autoColor = true; # true/false
-      #   backgroundColor = "#1A1C1E"; # Hex color code
-      #   textColor = "#E2E2E6"; # Hex color code
-      #   fontFamily = "JetBrains Mono"; # Font family name
-      #   fontSize = 13; # Font size in px
-      # })
     ];
   })
 ]

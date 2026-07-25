@@ -139,6 +139,22 @@
         "type": "github"
       }
     },
+    "dank-qml-common": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784433462,
+        "narHash": "sha256-8MdKtu/tSYrCenhtmgYW+lcv9JhGPTE3BnSE6WuqO1U=",
+        "owner": "AvengeMedia",
+        "repo": "dank-qml-common",
+        "rev": "8d36f668d73e7a4391ea9ead3939c5de137aa1f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dank-qml-common",
+        "type": "github"
+      }
+    },
     "determinate-nix": {
       "inputs": {
         "flake-parts": [
@@ -160,6 +176,27 @@
       "original": {
         "owner": "DeterminateSystems",
         "repo": "nix-src",
+        "type": "github"
+      }
+    },
+    "dms-greeter": {
+      "inputs": {
+        "dank-qml-common": "dank-qml-common",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784907716,
+        "narHash": "sha256-Ut8XgrSfgDi5QO71SZxVpjibIZa08dJnNdzm0PWtTxc=",
+        "owner": "AvengeMedia",
+        "repo": "dank-greeter",
+        "rev": "d3c919158e135e2f64e5ad3b025887e3a8b3549f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dank-greeter",
         "type": "github"
       }
     },
@@ -280,24 +317,6 @@
     "flake-utils": {
       "inputs": {
         "systems": "systems_2"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_2": {
-      "inputs": {
-        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -871,6 +890,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-dms-greeter-test": {
+      "locked": {
+        "lastModified": 1784951587,
+        "narHash": "sha256-F4TKcR2QZGqLJ2nNB5TkTJ/NYPPB4xbGFiOxLe/6uCE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f741205cdc30e83d80ee3e5d1968066535052a93",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "refs/pull/545231/merge",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-master": {
       "locked": {
         "lastModified": 1784466040,
@@ -1015,27 +1050,6 @@
         "type": "github"
       }
     },
-    "pixie-sddm": {
-      "inputs": {
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1777827483,
-        "narHash": "sha256-1PDWX8bJfc0HYMW9MsxWwDXDoYy5aaehUWr7FW3yR9U=",
-        "owner": "xCaptaiN09",
-        "repo": "pixie-sddm",
-        "rev": "730072544f3785c43eb05674c334a7d0fb07681b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xCaptaiN09",
-        "repo": "pixie-sddm",
-        "type": "github"
-      }
-    },
     "platomav-microcode": {
       "flake": false,
       "locked": {
@@ -1105,6 +1119,7 @@
       "inputs": {
         "chaotic": "chaotic",
         "determinate-nix": "determinate-nix",
+        "dms-greeter": "dms-greeter",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
@@ -1113,11 +1128,11 @@
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-dms-greeter-test": "nixpkgs-dms-greeter-test",
         "nixpkgs-master": "nixpkgs-master",
         "noctalia": "noctalia",
         "nur": "nur",
         "odysseus": "odysseus",
-        "pixie-sddm": "pixie-sddm",
         "platomav-microcode": "platomav-microcode",
         "stylix": "stylix",
         "xdg-desktop-portal-gtk4": "xdg-desktop-portal-gtk4",
@@ -1162,7 +1177,7 @@
         "nur": [
           "nur"
         ],
-        "systems": "systems_4",
+        "systems": "systems_3",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
         "tinted-tmux": "tinted-tmux",
@@ -1213,21 +1228,6 @@
       }
     },
     "systems_3": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_4": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

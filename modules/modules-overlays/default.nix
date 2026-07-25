@@ -9,11 +9,13 @@
   imports = [
     #./amdgpu.nix # import modules here to test
     # "${inputs.nixpkgs-ntfs-test}/nixos/modules/tasks/filesystems/ntfs.nix"
+    "${inputs.nixpkgs-dms-greeter-test}/nixos/modules/services/display-managers/dms-greeter.nix"
   ];
 
   disabledModules = [
     # Disable specific modules
     # "${inputs.nixpkgs}/nixos/modules/tasks/filesystems/ntfs.nix"
+    "${inputs.nixpkgs}/nixos/modules/services/display-managers/dms-greeter.nix"
   ];
 
   nixpkgs.overlays = [
