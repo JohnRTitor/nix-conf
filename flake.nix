@@ -26,7 +26,7 @@
 
     determinate-nix = {
       url = "github:DeterminateSystems/nix-src";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
 

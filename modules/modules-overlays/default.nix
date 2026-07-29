@@ -23,6 +23,7 @@
 
     (final: prev: {
       #   open-webui = pkgs-master.open-webui;
+      lact = pkgs-master.lact;
       # vesktop = prev.vesktop.override {
       #   pnpm_10_29_2 = final.pnpm_10;
       # };
