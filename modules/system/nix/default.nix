@@ -23,6 +23,10 @@
     "masum-work"
   ]; # FIXME: if someday custom cache works without this
 
+  # Optimise daemon priority so builds do not lag the system
+  nix.daemonCPUSchedPolicy = "idle";
+  nix.daemonIOSchedClass = "idle";
+
   # Parallel Evaluation (only available in Determinate Nix)
   nix.settings.eval-cores = 0;
 
