@@ -29,13 +29,35 @@
     };
   */
 
-  # Enable scx extra schedulers
-  services.scx.enable = true;
-  services.scx.package = pkgs.scx.full;
-  # lavd is better for gaming
-  # rustland is better for general workloads
-  services.scx.scheduler = "scx_lavd";
-  services.scx.extraArgs = [ "--performance" ];
+  # Enable the sched_ext (BPF) user-space CPU scheduler daemon
+  services.scx = {
+    enable = true;
+    package = pkgs.scx.rustscheds;
+
+    # Choose the active scheduler target.
+    # ---------------------------------------------------------------------------------
+    # SCHEDULER COMPARISON & SELECTION EXPLANATIONS:
+    #
+    # * scx_lavd (Latency-criticality Aware Virtual Deadline):
+    #   - Optimized heavily for gaming and handhelds (e.g., Steam Deck).
+    #   - Focuses on consistent frame pacing and preventing 1% low framerate drops.
+    #   - Supports the "--performance" flag to force aggressive execution behavior.
+    #
+    # * scx_rustland (The Safe Default):
+    #   - Excellent, proven choice for general desktop workloads.
+    #   - Balances throughput and responsiveness using a clean Rust design.
+    #   - Highly stable fallback if experimental schedulers cause kernel hiccups.
+    #
+    # * scx_pandemonium (The Choice for Developers):
+    #   - Exceptional for heavy coding, code completion (LSP), and extreme background tasks.
+    #   - Automatically moves "compile storms" (cc1, rustc, make, cargo) into a background "Batch" tier.
+    #   - Protects your UI, editor, and web browser from lagging while compiling at 100% CPU.
+    #   - Supports the "--no-adaptive" flag to strip down processing overhead.
+    # ---------------------------------------------------------------------------------
+
+    scheduler = "scx_pandemonium";
+    # extraArgs = [ "--performance" ];
+  };
 
   # Accounts daemon is needed to remember passwords and other account information
   # by display manager and other services

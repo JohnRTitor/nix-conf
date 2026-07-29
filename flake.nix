@@ -26,7 +26,8 @@
 
     determinate-nix = {
       url = "github:DeterminateSystems/nix-src";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # This can sometimes cause build failure due to using overlays internally
+      # inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
 

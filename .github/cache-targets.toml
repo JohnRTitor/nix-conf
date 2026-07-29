@@ -11,11 +11,6 @@ name = "programs.hyprland.portalPackage"
 [[targets]]
 group = "nixos_config_attribute"
 hostname = "Ainz-NIX"
-name = "services.ananicy.package"
-
-[[targets]]
-group = "nixos_config_attribute"
-hostname = "Ainz-NIX"
 name = "programs.appimage.package"
 
 [[targets]]
@@ -26,7 +21,12 @@ name = "boot.kernelPackages.kernel"
 [[targets]]
 group = "nixos_config_attribute"
 hostname = "Ainz-NIX"
-name = "boot.kernelPackages.bcachefs"
+name = "boot.bcachefs.package"
+
+[[targets]]
+group = "nixos_config_attribute"
+hostname = "Ainz-NIX"
+name = "boot.bcachefs.modulePackage"
 
 [[targets]]
 group = "nixos_package"
@@ -36,7 +36,7 @@ name = "zed-editor"
 [[targets]]
 group = "nixos_package"
 hostname = "Ainz-NIX"
-name = "scx.full"
+name = "scx.rustscheds"
 
 # [[targets]]
 # group = "vscode_extensions"
