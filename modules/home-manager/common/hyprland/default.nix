@@ -26,6 +26,11 @@
     nwg-look # gtk theme configure
     pamixer
     playerctl # media player control
+
+    ## System Utilities ##
+    # provides gdbus and most importantly gio, which is used
+    # for providing trash action in most Electron apps
+    glib
   ];
 
 }

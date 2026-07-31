@@ -44,10 +44,6 @@ lib.mkMerge [
 
   (lib.mkIf (config.myOptions.programsSettings.displayManager == "cosmic-greeter") {
     services.displayManager.cosmic-greeter.enable = true;
-
-    environment.systemPackages = with pkgs; [
-      cosmic-icons
-    ];
   })
 
   # FUCK GDM, BUGGY

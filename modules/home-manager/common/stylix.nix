@@ -8,6 +8,7 @@
     hyprlock.enable = false;
     ghostty.enable = false;
     vscode.enable = false;
+    kitty.enable = false;
     qt = {
       enable = false; # QT is handled by Kvantum
       # platform = "qtct";

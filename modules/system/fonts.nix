@@ -11,9 +11,6 @@
 
     jetbrains-mono
 
-    # Only used in Kitty terminal (modules/home-manager/common/terminals/kitty.nix)
-    maple-mono.NF
-
     # Only used in Waybar TheBlackDon theme
     # nerd-fonts.iosevka-term
 
