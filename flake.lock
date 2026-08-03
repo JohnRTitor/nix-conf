@@ -1319,11 +1319,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785537377,
-        "narHash": "sha256-4tRo45gzf2RR1iYu79Rl5MiKAx6BU2abKjF18PqIKLI=",
+        "lastModified": 1785652973,
+        "narHash": "sha256-q0tTC8sk7cvbg6BgfbWFgeEWzet2LWSW6yq29KWy6Rs=",
         "owner": "johnrtitor",
         "repo": "xdg-desktop-portal-gtk4",
-        "rev": "bb29272a1fc9b64cb85aa6eb364da3110718c5e5",
+        "rev": "c325fb8db8f493fb1079123a3196e77b93f46806",
         "type": "github"
       },
       "original": {

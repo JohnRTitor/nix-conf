@@ -11,6 +11,16 @@ lib.mkMerge [
       kdePackages.dolphin
     ];
 
+    qt.kde.settings = {
+      kdeglobals = {
+        "General" = {
+          # Set the default terminal for Dolphin
+          "TerminalApplication" = config.myOptions.programsSettings.terminal;
+          "TerminalService" = "${config.myOptions.programsSettings.terminal}.desktop";
+        };
+      };
+    };
+
     # Needed by kbuildsycoca6
     xdg.configFile."menus/applications.menu".source = "${
       self.packages.${pkgs.stdenv.hostPlatform.system}.plasma-xdg-menu
