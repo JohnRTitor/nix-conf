@@ -7,8 +7,22 @@
 }:
 lib.mkMerge [
   (lib.mkIf (config.myOptions.programsSettings.fileManager == "dolphin") {
-    home.packages = with pkgs; [
-      kdePackages.dolphin
+    home.packages = with pkgs.kdePackages; [
+      dolphin
+
+      kio # provides helper service + a bunch of other stuff
+      # kio-admin # managing files as admin
+      kio-extras # stuff for MTP, AFC, etc
+      kio-fuse # fuse interface for KIO
+    ];
+
+    dbus.packages = with pkgs.kdePackages; [
+      dolphin
+
+      kio # provides helper service + a bunch of other stuff
+      # kio-admin # managing files as admin
+      kio-extras # stuff for MTP, AFC, etc
+      kio-fuse # fuse interface for KIO
     ];
 
     qt.kde.settings = {

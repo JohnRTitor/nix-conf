@@ -48,6 +48,15 @@
     ];
   };
 
+  fileSystems."/mnt/Crucial-Shared" = {
+    device = "/dev/disk/by-uuid/541D44F565372C93";
+    fsType = "ntfs";
+    options = [
+      "noatime"
+      "comment=x-gvfs-show" # Force it to be shown in Nautilus
+    ];
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
