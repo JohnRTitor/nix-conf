@@ -21,17 +21,17 @@
           path = "/home/masum/syncthing/Paira";
           devices = [
             "pairadevice"
-            "pairadevice2"
+            # "pairadevice2"
           ];
           order = "alphabetic";
           ignorePerms = false; # Enable file permission syncing
         };
-        "ArunimaShared" = {
-          path = "/home/masum/syncthing/Arunima";
-          devices = [ "arunimadevice" ];
-          order = "alphabetic";
-          ignorePerms = false; # Enable file permission syncing
-        };
+        # "ArunimaShared" = {
+        #   path = "/home/masum/syncthing/Arunima";
+        #   devices = [ "arunimadevice" ];
+        #   order = "alphabetic";
+        #   ignorePerms = false; # Enable file permission syncing
+        # };
       };
     };
   };
