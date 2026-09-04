@@ -41,6 +41,7 @@ in
       ### SYSTEM COMPONENTS & SERVICES ###
       inputs.lanzaboote.nixosModules.lanzaboote
       inputs.nix-flatpak.nixosModules.nix-flatpak # nix-flatpak, allows flatpak declaratively
+      inputs.ananicy-rs.nixosModules.default
 
       ### DESKTOP ENVIRONMENT & WINDOW MANAGER ###
       inputs.stylix.nixosModules.stylix

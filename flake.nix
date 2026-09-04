@@ -69,6 +69,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ananicy-rs = {
+      url = "github:johnrtitor/ananicy-rs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     stylix = {
       url = "github:nix-community/stylix";
       inputs.flake-parts.follows = "flake-parts";

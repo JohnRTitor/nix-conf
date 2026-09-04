@@ -2,7 +2,7 @@
 {
   # Enable Ananicy CPP for better system performance
   services.ananicy = {
-    enable = true;
+    enable = false;
     package = pkgs.ananicy-cpp;
     # from nixpkgs: ananicy-rules-cachyos
     rulesProvider = pkgs.ananicy-rules-cachyos.overrideAttrs (prevAttrs: {

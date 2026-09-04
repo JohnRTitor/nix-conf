@@ -37,7 +37,6 @@ lib.mkMerge [
           "gtk4"
         ];
 
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
         "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
         "org.freedesktop.impl.portal.ScreenShot" = [ "hyprland" ];
         "org.freedesktop.impl.portal.FileChooser" = [ "gtk4" ];

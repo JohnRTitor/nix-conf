@@ -12,7 +12,7 @@
   imports = [
     ./ananicy-cpp.nix
     ./console-tty.nix
-    ./gnome-keyring.nix
+    ./oo7.nix
     ./gnupg-ssh.nix
     ./ai-models
     ./apparmor.nix

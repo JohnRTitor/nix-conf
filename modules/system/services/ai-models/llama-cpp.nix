@@ -9,7 +9,7 @@
 
 let
   ## PREFS ##
-  enableLlamaCPP = true;
+  enableLlamaCPP = false;
 
   rocmOverrideGfx = "10.3.0";
 

@@ -1,5 +1,28 @@
 {
   "nodes": {
+    "ananicy-rs": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788295031,
+        "narHash": "sha256-cdWO6h0KS06KwDHVn84SKQyl8mRfRYiCdnCHCSs6Hco=",
+        "owner": "johnrtitor",
+        "repo": "ananicy-rs",
+        "rev": "2643721a33d9526cc3771d4c0307a2da6fd3b4fc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "johnrtitor",
+        "repo": "ananicy-rs",
+        "type": "github"
+      }
+    },
     "aquamarine": {
       "inputs": {
         "hyprutils": [
@@ -907,11 +930,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1787410216,
-        "narHash": "sha256-cgFvmnWqeroA4K2XypkRmCY+NpBD0VcQ9m0DxjrZZ7Q=",
+        "lastModified": 1788519520,
+        "narHash": "sha256-lU35ItRIgDlfQ2NAQiX/2wIb3GRxfVvbBXU2AF/YHhI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dbaf5f8c93ef47256df42011526cd4e290550506",
+        "rev": "54f1a5e9369789eb6af34054d34b81c53171cc8b",
         "type": "github"
       },
       "original": {
@@ -1116,6 +1139,7 @@
     },
     "root": {
       "inputs": {
+        "ananicy-rs": "ananicy-rs",
         "chaotic": "chaotic",
         "determinate-nix": "determinate-nix",
         "dms-greeter": "dms-greeter",
