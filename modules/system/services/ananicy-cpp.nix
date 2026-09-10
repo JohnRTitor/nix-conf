@@ -1,10 +1,13 @@
 { pkgs, ... }:
 {
   # Enable Ananicy CPP for better system performance
-  services.ananicy = {
-    enable = false;
-    package = pkgs.ananicy-cpp;
-    # from nixpkgs: ananicy-rules-cachyos
+  services.ananicy-rs = {
+    enable = true;
+    extraArgs = [
+      "--systemd"
+      "--verbose"
+    ];
+
     rulesProvider = pkgs.ananicy-rules-cachyos.overrideAttrs (prevAttrs: {
       patches = [
         (pkgs.fetchpatch {
