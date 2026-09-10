@@ -121,8 +121,6 @@ lib.mkMerge [
 
   # Common packages
   {
-    # home.packages = with pkgs; [
-    #   tumbler # thumbnailer service
-    # ];
+
   }
 ]

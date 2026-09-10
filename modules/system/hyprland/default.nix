@@ -69,4 +69,15 @@ in
 
   # No need for XWayland Satellite on Hyprland
   programs.xwayland.enable = true;
+
+  # Run the thumbnailer service to get proper thumbnails
+  services.tumbler.enable = true;
+
+  systemd.packages = with pkgs; [
+    tumbler # thumbnailer service
+  ];
+
+  environment.pathsToLink = [
+    "share/thumbnailers"
+  ];
 }
