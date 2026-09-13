@@ -8,8 +8,9 @@
 }:
 let
   ## PREFS ##
-  enableOpenCL = true;
-  enableOverclocking = true;
+  enable32Bit = false;
+  enableOpenCL = false;
+  enableOverclocking = false;
 in
 lib.mkMerge [
   {
@@ -18,7 +19,6 @@ lib.mkMerge [
     # Enable OpenGL and Vulkan support
     hardware.graphics = {
       enable = true;
-      enable32Bit = true;
       extraPackages = with pkgs; [
         # LIBVA and VDPAU are hardware acceleration drivers
         libva
@@ -26,6 +26,7 @@ lib.mkMerge [
         libvdpau-va-gl
       ];
       # For 32 bit applications
+      enable32Bit = enable32Bit;
       extraPackages32 = with pkgs.driversi686Linux; [
         libva-vdpau-driver
         libvdpau-va-gl
