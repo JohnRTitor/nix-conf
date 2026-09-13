@@ -140,7 +140,7 @@ _: {
       {
         name = "vscodium";
         match = {
-          class = "^(codium|codium-url-handler|VSCodium)$";
+          class = "^(codium(-url-handler)?|VSCodium)$";
         };
         tag = "+projects";
       }
@@ -148,7 +148,7 @@ _: {
       {
         name = "vscode";
         match = {
-          class = "^(VSCode|code-url-handler)$";
+          class = "^(code(-url-handler)?|VSCode)$";
         };
         tag = "+projects";
       }
@@ -156,7 +156,7 @@ _: {
       {
         name = "antigravity";
         match = {
-          class = "^(antigravity|antigravity-url-handler)$";
+          class = "^antigravity(-ide)?(-url-handler)?$";
         };
         tag = "+projects";
       }
