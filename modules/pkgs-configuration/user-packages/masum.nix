@@ -1,13 +1,13 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    deluge # Torrent client
+    # deluge # Torrent client
 
     ## PERSONAL ENJOYMENT ##
     # ani-cli # watch anime in terminal!
 
     materialgram # Good looking material themed telegram client
-    fluffychat # Matrix client
+    # fluffychat # Matrix client
     gajim # XMPP client
     /*
       (element-desktop.override { # Matrix client
@@ -24,6 +24,6 @@
       commandLineArgs = "--password-store=gnome-libsecret";
     })
 
-    jetbrains.idea
+    # jetbrains.idea
   ];
 }
