@@ -40,7 +40,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: setup nix
-        uses: ./.github/actions/setup-nix
+        uses: DeterminateSystems/determinate-nix-action@main
 
       - name: Install required tools
         run: nix profile add nixpkgs#yq-go nixpkgs#jq
@@ -78,8 +78,13 @@ jobs:
           sparse-checkout: |
             .github/actions
 
-      - name: setup nix
+      - name: setup nix (with space reclamation)
+        if: matrix.target.large_build == true
         uses: ./.github/actions/setup-nix
+
+      - name: setup nix (determinate)
+        if: matrix.target.large_build != true
+        uses: DeterminateSystems/determinate-nix-action@main
 
       - uses: actions/checkout@v7
 

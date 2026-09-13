@@ -17,6 +17,7 @@ name = "programs.appimage.package"
 group = "nixos_config_attribute"
 hostname = "Ainz-NIX"
 name = "boot.kernelPackages.kernel"
+large_build = true
 
 [[targets]]
 group = "nixos_config_attribute"
