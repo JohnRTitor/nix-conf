@@ -3,9 +3,8 @@
 
   inputs = {
     ### CORE REPOSITORIES ###
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable NixOS system (default)
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master"; # Testing branch of nixpkgs
-    nixpkgs-dms-greeter-test.url = "github:NixOS/nixpkgs/refs/pull/545231/merge";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"; # Unstable NixOS system (default)
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master"; # Master branch of nixpkgs, to get the absolute latest packages
 
     ### NIX ECOSYSTEM & UTILS ###
     flake-parts = {
