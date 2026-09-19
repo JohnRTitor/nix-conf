@@ -29,15 +29,20 @@ lib.mkIf enableOllama {
       # https://ollama.com/library/gemma4
       "gemma4:12b" # general purpose, fast, vision
 
+      # https://huggingface.co/empero-ai/Qwen3.8-9B-Distill-GGUF
+      # Distilled from Qwen3.8, with Qwen3.5 as the base model
+      # "hf.co/empero-ai/Qwen3.8-9B-Distill-GGUF:Q4_K_M"
+
       # https://ollama.com/library/lfm2.5
       # "lfm2.5:8b" # thinking
 
       ### CODING ###
-      # https://huggingface.co/empero-ai/Qwythos-9B-Claude-Mythos-5-1M-GGUF
+      # https://huggingface.co/empero-ai/Qwythos-9B-v2-GGUF
       # CONTEXT sizes for coding
       # Low: 65536 (64K)
       # Max context: 131072 (128)
-      "hf.co/empero-ai/Qwythos-9B-Claude-Mythos-5-1M-GGUF:Q6_K" # BEST AND FAST AGENTIC CODING MODEL
+      # # BEST AND FAST AGENTIC CODING MODEL
+      "hf.co/empero-ai/Qwythos-9B-v2-GGUF:Q4_K_M" # Vision, MTP available
 
       ### UNCENSORED ###
       # NOTE: some models may be marked as "uncensored" but they'll still refuse some requests
@@ -50,7 +55,7 @@ lib.mkIf enableOllama {
       # CONTEXT sizes for coding
       # Low: 65536 (64K)
       # Max context: 131072 (128)
-      "hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q6_K" # (reasoning) BEST ABLITERATED MODEL
+      # "hf.co/HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive:Q6_K" # (reasoning) BEST ABLITERATED MODEL
 
       ### SPECIAL PURPOSE ###
       # https://ollama.com/library/glm-ocr
