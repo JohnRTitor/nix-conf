@@ -475,6 +475,15 @@ _: {
       }
 
       {
+        name = "Browsers";
+        match = {
+          tag = "browser*";
+          workspace = "special:scratchpads";
+        };
+        opacity = "0.75 0.65";
+      }
+
+      {
         name = "Projects";
         match = {
           tag = "projects*";
