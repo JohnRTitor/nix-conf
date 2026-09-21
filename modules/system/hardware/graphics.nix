@@ -10,7 +10,7 @@ let
   ## PREFS ##
   enable32Bit = false;
   enableOpenCL = false;
-  enableOverclocking = false;
+  enableOverclocking = true;
 in
 lib.mkMerge [
   {
@@ -25,8 +25,10 @@ lib.mkMerge [
         libva-vdpau-driver
         libvdpau-va-gl
       ];
+
       # For 32 bit applications
-      enable32Bit = enable32Bit;
+      inherit enable32Bit;
+
       extraPackages32 = with pkgs.driversi686Linux; [
         libva-vdpau-driver
         libvdpau-va-gl
