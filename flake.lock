@@ -11,11 +11,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788751756,
-        "narHash": "sha256-nK0ZNxMU4/BpTrUosjoyYjAiuie10dSi+Kx+Jc8iluA=",
+        "lastModified": 1790356633,
+        "narHash": "sha256-8c+2ZY24TKs/BqTtT3gOpRLL4xD1lWJlStMRF2VSds8=",
         "owner": "johnrtitor",
         "repo": "ananicy-rs",
-        "rev": "8480cd64d0d4feb1c8e55fd3ebe2fbce8ff2422d",
+        "rev": "6258d8bd296df4bfd64dd28cacfb1535d2fa05d6",
         "type": "github"
       },
       "original": {
