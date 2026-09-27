@@ -14,7 +14,7 @@
     ./bluetooth.nix
     ./touchpad.nix
     ./disk.nix
-    ./memory.nix
+    ./memory
     ./graphics.nix
     ./tpm.nix
     ./touchpad.nix

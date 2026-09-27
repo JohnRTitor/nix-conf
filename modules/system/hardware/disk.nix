@@ -1,4 +1,4 @@
-# Configure disks and zram
+# Configure disks
 {
   config,
   pkgs,
@@ -17,28 +17,6 @@
   boot.bcachefs.package = pkgs-master.bcachefs-tools;
   services.bcachefs.autoScrub.enable = true;
   boot.kernel.sysfs.fs.bcachefs.dm-0.dev-0.label = "NixOS-Root";
-
-  # Enable ZSwap
-  # DO NOT ENABLE ZSWAP IF YOU HAVE ZRAM ON
-  # ZSWAP WILL CONFLICT WITH ZRAM
-  # boot.kernel.sysfs.module.zswap.parameters.enabled = 1;
-
-  /*
-       SWAP DELETED
-    swapDevices = [
-      {
-        device = "/dev/disk/by-partuuid/90c8cb42-7424-467c-927a-0d6a63d5b2a2";
-        options = [
-          "defaults"
-          "nofail"
-        ];
-        randomEncryption = {
-          enable = true;
-          keySize = 512;
-        };
-      } # 16 Gigs swap
-    ];
-  */
 
   # Automount USB and drives
   # for virtual file systems, removable media, and remote filesystems

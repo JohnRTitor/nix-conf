@@ -1,34 +1,5 @@
 { ... }: {
   # ─────────────────────────────────────────────────────────────
-  # ZRAM configuration
-  # ─────────────────────────────────────────────────────────────
-  # ZRAM creates a compressed swap device in RAM. On a 16 GB system this
-  # gives us up to ~16 GB of compressed swap, which effectively extends
-  # usable memory to ~24-28 GB depending on compressibility.
-  zramSwap = {
-    enable = true;
-    # 100% of physical RAM as the maximum ZRAM device size.
-    # Actual physical memory consumed depends on compression ratio (~2-3x).
-    memoryPercent = 100;
-  };
-
-  boot.kernel.sysctl = {
-    # With ZRAM-only swap, high swappiness is correct:
-    # it tells the kernel to prefer compressing pages into ZRAM over
-    # dropping file caches, which keeps applications responsive.
-    "vm.swappiness" = 200;
-    # Disable watermark boosting — unnecessary with ZRAM and can cause
-    # premature direct reclaim.
-    "vm.watermark_boost_factor" = 0;
-    # Wider watermark band allows kswapd to start earlier and work longer,
-    # reducing direct reclaim stalls in foreground tasks.
-    "vm.watermark_scale_factor" = 125;
-    # Disable readahead clustering for swap — ZRAM is random-access RAM,
-    # not a spinning disk, so multi-page readahead wastes decompression work.
-    "vm.page-cluster" = 0;
-  };
-
-  # ─────────────────────────────────────────────────────────────
   # systemd-oomd: pressure-based safety net
   # ─────────────────────────────────────────────────────────────
   # Strategy:
