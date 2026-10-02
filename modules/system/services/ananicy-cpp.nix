@@ -19,6 +19,7 @@
       apply_oom_score_adj = true;
       apply_cgroup = true;
       apply_cpuset = true;
+      apply_cpu_weight_from_nice = true;
 
       cgroup_realtime_workaround = false;
       x3d_mode = "auto";

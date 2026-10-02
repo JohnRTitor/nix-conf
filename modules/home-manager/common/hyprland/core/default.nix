@@ -11,7 +11,7 @@ in
 {
   imports = [
     animChoice
-    ./binds.nix
+    ./keybinds.nix
     ./env.nix
     ./exec-once.nix
     ./hyprcursor.nix
