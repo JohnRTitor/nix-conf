@@ -168,6 +168,26 @@
       # If you install a build cache, it belongs here too but as BG_CPU: it
       # is an I/O-heavy background daemon, not a compiler.
       # { name = "sccache"; type = "BG_CPU"; }
+
+      ## ---- Language servers ---- ##
+
+      {
+        name = "lsp";
+        name_regex = "^(rust-analyzer(-proc-macro-srv)?|clangd|ccls|sourcekit-lsp|gopls|pyright(-langserver)?|pylsp|python-lsp-server|jedi-language-server|tsserver|typescript-language-server|lua-language-server|haskell-language-server(-wrapper)?|hls|zls|taplo|marksman|bash-language-server|[Oo]mni[Ss]harp|docker-language-server|terraform-ls|lemminx|ltex|sqls|(vscode-)?(json|html|css|yaml)-language-server)$";
+        type = "BG_CPUIO";
+      }
+
+      # `ananicy-rules-cachyos` gives clangd a different tier, so we need to explicitly override here
+      {
+        name = "clangd";
+        type = "BG_CPUIO";
+      }
+
+      # lsp-mode bridge in Emacs
+      {
+        name = "ion.clangd.main";
+        type = "BG_CPUIO";
+      }
     ];
 
   };
