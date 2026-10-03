@@ -24,8 +24,6 @@
       commandLineArgs = "--password-store=gnome-libsecret";
     })
 
-    opencode
-
     # jetbrains.idea
   ];
 }

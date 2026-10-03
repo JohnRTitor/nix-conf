@@ -21,6 +21,7 @@
     ./fastfetch
     ./vesktop.nix
     ./micro.nix
+    ./opencode
 
     ./nix-tools.nix
 

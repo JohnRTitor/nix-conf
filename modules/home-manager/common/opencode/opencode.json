@@ -1,0 +1,226 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": true,
+  "default_agent": "build",
+  "agent": {
+    "build": {
+      "mode": "primary",
+      "permission": {
+        "edit": "allow",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "todowrite": "allow",
+        "task": {
+          "*": "deny",
+          "critic-*": "allow"
+        },
+        "bash": {
+          "*": "allow",
+          "sudo *": "ask",
+          "rm -rf*": "deny",
+          "rm -fr*": "deny",
+          "git push*": "deny",
+          "git reset --hard*": "deny",
+          "git clean*": "deny"
+        }
+      }
+    },
+    "reviewer": {
+      "description": "Read-only orchestrator for adversarial review of the current working tree",
+      "mode": "primary",
+      "temperature": 0.1,
+      "prompt": "You orchestrate adversarial reviews. You never modify files. Inspect the diff, run safe validation, invoke the critic subagents with full context, verify their findings, and report only confirmed issues with severity and file/line references.",
+      "permission": {
+        "edit": "deny",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "todowrite": "allow",
+        "webfetch": "deny",
+        "websearch": "deny",
+        "task": {
+          "*": "deny",
+          "critic-*": "allow"
+        },
+        "bash": {
+          "*": "deny",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git show*": "allow",
+          "rg *": "allow",
+          "grep *": "allow",
+          "git * --output*": "deny",
+          "git * --ext-diff*": "deny",
+          "rg *--pre*": "deny",
+          "cargo check*": "allow",
+          "cargo test*": "allow",
+          "cargo clippy*": "allow",
+          "pnpm test*": "allow",
+          "pnpm lint*": "allow",
+          "pnpm check*": "allow",
+          "npm test*": "allow",
+          "npm run lint*": "allow",
+          "npm run check*": "allow",
+          "forge test*": "allow",
+          "forge build*": "allow",
+          "pytest *": "allow",
+          "python -m pytest*": "allow",
+          "go test*": "allow",
+          "go vet*": "allow"
+        }
+      }
+    },
+    "critic-correctness": {
+      "description": "Independent correctness and regression critic",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "prompt": "{file:./prompts/critic-correctness.txt}",
+      "permission": {
+        "edit": "deny",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "task": "deny",
+        "webfetch": "deny",
+        "websearch": "deny",
+        "bash": {
+          "*": "deny",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git show*": "allow",
+          "rg *": "allow",
+          "grep *": "allow",
+          "git * --output*": "deny",
+          "git * --ext-diff*": "deny",
+          "rg *--pre*": "deny"
+        }
+      }
+    },
+    "critic-security": {
+      "description": "Adversarial security and trust-boundary critic",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "prompt": "{file:./prompts/critic-security.txt}",
+      "permission": {
+        "edit": "deny",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "task": "deny",
+        "webfetch": "deny",
+        "websearch": "deny",
+        "bash": {
+          "*": "deny",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git show*": "allow",
+          "rg *": "allow",
+          "grep *": "allow",
+          "git * --output*": "deny",
+          "git * --ext-diff*": "deny",
+          "rg *--pre*": "deny"
+        }
+      }
+    },
+    "critic-tests": {
+      "description": "Test adequacy and failure-detection critic",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "prompt": "{file:./prompts/critic-tests.txt}",
+      "permission": {
+        "edit": "deny",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "task": "deny",
+        "webfetch": "deny",
+        "websearch": "deny",
+        "bash": {
+          "*": "deny",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git show*": "allow",
+          "rg *": "allow",
+          "grep *": "allow",
+          "cargo check*": "allow",
+          "cargo test*": "allow",
+          "cargo clippy*": "allow",
+          "pnpm test*": "allow",
+          "pnpm lint*": "allow",
+          "pnpm check*": "allow",
+          "npm test*": "allow",
+          "npm run lint*": "allow",
+          "npm run check*": "allow",
+          "forge test*": "allow",
+          "forge build*": "allow",
+          "pytest *": "allow",
+          "python -m pytest*": "allow",
+          "go test*": "allow",
+          "go vet*": "allow",
+          "make test*": "allow",
+          "git * --output*": "deny",
+          "git * --ext-diff*": "deny",
+          "rg *--pre*": "deny"
+        }
+      }
+    },
+    "critic-performance": {
+      "description": "Performance, resource-usage, and scalability critic",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "prompt": "{file:./prompts/critic-performance.txt}",
+      "permission": {
+        "edit": "deny",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "task": "deny",
+        "webfetch": "deny",
+        "websearch": "deny",
+        "bash": {
+          "*": "deny",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git show*": "allow",
+          "rg *": "allow",
+          "grep *": "allow",
+          "git * --output*": "deny",
+          "git * --ext-diff*": "deny",
+          "rg *--pre*": "deny"
+        }
+      }
+    }
+  },
+  "command": {
+    "validate-loop": {
+      "description": "Implement \u2192 validate \u2192 adversarial critique \u2192 fix loop (max 3 rounds)",
+      "agent": "build",
+      "subtask": false,
+      "template": "Perform a validation-and-critic loop for the current task: $ARGUMENTS\n\nPROCESS:\n1. Understand the requested behavior. Inspect the relevant code, tests, configuration, and architecture before making assumptions. Write down a short REQUIREMENTS SUMMARY (a few bullets) you will hand to the critics.\n2. Implement the change completely. Do not stop at the first plausible patch.\n3. Run the strongest relevant validation: formatter, type checker, build, unit/integration tests, lint/static analysis. Discover the repository's real commands; do not invent them.\n4. Inspect `git diff` and `git status` for accidental changes, debug code, weakened assertions, dead code, API drift, and incomplete work.\n5. Invoke the critics. Critics start with NO context, so every invocation must include: the REQUIREMENTS SUMMARY, a summary of what changed and which files, the validation commands already run with results, and, from round 2 onward, the list of findings already rejected with reasons so they are not re-raised.\n   - ALWAYS run @critic-correctness and @critic-tests.\n   - Run @critic-security only if the diff touches input parsing, auth, crypto, filesystem/network/process interaction, serialization, privilege boundaries, or dependencies.\n   - Run @critic-performance only if the diff touches hot paths, I/O, loops over unbounded data, locking/concurrency, or startup.\n   Say which optional critics you skipped and why.\n6. Treat findings as hypotheses. Reproduce or reason through every BLOCKER/HIGH. Reject a finding only when you can demonstrate it is invalid or irrelevant, and record the reason.\n7. Fix every confirmed BLOCKER and HIGH. Fix MEDIUM findings that affect correctness, reliability, security, resource usage, or likely regressions.\n8. Rerun focused tests first, then the broader suite.\n9. Re-run only the critics whose area was affected by the fixes. Stop when a round produces no NEW confirmed BLOCKER/HIGH findings. Hard cap: 3 rounds. Do not re-litigate previously rejected findings.\n10. If changed behavior lacks tests, add targeted tests.\n11. Never make tests pass by weakening assertions, deleting coverage, skipping tests, broadening mocks, disabling lint/type checks, or suppressing errors without a documented technical reason.\n12. Distinguish environmental/toolchain failures from code failures and gather independent evidence.\n13. Completion criteria: behavior implemented; relevant tests pass; applicable build/type/lint checks pass; final diff inspected; no confirmed BLOCKER/HIGH remain; no known regression left unfixed.\n\nFINAL REPORT:\n- What changed\n- Validation commands actually run and results\n- Critics run/skipped, findings by category\n- Findings fixed vs rejected, with reasons\n- Remaining limitations or environment failures\n- Exact final test/build status"
+    },
+    "review-loop": {
+      "description": "Adversarial review of current changes, read-only",
+      "agent": "reviewer",
+      "subtask": false,
+      "template": "Run an adversarial review of the current working tree for: $ARGUMENTS\n\nInspect the diff and surrounding code and run safe validation where useful. Write a short REQUIREMENTS SUMMARY from $ARGUMENTS and the diff, then invoke @critic-correctness and @critic-tests always, and @critic-security / @critic-performance when the diff touches their areas. Pass each critic the requirements summary, the changed files, and the validation results, since they have no other context. Verify findings to remove false positives, then report exact actionable issues with severity and file/line references. Finish by proposing the smallest root-cause fixes. You cannot modify files."
+    }
+  }
+}
