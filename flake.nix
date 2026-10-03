@@ -11,6 +11,7 @@
       url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+    flake-compat.url = "github:NixOS/flake-compat"; # Flake compat for non-Flake users
 
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # For cachyos kernel
@@ -44,9 +45,10 @@
     lanzaboote = {
       # Lanzaboote module used for Secure-Boot implementation
       url = "github:nix-community/lanzaboote/v0.4.2";
-      inputs.flake-parts.follows = "flake-parts";
       # If follows nixpkgs cause issues with package versions and boot experience, remove this
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.flake-compat.follows = "flake-compat";
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest"; # Declarative Flatpak support for NixOS
@@ -64,8 +66,9 @@
 
     xdg-desktop-portal-gtk4 = {
       url = "github:johnrtitor/xdg-desktop-portal-gtk4";
-      inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.flake-compat.follows = "flake-compat";
     };
 
     ananicy-rs = {
@@ -103,8 +106,9 @@
     };
 
     odysseus = {
-      url = "github:JohnRTitor/odysseus/nix-model-parameter";
+      url = "github:JohnRTitor/odysseus/nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
     };
 
     ### NON-FLAKE REPOSITORIES ###

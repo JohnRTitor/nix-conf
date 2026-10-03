@@ -294,7 +294,6 @@
       }
     },
     "flake-compat_3": {
-      "flake": false,
       "locked": {
         "lastModified": 1767039857,
         "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
@@ -312,31 +311,15 @@
     "flake-compat_4": {
       "flake": false,
       "locked": {
-        "lastModified": 1696426674,
-        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
-    "flake-compat_5": {
-      "flake": false,
-      "locked": {
         "lastModified": 1767039857,
         "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
-        "owner": "edolstra",
+        "owner": "NixOS",
         "repo": "flake-compat",
         "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
         "type": "github"
       },
       "original": {
-        "owner": "edolstra",
+        "owner": "NixOS",
         "repo": "flake-compat",
         "type": "github"
       }
@@ -834,7 +817,9 @@
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
-        "flake-compat": "flake-compat_4",
+        "flake-compat": [
+          "flake-compat"
+        ],
         "flake-parts": [
           "flake-parts"
         ],
@@ -1088,6 +1073,9 @@
     },
     "odysseus": {
       "inputs": {
+        "flake-compat": [
+          "flake-compat"
+        ],
         "flake-utils": "flake-utils_2",
         "nix-darwin": "nix-darwin",
         "nixpkgs": [
@@ -1095,16 +1083,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1782568067,
-        "narHash": "sha256-ILApcP2bpBDawGljD+mlODZ0j/wSqf2nPf9pnv57DAI=",
+        "lastModified": 1790957261,
+        "narHash": "sha256-qGnK+i2dsX1v8jTreHKle0tkAjvNdr+LrrL8qnilzIE=",
         "owner": "JohnRTitor",
         "repo": "odysseus",
-        "rev": "bdd9004c4bd31f934606b824ee9eaeed66aa414d",
+        "rev": "0b66c7206fc17534ada668c4febe135485f1da09",
         "type": "github"
       },
       "original": {
         "owner": "JohnRTitor",
-        "ref": "nix-model-parameter",
+        "ref": "nix",
         "repo": "odysseus",
         "type": "github"
       }
@@ -1127,7 +1115,7 @@
     },
     "pre-commit-hooks": {
       "inputs": {
-        "flake-compat": "flake-compat_3",
+        "flake-compat": "flake-compat_4",
         "nixpkgs": [
           "hyprland",
           "nixpkgs"
@@ -1181,6 +1169,7 @@
         "colibri": "colibri",
         "determinate-nix": "determinate-nix",
         "dms-greeter": "dms-greeter",
+        "flake-compat": "flake-compat_3",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
@@ -1384,7 +1373,9 @@
     },
     "xdg-desktop-portal-gtk4": {
       "inputs": {
-        "flake-compat": "flake-compat_5",
+        "flake-compat": [
+          "flake-compat"
+        ],
         "flake-parts": [
           "flake-parts"
         ],
