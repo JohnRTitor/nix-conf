@@ -14,7 +14,7 @@
     ]; # disable access time updates
   };
 
-  boot.bcachefs.package = pkgs-master.bcachefs-tools;
+  boot.bcachefs.package = pkgs.bcachefs-tools;
   services.bcachefs.autoScrub.enable = true;
   boot.kernel.sysfs.fs.bcachefs.dm-0.dev-0.label = "NixOS-Root";
 

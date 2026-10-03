@@ -21,7 +21,10 @@
     ./fastfetch
     ./vesktop.nix
     ./micro.nix
+
+    # AI Harnesses
     ./opencode
+    ./cline
 
     ./nix-tools.nix
 
