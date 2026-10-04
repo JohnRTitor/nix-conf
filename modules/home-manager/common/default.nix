@@ -23,8 +23,7 @@
     ./micro.nix
 
     # AI Harnesses
-    ./opencode
-    ./cline
+    ./ai-coding-harness
 
     ./nix-tools.nix
 
