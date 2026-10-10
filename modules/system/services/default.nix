@@ -19,6 +19,8 @@
     ./containers.nix
   ];
 
+  services.tailscale.enable = true;
+
   /*
     ## Essential services ##
     # Enable xserver with xwayland
