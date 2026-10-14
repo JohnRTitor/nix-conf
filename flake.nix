@@ -100,11 +100,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    colibri = {
-      url = "github:JohnRTitor/colibri";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     odysseus = {
       url = "github:JohnRTitor/odysseus/nix";
       inputs.nixpkgs.follows = "nixpkgs";
