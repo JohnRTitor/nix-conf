@@ -19,11 +19,6 @@
     thunderbird
     # postman
 
-    (antigravity-ide.override {
-      # if keyring does not work, try either "libsecret" or "gnome"
-      commandLineArgs = "--password-store=gnome-libsecret";
-    })
-
     # jetbrains.idea
   ];
 }
