@@ -59,11 +59,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dms-greeter = {
-      url = "github:AvengeMedia/dank-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     xdg-desktop-portal-gtk4 = {
       url = "github:johnrtitor/xdg-desktop-portal-gtk4";
       inputs.nixpkgs.follows = "nixpkgs";

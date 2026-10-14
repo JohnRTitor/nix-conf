@@ -11,7 +11,6 @@ lib.mkMerge [
   (lib.mkIf (config.myOptions.programsSettings.displayManager == "dms-greeter") {
     services.displayManager.dms-greeter = {
       enable = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.dms-greeter;
 
       compositor.name = "hyprland";
       compositor.customConfig = /* lua */ ''
