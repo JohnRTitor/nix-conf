@@ -67,7 +67,7 @@ let
       # paths from the source it was built from.
       dontFixup = true;
 
-      outputHash = "sha256-cFAbx5SE1Vk6eyIW0D4m+znEmwlXjke7RI7KQ1f86qo=";
+      outputHash = "sha256-WLF9m/8lYOfsD0GVN7WbWpAXoJ7xo4zz7DzePr87av4=";
       outputHashAlgo = "sha256";
       outputHashMode = "recursive";
     };
@@ -80,7 +80,7 @@ let
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "freebuff";
-  version = "0.2.12";
+  version = "0.2.27";
 
   __structuredAttrs = true;
   strictDeps = true;
@@ -93,8 +93,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "CodebuffAI";
     repo = "freebuff";
-    rev = "f6c9bf23ecd733d05db82bdabd99521388488a73";
-    hash = "sha256-3yVu7dVwQov01wwZ/jWonDc40Yy9ECcnT8I8iDLGn7U=";
+    rev = "620a606328b1a67a775a2fb0f0adf792a93ba3ae";
+    hash = "sha256-dO2GOaizStwbSfZ3qe2R12zCxW8aTRKx37tynbOJBLE=";
   };
 
   node_modules = nodeModules finalAttrs;
@@ -177,6 +177,13 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     # SDK build writes under node_modules and Bun caches next to the packages
     # it resolves.
     find . -type d -name node_modules -prune -exec chmod -R u+w {} +
+
+    # `cli/src/index.tsx` and `cli/src/utils/agent-dir-trust.ts` import
+    # `picocolors`. Upstream's private monorepo had it in the workspace root,
+    # but the exported public repository omits the package declaration from
+    # root package.json.
+    cp -R ${./picocolors} node_modules/picocolors
+    chmod -R u+w node_modules/picocolors
 
     patchShebangs node_modules cli sdk
 
