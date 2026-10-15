@@ -12,7 +12,27 @@
   ];
 
   # Use Determinate Nix, from their nix source, without determinate-nixd daemon and proprietary stuff
-  nix.package = inputs.determinate-nix.packages.${pkgs.stdenv.hostPlatform.system}.nix;
+  #
+  # `packages.<system>.nix` in the determinate-nix flake is `nix-everything`, which
+  # sets `doCheck = true` and pulls the entire Nix test suite in as `checkInputs`
+  # (nix-util-tests, nix-store-tests, nix-expr-tests, nix-fetchers-tests,
+  # nix-flake-tests, nix-functional-tests and their `*-test-support` libs).
+  #
+  # Those are build-time-only derivations, so they are not part of the runtime
+  # closure. `cachix push` is fed the top-level output path from `--print-out-paths`
+  # and only ever publishes that runtime closure, so the test derivations never
+  # reach any cache. Every cache miss on the top-level path (e.g. right after a
+  # flake.lock bump) then rebuilds and re-runs the whole test suite locally.
+  #
+  # Keep `nix-everything` rather than switching to `nix-cli`: the nix-daemon
+  # ExecStart references `${nixPackage}/libexec/nix-nswrapper`, which only the
+  # `nix-everything` output provides. Dropping the build gate is enough, because
+  # nixpkgs only adds `checkInputs` to `nativeBuildInputs` when `doCheck` is set.
+  nix.package = inputs.determinate-nix.packages.${pkgs.stdenv.hostPlatform.system}.nix.overrideAttrs (
+    _: {
+      doCheck = false;
+    }
+  );
 
   # THIS IS REQUIRED BUT ALSO DANGEROUS
   # main user has access to nix store
