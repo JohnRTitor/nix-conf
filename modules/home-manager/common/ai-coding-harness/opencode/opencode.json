@@ -15,7 +15,8 @@
         "todowrite": "allow",
         "task": {
           "*": "deny",
-          "critic-*": "allow"
+          "critic-*": "allow",
+          "worker-*": "allow"
         },
         "bash": {
           "*": "allow",
@@ -207,6 +208,229 @@
           "rg *--pre*": "deny"
         }
       }
+    },
+    "orchestrator": {
+      "description": "Primary agent that decomposes work into independent units and dispatches worker agents in parallel",
+      "mode": "primary",
+      "temperature": 0.1,
+      "color": "accent",
+      "prompt": "{file:./prompts/orchestrator.txt}",
+      "permission": {
+        "edit": "allow",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "todowrite": "allow",
+        "webfetch": "allow",
+        "websearch": "allow",
+        "task": {
+          "*": "deny",
+          "worker-*": "allow",
+          "critic-*": "allow"
+        },
+        "bash": {
+          "*": "allow",
+          "sudo *": "ask",
+          "rm -rf*": "deny",
+          "rm -fr*": "deny",
+          "git push*": "deny",
+          "git reset --hard*": "deny",
+          "git clean*": "deny"
+        }
+      }
+    },
+    "worker-implement": {
+      "description": "Parallel implementation worker: implements one scoped change end to end, including its tests",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "color": "primary",
+      "prompt": "{file:./prompts/worker-implement.txt}",
+      "permission": {
+        "edit": "allow",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "todowrite": "allow",
+        "webfetch": "allow",
+        "websearch": "allow",
+        "task": "deny",
+        "bash": {
+          "*": "allow",
+          "sudo *": "ask",
+          "rm -rf*": "deny",
+          "rm -fr*": "deny",
+          "git *": "deny",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git show*": "allow",
+          "git ls-files*": "allow",
+          "git blame*": "allow",
+          "npm install*": "deny",
+          "pnpm install*": "deny",
+          "yarn install*": "deny",
+          "bun install*": "deny",
+          "pip install*": "deny",
+          "poetry install*": "deny",
+          "cargo install*": "deny",
+          "go get*": "deny"
+        }
+      }
+    },
+    "worker-refactor": {
+      "description": "Parallel refactoring worker: behavior-preserving refactor inside one scoped area",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "color": "secondary",
+      "prompt": "{file:./prompts/worker-refactor.txt}",
+      "permission": {
+        "edit": "allow",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "todowrite": "allow",
+        "webfetch": "allow",
+        "websearch": "allow",
+        "task": "deny",
+        "bash": {
+          "*": "allow",
+          "sudo *": "ask",
+          "rm -rf*": "deny",
+          "rm -fr*": "deny",
+          "git *": "deny",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git show*": "allow",
+          "git ls-files*": "allow",
+          "git blame*": "allow",
+          "npm install*": "deny",
+          "pnpm install*": "deny",
+          "yarn install*": "deny",
+          "bun install*": "deny",
+          "pip install*": "deny",
+          "poetry install*": "deny",
+          "cargo install*": "deny",
+          "go get*": "deny"
+        }
+      }
+    },
+    "worker-test": {
+      "description": "Parallel test worker: writes or strengthens tests for one scoped area",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "color": "success",
+      "prompt": "{file:./prompts/worker-test.txt}",
+      "permission": {
+        "edit": "allow",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "todowrite": "allow",
+        "webfetch": "allow",
+        "websearch": "allow",
+        "task": "deny",
+        "bash": {
+          "*": "allow",
+          "sudo *": "ask",
+          "rm -rf*": "deny",
+          "rm -fr*": "deny",
+          "git *": "deny",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git show*": "allow",
+          "git ls-files*": "allow",
+          "git blame*": "allow",
+          "npm install*": "deny",
+          "pnpm install*": "deny",
+          "yarn install*": "deny",
+          "bun install*": "deny",
+          "pip install*": "deny",
+          "poetry install*": "deny",
+          "cargo install*": "deny",
+          "go get*": "deny"
+        }
+      }
+    },
+    "worker-docs": {
+      "description": "Parallel documentation worker: updates docs for one scoped area without touching code",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "color": "warning",
+      "prompt": "{file:./prompts/worker-docs.txt}",
+      "permission": {
+        "edit": "allow",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "todowrite": "allow",
+        "webfetch": "allow",
+        "websearch": "allow",
+        "task": "deny",
+        "bash": {
+          "*": "allow",
+          "sudo *": "ask",
+          "rm -rf*": "deny",
+          "rm -fr*": "deny",
+          "git *": "deny",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git show*": "allow",
+          "git ls-files*": "allow",
+          "git blame*": "allow",
+          "npm install*": "deny",
+          "pnpm install*": "deny",
+          "yarn install*": "deny",
+          "bun install*": "deny",
+          "pip install*": "deny",
+          "poetry install*": "deny",
+          "cargo install*": "deny",
+          "go get*": "deny"
+        }
+      }
+    },
+    "worker-analysis": {
+      "description": "Parallel analysis worker: read-only investigation that reports findings with file references",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "color": "info",
+      "prompt": "{file:./prompts/worker-analysis.txt}",
+      "permission": {
+        "edit": "deny",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "todowrite": "allow",
+        "webfetch": "allow",
+        "websearch": "allow",
+        "task": "deny",
+        "bash": {
+          "*": "deny",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "git show*": "allow",
+          "rg *": "allow",
+          "grep *": "allow",
+          "git * --output*": "deny",
+          "git * --ext-diff*": "deny",
+          "rg *--pre*": "deny"
+        }
+      }
     }
   },
   "command": {
@@ -221,6 +445,12 @@
       "agent": "reviewer",
       "subtask": false,
       "template": "Run an adversarial review of the current working tree for: $ARGUMENTS\n\nInspect the diff and surrounding code and run safe validation where useful. Write a short REQUIREMENTS SUMMARY from $ARGUMENTS and the diff, then invoke @critic-correctness and @critic-tests always, and @critic-security / @critic-performance when the diff touches their areas. Pass each critic the requirements summary, the changed files, and the validation results, since they have no other context. Verify findings to remove false positives, then report exact actionable issues with severity and file/line references. Finish by proposing the smallest root-cause fixes. You cannot modify files."
+    },
+    "parallel": {
+      "description": "Plan work, dispatch worker agents in parallel, integrate and validate",
+      "agent": "orchestrator",
+      "subtask": false,
+      "template": "Implement the requested work with parallel worker agents: $ARGUMENTS\n\nPROCESS:\n1. Understand the requested behavior and inspect the repository before planning. Discover the repository's real build/test/lint commands; do not invent them.\n2. Write a short REQUIREMENTS SUMMARY (a few bullets) and a WORK PLAN. Split the work into independent units. Each unit gets a name, a one-line objective, the EXACT file scope it owns, acceptance criteria, and the narrow validation command to run.\n3. Check independence. If two units would touch the same file, merge them into one unit or run them in separate rounds. Never dispatch concurrently with overlapping file scopes.\n4. Dispatch every independent unit in ONE message using multiple Task calls so the workers run in parallel. Give each worker the full context it needs: the goal, the requirements summary, its exact file scope, the acceptance criteria, the repo conventions, the constraints, and the validation command to run. Workers have no other context.\n5. While the workers run, do not edit files a worker owns. Work only on files no worker owns.\n6. When the workers report back, verify their work yourself: inspect the diff per scope, check the acceptance criteria, confirm no out-of-scope file was touched, and re-check anything you doubt.\n7. Integrate the results, fix cross-unit breakage, then run the full validation once, serially, after every worker has finished.\n8. Invoke the critics. Critics start with NO context, so every invocation must include: the REQUIREMENTS SUMMARY, a summary of what changed and which files, the validation commands already run with results, and the list of findings already rejected with reasons so they are not re-raised.\n   - ALWAYS run @critic-correctness and @critic-tests.\n   - Run @critic-security only if the diff touches input parsing, auth, crypto, filesystem/network/process interaction, serialization, privilege boundaries, or dependencies.\n   - Run @critic-performance only if the diff touches hot paths, I/O, loops over unbounded data, locking/concurrency, or startup.\n   Say which optional critics you skipped and why.\n9. Treat findings as hypotheses. Reproduce or reason through every BLOCKER/HIGH, fix every confirmed BLOCKER and HIGH, and fix MEDIUM findings that affect correctness, reliability, security, or likely regressions.\n10. Rerun focused tests first, then the broader suite. Stop when a round produces no NEW confirmed BLOCKER/HIGH findings.\n11. Never make tests pass by weakening assertions, deleting coverage, skipping tests, broadening mocks, or disabling lint/type checks.\n\nFINAL REPORT:\n- Requirements summary\n- Work plan: which worker owned which file scope\n- Per-worker results, including anything left undone or reported out of scope\n- Validation commands actually run and results\n- Critics run/skipped, findings by category, findings fixed vs rejected with reasons\n- Remaining limitations or environment failures\n- Exact final test/build status"
     }
   }
 }
