@@ -93,7 +93,7 @@ in
       };
       os.symbols = {
         Arch = os "" "bright-blue";
-        Debian = os "" "red)";
+        Debian = os "" "red";
         EndeavourOS = os "" "purple";
         Fedora = os "" "blue";
         NixOS = os "" "blue";
