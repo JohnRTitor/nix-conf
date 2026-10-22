@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }:
 let
@@ -32,7 +33,19 @@ in
       - 1000 (default: General configuration (replaces initExtra
       - 1500 (mkAfter: Last to run configuration
     */
-    initContent = lib.mkOrder 1000 commonRcExtra;
+    # The content is one string, because home-manager merges this option with
+    # the antidote module's, and the merge follows the order the modules are
+    # evaluated in rather than `mkOrder`. Putting the shell-pulse source at
+    # the end of this string is therefore what puts it last in the .zshrc.
+    initContent = lib.mkOrder 1000 ''
+      ${commonRcExtra}
+
+      # shell-pulse: incremental syntax highlighting & fast native completion in Rust.
+      #
+      # Replaces fast-syntax-highlighting and marlonrichert/zsh-autocomplete
+      # with sub-microsecond latency and zero subshells.
+      source ${self.packages.${pkgs.stdenv.hostPlatform.system}.shell-pulse}/share/shell-pulse/init.zsh
+    '';
 
     dotDir = "${config.xdg.configHome}/zsh";
   };
