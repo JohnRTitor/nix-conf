@@ -16,7 +16,7 @@
     ./gnupg-ssh.nix
     ./ai-models
     ./apparmor.nix
-    ./containers.nix
+    ./containers
   ];
 
   services.tailscale.enable = true;
