@@ -33,7 +33,7 @@
 
   # Enable the sched_ext (BPF) user-space CPU scheduler daemon
   services.scx = {
-    enable = true;
+    enable = false;
     package = pkgs.scx.rustscheds;
 
     # Choose the active scheduler target.
