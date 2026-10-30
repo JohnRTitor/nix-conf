@@ -85,11 +85,12 @@
     };
 
     ### USER PACKAGES & APPS ###
-    # shell-pulse: incremental syntax highlighting for zsh, in Rust.
+    # zsh-pulse: incremental syntax highlighting for zsh, in Rust.
     # A local checkout, so the plugin can be rebuilt while it is being worked
     # on.
-    shell-pulse = {
-      url = "path:/home/masum/Dev-Environment/Rust/shell-pulse";
+    zsh-pulse = {
+      url = "path:/home/masum/Dev-Environment/Rust/zsh-pulse";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     zen-browser = {

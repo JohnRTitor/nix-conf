@@ -40,11 +40,11 @@ in
     initContent = lib.mkOrder 1000 ''
       ${commonRcExtra}
 
-      # shell-pulse: incremental syntax highlighting & fast native completion in Rust.
+      # zsh-pulse: incremental syntax highlighting & fast native completion in Rust.
       #
       # Replaces fast-syntax-highlighting and marlonrichert/zsh-autocomplete
       # with sub-microsecond latency and zero subshells.
-      source ${self.packages.${pkgs.stdenv.hostPlatform.system}.shell-pulse}/share/shell-pulse/init.zsh
+      source ${self.packages.${pkgs.stdenv.hostPlatform.system}.zsh-pulse}/share/zsh-pulse/init.zsh
     '';
 
     dotDir = "${config.xdg.configHome}/zsh";

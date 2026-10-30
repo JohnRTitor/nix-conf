@@ -356,7 +356,7 @@
     },
     "flake-utils_3": {
       "inputs": {
-        "systems": "systems_4"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1791914995,
@@ -1053,22 +1053,6 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
       }
     },
-    "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1792502884,
-        "narHash": "sha256-IoNisKcGbUjdd45qCqywGMCYmZ5EnkxezvLII0FWwNA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "02c087f3fe673c9e317f206a627cb6b910336dbe",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "noctalia": {
       "inputs": {
         "nixpkgs": [
@@ -1223,10 +1207,10 @@
         "nur": "nur",
         "odysseus": "odysseus",
         "platomav-microcode": "platomav-microcode",
-        "shell-pulse": "shell-pulse",
         "stylix": "stylix",
         "xdg-desktop-portal-gtk4": "xdg-desktop-portal-gtk4",
-        "zen-browser": "zen-browser"
+        "zen-browser": "zen-browser",
+        "zsh-pulse": "zsh-pulse"
       }
     },
     "rust-overlay": {
@@ -1250,21 +1234,6 @@
         "type": "github"
       }
     },
-    "shell-pulse": {
-      "inputs": {
-        "flake-utils": "flake-utils_3",
-        "nixpkgs": "nixpkgs_4"
-      },
-      "locked": {
-        "narHash": "sha256-iS2K0zhadRzyRqRAL/140G/SNRaXh4t5tGy3MxpLzMY=",
-        "path": "/home/masum/Dev-Environment/Rust/shell-pulse",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/masum/Dev-Environment/Rust/shell-pulse",
-        "type": "path"
-      }
-    },
     "stylix": {
       "inputs": {
         "base16": "base16",
@@ -1282,7 +1251,7 @@
         "nur": [
           "nur"
         ],
-        "systems": "systems_5",
+        "systems": "systems_4",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
         "tinted-tmux": "tinted-tmux",
@@ -1349,21 +1318,6 @@
     },
     "systems_4": {
       "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_5": {
-      "locked": {
         "lastModified": 1774449309,
         "narHash": "sha256-brhZ8DmuGtzkCYHJg4HEd602amKm89Y9ytsFZ5uWD1w=",
         "owner": "nix-systems",
@@ -1374,6 +1328,21 @@
       "original": {
         "owner": "nix-systems",
         "ref": "future-26.11",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_5": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
         "repo": "default",
         "type": "github"
       }
@@ -1536,6 +1505,23 @@
         "owner": "youwen5",
         "repo": "zen-browser-flake",
         "type": "github"
+      }
+    },
+    "zsh-pulse": {
+      "inputs": {
+        "flake-utils": "flake-utils_3",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "narHash": "sha256-bpsro9yujPgKQhDHZ++lLoMHKaxrzC8Z4Uha428o1sw=",
+        "path": "/home/masum/Dev-Environment/Rust/zsh-pulse",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/masum/Dev-Environment/Rust/zsh-pulse",
+        "type": "path"
       }
     }
   },

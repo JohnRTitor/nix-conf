@@ -68,7 +68,7 @@ in
           microcode-src = inputs.platomav-microcode;
         };
         xdg-desktop-portal-gtk4 = inputs.xdg-desktop-portal-gtk4.packages.${system}.xdg-desktop-portal-gtk4;
-        shell-pulse = inputs.shell-pulse.packages.${system}.default;
+        zsh-pulse = inputs.zsh-pulse.packages.${system}.default;
       };
     };
 }
