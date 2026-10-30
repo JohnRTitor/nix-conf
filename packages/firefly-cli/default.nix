@@ -4,6 +4,8 @@
   buildGoModule,
   fetchFromGitHub,
   installShellFiles,
+  makeWrapper,
+  openssl,
 }:
 
 buildGoModule (finalAttrs: {
@@ -32,7 +34,15 @@ buildGoModule (finalAttrs: {
 
   env.CGO_ENABLED = "0";
 
-  nativeBuildInputs = [ installShellFiles ];
+  nativeBuildInputs = [
+    installShellFiles
+    makeWrapper
+  ];
+
+  # `ff` shells out to openssl to generate stack certificates.
+  postFixup = ''
+    wrapProgram $out/bin/ff --prefix PATH : ${lib.makeBinPath [ openssl ]}
+  '';
 
   postInstall = lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
     installShellCompletion --cmd ff \

@@ -59,6 +59,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    loaf-fm = {
+      url = "github:m-uvex/loaf-fm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     xdg-desktop-portal-gtk4 = {
       url = "github:johnrtitor/xdg-desktop-portal-gtk4";
       inputs.nixpkgs.follows = "nixpkgs";

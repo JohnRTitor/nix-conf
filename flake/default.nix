@@ -62,6 +62,7 @@ in
         weather-python-script = pkgs.callPackage ../packages/weather-python-script.nix { };
         freebuff = pkgs.callPackage ../packages/freebuff { };
         firefly-cli = pkgs.callPackage ../packages/firefly-cli { };
+        hyperledger-fabric = pkgs.callPackage ../packages/hyperledger-fabric { };
         google-chrome_repackaged = pkgs-unfree.callPackage ../packages/google-chrome-repackaged.nix { };
         microcode-amd-platomav = pkgs-unfree.callPackage ../packages/microcode-amd-platomav {
           microcode-src = inputs.platomav-microcode;

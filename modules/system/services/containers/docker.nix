@@ -24,4 +24,6 @@
       };
     };
   };
+
+  environment.systemPackages = [ pkgs.docker-compose ];
 }

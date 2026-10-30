@@ -2,7 +2,7 @@
 {
   # Enable Ananicy CPP for better system performance
   services.ananicy-rs = {
-    enable = true;
+    enable = false;
 
     settings = {
       check_freq = 15;

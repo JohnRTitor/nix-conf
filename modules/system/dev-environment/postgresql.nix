@@ -12,5 +12,5 @@ lib.mkIf config.myOptions.devSettings.postgresql {
     package = pkgs.postgresql_18;
   };
 
-  environment.systemPackages = [ pkgs.pgadmin4-desktopmode ];
+  # environment.systemPackages = [ pkgs.pgadmin4-desktopmode ];
 }
