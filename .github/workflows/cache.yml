@@ -23,11 +23,7 @@ permissions:
 env:
   CACHIX_AUTH_TOKEN: "${{ secrets.CACHIX_AUTH_TOKEN }}"
   CACHIX_CACHE_NAME: "johnrtitor"
-  REQUIRED_PACKAGES: >
-    cachix
-    jq
-    findutils
-    yq-go
+  REQUIRED_PACKAGES: cachix
 
 jobs:
   prepare-matrix:
@@ -42,18 +38,12 @@ jobs:
       - name: setup nix
         uses: DeterminateSystems/determinate-nix-action@main
 
-      - name: Install required tools
-        run: nix profile add nixpkgs#yq-go nixpkgs#jq
+      - name: Setup Nushell
+        uses: hustcer/setup-nu@v3
 
       - name: Filter Matrix Targets
         id: set-matrix
-        run: |
-          # Read all targets from TOML
-          TARGETS_JSON=$(yq -o=json '.targets' .github/cache-targets.toml | jq -c .)
-
-          # Filter matrix to only include targets missing from Cachix
-          chmod +x .github/scripts/filter-matrix.sh
-          ./.github/scripts/filter-matrix.sh "$TARGETS_JSON" "${{ env.CACHIX_CACHE_NAME }}"
+        run: nu .github/scripts/filter-matrix.nu "${{ env.CACHIX_CACHE_NAME }}"
 
   build:
     name: Build ${{ matrix.target.name || matrix.target.group }}
@@ -88,6 +78,9 @@ jobs:
 
       - uses: actions/checkout@v7
 
+      - name: Setup Nushell
+        uses: hustcer/setup-nu@v3
+
       - name: Install required packages
         run: |
           for PKG in $REQUIRED_PACKAGES; do
@@ -95,10 +88,7 @@ jobs:
           done
 
       - name: Build target and push to Cachix
-        run: |
-          chmod +x ./.github/scripts/build-and-cache.sh
-          # Pass the JSON representation of the matrix target as the single argument
-          ./.github/scripts/build-and-cache.sh '${{ toJSON(matrix.target) }}'
+        run: nu ./.github/scripts/build-and-cache.nu '${{ toJSON(matrix.target) }}'
 
       - name: Upload build logs
         if: always()
