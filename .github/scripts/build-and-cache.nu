@@ -44,17 +44,43 @@ def prepare [cache_name: string] {
         exit 1
     }
 
-    let has_auth = ($env.CACHIX_AUTH_TOKEN? != null and $env.CACHIX_AUTH_TOKEN != "") or ($env.CACHIX_SIGNING_KEY? != null and $env.CACHIX_SIGNING_KEY != "")
+    let has_auth = ($env.CACHIX_AUTH_TOKEN? | is-not-empty) or ($env.CACHIX_SIGNING_KEY? | is-not-empty)
     if not $has_auth {
         print_warning "No cachix authentication token or signing key found"
     }
 }
 
-def build_package [pkg: string, description: string, cache_name: string, build_flags: string]: nothing -> bool {
-    let safe_pkg_name = ($pkg | str replace --all --regex '[^a-zA-Z0-9.-]' '_')
-    let log_file = $"logs/($safe_pkg_name).log"
+# Push store paths to Cachix with logging
+def push_to_cachix [paths: list<string>, cache_name: string]: nothing -> bool {
+    let push_paths = ($paths | uniq | where { |it| ($it | is-not-empty) and ($it | path exists) })
+    if ($push_paths | is-empty) {
+        return true
+    }
 
-    print -n $"* Building ($description) \(($pkg)\)..."
+    print_info $"Pushing paths to Cachix \(($cache_name)\):"
+    for p in $push_paths {
+        print $p
+    }
+    let paths_str = ($push_paths | str join "\n")
+    let push_res = ($paths_str | ^cachix push $cache_name | complete)
+    if $push_res.exit_code != 0 {
+        print_error $"Failed to push paths to Cachix \(($cache_name)\)"
+        return false
+    }
+    true
+}
+
+# Unified build execution runner for both packages and derivations
+def execute_nix_build [
+    build_ref: string
+    build_flags: string
+    item_key: string
+    display_title: string
+    log_file: string
+    cache_name: string
+    evaluate_extra_outputs: bool
+]: nothing -> bool {
+    print -n $"* Building ($display_title)..."
 
     if ("abort" | path exists) {
         print $"(ansi red) ABORTED(ansi reset)"
@@ -63,7 +89,7 @@ def build_package [pkg: string, description: string, cache_name: string, build_f
 
     let keepalive_pid = (
         try {
-            ^bash -c "while true; do echo -ne '\u{1b}[1;36m BUILDING\u{1b}[0m\n* Building '$1' ('$2')...'; sleep 120; done >&2 & echo $!" -- $description $pkg
+            ^bash -c "while true; do echo -ne '\u{1b}[1;36m BUILDING\u{1b}[0m\n* Building '$1' ('$2')...'; sleep 120; done >&2 & echo $!" -- $display_title $item_key
             | str trim
             | into int
         } catch {
@@ -71,13 +97,7 @@ def build_package [pkg: string, description: string, cache_name: string, build_f
         }
     )
 
-    let build_ref = if ($pkg | str contains "#") or ($pkg | str contains ":") or ($pkg | str starts-with ".") or ($pkg | str starts-with "/") {
-        $pkg
-    } else {
-        $".#($pkg)"
-    }
-
-    $"--- Building: ($pkg) ---\nCommand: nix build ($build_ref) ($build_flags)\n" | save --force --raw $log_file
+    $"--- Building: ($item_key) ---\nCommand: nix build ($build_ref) ($build_flags)\n" | save --force --raw $log_file
 
     if ("paths.tmp" | path exists) {
         try { rm -f paths.tmp }
@@ -108,21 +128,20 @@ def build_package [pkg: string, description: string, cache_name: string, build_f
     $"Exit code: ($exit_code)\n" | save --append --raw $log_file
 
     if $exit_code == 0 {
-        let eval_res = (do {
-            ^nix eval --no-eval-cache --json $build_ref --apply $NIX_OUTPUTS_EVAL_EXPR
-        } | complete)
-
         mut all_paths = if ("paths.tmp" | path exists) {
-            open --raw paths.tmp | lines | where { |it| not ($it | is-empty) }
+            open --raw paths.tmp | lines | where { is-not-empty }
         } else {
             []
         }
 
-        if $eval_res.exit_code == 0 {
-            let eval_paths = (try { $eval_res.stdout | from json } catch { [] })
-            for p in $eval_paths {
-                if ($p | path exists) {
-                    $all_paths = ($all_paths | append $p)
+        if $evaluate_extra_outputs {
+            let eval_res = (^nix eval --no-eval-cache --json $build_ref --apply $NIX_OUTPUTS_EVAL_EXPR | complete)
+            if $eval_res.exit_code == 0 {
+                let eval_paths = (try { $eval_res.stdout | from json } catch { [] })
+                for p in $eval_paths {
+                    if ($p | path exists) {
+                        $all_paths = ($all_paths | append $p)
+                    }
                 }
             }
         }
@@ -131,125 +150,46 @@ def build_package [pkg: string, description: string, cache_name: string, build_f
         if ("paths.tmp" | path exists) {
             try { rm -f paths.tmp }
         }
-        mut push_ok = true
-        if not ($push_paths | is-empty) {
-            print_info $"Pushing paths to Cachix \(($cache_name)\):"
-            for p in $push_paths {
-                print $p
-            }
-            let paths_str = ($push_paths | str join "\n")
-            let push_res = (do { $paths_str | ^cachix push $cache_name } | complete)
-            if $push_res.exit_code != 0 {
-                print_error $"Failed to push paths to Cachix \(($cache_name)\)"
-                $push_ok = false
-            }
-        }
 
+        let push_ok = (push_to_cachix $push_paths $cache_name)
         if $push_ok {
             print $"(ansi green) SUCCESS(ansi reset)"
-            $"($pkg)\n" | save --append --raw success.txt
+            $"($item_key)\n" | save --append --raw success.txt
             return true
         } else {
             print $"(ansi red) FAILED(ansi reset) \(Cachix push failed\)"
-            $"($pkg)\t($log_file)\n" | save --append --raw failures.txt
+            $"($item_key)\t($log_file)\n" | save --append --raw failures.txt
             return false
         }
     } else {
         print $"(ansi red) FAILED(ansi reset) \(Exit code: ($exit_code)\)"
-        $"($pkg)\t($log_file)\n" | save --append --raw failures.txt
+        $"($item_key)\t($log_file)\n" | save --append --raw failures.txt
         return false
     }
+}
+
+def build_package [pkg: string, description: string, cache_name: string, build_flags: string]: nothing -> bool {
+    let safe_pkg_name = ($pkg | str replace --all --regex '[^a-zA-Z0-9.-]' '_')
+    let log_file = $"logs/($safe_pkg_name).log"
+    let build_ref = if ($pkg | str contains "#") or ($pkg | str contains ":") or ($pkg | str starts-with ".") or ($pkg | str starts-with "/") {
+        $pkg
+    } else {
+        $".#($pkg)"
+    }
+    let display_title = $"($description) \(($pkg)\)"
+
+    execute_nix_build $build_ref $build_flags $pkg $display_title $log_file $cache_name true
 }
 
 def build_drv [drv: string, name: string, description: string, cache_name: string]: nothing -> bool {
     let safe_name = ($name | str replace --all --regex '[^a-zA-Z0-9.-]' '_')
     let log_file = $"logs/drv_($safe_name).log"
+    let build_ref = $"($drv)^*"
+    let build_flags = "--print-build-logs --print-out-paths"
+    let item_key = $"drv:($name)"
+    let display_title = $"($description): ($name)"
 
-    print -n $"* Building ($description): ($name)..."
-
-    if ("abort" | path exists) {
-        print $"(ansi red) ABORTED(ansi reset)"
-        return false
-    }
-
-    let keepalive_pid = (
-        try {
-            ^bash -c "while true; do echo -ne '\u{1b}[1;36m BUILDING\u{1b}[0m\n* Building '$1' ('$2')...'; sleep 120; done >&2 & echo $!" -- $description $name
-            | str trim
-            | into int
-        } catch {
-            0
-        }
-    )
-
-    $"--- Building ($description): ($name) ---\nCommand: nix build ($drv)^* --print-build-logs --print-out-paths\n" | save --force --raw $log_file
-
-    if ("paths.tmp" | path exists) {
-        try { rm -f paths.tmp }
-    }
-
-    mut exit_code = 0
-    try {
-        let status = (try {
-            ^bash -c "nix build \"$1^*\" --print-build-logs --print-out-paths > paths.tmp 2> >(tee -a \"$2\" >&2)" -- $drv $log_file
-            0
-        } catch {
-            $env.LAST_EXIT_CODE? | default 1
-        })
-        $exit_code = $status
-    } finally {
-        if $keepalive_pid != 0 {
-            try { ^pkill -P $keepalive_pid } catch { }
-            try { kill $keepalive_pid } catch { }
-        }
-    }
-
-    if ("paths.tmp" | path exists) {
-        let tmp_content = (open --raw paths.tmp)
-        if ($tmp_content != "") {
-            $tmp_content | save --append --raw $log_file
-        }
-    }
-    $"Exit code: ($exit_code)\n" | save --append --raw $log_file
-
-    if $exit_code == 0 {
-        let push_paths = if ("paths.tmp" | path exists) {
-            open --raw paths.tmp | lines | where { |it| not ($it | is-empty) and ($it | path exists) } | uniq
-        } else {
-            []
-        }
-        if ("paths.tmp" | path exists) {
-            try { rm -f paths.tmp }
-        }
-
-        mut push_ok = true
-        if not ($push_paths | is-empty) {
-            print_info $"Pushing paths to Cachix \(($cache_name)\):"
-            for p in $push_paths {
-                print $p
-            }
-            let paths_str = ($push_paths | str join "\n")
-            let push_res = (do { $paths_str | ^cachix push $cache_name } | complete)
-            if $push_res.exit_code != 0 {
-                print_error $"Failed to push paths to Cachix \(($cache_name)\)"
-                $push_ok = false
-            }
-        }
-
-        if $push_ok {
-            print $"(ansi green) SUCCESS(ansi reset)"
-            $"drv:($name)\n" | save --append --raw success.txt
-            return true
-        } else {
-            print $"(ansi red) FAILED(ansi reset) \(Cachix push failed\)"
-            $"drv:($name)\t($log_file)\n" | save --append --raw failures.txt
-            return false
-        }
-    } else {
-        print $"(ansi red) FAILED(ansi reset) \(Exit code: ($exit_code)\)"
-        $"drv:($name)\t($log_file)\n" | save --append --raw failures.txt
-        return false
-    }
+    execute_nix_build $build_ref $build_flags $item_key $display_title $log_file $cache_name false
 }
 
 def build_target [target: any, cache_name: string, build_flags: string]: nothing -> bool {
@@ -258,73 +198,73 @@ def build_target [target: any, cache_name: string, build_flags: string]: nothing
     let hostname = ($target.hostname? | default "")
     let user = ($target.user? | default "")
 
-    if $group == "flake_package" {
-        if ($name == "" or $name == "all") {
-            let eval_res = (do {
-                ^nix eval --no-eval-cache --json .#packages.x86_64-linux --apply 'builtins.attrNames'
-            } | complete)
-            let pkgs = if $eval_res.exit_code == 0 {
-                try { $eval_res.stdout | from json } catch { [] }
-            } else {
-                []
-            }
-
-            mut failed = false
-            for p in $pkgs {
-                let ok = (build_package $p "flake package" $cache_name $build_flags)
-                if not $ok {
-                    $failed = true
+    match $group {
+        "flake_package" => {
+            if ($name == "" or $name == "all") {
+                let eval_res = (^nix eval --no-eval-cache --json .#packages.x86_64-linux --apply 'builtins.attrNames' | complete)
+                let pkgs = if $eval_res.exit_code == 0 {
+                    try { $eval_res.stdout | from json } catch { [] }
+                } else {
+                    []
                 }
-                sleep 1sec
+
+                let all_ok = ($pkgs | all { |p|
+                    let ok = (build_package $p "flake package" $cache_name $build_flags)
+                    sleep 1sec
+                    $ok
+                })
+                $all_ok
+            } else {
+                build_package $name "flake package" $cache_name $build_flags
             }
-            return (not $failed)
-        } else {
-            return (build_package $name "flake package" $cache_name $build_flags)
         }
-    } else if $group == "nixos_config_attribute" {
-        return (build_package $"nixosConfigurations.($hostname).config.($name)" $"NixOS config attribute \(($hostname)\)" $cache_name $build_flags)
-    } else if $group == "nixos_package" {
-        return (build_package $"nixosConfigurations.($hostname).pkgs.($name)" $"NixOS package \(($hostname)\)" $cache_name $build_flags)
-    } else if $group == "remote_flake" {
-        return (build_package $name "Remote flake package" $cache_name $build_flags)
-    } else if $group == "vscode_extensions" {
-        let vscode_path = $".#nixosConfigurations.($hostname).config.home-manager.users.($user).programs.vscode.profiles.default.extensions"
-        let ext_res = (do {
-            ^nix eval --no-eval-cache --json $vscode_path --apply 'map (drv: { pname: (drv.pname or "unknown"), drvPath: (drv.drvPath or "") })'
-        } | complete)
-
-        if $ext_res.exit_code != 0 {
-            print_warning $"Failed to get VSCode extensions for ($user)@($hostname)"
-            return true
+        "nixos_config_attribute" => {
+            build_package $"nixosConfigurations.($hostname).config.($name)" $"NixOS config attribute \(($hostname)\)" $cache_name $build_flags
         }
-
-        let exts = (try { $ext_res.stdout | from json } catch { [] })
-        if ($exts | is-empty) {
-            print_warning $"No VSCode extensions found for ($user)@($hostname)"
-            return true
+        "nixos_package" => {
+            build_package $"nixosConfigurations.($hostname).pkgs.($name)" $"NixOS package \(($hostname)\)" $cache_name $build_flags
         }
+        "remote_flake" => {
+            build_package $name "Remote flake package" $cache_name $build_flags
+        }
+        "vscode_extensions" => {
+            let vscode_path = $".#nixosConfigurations.($hostname).config.home-manager.users.($user).programs.vscode.profiles.default.extensions"
+            let ext_res = (^nix eval --no-eval-cache --json $vscode_path --apply 'map (drv: { pname: (drv.pname or "unknown"), drvPath: (drv.drvPath or "") })' | complete)
 
-        mut failed = false
-        for ext in $exts {
-            let drv = ($ext.drvPath? | default "")
-            let ext_name = ($ext.pname? | default "unknown")
-            if ($drv | is-empty) { continue }
-            let ok = (build_drv $drv $ext_name $"VSCode extension \(($hostname)/($user)\)" $cache_name)
-            if not $ok {
-                $failed = true
+            if $ext_res.exit_code != 0 {
+                print_warning $"Failed to get VSCode extensions for ($user)@($hostname)"
+                return true
             }
-            sleep 1sec
+
+            let exts = (try { $ext_res.stdout | from json } catch { [] })
+            if ($exts | is-empty) {
+                print_warning $"No VSCode extensions found for ($user)@($hostname)"
+                return true
+            }
+
+            let all_ok = ($exts | all { |ext|
+                let drv = ($ext.drvPath? | default "")
+                let ext_name = ($ext.pname? | default "unknown")
+                if ($drv | is-empty) {
+                    true
+                } else {
+                    let ok = (build_drv $drv $ext_name $"VSCode extension \(($hostname)/($user)\)" $cache_name)
+                    sleep 1sec
+                    $ok
+                }
+            })
+            $all_ok
         }
-        return (not $failed)
-    } else {
-        print_error $"Unknown group: ($group)"
-        return false
+        _ => {
+            print_error $"Unknown group: ($group)"
+            false
+        }
     }
 }
 
 def generate_report [] {
     let successes = if ("success.txt" | path exists) {
-        open --raw success.txt | lines | where { |it| not ($it | is-empty) }
+        open --raw success.txt | lines | where { is-not-empty }
     } else {
         []
     }
@@ -332,7 +272,7 @@ def generate_report [] {
     let failures = if ("failures.txt" | path exists) {
         open --raw failures.txt
         | lines
-        | where { |it| not ($it | is-empty) }
+        | where { is-not-empty }
         | each { |line|
             let parts = ($line | split row "\t")
             {
@@ -365,104 +305,88 @@ def generate_report [] {
         }
     }
 
-    if ($env.GITHUB_STEP_SUMMARY? != null and $env.GITHUB_STEP_SUMMARY != "") {
-        mut summary = []
-        $summary = ($summary | append "")
-        $summary = ($summary | append "## 📊 Build Summary")
-        $summary = ($summary | append $"- **Total builds:** ($total_count)")
-        $summary = ($summary | append $"- **Successful:** ($success_count)")
-        $summary = ($summary | append $"- **Failed:** ($failure_count)")
-
-        if $failure_count > 0 {
-            $summary = ($summary | append "")
-            $summary = ($summary | append "### ❌ Failed Builds")
-            for f in $failures {
-                $summary = ($summary | append $"#### `($f.pkg)`")
-                if ($f.log != "" and ($f.log | path exists)) {
-                    $summary = ($summary | append "<details><summary>Click to view last 30 lines of error log</summary>")
-                    $summary = ($summary | append "")
-                    $summary = ($summary | append "```text")
+    if ($env.GITHUB_STEP_SUMMARY? | is-not-empty) {
+        let failed_section = if $failure_count > 0 {
+            let items = ($failures | each { |f|
+                let log_content = if ($f.log | is-not-empty) and ($f.log | path exists) {
                     let tail_lines = (open --raw $f.log | lines | last 30 | str join "\n")
-                    $summary = ($summary | append $tail_lines)
-                    $summary = ($summary | append "```")
-                    $summary = ($summary | append "</details>")
+                    $"<details><summary>Click to view last 30 lines of error log</summary>\n\n```text\n($tail_lines)\n```\n</details>"
                 } else {
-                    $summary = ($summary | append $"- Log file missing for ($f.pkg)")
+                    $"- Log file missing for ($f.pkg)"
                 }
-                $summary = ($summary | append "")
-            }
+                $"#### `($f.pkg)`\n($log_content)\n"
+            } | str join "\n")
+            $"\n### ❌ Failed Builds\n($items)\n"
+        } else {
+            ""
         }
-        ($"($summary | str join "\n")\n") | save --append --raw $env.GITHUB_STEP_SUMMARY
+
+        $"\n## 📊 Build Summary\n- **Total builds:** ($total_count)\n- **Successful:** ($success_count)\n- **Failed:** ($failure_count)\n($failed_section)"
+        | save --append --raw $env.GITHUB_STEP_SUMMARY
+    }
+}
+
+# Deserialise targets from file, json string, or default configuration files
+def load_targets [arg?: string, toml_file: string = ".github/cache-targets.toml"]: nothing -> list<any> {
+    if ($arg | is-not-empty) {
+        let data = if ($arg | path exists) {
+            open $arg
+        } else if ($arg | str starts-with "{") or ($arg | str starts-with "[") {
+            $arg | from json
+        } else {
+            error make { msg: $"Invalid target argument: ($arg)" }
+        }
+
+        if ($data | describe | str starts-with "record") {
+            $data.targets? | default [$data]
+        } else {
+            $data
+        }
+    } else if ($toml_file | path exists) {
+        open $toml_file | get targets
+    } else if ("cache.json" | path exists) {
+        open cache.json | get targets
+    } else {
+        print_error "No targets file found (.github/cache-targets.toml or cache.json)"
+        exit 1
     }
 }
 
 def main [target_arg?: string] {
-    let cache_name = (if ($env.CACHIX_CACHE_NAME? != null and $env.CACHIX_CACHE_NAME != "") { $env.CACHIX_CACHE_NAME } else { "johnrtitor" })
+    if ($env.NIX_STORE? == "null") {
+        hide-env NIX_STORE
+    }
+
+    let cache_name = ($env.CACHIX_CACHE_NAME? | default "johnrtitor")
     prepare $cache_name
 
     let build_flags = ($env.BUILD_FLAGS? | default $DEFAULT_BUILD_FLAGS)
 
     let build_failures = try {
-        if ($target_arg != null and $target_arg != "") {
+        let is_specific = ($target_arg | is-not-empty)
+        if $is_specific {
             print_info $"Building specific target: ($target_arg)"
-            let target_json = if ($target_arg | str starts-with "{") or ($target_arg | str starts-with "[") {
-                $target_arg | from json
-            } else if ($target_arg | path exists) {
-                let loaded = (open $target_arg)
-                if ($loaded | describe | str starts-with "record") and ("targets" in $loaded) {
-                    $loaded.targets
-                } else if ($loaded | describe | str starts-with "record") {
-                    [$loaded]
-                } else {
-                    $loaded
-                }
-            } else {
-                error make { msg: $"Invalid target argument: ($target_arg)" }
-            }
+        }
 
-            let targets = if ($target_json | describe | str starts-with "record") {
-                if ("targets" in $target_json) {
-                    $target_json.targets
-                } else {
-                    [$target_json]
-                }
-            } else {
-                $target_json
-            }
+        let targets = (load_targets $target_arg)
+        let targets_count = ($targets | length)
 
-            mut failures = 0
-            for t in $targets {
-                let ok = (build_target $t $cache_name $build_flags)
-                if not $ok {
-                    $failures = $failures + 1
-                }
-            }
-            $failures
-        } else {
-            let targets = if (".github/cache-targets.toml" | path exists) {
-                open .github/cache-targets.toml | get targets
-            } else if ("cache.json" | path exists) {
-                open cache.json | get targets
-            } else {
-                print_error "No targets file found (.github/cache-targets.toml or cache.json)"
-                exit 1
-            }
-
-            let targets_count = ($targets | length)
+        if not $is_specific {
             print_info $"Reading ($targets_count) targets"
-            mut failures = 0
-            mut idx = 1
-            for t in $targets {
-                print_info $"Processing target ($idx)/($targets_count)..."
-                let ok = (build_target $t $cache_name $build_flags)
-                if not $ok {
-                    $failures = $failures + 1
-                }
-                $idx = $idx + 1
+        }
+
+        let failures = ($targets | enumerate | reduce --fold 0 { |it, acc|
+            if not $is_specific {
+                let display_idx = $it.index + 1
+                print_info $"Processing target ($display_idx)/($targets_count)..."
+            }
+            let ok = (build_target $it.item $cache_name $build_flags)
+            if not $is_specific {
                 sleep 1sec
             }
-            $failures
-        }
+            if $ok { $acc } else { $acc + 1 }
+        })
+        $failures
     } catch { |err|
         print_error $"Build execution encountered an error: ($err.rendered? | default ($err.msg? | default $err))"
         1
