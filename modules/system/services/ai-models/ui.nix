@@ -9,7 +9,7 @@
 
 let
   ## PREFS ##
-  enableOdysseus = true;
+  enableOdysseus = false;
   enableOpenWebUI = false;
 
 in
