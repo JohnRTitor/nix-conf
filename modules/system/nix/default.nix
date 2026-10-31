@@ -29,8 +29,15 @@
   # `nix-everything` output provides. Dropping the build gate is enough, because
   # nixpkgs only adds `checkInputs` to `nativeBuildInputs` when `doCheck` is set.
   nix.package = inputs.determinate-nix.packages.${pkgs.stdenv.hostPlatform.system}.nix.overrideAttrs (
-    _: {
+    old: {
       doCheck = false;
+      meta = (old.meta or { }) // {
+        outputsToInstall = [
+          "out"
+          "man"
+          "doc"
+        ];
+      };
     }
   );
 

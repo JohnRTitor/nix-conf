@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Configuration with defaults
 CACHIX_CACHE_NAME="${CACHIX_CACHE_NAME:-}"
-BUILD_FLAGS="${BUILD_FLAGS:---print-out-paths --print-build-logs}"
+BUILD_FLAGS="${BUILD_FLAGS:---print-out-paths --print-build-logs --no-eval-cache}"
 
 # Colors for output
 R='\033[0;31m'
@@ -113,7 +113,35 @@ function build_package() {
     # Build succeeded
     echo -e "${G} SUCCESS${W}"
     echo "$pkg" >> success.txt
+
+    # Also resolve all expected / realized outputs from the package definition
+    local eval_paths
+    eval_paths=$(nix eval --no-eval-cache --json "$build_ref" --apply 'pkg:
+      let
+        toPaths = outs:
+          map (out: if pkg ? ${out} then (pkg.${out}.outPath or pkg.${out}) else (pkg.outPath or pkg)) outs;
+        fromInstall = if pkg ? meta.outputsToInstall && builtins.isList pkg.meta.outputsToInstall then toPaths pkg.meta.outputsToInstall else [];
+        fromOutputs = if pkg ? outputs && builtins.isList pkg.outputs then toPaths pkg.outputs else [];
+        direct = [ (pkg.outPath or pkg) ];
+      in
+        map toString (fromInstall ++ fromOutputs ++ direct)' 2>/dev/null | jq -r '.[]' 2>/dev/null || true)
+
+    if [ -n "$eval_paths" ]; then
+      while IFS= read -r p; do
+        if [ -n "$p" ] && [ -e "$p" ]; then
+          echo "$p" >> paths.tmp
+        fi
+      done <<< "$eval_paths"
+    fi
+
+    if [ -f paths.tmp ]; then
+      sort -u paths.tmp -o paths.tmp
+      sed -i '/^$/d' paths.tmp
+    fi
+
     if [ -s paths.tmp ]; then
+      echo_info "Pushing paths to Cachix ($CACHIX_CACHE_NAME):"
+      cat paths.tmp
       cachix push "$CACHIX_CACHE_NAME" < paths.tmp
     fi
     return 0
@@ -169,7 +197,13 @@ function build_drv() {
     # Build succeeded
     echo -e "${G} SUCCESS${W}"
     echo "drv:$name" >> success.txt
+    if [ -f paths.tmp ]; then
+      sort -u paths.tmp -o paths.tmp
+      sed -i '/^$/d' paths.tmp
+    fi
     if [ -s paths.tmp ]; then
+      echo_info "Pushing paths to Cachix ($CACHIX_CACHE_NAME):"
+      cat paths.tmp
       cachix push "$CACHIX_CACHE_NAME" < paths.tmp
     fi
     return 0
