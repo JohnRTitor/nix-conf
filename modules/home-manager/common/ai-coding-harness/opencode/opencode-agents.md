@@ -7,4 +7,4 @@
 - Workers never commit or otherwise mutate git state; the orchestrator integrates and the user reviews the working tree.
 - For non-trivial work, use the `/validate-loop` command (or invoke the `@critic-*` subagents directly with full context: requirements, changed files, validation results).
 - Before declaring completion, inspect the final `git diff` and run the strongest practical validation available.
-- Never run `git push`, `git reset --hard`, `git clean`, or recursive deletes.
+- Never run `git push`, `git reset --hard`, `git clean`, or recursive deletes (except inside `/tmp/opencode`).
