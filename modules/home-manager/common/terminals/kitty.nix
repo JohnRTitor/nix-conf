@@ -20,6 +20,9 @@ lib.mkIf (config.myOptions.programsSettings.terminal == "kitty") {
       wheel_scroll_min_lines = 1;
       window_padding_width = 4;
       confirm_os_window_close = 0;
+      # Hyprland reports tiled windows as maximized to Wayland clients, so
+      # kitty would otherwise cache and restore a maximized window on launch.
+      remember_window_size = false;
       scrollback_lines = 10000;
       enable_audio_bell = false;
       mouse_hide_wait = 60;

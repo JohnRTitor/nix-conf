@@ -97,7 +97,7 @@ in
         column_width = 0.80;
         fullscreen_on_one_column = true;
         direction = "right";
-        follow_focus = true;
+        follow_focus = 1;
       };
 
       monocle = { };
@@ -113,7 +113,6 @@ in
       };
 
       misc = {
-        layers_hog_keyboard_focus = true;
         initial_workspace_tracking = 0;
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = true;
@@ -129,6 +128,10 @@ in
         anr_missed_pings = 15;
       };
 
+      layers = {
+        layers_hog_keyboard_focus = true;
+      };
+
       dwindle = {
         preserve_split = true;
         smart_resizing = true;
@@ -137,7 +140,6 @@ in
         default_split_ratio = 1.0;
         split_bias = 0;
         precise_mouse_move = false;
-        special_scale_factor = 0.8;
       };
 
       decoration = {

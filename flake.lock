@@ -1486,7 +1486,7 @@
         ]
       },
       "locked": {
-        "narHash": "sha256-ClzcPmJ99sKVxUDeEjD5rBkUB30VnESEQialQ3aYqRA=",
+        "narHash": "sha256-2FOv+PHPscvcXdJ5r5pfQs9xqkMi96VCRnK/emVAoes=",
         "path": "/home/masum/Dev-Environment/Rust/zsh-pulse",
         "type": "path"
       },

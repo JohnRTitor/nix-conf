@@ -1,5 +1,20 @@
 _: {
   wayland.windowManager.hyprland = {
+    settings.workspace_rule = [
+      {
+        workspace = "special:scratchpads";
+        # Reproduce the old dwindle:special_scale_factor = 0.8 inset on a
+        # 1920x1080 output (10% margin on each side) now that Hyprland uses
+        # workspace rules for special-workspace scaling.
+        gaps_out = {
+          top = 108;
+          right = 192;
+          bottom = 108;
+          left = 192;
+        };
+      }
+    ];
+
     settings.window_rule = [
       {
         name = "Dialog boxes";
