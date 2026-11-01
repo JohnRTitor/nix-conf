@@ -6,7 +6,7 @@
 {
   imports = [
     ./opencode
-    ./cline
+    # ./cline
   ];
   home.packages = [
     # self.packages.${pkgs.stdenv.hostPlatform.system}.freebuff
