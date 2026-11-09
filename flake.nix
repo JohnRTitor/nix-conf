@@ -6,6 +6,22 @@
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"; # Unstable NixOS system (default)
     nixpkgs-master.url = "github:NixOS/nixpkgs/master"; # Master branch of nixpkgs, to get the absolute latest packages
 
+    # Flake for patching Nixpkgs
+    nixpkgs-patcher.url = "github:gepbird/nixpkgs-patcher";
+    # Example:
+    # nixpkgs-patch-foo = {
+    #   url = "https://github.com/NixOS/nixpkgs/pull/123456.diff";
+    #   flake = false;
+    # };
+    nixpkgs-patch-bcachefs-module = {
+      url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/574375.patch";
+      flake = false;
+    };
+    nixpkgs-patch-hyprland-module = {
+      url = "https://github.com/NixOS/nixpkgs/pull/581387.patch";
+      flake = false;
+    };
+
     ### NIX ECOSYSTEM & UTILS ###
     flake-parts = {
       url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
@@ -65,7 +81,7 @@
     };
 
     xdg-desktop-portal-gtk4 = {
-      url = "github:johnrtitor/xdg-desktop-portal-gtk4";
+      url = "github:johnrtitor/xdg-desktop-portal-gtk4/fix/file-chooser-thumbnails";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.flake-compat.follows = "flake-compat";

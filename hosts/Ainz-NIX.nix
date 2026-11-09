@@ -6,8 +6,6 @@
   ...
 }:
 let
-  inherit (inputs.nixpkgs) lib; # use lib from nixpkgs
-
   specialArgs = {
     inherit
       self
@@ -17,8 +15,9 @@ let
   };
 in
 {
-  flake.nixosConfigurations.Ainz-NIX = lib.nixosSystem {
+  flake.nixosConfigurations.Ainz-NIX = inputs.nixpkgs-patcher.lib.nixosSystem {
     inherit specialArgs;
+    nixpkgsPatcher.inputs = inputs;
     modules = [
       ### CORE SYSTEM & HOST CONFIGURATION ###
       {

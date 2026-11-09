@@ -44,11 +44,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792686663,
-        "narHash": "sha256-+cM/b9wmTgjZ/eCuSlZ6GNcPjkHoLkww/DhQzV7Bba8=",
+        "lastModified": 1793363642,
+        "narHash": "sha256-LKHPWs7mm7/y8Y0urwmYnnGZ00YTCoF/SU/aEEwPi5I=",
         "owner": "hyprwm",
         "repo": "aquamarine",
-        "rev": "163b138cfb22873de1e1bf253d57bf03154d1acd",
+        "rev": "eac1b827c4a12dc026f21c966cde2f248fe6ee12",
         "type": "github"
       },
       "original": {
@@ -549,11 +549,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1793379737,
-        "narHash": "sha256-osHsscDFNtf1D2Syj4rXnU1oz82rZohSap0Boemz2b8=",
+        "lastModified": 1794221806,
+        "narHash": "sha256-P6LkrX13khvsMiNOLEC4hvHTpTwXv5IXiikZQMXPwPU=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "4b9ac40d71ceeeb027cfa06992c9212e3c3077b6",
+        "rev": "a1d7a78b6c8e54ad72d401bfa8b85fdc89ee66a6",
         "type": "github"
       },
       "original": {
@@ -697,11 +697,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793028103,
-        "narHash": "sha256-K2Slj+2WhirLyvQ4GuqITPti8bujcMN+ep1l9iTahWo=",
+        "lastModified": 1793302898,
+        "narHash": "sha256-k6dW+HQh5+spLpkLt+3qsE4k9NGsrBjlfINfgqPgYMY=",
         "owner": "hyprwm",
         "repo": "hyprtoolkit",
-        "rev": "5884544f1eb4549201a38ac42d63206da1384c99",
+        "rev": "92646e15fb295285b10de626f2d9597216465f7b",
         "type": "github"
       },
       "original": {
@@ -962,6 +962,45 @@
         "type": "github"
       }
     },
+    "nixpkgs-patch-bcachefs-module": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-Vvvi2A82ccPCLsfB6Z6WqyUHRUAq01pYo6j8ZtmtvlI=",
+        "type": "file",
+        "url": "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/574375.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/574375.patch"
+      }
+    },
+    "nixpkgs-patch-hyprland-module": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-liuc1aHiuxhgmXWhSZpj40Fy3YNqQWaj99tOOe7Rs1w=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/581387.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/581387.patch"
+      }
+    },
+    "nixpkgs-patcher": {
+      "locked": {
+        "lastModified": 1793529490,
+        "narHash": "sha256-AfocpOlYMgrEgE9j0OumoQGe1Uwke4k7vtzfffUl+tE=",
+        "owner": "gepbird",
+        "repo": "nixpkgs-patcher",
+        "rev": "e5f4b45fb4f0fc81dae025c173648cccbefca569",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gepbird",
+        "repo": "nixpkgs-patcher",
+        "type": "github"
+      }
+    },
     "nixpkgs-regression": {
       "locked": {
         "lastModified": 1643052045,
@@ -1171,6 +1210,9 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-patch-bcachefs-module": "nixpkgs-patch-bcachefs-module",
+        "nixpkgs-patch-hyprland-module": "nixpkgs-patch-hyprland-module",
+        "nixpkgs-patcher": "nixpkgs-patcher",
         "noctalia": "noctalia",
         "nur": "nur",
         "odysseus": "odysseus",
@@ -1392,15 +1434,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1790952251,
-        "narHash": "sha256-bLbuL7M9K7YuQez0mZH2vk4SypxBLRoCKzjZiIfJ4Ms=",
+        "lastModified": 1793741018,
+        "narHash": "sha256-6WBNzWmeDLsJ4cdv+pwvPIR1JyaOXtaG8ZzerHE4HME=",
         "owner": "johnrtitor",
         "repo": "xdg-desktop-portal-gtk4",
-        "rev": "8f88da61d347f1af9cc74618ed6823b385754ba3",
+        "rev": "b9078829d713b66f7e77a386a715a585c54c94b2",
         "type": "github"
       },
       "original": {
         "owner": "johnrtitor",
+        "ref": "fix/file-chooser-thumbnails",
         "repo": "xdg-desktop-portal-gtk4",
         "type": "github"
       }
@@ -1486,7 +1529,7 @@
         ]
       },
       "locked": {
-        "narHash": "sha256-2FOv+PHPscvcXdJ5r5pfQs9xqkMi96VCRnK/emVAoes=",
+        "narHash": "sha256-Z8jDnW4/mCnaraMJGLhJFlSMp9RQ1b+Lmg+HWEcP4T8=",
         "path": "/home/masum/Dev-Environment/Rust/zsh-pulse",
         "type": "path"
       },
