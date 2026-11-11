@@ -827,11 +827,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793277765,
-        "narHash": "sha256-bFGQoGFoQPqBhdydS9WCbnOC6gGbIlQhdEm8+zII75Q=",
+        "lastModified": 1794175815,
+        "narHash": "sha256-cWUiM2yI08QDghsY8mSWEqSM7FbWdM2YhSj/C64buGU=",
         "owner": "m-uvex",
         "repo": "loaf-fm",
-        "rev": "298683967cf5a318f83bc2a0c6b032d1256911fa",
+        "rev": "1a23c679b97f862686cfa70b7754f1159aedfd9a",
         "type": "github"
       },
       "original": {
@@ -1434,16 +1434,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1793741018,
-        "narHash": "sha256-6WBNzWmeDLsJ4cdv+pwvPIR1JyaOXtaG8ZzerHE4HME=",
+        "lastModified": 1794427642,
+        "narHash": "sha256-D9X+e4f6mvE/qm6HJfQ4eXqp7QpvU4rdgydKwx5zDqU=",
         "owner": "johnrtitor",
         "repo": "xdg-desktop-portal-gtk4",
-        "rev": "b9078829d713b66f7e77a386a715a585c54c94b2",
+        "rev": "0004ef3959d01246ff206c1ba41d2df4c153c319",
         "type": "github"
       },
       "original": {
         "owner": "johnrtitor",
-        "ref": "fix/file-chooser-thumbnails",
+        "ref": "fix/file-chooser-thumbnail-reclaim",
         "repo": "xdg-desktop-portal-gtk4",
         "type": "github"
       }

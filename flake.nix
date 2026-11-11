@@ -81,7 +81,7 @@
     };
 
     xdg-desktop-portal-gtk4 = {
-      url = "github:johnrtitor/xdg-desktop-portal-gtk4/fix/file-chooser-thumbnails";
+      url = "github:johnrtitor/xdg-desktop-portal-gtk4/fix/file-chooser-thumbnail-reclaim";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.flake-compat.follows = "flake-compat";

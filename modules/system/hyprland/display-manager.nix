@@ -8,8 +8,8 @@
   ...
 }:
 lib.mkMerge [
-  (lib.mkIf (config.myOptions.programsSettings.displayManager == "dms-greeter") {
-    services.displayManager.dms-greeter = {
+  (lib.mkIf (config.myOptions.programsSettings.displayManager == "dux-greeter") {
+    services.displayManager.dux-greeter = {
       enable = true;
 
       compositor.name = "hyprland";
