@@ -1434,16 +1434,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1794427642,
-        "narHash": "sha256-D9X+e4f6mvE/qm6HJfQ4eXqp7QpvU4rdgydKwx5zDqU=",
+        "lastModified": 1794433765,
+        "narHash": "sha256-UOM+Op4slfGFrt5Cs7FPR785Rcdd3zmntghtjyTwM5c=",
         "owner": "johnrtitor",
         "repo": "xdg-desktop-portal-gtk4",
-        "rev": "0004ef3959d01246ff206c1ba41d2df4c153c319",
+        "rev": "1abd56c2d452bbf39c1d396bfcf6fd6876c8a28b",
         "type": "github"
       },
       "original": {
         "owner": "johnrtitor",
-        "ref": "fix/file-chooser-thumbnail-reclaim",
         "repo": "xdg-desktop-portal-gtk4",
         "type": "github"
       }
@@ -1529,13 +1528,17 @@
         ]
       },
       "locked": {
-        "narHash": "sha256-Z8jDnW4/mCnaraMJGLhJFlSMp9RQ1b+Lmg+HWEcP4T8=",
-        "path": "/home/masum/Dev-Environment/Rust/zsh-pulse",
-        "type": "path"
+        "lastModified": 1794472955,
+        "narHash": "sha256-Cvs1gkgNGESg+qoFO78j69xmAC55ls9qZvlulUsUzHU=",
+        "owner": "johnrtitor",
+        "repo": "zsh-pulse",
+        "rev": "72083b779ec254fea8248b06372b645975c556eb",
+        "type": "github"
       },
       "original": {
-        "path": "/home/masum/Dev-Environment/Rust/zsh-pulse",
-        "type": "path"
+        "owner": "johnrtitor",
+        "repo": "zsh-pulse",
+        "type": "github"
       }
     }
   },

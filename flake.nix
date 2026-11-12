@@ -81,7 +81,7 @@
     };
 
     xdg-desktop-portal-gtk4 = {
-      url = "github:johnrtitor/xdg-desktop-portal-gtk4/fix/file-chooser-thumbnail-reclaim";
+      url = "github:johnrtitor/xdg-desktop-portal-gtk4";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
       inputs.flake-compat.follows = "flake-compat";
@@ -105,7 +105,7 @@
     # A local checkout, so the plugin can be rebuilt while it is being worked
     # on.
     zsh-pulse = {
-      url = "path:/home/masum/Dev-Environment/Rust/zsh-pulse";
+      url = "github:johnrtitor/zsh-pulse";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
