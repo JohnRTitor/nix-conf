@@ -46,6 +46,7 @@
       "noatime"
       "comment=x-gvfs-show" # Force it to be shown in Nautilus
     ];
+    noCheck = true;
   };
 
   fileSystems."/mnt/Crucial-Shared" = {
@@ -55,6 +56,7 @@
       "noatime"
       "comment=x-gvfs-show" # Force it to be shown in Nautilus
     ];
+    noCheck = true;
   };
 
   swapDevices = [ ];
