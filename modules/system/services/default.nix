@@ -10,7 +10,7 @@
 }:
 {
   imports = [
-    ./ananicy-cpp.nix
+    ./ananicy-rs.nix
     ./console-tty.nix
     ./oo7.nix
     ./gnupg-ssh.nix

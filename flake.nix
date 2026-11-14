@@ -21,6 +21,10 @@
       url = "https://github.com/NixOS/nixpkgs/pull/581387.patch";
       flake = false;
     };
+    nixpkgs-patch-limine-module = {
+      url = "https://github.com/NixOS/nixpkgs/pull/569250.patch";
+      flake = false;
+    };
 
     ### NIX ECOSYSTEM & UTILS ###
     flake-parts = {

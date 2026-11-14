@@ -11,11 +11,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790623434,
-        "narHash": "sha256-pR0uFPfjk2Y8/cizdFgSLA+2Cvika3QL0ZEiOo6LbWE=",
+        "lastModified": 1794492142,
+        "narHash": "sha256-+SMom2WVK1K7nA95OIQJZyaoFZZuqO0MqmeGLNLgNYQ=",
         "owner": "johnrtitor",
         "repo": "ananicy-rs",
-        "rev": "395da3f1a2cbc330f2ac9a5cfe03d553890db934",
+        "rev": "96daa936f1346245b0adce35bee4b53468b5630f",
         "type": "github"
       },
       "original": {
@@ -986,6 +986,18 @@
         "url": "https://github.com/NixOS/nixpkgs/pull/581387.patch"
       }
     },
+    "nixpkgs-patch-limine-module": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-qAhsfQdRbXFEFaztTbWmwv642Q8U5KZ3L2JjFapgy0E=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/569250.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/569250.patch"
+      }
+    },
     "nixpkgs-patcher": {
       "locked": {
         "lastModified": 1793529490,
@@ -1212,6 +1224,7 @@
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-patch-bcachefs-module": "nixpkgs-patch-bcachefs-module",
         "nixpkgs-patch-hyprland-module": "nixpkgs-patch-hyprland-module",
+        "nixpkgs-patch-limine-module": "nixpkgs-patch-limine-module",
         "nixpkgs-patcher": "nixpkgs-patcher",
         "noctalia": "noctalia",
         "nur": "nur",
@@ -1528,11 +1541,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794472955,
-        "narHash": "sha256-Cvs1gkgNGESg+qoFO78j69xmAC55ls9qZvlulUsUzHU=",
+        "lastModified": 1794475726,
+        "narHash": "sha256-ytE8c9pAtZG4jfKf8zOkXb2E7SoyvRJg+0CGbzKt5Kw=",
         "owner": "johnrtitor",
         "repo": "zsh-pulse",
-        "rev": "72083b779ec254fea8248b06372b645975c556eb",
+        "rev": "09ad6a676b4039a19408639d970524c92e8de12b",
         "type": "github"
       },
       "original": {
