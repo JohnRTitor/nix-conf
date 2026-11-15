@@ -29,7 +29,7 @@ _: {
         match = {
           title = "^(Picture-in-Picture|Picture in picture)$";
         };
-        keep_aspect_ratio = true;
+        # keep_aspect_ratio = true;
         tag = "+pip";
       }
 
