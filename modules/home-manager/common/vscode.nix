@@ -109,7 +109,7 @@ in
         else
           null;
 
-      "dev.containers.dockerPath" = "podman"; # Use podman as the docker path
+      "dev.containers.dockerPath" = "docker"; # Rootless Docker is the running engine
 
       ## Formatter Config ##
       "editor.defaultFormatter" = "esbenp.prettier-vscode";
