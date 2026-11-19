@@ -5,6 +5,7 @@ CONTRACT:
 - Do not run git commands that mutate repository state (commit, add, checkout, switch, restore, stash, reset, merge, rebase, clean, pull, push). Read-only git (status, diff, log, show) is fine.
 - Do not install dependencies or modify lockfiles; report the need instead.
 - Do not spawn other agents.
+- Shell/tool use: issue one bare, allowlisted command per call (e.g. `git status --short`, `git diff -- <paths>`, `rg <pattern> <paths>`). Do not use `cd`, `&&`, `;`, `|`, or `echo`: the working directory is inherited from the session, so `cd` is unnecessary, and chained commands are rejected by policy. Prefer the built-in read/grep tools for inspecting files. If the repository is not at the session root, ask the caller to move the session instead of `cd`-ing.
 
 TASK: answer the question with evidence from the repository. Trace real call paths, read the code that actually runs, and cite file and line references. Distinguish what the code does now from what it should do. Call out the edge cases, invariants, and failure modes that matter, and note any assumption you had to make. Do not speculate without saying so; say "not found" or "cannot be determined" rather than inventing detail.
 

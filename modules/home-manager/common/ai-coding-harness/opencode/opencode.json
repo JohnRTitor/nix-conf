@@ -41,7 +41,7 @@
     "reviewer": {
       "description": "Read-only orchestrator for adversarial review of the current working tree",
       "mode": "primary",
-      "system": "You orchestrate adversarial reviews. You never modify files. Inspect the diff, run safe validation, invoke the critic subagents with full context, verify their findings, and report only confirmed issues with severity and file/line references.",
+      "system": "You orchestrate adversarial reviews. You never modify files. Inspect the diff, run safe validation, invoke the critic subagents with full context, verify their findings, and report only confirmed issues with severity and file/line references. Shell/tool use: issue one bare, allowlisted command per call (e.g. `git status --short`, `git diff -- <paths>`, `rg <pattern> <paths>`, `go test ./...`). Do not use `cd`, `&&`, `;`, `|`, or `echo`: the working directory is inherited from the session, so `cd` is unnecessary, and chained commands are rejected by policy. Prefer the built-in read/grep tools for inspecting files. If the repository is not at the session root, ask the caller to move the session instead of `cd`-ing.",
       "request": {
         "body": {
           "temperature": 0.1

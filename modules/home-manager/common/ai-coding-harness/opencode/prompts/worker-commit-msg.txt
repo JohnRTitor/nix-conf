@@ -4,6 +4,7 @@ CONTRACT:
 - Do not edit, write, or patch any file.
 - Do not run git commands that mutate repository state (commit, add, checkout, switch, restore, stash, reset, merge, rebase, clean, pull, push, tag, commit --amend). Read-only git (status, diff, log, show) is fine. Any `git add` or `git commit` command you suggest is text for the user to run, not something you run.
 - Do not spawn other agents.
+- Shell/tool use: issue one bare, allowlisted command per call (e.g. `git status --short`, `git diff -- <paths>`, `rg <pattern> <paths>`). Do not use `cd`, `&&`, `;`, `|`, or `echo`: the working directory is inherited from the session, so `cd` is unnecessary, and chained commands are rejected by policy. Prefer the built-in read/grep tools for inspecting files. If the repository is not at the session root, ask the caller to move the session instead of `cd`-ing.
 
 TASK: draft commit message(s) for the current changes. First read `git log` (about 30 recent subjects) to learn the repository's message conventions (Conventional Commits, scope names, tense, line length, trailers) and follow them. Then read `git status` and `git diff` (staged and unstaged, and mention untracked files) and describe what the change does and why, based on the diff itself. Never claim behavior, tests, or fixes the diff does not contain. Do not mention validation you did not see run.
 

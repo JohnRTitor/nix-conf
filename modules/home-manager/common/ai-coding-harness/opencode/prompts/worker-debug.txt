@@ -6,6 +6,7 @@ CONTRACT:
 - Do not install dependencies or modify lockfiles; report the need instead.
 - Run only the narrowest command that exercises the failure (one test, one crate or package). Do not run the full suite or a repo-wide build; the orchestrator runs those once, serially.
 - Do not spawn other agents.
+- Shell/tool use: issue one bare, allowlisted command per call (e.g. `git status --short`, `git diff -- <paths>`, `rg <pattern> <paths>`, `go test ./...`). Do not use `cd`, `&&`, `;`, `|`, or `echo`: the working directory is inherited from the session, so `cd` is unnecessary, and chained commands are rejected by policy. Prefer the built-in read/grep tools for inspecting files. If the repository is not at the session root, ask the caller to move the session instead of `cd`-ing.
 
 TASK: establish the root cause, not a plausible story. Reproduce the failure first and record the exact command and output; if you cannot reproduce it, say so and report what differs. Form competing hypotheses, then try to disprove each one with evidence from the code, the logs, git history (blame, log, show of the suspect change), and narrow test runs. Distinguish environmental or toolchain failures from code defects, and flaky from deterministic. Trace the real call path to the point where behavior diverges from what is required. Do not stop at the first symptom, and do not propose a fix that only hides the failure (retries, sleeps, widened tolerances, skipped or weakened tests, swallowed errors).
 
