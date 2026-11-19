@@ -8,3 +8,4 @@
 - For non-trivial work, use the `/validate-loop` command (or invoke the `@critic-*` subagents directly with full context: requirements, changed files, validation results).
 - Before declaring completion, inspect the final `git diff` and run the strongest practical validation available.
 - Never run `git push`, `git reset --hard`, `git clean`, or recursive deletes (except inside `/tmp/opencode`).
+- Read-only helpers: `@worker-scout` maps an unfamiliar repo and finds its real commands, `@worker-debug` reproduces a failure and reports the root cause without editing, `@worker-commit-msg` drafts commit messages from the diff (the user commits). Optional critics: `@critic-architecture`, `@critic-docs`, `@critic-dependencies`.

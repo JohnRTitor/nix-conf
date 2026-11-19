@@ -60,6 +60,47 @@
         { "action": "shell", "resource": "git show*", "effect": "allow" },
         { "action": "shell", "resource": "rg *", "effect": "allow" },
         { "action": "shell", "resource": "grep *", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
         { "action": "shell", "resource": "git * --output*", "effect": "deny" },
         {
           "action": "shell",
@@ -67,6 +108,25 @@
           "effect": "deny"
         },
         { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" },
         { "action": "shell", "resource": "cargo check*", "effect": "allow" },
         { "action": "shell", "resource": "cargo test*", "effect": "allow" },
         { "action": "shell", "resource": "cargo clippy*", "effect": "allow" },
@@ -109,13 +169,73 @@
         { "action": "shell", "resource": "git show*", "effect": "allow" },
         { "action": "shell", "resource": "rg *", "effect": "allow" },
         { "action": "shell", "resource": "grep *", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
         { "action": "shell", "resource": "git * --output*", "effect": "deny" },
         {
           "action": "shell",
           "resource": "git * --ext-diff*",
           "effect": "deny"
         },
-        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" }
+        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" }
       ]
     },
     "critic-security": {
@@ -139,13 +259,73 @@
         { "action": "shell", "resource": "git show*", "effect": "allow" },
         { "action": "shell", "resource": "rg *", "effect": "allow" },
         { "action": "shell", "resource": "grep *", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
         { "action": "shell", "resource": "git * --output*", "effect": "deny" },
         {
           "action": "shell",
           "resource": "git * --ext-diff*",
           "effect": "deny"
         },
-        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" }
+        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" }
       ]
     },
     "critic-tests": {
@@ -189,13 +369,73 @@
         { "action": "shell", "resource": "go test*", "effect": "allow" },
         { "action": "shell", "resource": "go vet*", "effect": "allow" },
         { "action": "shell", "resource": "make test*", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
         { "action": "shell", "resource": "git * --output*", "effect": "deny" },
         {
           "action": "shell",
           "resource": "git * --ext-diff*",
           "effect": "deny"
         },
-        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" }
+        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" }
       ]
     },
     "critic-performance": {
@@ -219,13 +459,343 @@
         { "action": "shell", "resource": "git show*", "effect": "allow" },
         { "action": "shell", "resource": "rg *", "effect": "allow" },
         { "action": "shell", "resource": "grep *", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
         { "action": "shell", "resource": "git * --output*", "effect": "deny" },
         {
           "action": "shell",
           "resource": "git * --ext-diff*",
           "effect": "deny"
         },
-        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" }
+        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" }
+      ]
+    },
+    "critic-architecture": {
+      "description": "Design-fit, API-compatibility, and maintainability critic",
+      "mode": "subagent",
+      "system": "{file:./prompts/critic-architecture.txt}",
+      "request": {
+        "body": {
+          "temperature": 0.1
+        }
+      },
+      "permissions": [
+        { "action": "edit", "resource": "*", "effect": "deny" },
+        { "action": "subagent", "resource": "*", "effect": "deny" },
+        { "action": "webfetch", "resource": "*", "effect": "deny" },
+        { "action": "websearch", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "git status*", "effect": "allow" },
+        { "action": "shell", "resource": "git diff*", "effect": "allow" },
+        { "action": "shell", "resource": "git log*", "effect": "allow" },
+        { "action": "shell", "resource": "git show*", "effect": "allow" },
+        { "action": "shell", "resource": "rg *", "effect": "allow" },
+        { "action": "shell", "resource": "grep *", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
+        { "action": "shell", "resource": "git * --output*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git * --ext-diff*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" }
+      ]
+    },
+    "critic-docs": {
+      "description": "Documentation accuracy critic: verifies docs, comments, and examples against the code",
+      "mode": "subagent",
+      "system": "{file:./prompts/critic-docs.txt}",
+      "request": {
+        "body": {
+          "temperature": 0.1
+        }
+      },
+      "permissions": [
+        { "action": "edit", "resource": "*", "effect": "deny" },
+        { "action": "subagent", "resource": "*", "effect": "deny" },
+        { "action": "webfetch", "resource": "*", "effect": "deny" },
+        { "action": "websearch", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "git status*", "effect": "allow" },
+        { "action": "shell", "resource": "git diff*", "effect": "allow" },
+        { "action": "shell", "resource": "git log*", "effect": "allow" },
+        { "action": "shell", "resource": "git show*", "effect": "allow" },
+        { "action": "shell", "resource": "rg *", "effect": "allow" },
+        { "action": "shell", "resource": "grep *", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
+        { "action": "shell", "resource": "git * --output*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git * --ext-diff*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" }
+      ]
+    },
+    "critic-dependencies": {
+      "description": "Dependency and supply-chain critic for manifest and lockfile changes",
+      "mode": "subagent",
+      "system": "{file:./prompts/critic-dependencies.txt}",
+      "request": {
+        "body": {
+          "temperature": 0.1
+        }
+      },
+      "permissions": [
+        { "action": "edit", "resource": "*", "effect": "deny" },
+        { "action": "subagent", "resource": "*", "effect": "deny" },
+        { "action": "webfetch", "resource": "*", "effect": "deny" },
+        { "action": "websearch", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "git status*", "effect": "allow" },
+        { "action": "shell", "resource": "git diff*", "effect": "allow" },
+        { "action": "shell", "resource": "git log*", "effect": "allow" },
+        { "action": "shell", "resource": "git show*", "effect": "allow" },
+        { "action": "shell", "resource": "rg *", "effect": "allow" },
+        { "action": "shell", "resource": "grep *", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
+        { "action": "shell", "resource": "git * --output*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git * --ext-diff*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" }
       ]
     },
     "orchestrator": {
@@ -457,13 +1027,362 @@
         { "action": "shell", "resource": "git show*", "effect": "allow" },
         { "action": "shell", "resource": "rg *", "effect": "allow" },
         { "action": "shell", "resource": "grep *", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
         { "action": "shell", "resource": "git * --output*", "effect": "deny" },
         {
           "action": "shell",
           "resource": "git * --ext-diff*",
           "effect": "deny"
         },
-        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" }
+        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" }
+      ]
+    },
+    "worker-scout": {
+      "description": "Parallel scouting worker: read-only repo mapping that discovers layout, conventions, and the real build/test commands",
+      "mode": "subagent",
+      "color": "#74c7ec",
+      "system": "{file:./prompts/worker-scout.txt}",
+      "request": {
+        "body": {
+          "temperature": 0.1
+        }
+      },
+      "permissions": [
+        { "action": "edit", "resource": "*", "effect": "deny" },
+        { "action": "subagent", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "git status*", "effect": "allow" },
+        { "action": "shell", "resource": "git diff*", "effect": "allow" },
+        { "action": "shell", "resource": "git log*", "effect": "allow" },
+        { "action": "shell", "resource": "git show*", "effect": "allow" },
+        { "action": "shell", "resource": "rg *", "effect": "allow" },
+        { "action": "shell", "resource": "grep *", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
+        { "action": "shell", "resource": "git * --output*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git * --ext-diff*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" }
+      ]
+    },
+    "worker-debug": {
+      "description": "Parallel debugging worker: reproduces a failure and reports the root cause and smallest fix without editing files",
+      "mode": "subagent",
+      "color": "#f38ba8",
+      "system": "{file:./prompts/worker-debug.txt}",
+      "request": {
+        "body": {
+          "temperature": 0.1
+        }
+      },
+      "permissions": [
+        { "action": "edit", "resource": "*", "effect": "deny" },
+        { "action": "subagent", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "git status*", "effect": "allow" },
+        { "action": "shell", "resource": "git diff*", "effect": "allow" },
+        { "action": "shell", "resource": "git log*", "effect": "allow" },
+        { "action": "shell", "resource": "git show*", "effect": "allow" },
+        { "action": "shell", "resource": "rg *", "effect": "allow" },
+        { "action": "shell", "resource": "grep *", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
+        { "action": "shell", "resource": "cargo check*", "effect": "allow" },
+        { "action": "shell", "resource": "cargo test*", "effect": "allow" },
+        { "action": "shell", "resource": "cargo clippy*", "effect": "allow" },
+        { "action": "shell", "resource": "cargo build*", "effect": "allow" },
+        { "action": "shell", "resource": "cargo nextest*", "effect": "allow" },
+        { "action": "shell", "resource": "pnpm test*", "effect": "allow" },
+        { "action": "shell", "resource": "pnpm lint*", "effect": "allow" },
+        { "action": "shell", "resource": "pnpm check*", "effect": "allow" },
+        { "action": "shell", "resource": "npm test*", "effect": "allow" },
+        { "action": "shell", "resource": "npm run lint*", "effect": "allow" },
+        { "action": "shell", "resource": "npm run check*", "effect": "allow" },
+        { "action": "shell", "resource": "forge test*", "effect": "allow" },
+        { "action": "shell", "resource": "forge build*", "effect": "allow" },
+        { "action": "shell", "resource": "pytest *", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "python -m pytest*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "go test*", "effect": "allow" },
+        { "action": "shell", "resource": "go vet*", "effect": "allow" },
+        { "action": "shell", "resource": "make test*", "effect": "allow" },
+        { "action": "shell", "resource": "git * --output*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git * --ext-diff*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" }
+      ]
+    },
+    "worker-commit-msg": {
+      "description": "Read-only worker that drafts commit messages (and a suggested split) from the working-tree diff",
+      "mode": "subagent",
+      "color": "#fab387",
+      "system": "{file:./prompts/worker-commit-msg.txt}",
+      "request": {
+        "body": {
+          "temperature": 0.1
+        }
+      },
+      "permissions": [
+        { "action": "edit", "resource": "*", "effect": "deny" },
+        { "action": "subagent", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "*", "effect": "deny" },
+        { "action": "shell", "resource": "git status*", "effect": "allow" },
+        { "action": "shell", "resource": "git diff*", "effect": "allow" },
+        { "action": "shell", "resource": "git log*", "effect": "allow" },
+        { "action": "shell", "resource": "git show*", "effect": "allow" },
+        { "action": "shell", "resource": "rg *", "effect": "allow" },
+        { "action": "shell", "resource": "grep *", "effect": "allow" },
+        { "action": "shell", "resource": "ls", "effect": "allow" },
+        { "action": "shell", "resource": "ls *", "effect": "allow" },
+        { "action": "shell", "resource": "pwd", "effect": "allow" },
+        { "action": "shell", "resource": "pwd *", "effect": "allow" },
+        { "action": "shell", "resource": "stat *", "effect": "allow" },
+        { "action": "shell", "resource": "file *", "effect": "allow" },
+        { "action": "shell", "resource": "wc *", "effect": "allow" },
+        { "action": "shell", "resource": "du", "effect": "allow" },
+        { "action": "shell", "resource": "du *", "effect": "allow" },
+        { "action": "shell", "resource": "df", "effect": "allow" },
+        { "action": "shell", "resource": "df *", "effect": "allow" },
+        { "action": "shell", "resource": "readlink *", "effect": "allow" },
+        { "action": "shell", "resource": "realpath *", "effect": "allow" },
+        { "action": "shell", "resource": "basename *", "effect": "allow" },
+        { "action": "shell", "resource": "dirname *", "effect": "allow" },
+        { "action": "shell", "resource": "which *", "effect": "allow" },
+        { "action": "shell", "resource": "command -v *", "effect": "allow" },
+        { "action": "shell", "resource": "type *", "effect": "allow" },
+        { "action": "shell", "resource": "tree", "effect": "allow" },
+        { "action": "shell", "resource": "tree *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files*", "effect": "allow" },
+        { "action": "shell", "resource": "git blame*", "effect": "allow" },
+        { "action": "shell", "resource": "git cat-file*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-parse*", "effect": "allow" },
+        { "action": "shell", "resource": "git describe*", "effect": "allow" },
+        { "action": "shell", "resource": "git shortlog*", "effect": "allow" },
+        { "action": "shell", "resource": "git rev-list*", "effect": "allow" },
+        {
+          "action": "shell",
+          "resource": "git for-each-ref*",
+          "effect": "allow"
+        },
+        {
+          "action": "shell",
+          "resource": "git branch --list*",
+          "effect": "allow"
+        },
+        { "action": "shell", "resource": "git tag --list*", "effect": "allow" },
+        { "action": "shell", "resource": "git remote -v", "effect": "allow" },
+        { "action": "shell", "resource": "git grep*", "effect": "allow" },
+        { "action": "shell", "resource": "git stash list*", "effect": "allow" },
+        { "action": "shell", "resource": "git * --output*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git * --ext-diff*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "rg *--pre*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--textconv*",
+          "effect": "deny"
+        },
+        {
+          "action": "shell",
+          "resource": "git cat-file *--filters*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "git grep *-O*", "effect": "deny" },
+        {
+          "action": "shell",
+          "resource": "git grep *--open-files-in-pager*",
+          "effect": "deny"
+        },
+        { "action": "shell", "resource": "tree *-o*", "effect": "deny" },
+        { "action": "shell", "resource": "file *-C*", "effect": "deny" },
+        { "action": "shell", "resource": "file *--compile*", "effect": "deny" }
       ]
     }
   },
@@ -472,19 +1391,19 @@
       "description": "Implement → validate → adversarial critique → fix loop (max 3 rounds)",
       "agent": "build",
       "subagent": false,
-      "template": "Perform a validation-and-critic loop for the current task: $ARGUMENTS\n\nPROCESS:\n1. Understand the requested behavior. Inspect the relevant code, tests, configuration, and architecture before making assumptions. Write down a short REQUIREMENTS SUMMARY (a few bullets) you will hand to the critics.\n2. Implement the change completely. Do not stop at the first plausible patch.\n3. Run the strongest relevant validation: formatter, type checker, build, unit/integration tests, lint/static analysis. Discover the repository's real commands; do not invent them.\n4. Inspect `git diff` and `git status` for accidental changes, debug code, weakened assertions, dead code, API drift, and incomplete work.\n5. Invoke the critics. Critics start with NO context, so every invocation must include: the REQUIREMENTS SUMMARY, a summary of what changed and which files, the validation commands already run with results, and, from round 2 onward, the list of findings already rejected with reasons so they are not re-raised.\n   - ALWAYS run @critic-correctness and @critic-tests.\n   - Run @critic-security only if the diff touches input parsing, auth, crypto, filesystem/network/process interaction, serialization, privilege boundaries, or dependencies.\n   - Run @critic-performance only if the diff touches hot paths, I/O, loops over unbounded data, locking/concurrency, or startup.\n   Say which optional critics you skipped and why.\n6. Treat findings as hypotheses. Reproduce or reason through every BLOCKER/HIGH. Reject a finding only when you can demonstrate it is invalid or irrelevant, and record the reason.\n7. Fix every confirmed BLOCKER and HIGH. Fix MEDIUM findings that affect correctness, reliability, security, resource usage, or likely regressions.\n8. Rerun focused tests first, then the broader suite.\n9. Re-run only the critics whose area was affected by the fixes. Stop when a round produces no NEW confirmed BLOCKER/HIGH findings. Hard cap: 3 rounds. Do not re-litigate previously rejected findings.\n10. If changed behavior lacks tests, add targeted tests.\n11. Never make tests pass by weakening assertions, deleting coverage, skipping tests, broadening mocks, disabling lint/type checks, or suppressing errors without a documented technical reason.\n12. Distinguish environmental/toolchain failures from code failures and gather independent evidence.\n13. Completion criteria: behavior implemented; relevant tests pass; applicable build/type/lint checks pass; final diff inspected; no confirmed BLOCKER/HIGH remain; no known regression left unfixed.\n\nFINAL REPORT:\n- What changed\n- Validation commands actually run and results\n- Critics run/skipped, findings by category\n- Findings fixed vs rejected, with reasons\n- Remaining limitations or environment failures\n- Exact final test/build status"
+      "template": "Perform a validation-and-critic loop for the current task: $ARGUMENTS\n\nPROCESS:\n1. Understand the requested behavior. Inspect the relevant code, tests, configuration, and architecture before making assumptions. Write down a short REQUIREMENTS SUMMARY (a few bullets) you will hand to the critics.\n2. Implement the change completely. Do not stop at the first plausible patch.\n3. Run the strongest relevant validation: formatter, type checker, build, unit/integration tests, lint/static analysis. Discover the repository's real commands; do not invent them.\n4. Inspect `git diff` and `git status` for accidental changes, debug code, weakened assertions, dead code, API drift, and incomplete work.\n5. Invoke the critics. Critics start with NO context, so every invocation must include: the REQUIREMENTS SUMMARY, a summary of what changed and which files, the validation commands already run with results, and, from round 2 onward, the list of findings already rejected with reasons so they are not re-raised.\n   - ALWAYS run @critic-correctness and @critic-tests.\n   - Run @critic-security only if the diff touches input parsing, auth, crypto, filesystem/network/process interaction, serialization, privilege boundaries, or dependencies.\n   - Run @critic-performance only if the diff touches hot paths, I/O, loops over unbounded data, locking/concurrency, or startup.\n   - Run @critic-architecture only if the diff adds or moves modules, changes public APIs, CLI/config or data formats, or introduces new abstractions.\n   - Run @critic-docs only if the diff changes user-visible behavior or touches documentation.\n   - Run @critic-dependencies only if manifests or lockfiles changed.\n   Say which optional critics you skipped and why.\n6. Treat findings as hypotheses. Reproduce or reason through every BLOCKER/HIGH. Reject a finding only when you can demonstrate it is invalid or irrelevant, and record the reason.\n7. Fix every confirmed BLOCKER and HIGH. Fix MEDIUM findings that affect correctness, reliability, security, resource usage, or likely regressions.\n8. Rerun focused tests first, then the broader suite.\n9. Re-run only the critics whose area was affected by the fixes. Stop when a round produces no NEW confirmed BLOCKER/HIGH findings. Hard cap: 3 rounds. Do not re-litigate previously rejected findings.\n10. If changed behavior lacks tests, add targeted tests.\n11. Never make tests pass by weakening assertions, deleting coverage, skipping tests, broadening mocks, disabling lint/type checks, or suppressing errors without a documented technical reason.\n12. Distinguish environmental/toolchain failures from code failures and gather independent evidence.\n13. Completion criteria: behavior implemented; relevant tests pass; applicable build/type/lint checks pass; final diff inspected; no confirmed BLOCKER/HIGH remain; no known regression left unfixed.\n\nFINAL REPORT:\n- What changed\n- Validation commands actually run and results\n- Critics run/skipped, findings by category\n- Findings fixed vs rejected, with reasons\n- Remaining limitations or environment failures\n- Exact final test/build status"
     },
     "review-loop": {
       "description": "Adversarial review of current changes, read-only",
       "agent": "reviewer",
       "subagent": false,
-      "template": "Run an adversarial review of the current working tree for: $ARGUMENTS\n\nInspect the diff and surrounding code and run safe validation where useful. Write a short REQUIREMENTS SUMMARY from $ARGUMENTS and the diff, then invoke @critic-correctness and @critic-tests always, and @critic-security / @critic-performance when the diff touches their areas. Pass each critic the requirements summary, the changed files, and the validation results, since they have no other context. Verify findings to remove false positives, then report exact actionable issues with severity and file/line references. Finish by proposing the smallest root-cause fixes. You cannot modify files."
+      "template": "Run an adversarial review of the current working tree for: $ARGUMENTS\n\nInspect the diff and surrounding code and run safe validation where useful. Write a short REQUIREMENTS SUMMARY from $ARGUMENTS and the diff, then invoke @critic-correctness and @critic-tests always, and @critic-security / @critic-performance / @critic-architecture / @critic-docs / @critic-dependencies when the diff touches their areas. Pass each critic the requirements summary, the changed files, and the validation results, since they have no other context. Verify findings to remove false positives, then report exact actionable issues with severity and file/line references. Finish by proposing the smallest root-cause fixes. You cannot modify files."
     },
     "parallel": {
       "description": "Plan work, dispatch worker agents in parallel, integrate and validate",
       "agent": "orchestrator",
       "subagent": false,
-      "template": "Implement the requested work with parallel worker agents: $ARGUMENTS\n\nPROCESS:\n1. Understand the requested behavior and inspect the repository before planning. Discover the repository's real build/test/lint commands; do not invent them.\n2. Write a short REQUIREMENTS SUMMARY (a few bullets) and a WORK PLAN. Split the work into independent units. Each unit gets a name, a one-line objective, the EXACT file scope it owns, acceptance criteria, and the narrow validation command to run.\n3. Check independence. If two units would touch the same file, merge them into one unit or run them in separate rounds. Never dispatch concurrently with overlapping file scopes.\n4. Dispatch every independent unit in ONE message using multiple Task calls so the workers run in parallel. Give each worker the full context it needs: the goal, the requirements summary, its exact file scope, the acceptance criteria, the repo conventions, the constraints, and the validation command to run. Workers have no other context.\n5. While the workers run, do not edit files a worker owns. Work only on files no worker owns.\n6. When the workers report back, verify their work yourself: inspect the diff per scope, check the acceptance criteria, confirm no out-of-scope file was touched, and re-check anything you doubt.\n7. Integrate the results, fix cross-unit breakage, then run the full validation once, serially, after every worker has finished.\n8. Invoke the critics. Critics start with NO context, so every invocation must include: the REQUIREMENTS SUMMARY, a summary of what changed and which files, the validation commands already run with results, and the list of findings already rejected with reasons so they are not re-raised.\n   - ALWAYS run @critic-correctness and @critic-tests.\n   - Run @critic-security only if the diff touches input parsing, auth, crypto, filesystem/network/process interaction, serialization, privilege boundaries, or dependencies.\n   - Run @critic-performance only if the diff touches hot paths, I/O, loops over unbounded data, locking/concurrency, or startup.\n   Say which optional critics you skipped and why.\n9. Treat findings as hypotheses. Reproduce or reason through every BLOCKER/HIGH, fix every confirmed BLOCKER and HIGH, and fix MEDIUM findings that affect correctness, reliability, security, or likely regressions.\n10. Rerun focused tests first, then the broader suite. Stop when a round produces no NEW confirmed BLOCKER/HIGH findings.\n11. Never make tests pass by weakening assertions, deleting coverage, skipping tests, broadening mocks, or disabling lint/type checks.\n\nFINAL REPORT:\n- Requirements summary\n- Work plan: which worker owned which file scope\n- Per-worker results, including anything left undone or reported out of scope\n- Validation commands actually run and results\n- Critics run/skipped, findings by category, findings fixed vs rejected with reasons\n- Remaining limitations or environment failures\n- Exact final test/build status"
+      "template": "Implement the requested work with parallel worker agents: $ARGUMENTS\n\nPROCESS:\n1. Understand the requested behavior and inspect the repository before planning. Discover the repository's real build/test/lint commands; do not invent them.\n2. Write a short REQUIREMENTS SUMMARY (a few bullets) and a WORK PLAN. Split the work into independent units. Each unit gets a name, a one-line objective, the EXACT file scope it owns, acceptance criteria, and the narrow validation command to run.\n3. Check independence. If two units would touch the same file, merge them into one unit or run them in separate rounds. Never dispatch concurrently with overlapping file scopes.\n4. Dispatch every independent unit in ONE message using multiple Task calls so the workers run in parallel. Give each worker the full context it needs: the goal, the requirements summary, its exact file scope, the acceptance criteria, the repo conventions, the constraints, and the validation command to run. Workers have no other context.\n5. While the workers run, do not edit files a worker owns. Work only on files no worker owns.\n6. When the workers report back, verify their work yourself: inspect the diff per scope, check the acceptance criteria, confirm no out-of-scope file was touched, and re-check anything you doubt.\n7. Integrate the results, fix cross-unit breakage, then run the full validation once, serially, after every worker has finished.\n8. Invoke the critics. Critics start with NO context, so every invocation must include: the REQUIREMENTS SUMMARY, a summary of what changed and which files, the validation commands already run with results, and the list of findings already rejected with reasons so they are not re-raised.\n   - ALWAYS run @critic-correctness and @critic-tests.\n   - Run @critic-security only if the diff touches input parsing, auth, crypto, filesystem/network/process interaction, serialization, privilege boundaries, or dependencies.\n   - Run @critic-performance only if the diff touches hot paths, I/O, loops over unbounded data, locking/concurrency, or startup.\n   - Run @critic-architecture only if the diff adds or moves modules, changes public APIs, CLI/config or data formats, or introduces new abstractions.\n   - Run @critic-docs only if the diff changes user-visible behavior or touches documentation.\n   - Run @critic-dependencies only if manifests or lockfiles changed.\n   Say which optional critics you skipped and why.\n9. Treat findings as hypotheses. Reproduce or reason through every BLOCKER/HIGH, fix every confirmed BLOCKER and HIGH, and fix MEDIUM findings that affect correctness, reliability, security, or likely regressions.\n10. Rerun focused tests first, then the broader suite. Stop when a round produces no NEW confirmed BLOCKER/HIGH findings.\n11. Never make tests pass by weakening assertions, deleting coverage, skipping tests, broadening mocks, or disabling lint/type checks.\n\nFINAL REPORT:\n- Requirements summary\n- Work plan: which worker owned which file scope\n- Per-worker results, including anything left undone or reported out of scope\n- Validation commands actually run and results\n- Critics run/skipped, findings by category, findings fixed vs rejected with reasons\n- Remaining limitations or environment failures\n- Exact final test/build status"
     }
   }
 }
