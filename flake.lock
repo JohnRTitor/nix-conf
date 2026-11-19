@@ -1017,6 +1017,18 @@
         "url": "https://github.com/NixOS/nixpkgs/pull/569250.patch"
       }
     },
+    "nixpkgs-patch-opencode": {
+      "flake": false,
+      "locked": {
+        "path": "./patches/opencode-2.3.0.patch",
+        "type": "path"
+      },
+      "original": {
+        "path": "./patches/opencode-2.3.0.patch",
+        "type": "path"
+      },
+      "parent": []
+    },
     "nixpkgs-patcher": {
       "locked": {
         "lastModified": 1793529490,
@@ -1244,6 +1256,7 @@
         "nixpkgs-patch-bcachefs-module": "nixpkgs-patch-bcachefs-module",
         "nixpkgs-patch-hyprland-module": "nixpkgs-patch-hyprland-module",
         "nixpkgs-patch-limine-module": "nixpkgs-patch-limine-module",
+        "nixpkgs-patch-opencode": "nixpkgs-patch-opencode",
         "nixpkgs-patcher": "nixpkgs-patcher",
         "noctalia": "noctalia",
         "nur": "nur",

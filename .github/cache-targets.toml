@@ -39,6 +39,11 @@ group = "nixos_package"
 hostname = "Ainz-NIX"
 name = "scx.rustscheds"
 
+[[targets]]
+group = "nixos_package"
+hostname = "Ainz-NIX"
+name = "opencode"
+
 # [[targets]]
 # group = "vscode_extensions"
 # hostname = "Ainz-NIX"

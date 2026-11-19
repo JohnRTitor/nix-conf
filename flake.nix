@@ -25,6 +25,11 @@
       url = "https://github.com/NixOS/nixpkgs/pull/569250.patch";
       flake = false;
     };
+    # Local patch: update opencode to 2.3.0 (package.nix only)
+    nixpkgs-patch-opencode = {
+      url = "path:./patches/opencode-2.3.0.patch";
+      flake = false;
+    };
 
     ### NIX ECOSYSTEM & UTILS ###
     flake-parts = {
