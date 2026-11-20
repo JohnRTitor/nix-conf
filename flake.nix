@@ -14,15 +14,15 @@
     #   flake = false;
     # };
     nixpkgs-patch-bcachefs-module = {
-      url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/574375.patch";
+      url = "https://github.com/NixOS/nixpkgs/commit/4d2dabf5a95f0c2c8d1024479ed2223f9db7a116.patch?full_index=1";
       flake = false;
     };
     nixpkgs-patch-hyprland-module = {
-      url = "https://github.com/NixOS/nixpkgs/pull/581387.patch";
+      url = "https://github.com/NixOS/nixpkgs/commit/e39191632b474fcf86ca2a037ca9bb325c7f5a15.patch?full_index=1";
       flake = false;
     };
     nixpkgs-patch-limine-module = {
-      url = "https://github.com/NixOS/nixpkgs/pull/569250.patch";
+      url = "https://github.com/NixOS/nixpkgs/commit/4981f0e5d3e941f9c69b499da37f64e7b2a1fe55.patch?full_index=1";
       flake = false;
     };
     # Local patch: update opencode to 2.3.0 (package.nix only)
