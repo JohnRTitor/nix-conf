@@ -2,11 +2,21 @@
   "$schema": "https://opencode.ai/config.json",
   "lsp": true,
   "plugins": ["github:itsyasirkhandev/opencode-cline-free"],
+  "mcp": {
+    "servers": {
+      "rust-anything": {
+        "type": "local",
+        "command": ["rust-anything", "mcp"]
+      }
+    }
+  },
+  "websearch": {
+    "provider": "tinyfish",
+  },
   "default_agent": "build",
   "experimental": {
     "todo": true,
     "subagent_depth": 2,
-    "background_compaction": true
   },
   "agents": {
     "build": {

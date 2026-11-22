@@ -11,11 +11,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794608310,
-        "narHash": "sha256-Wp24/KT7P8BOv734c+vJWMzH+3WRnSO8Z4B/6qEIWwY=",
+        "lastModified": 1795346196,
+        "narHash": "sha256-muLltbR3u5UnaWulrS2GI/T8hvmiwBUOuxWLPwRx+kk=",
         "owner": "johnrtitor",
         "repo": "ananicy-rs",
-        "rev": "753d9858643df3de08954f6632f785aaa56e3429",
+        "rev": "5e30ba7d6a82a255b2676a4c4ee0a09d696f3cc3",
         "type": "github"
       },
       "original": {
@@ -1464,11 +1464,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795209301,
-        "narHash": "sha256-M3vzJf6fG0H5o6p+Sdj7nsz1i1UfXpo73DlvcuN9Ig8=",
+        "lastModified": 1795453828,
+        "narHash": "sha256-P1gGdj0RLzct1gytf6AP6eaSMWbxjioU3LfAmE5mMqY=",
         "owner": "johnrtitor",
         "repo": "xdg-desktop-portal-gtk4",
-        "rev": "9fc147b5f47f30b2086fe11e05d0f9584c42941c",
+        "rev": "21c274003a379795ddab572d56974b2dc3c622c0",
         "type": "github"
       },
       "original": {

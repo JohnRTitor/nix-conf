@@ -30,8 +30,7 @@
     ++ [
       inputs.loaf-fm.packages.${pkgs.hostPlatform.system}.default
 
-      # Add Hyperledger FireFly CLI
-      self.packages.${pkgs.hostPlatform.system}.firefly-cli
+      self.packages.${pkgs.hostPlatform.system}.rust-anything
 
       # Add Hyperledger Fabric peer/tools
       self.packages.${pkgs.hostPlatform.system}.hyperledger-fabric
