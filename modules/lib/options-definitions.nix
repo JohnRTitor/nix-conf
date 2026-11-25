@@ -144,6 +144,7 @@
           "nautilus"
           "nemo"
           "thunar"
+          "loaf"
         ];
         default = "nautilus";
         description = "File manager";

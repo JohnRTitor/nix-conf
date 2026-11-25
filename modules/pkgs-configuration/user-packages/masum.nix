@@ -28,8 +28,6 @@
       # jetbrains.idea
     ])
     ++ [
-      inputs.loaf-fm.packages.${pkgs.hostPlatform.system}.default
-
       self.packages.${pkgs.hostPlatform.system}.rust-anything
 
       # Add Hyperledger Fabric peer/tools

@@ -54,9 +54,9 @@
 
     programsSettings = {
       displayManager = "dux-greeter";
-      fileManager = "dolphin";
+      fileManager = "loaf";
       terminal = "kitty";
-      guiSuite = "kde";
+      guiSuite = "gnome";
       openrgb = true;
     };
   };

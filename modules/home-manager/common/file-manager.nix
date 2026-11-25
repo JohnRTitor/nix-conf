@@ -1,11 +1,18 @@
 {
   self,
+  inputs,
   config,
   lib,
   pkgs,
   ...
 }:
 lib.mkMerge [
+  (lib.mkIf (config.myOptions.programsSettings.fileManager == "loaf") {
+    home.packages = [
+      inputs.loaf-fm.packages.${pkgs.hostPlatform.system}.default
+    ];
+  })
+  
   (lib.mkIf (config.myOptions.programsSettings.fileManager == "dolphin") {
     home.packages = with pkgs.kdePackages; [
       dolphin
