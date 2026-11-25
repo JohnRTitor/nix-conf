@@ -98,7 +98,7 @@
       package-version-server # Zed autodownloads this
 
       # whatsapp-for-linux
-      libreoffice-fresh
+      libreoffice
       shotwell # GNOME image editor
       # gnome-logs # GNOME log viewer
       # mission-center # Taskmanager clone

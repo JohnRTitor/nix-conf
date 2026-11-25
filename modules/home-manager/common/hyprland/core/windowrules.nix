@@ -105,9 +105,9 @@ _: {
       }
 
       {
-        name = "Thunar";
+        name = "File Managers";
         match = {
-          class = "^([Tt]hunar|org\\.gnome\\.Nautilus|[Pp]cmanfm-qt|org\\.kde\\.dolphin)$";
+          class = "^([Tt]hunar|org\\.gnome\\.Nautilus|[Pp]cmanfm-qt|org\\.kde\\.dolphin|loaf)$";
         };
         tag = "+file-manager";
       }
